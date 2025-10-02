@@ -2100,7 +2100,7 @@
             strengthDiv.style.display = 'block';
         }
 
-        // QR Code Generator
+        // QR Code Generator - FIXED VERSION
         function getQRGeneratorHTML() {
             return `
                 <div class="tool-interface">
@@ -2126,7 +2126,7 @@
         }
 
         function initQRGenerator() {
-            // QR code will be generated using a simple method
+            // QR code will be generated using API
         }
 
         function generateQRCode() {
@@ -2134,26 +2134,80 @@
             const qrContainer = document.getElementById('qr-code');
             
             if (!text) {
-                qrContainer.innerHTML = '<p>Please enter text or URL</p>';
+                qrContainer.innerHTML = '<p style="color: var(--error); text-align: center;">Please enter text or URL</p>';
                 return;
             }
             
-            // Simple display instead of external API
-            qrContainer.innerHTML = `
-                <div style="text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: var(--radius); background: var(--bg-dark);">
-                    <i class="fas fa-qrcode" style="font-size: 48px; color: var(--primary-blue); margin-bottom: 15px;"></i>
-                    <p><strong>QR Code Content:</strong></p>
-                    <p style="word-break: break-all; background: var(--bg-white); padding: 10px; border-radius: 4px; border: 1px solid var(--border-color);">${text}</p>
-                    <p style="font-size: 12px; color: var(--text-light); margin-top: 10px;">
-                        <i class="fas fa-info-circle"></i> 
-                        QR code image generation requires external API. Content displayed above.
-                    </p>
-                </div>
-            `;
+            // Clear previous QR code
+            qrContainer.innerHTML = '<div style="text-align: center; color: var(--text-light);"><i class="fas fa-spinner fa-spin"></i> Generating QR Code...</div>';
+            
+            // Use QR code generation API
+            const qrSize = 200;
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${qrSize}x${qrSize}&data=${encodeURIComponent(text)}`;
+            
+            // Create QR code image
+            const qrImage = new Image();
+            qrImage.onload = function() {
+                qrContainer.innerHTML = '';
+                const imgWrapper = document.createElement('div');
+                imgWrapper.style.textAlign = 'center';
+                imgWrapper.style.padding = '20px';
+                
+                const img = document.createElement('img');
+                img.src = qrUrl;
+                img.alt = 'QR Code';
+                img.style.border = '1px solid var(--border-color)';
+                img.style.borderRadius = 'var(--radius)';
+                img.style.maxWidth = '100%';
+                img.style.height = 'auto';
+                
+                // Store the QR URL for download
+                img.dataset.qrUrl = qrUrl;
+                
+                imgWrapper.appendChild(img);
+                qrContainer.appendChild(imgWrapper);
+                
+                showNotification('QR code generated successfully!', 'success');
+            };
+            
+            qrImage.onerror = function() {
+                // Fallback if API fails
+                qrContainer.innerHTML = `
+                    <div style="text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: var(--radius); background: var(--bg-dark);">
+                        <i class="fas fa-qrcode" style="font-size: 48px; color: var(--primary-blue); margin-bottom: 15px;"></i>
+                        <p><strong>QR Code Content:</strong></p>
+                        <p style="word-break: break-all; background: var(--bg-white); padding: 10px; border-radius: 4px; border: 1px solid var(--border-color);">${text}</p>
+                        <p style="font-size: 12px; color: var(--text-light); margin-top: 10px;">
+                            <i class="fas fa-info-circle"></i> 
+                            QR code image generation failed. Content displayed above.
+                        </p>
+                    </div>
+                `;
+            };
+            
+            qrImage.src = qrUrl;
         }
 
         function downloadQRCode() {
-            showNotification('QR code image download requires external API service', 'info');
+            const qrContainer = document.getElementById('qr-code');
+            const img = qrContainer.querySelector('img');
+            
+            if (!img) {
+                showNotification('Please generate a QR code first', 'error');
+                return;
+            }
+            
+            // Create a temporary link for download
+            const link = document.createElement('a');
+            link.href = img.src;
+            link.download = 'qrcode.png';
+            link.style.display = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showNotification('QR code downloaded!', 'success');
         }
 
         // Color Picker
@@ -2334,6 +2388,136 @@
             const result = document.getElementById('base64-result').textContent;
             if (result && !result.includes('Error') && !result.includes('Please enter')) {
                 copyToClipboard(result);
+            }
+        }
+
+        // URL Shortener - FIXED VERSION
+        function getURLShortenerHTML() {
+            return `
+                <div class="tool-interface">
+                    <div class="tool-group">
+                        <label class="tool-label" for="url-input">Enter URL to shorten:</label>
+                        <input type="url" id="url-input" class="tool-input" placeholder="https://example.com/very/long/url">
+                        <small style="color: var(--text-light); display: block; margin-top: 0.5rem;">
+                            <i class="fas fa-info-circle"></i> Make sure to include http:// or https://
+                        </small>
+                    </div>
+                    
+                    <div class="tool-buttons">
+                        <button class="tool-button" onclick="shortenURL()">
+                            <i class="fas fa-compress"></i> Shorten URL
+                        </button>
+                    </div>
+                    
+                    <div id="url-shortened"></div>
+                </div>
+            `;
+        }
+
+        function initURLShortener() {
+            // Initialize
+        }
+
+        function shortenURL() {
+            const url = document.getElementById('url-input').value.trim();
+            const resultDiv = document.getElementById('url-shortened');
+            
+            if (!url) {
+                showNotification('Please enter a URL', 'error');
+                return;
+            }
+            
+            if (!isValidURL(url)) {
+                showNotification('Please enter a valid URL (include http:// or https://)', 'error');
+                return;
+            }
+            
+            // Show loading state
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div style="text-align: center; color: var(--text-light);"><i class="fas fa-spinner fa-spin"></i> Shortening URL...</div>';
+            
+            // Use a free URL shortening service (TinyURL API)
+            const apiUrl = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`;
+            
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(shortUrl => {
+                    if (shortUrl && shortUrl.startsWith('http')) {
+                        resultDiv.innerHTML = `
+                            <div class="url-result" style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: space-between;">
+                                <div style="flex: 1; min-width: 200px;">
+                                    <strong>Shortened URL:</strong>
+                                    <div class="tool-result" style="margin-top: 0.5rem; word-break: break-all; padding: 0.5rem;">${shortUrl}</div>
+                                </div>
+                                <button class="tool-button secondary" onclick="copyShortURL()">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                        `;
+                        // Store the short URL for copying
+                        resultDiv.dataset.shortUrl = shortUrl;
+                        showNotification('URL shortened successfully!', 'success');
+                    } else {
+                        throw new Error('Invalid response from service');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error shortening URL:', error);
+                    // Fallback: Generate a fake short URL
+                    generateFallbackShortURL(url, resultDiv);
+                });
+        }
+
+        function generateFallbackShortURL(originalUrl, resultDiv) {
+            // Fallback method using a simulated short URL
+            const shortCode = generateRandomString(6, 'abcdefghijklmnopqrstuvwxyz0123456789');
+            const shortUrl = `https://short.example/${shortCode}`;
+            
+            resultDiv.innerHTML = `
+                <div class="url-result" style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: space-between;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <strong>Shortened URL (Demo):</strong>
+                        <div class="tool-result" style="margin-top: 0.5rem; word-break: break-all; padding: 0.5rem; background: var(--warning); color: black;">${shortUrl}</div>
+                        <small style="color: var(--text-light); display: block; margin-top: 0.5rem;">
+                            <i class="fas fa-info-circle"></i> This is a demo version. For real shortening, use a dedicated service.
+                        </small>
+                    </div>
+                    <button class="tool-button secondary" onclick="copyShortURL()">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+            `;
+            resultDiv.dataset.shortUrl = shortUrl;
+            showNotification('Demo URL created (not a real short link)', 'info');
+        }
+
+        function copyShortURL() {
+            const resultDiv = document.getElementById('url-shortened');
+            const shortUrl = resultDiv.dataset.shortUrl;
+            
+            if (shortUrl) {
+                copyToClipboard(shortUrl);
+            } else {
+                showNotification('No short URL available to copy', 'error');
+            }
+        }
+
+        function isValidURL(string) {
+            try {
+                // Basic URL validation
+                const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+                if (!urlPattern.test(string)) return false;
+                
+                // More strict validation
+                new URL(string.startsWith('http') ? string : 'https://' + string);
+                return true;
+            } catch (_) {
+                return false;
             }
         }
 
@@ -2623,72 +2807,6 @@
             const result = document.getElementById('json-result').textContent;
             if (result && !result.includes('Invalid') && !result.includes('Please enter')) {
                 copyToClipboard(result);
-            }
-        }
-
-        // URL Shortener (Simulated)
-        function getURLShortenerHTML() {
-            return `
-                <div class="tool-interface">
-                    <div class="tool-group">
-                        <label class="tool-label" for="url-input">Enter URL to shorten:</label>
-                        <input type="url" id="url-input" class="tool-input" placeholder="https://example.com/very/long/url">
-                    </div>
-                    
-                    <div class="tool-buttons">
-                        <button class="tool-button" onclick="shortenURL()">
-                            <i class="fas fa-compress"></i> Shorten URL
-                        </button>
-                    </div>
-                    
-                    <div id="url-shortened" style="display: none;">
-                        <div class="url-result">
-                            <span class="shortened-url" id="shortened-url"></span>
-                            <button class="tool-button secondary" onclick="copyURL()">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function initURLShortener() {
-            // Initialize
-        }
-
-        function shortenURL() {
-            const url = document.getElementById('url-input').value.trim();
-            
-            if (!url) {
-                showNotification('Please enter a URL', 'error');
-                return;
-            }
-            
-            if (!isValidURL(url)) {
-                showNotification('Please enter a valid URL', 'error');
-                return;
-            }
-            
-            // Generate a random short URL (simulation)
-            const shortCode = generateRandomString(6, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
-            const shortURL = `https://short.ly/${shortCode}`;
-            
-            document.getElementById('shortened-url').textContent = shortURL;
-            document.getElementById('url-shortened').style.display = 'block';
-        }
-
-        function copyURL() {
-            const shortURL = document.getElementById('shortened-url').textContent;
-            copyToClipboard(shortURL);
-        }
-
-        function isValidURL(string) {
-            try {
-                new URL(string);
-                return true;
-            } catch (_) {
-                return false;
             }
         }
 

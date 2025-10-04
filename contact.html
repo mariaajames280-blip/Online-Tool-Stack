@@ -696,7 +696,6 @@
                 e.preventDefault();
                 
                 // Get form data
-                const formData = new FormData(contactForm);
                 const name = document.getElementById('name').value;
                 const email = document.getElementById('email').value;
                 const subject = document.getElementById('subject').value;
@@ -708,7 +707,7 @@
                     return;
                 }
 
-                // Simulate form submission (in real implementation, this would be an AJAX call)
+                // Simulate form submission
                 showResponse('Thank you for your message! We will get back to you within 24 hours.', 'success');
                 contactForm.reset();
             });
@@ -727,80 +726,7 @@
                     formResponse.style.display = 'none';
                 }, 5000);
             }
-
-            // ===== ADDED REDIRECT CODE =====
-            // Simple redirect to new contact page
-            <script>
-    // Navigation functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        const navToggle = document.getElementById('nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        
-        if (navToggle && navMenu) {
-            navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                navToggle.classList.toggle('active');
-            });
-        }
-
-        // Navbar scroll effect
-        const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
         });
-
-        // Close mobile menu on link click
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-            });
-        });
-
-        // Contact form handling
-        const contactForm = document.getElementById('contactForm');
-        const formResponse = document.getElementById('formResponse');
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-
-            // Simple validation
-            if (!name || !email || !subject || !message) {
-                showResponse('Please fill in all required fields.', 'error');
-                return;
-            }
-
-            // Simulate form submission (in real implementation, this would be an AJAX call)
-            showResponse('Thank you for your message! We will get back to you within 24 hours.', 'success');
-            contactForm.reset();
-        });
-
-        function showResponse(message, type) {
-            formResponse.textContent = message;
-            formResponse.className = 'response-message';
-            formResponse.classList.add(type === 'success' ? 'response-success' : 'response-error');
-            formResponse.style.display = 'block';
-
-            // Scroll to response
-            formResponse.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-            // Hide response after 5 seconds
-            setTimeout(() => {
-                formResponse.style.display = 'none';
-            }, 5000);
-        }
-    });
-</script>
+    </script>
 </body>
 </html>

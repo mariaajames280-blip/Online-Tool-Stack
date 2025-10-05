@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="google-site-verification" content="1e-1tEVO_4RMiuS27UO-K9OahZ3l7gGQXEoJOB3yS9g" />
+    
+    <!-- ===== GOOGLE ANALYTICS ===== -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R2J0L2PD48"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R2J0L2PD48');
+    </script>
+    
+    <!-- ===== SEO TAGS ===== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Online ToolStack - Professional Web Tools Collection</title>
+    <meta name="description" content="Learn about Online ToolStack - our mission, team, and the story behind our comprehensive collection of free web tools for developers and digital professionals.">
+    <meta name="keywords" content="about online toolstack, web tools company, developer tools, free online tools, digital tools">
+    <meta name="author" content="Online ToolStack">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.onlinetoolstack.site/about-us.html">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="About Us - Online ToolStack">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.onlinetoolstack.site/about-us.html">
+    <meta property="og:description" content="Learn about Online ToolStack - our mission, team, and the story behind our comprehensive collection of free web tools.">
+    <meta property="og:site_name" content="Online ToolStack">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About Us - Online ToolStack",
+        "description": "About Online ToolStack - Professional Web Tools Collection",
+        "url": "https://www.onlinetoolstack.site/about-us.html",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Online ToolStack",
+            "description": "Professional web tools for developers and digital creators",
+            "url": "https://www.onlinetoolstack.site",
+            "foundingDate": "2020",
+            "sameAs": []
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.onlinetoolstack.site/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "About Us"
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== DARK THEME STYLES ===== */
+        :root {
+            --primary-blue: #0066ff;
+            --primary-blue-dark: #0052cc;
+            --secondary-purple: #8a2be2;
+            --accent-teal: #00d4aa;
+            --text-dark: #f7fafc;
+            --text-light: #a0aec0;
+            --bg-light: #1a202c;
+            --bg-white: #2d3748;
+            --bg-dark: #0f1419;
+            --border-color: #4a5568;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
+            background-color: var(--bg-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar.scrolled {
+            background: rgba(15, 20, 25, 0.98);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .nav-logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-dark);
+            position: relative;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-blue);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-blue);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .nav-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: var(--transition);
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+
+        .content-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .content-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .about-section h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .about-section h3 {
+            color: var(--text-dark);
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .about-section p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .about-section ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .about-section li {
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .mission-box {
+            background: var(--bg-dark);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--accent-teal);
+            margin: 2rem 0;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .team-member {
+            background: var(--bg-dark);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .team-member h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .member-role {
+            color: var(--accent-teal);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: var(--bg-dark);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Tools Categories */
+        .tools-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .tool-category {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            color: white;
+            padding: 60px 0 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo i {
+            color: var(--accent-teal);
+        }
+
+        .footer p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-light);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-blue);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background: var(--bg-white);
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 0;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+                z-index: 1000;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .content-title {
+                font-size: 2.5rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .content-title {
+                font-size: 2rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-tools"></i>
+                <span>Online ToolStack</span>
+            </a>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#tools" class="nav-link">Tools</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="about-us.html" class="nav-link active">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Us Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-header">
+                <h1 class="content-title">About Online ToolStack</h1>
+                <p class="content-subtitle">Learn about our mission, team, and the story behind our comprehensive collection of web tools</p>
+            </div>
+            
+            <div class="content-card">
+                <div class="about-section">
+                    <h2>Our Story</h2>
+                    <p>Online ToolStack was founded in 2020 with a simple mission: to create high-quality, accessible tools for developers, designers, and digital professionals. What started as a small collection of utilities has grown into a comprehensive platform serving thousands of users worldwide.</p>
+                    
+                    <div class="mission-box">
+                        <p>Our mission is to empower digital professionals with the tools and knowledge they need to succeed in an ever-evolving technological landscape.</p>
+                    </div>
+                    
+                    <p>We believe that powerful tools should be accessible to everyone, regardless of budget or technical expertise. That's why all our tools are free, fast, and designed with user experience in mind.</p>
+                </div>
+
+                <div class="about-section">
+                    <h2>What We Do</h2>
+                    <p>We create and maintain a comprehensive collection of web tools across multiple domains:</p>
+                    
+                    <div class="tools-categories">
+                        <span class="tool-category">Code Tools</span>
+                        <span class="tool-category">Calculators</span>
+                        <span class="tool-category">Text Tools</span>
+                        <span class="tool-category">Generators</span>
+                        <span class="tool-category">SEO Tools</span>
+                        <span class="tool-category">Design Resources</span>
+                        <span class="tool-category">Security Tools</span>
+                        <span class="tool-category">Productivity</span>
+                    </div>
+                    
+                    <p>Our tools are designed to help developers, content creators, and digital professionals work more efficiently and effectively. From password generators to code formatters, we've got you covered.</p>
+                </div>
+
+                <div class="about-section">
+                    <h2>Our Impact</h2>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">20+</div>
+                            <div class="stat-label">Tools Available</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Monthly Users</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2020</div>
+                            <div class="stat-label">Founded</div>
+                        </div>
+                    </div>
+                    
+                    <p>Since our launch, we've helped thousands of developers and digital professionals improve their workflows and productivity. Our tools are trusted by individuals, startups, and established companies alike.</p>
+                </div>
+
+                <div class="about-section">
+                    <h2>Our Team</h2>
+                    <p>We're a passionate team of developers, designers, and digital experts dedicated to creating useful tools and resources.</p>
+                    
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>Alex Johnson</h4>
+                            <div class="member-role">Founder & Lead Developer</div>
+                            <p>10+ years in web development and digital solutions. Passionate about creating tools that solve real problems.</p>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>Sarah Chen</h4>
+                            <div class="member-role">Content Director</div>
+                            <p>Former technical writer with a passion for education and creating accessible content for all skill levels.</p>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>Marcus Rivera</h4>
+                            <div class="member-role">UX/UI Designer</div>
+                            <p>Specializes in creating intuitive user experiences that make complex tools simple to use.</p>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h4>Jessica Wong</h4>
+                            <div class="member-role">SEO Specialist</div>
+                            <p>Ensuring our tools and content reach the professionals who need them most.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <h2>Our Values</h2>
+                    
+                    <h3>Quality</h3>
+                    <p>We maintain high standards for all our tools and content, ensuring they're reliable, accurate, and up-to-date.</p>
+                    
+                    <h3>Accessibility</h3>
+                    <p>We believe powerful tools should be available to everyone, which is why all our tools are completely free to use.</p>
+                    
+                    <h3>Innovation</h3>
+                    <p>We're constantly improving and expanding our tool collection based on user feedback and emerging technologies.</p>
+                    
+                    <h3>Community</h3>
+                    <p>We value our users and actively engage with our community to understand their needs and improve our offerings.</p>
+                </div>
+
+                <div class="about-section">
+                    <h2>Join Our Community</h2>
+                    <p>Whether you're a seasoned professional or just starting your digital career, Online ToolStack has something for you. Connect with us and thousands of other digital professionals:</p>
+                    
+                    <ul>
+                        <li>Explore our growing collection of free tools</li>
+                        <li>Read our blog for tips, tutorials, and industry insights</li>
+                        <li>Share feedback and suggest new tools</li>
+                        <li>Stay updated with our latest releases</li>
+                    </ul>
+                    
+                    <p>We're committed to continuously improving and expanding our platform to better serve the digital community. Thank you for being part of our journey!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-tools"></i>
+                        <span>Online ToolStack</span>
+                    </div>
+                    <p>Professional web tools for developers and digital creators. All tools are free and easy to use.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#tools">Tools</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about-us.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul>
+                        <li><a href="index.html#tools">Password Generator</a></li>
+                        <li><a href="index.html#tools">QR Code Generator</a></li>
+                        <li><a href="index.html#tools">Color Picker</a></li>
+                        <li><a href="index.html#tools">Base64 Encoder</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Online ToolStack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Close mobile menu on link click
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

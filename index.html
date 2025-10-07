@@ -2298,19 +2298,8 @@
             const toolHtmlMap = {
                 'password-generator': getPasswordGeneratorHTML(),
                 'qr-generator': getQRGeneratorHTML(),
-                    'meme-generator': `
-            <div style="text-align: center; padding: 40px;">
-                <i class="fas fa-external-link-alt" style="font-size: 48px; color: var(--primary-blue); margin-bottom: 20px;"></i>
-                <h3 style="margin-bottom: 20px;">Meme Generator</h3>
-                <p style="color: var(--text-light); margin-bottom: 30px;">
-                    Our full Meme Generator tool is available as a separate page with advanced features.
-                </p>
-                <button onclick="window.location.href = 'meme-generator.html'" class="btn btn-primary">
-                    <i class="fas fa-external-link-alt"></i> Open Meme Generator
-                </button>
-            </div>
-        `,
-                'color-picker': getColorPickerHTML(),
+                    
+        `, 'color-picker': getColorPickerHTML(),
                 'base64-encoder': getBase64EncoderHTML(),
                 'url-shortener': getURLShortenerHTML(),
                 'text-counter': getTextCounterHTML(),
@@ -2338,8 +2327,7 @@
             const toolInitMap = {
                 'password-generator': initPasswordGenerator,
                 'qr-generator': initQRGenerator,
-                'meme-generator': function() { /* do nothing */ },
-                'color-picker': initColorPicker,
+               'color-picker': initColorPicker,
                 'base64-encoder': initBase64Encoder,
                 'url-shortener': initURLShortener,
                 'text-counter': initTextCounter,

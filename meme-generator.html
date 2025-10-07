@@ -1,399 +1,485 @@
-{
-    id: 'meme-generator',
-    name: 'Meme Generator',
-    description: 'Create custom memes with text and templates',
-    icon: 'fas fa-image',
-    category: 'generator',
-    content: `
-        <div class="meme-generator-container">
-            <div class="meme-header">
-                <h2>🎯 Meme Generator</h2>
-                <p>Create custom memes with top and bottom text. Choose a template or upload your own image.</p>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Text Generator - The Tool Nest</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            <div class="meme-main-content">
-                <div class="meme-controls-panel">
-                    <h3 class="meme-section-title">🎨 Customize Your Meme</h3>
-                    
-                    <div class="meme-input-group">
-                        <label for="topText">Top Text:</label>
-                        <input type="text" id="topText" placeholder="Enter top text...">
-                    </div>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            padding: 20px;
+        }
 
-                    <div class="meme-input-group">
-                        <label for="bottomText">Bottom Text:</label>
-                        <input type="text" id="bottomText" placeholder="Enter bottom text...">
-                    </div>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-                    <div class="meme-input-group">
-                        <label for="imageUpload">Upload Your Image:</label>
-                        <input type="file" id="imageUpload" accept="image/*">
-                    </div>
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-                    <div class="meme-input-group">
-                        <label>Or Choose a Template:</label>
-                        <div class="meme-templates">
-                            <div class="meme-template-btn" data-url="https://i.imgur.com/9AWGItt.jpg">
-                                <img src="https://i.imgur.com/9AWGItt.jpg" alt="Distracted Boyfriend">
-                                <span>Distracted Boyfriend</span>
-                            </div>
-                            <div class="meme-template-btn" data-url="https://i.imgur.com/6bguDPh.jpg">
-                                <img src="https://i.imgur.com/6bguDPh.jpg" alt="Drake Hotline">
-                                <span>Drake Hotline</span>
-                            </div>
-                            <div class="meme-template-btn" data-url="https://i.imgur.com/Caa0WgW.jpg">
-                                <img src="https://i.imgur.com/Caa0WgW.jpg" alt="Woman Yelling at Cat">
-                                <span>Woman & Cat</span>
-                            </div>
-                        </div>
-                    </div>
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #00ff66, #00cc52);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-                    <div class="meme-error-message" id="memeErrorMessage"></div>
-                </div>
+        .header p {
+            font-size: 1.1rem;
+            color: #cccccc;
+        }
 
-                <div class="meme-preview-panel">
-                    <h3 class="meme-section-title">👀 Live Preview</h3>
-                    <div class="meme-canvas-container">
-                        <canvas id="memeCanvas" width="400" height="400"></canvas>
-                    </div>
-                    <button class="meme-download-btn" id="memeDownloadBtn" disabled>📥 Download Meme</button>
-                </div>
-            </div>
-        </div>
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
 
-        <style>
-            .meme-generator-container {
-                font-family: 'Inter', sans-serif;
-                color: #e2e8f0;
-                max-width: 100%;
-            }
+        .controls-panel {
+            background: #2a2a2a;
+            border: 2px solid #00ff66;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.1);
+        }
 
-            .meme-header {
-                text-align: center;
-                margin-bottom: 20px;
-            }
+        .preview-panel {
+            background: #2a2a2a;
+            border: 2px solid #00ff66;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.1);
+            text-align: center;
+        }
 
-            .meme-header h2 {
-                font-size: 1.5rem;
-                margin-bottom: 8px;
-                background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-            }
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #00ff66;
+            border-bottom: 2px solid #00ff66;
+            padding-bottom: 10px;
+        }
 
-            .meme-header p {
-                font-size: 0.9rem;
-                color: #94a3b8;
-            }
+        .input-group {
+            margin-bottom: 20px;
+        }
 
-            .meme-main-content {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .input-group input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #444;
+            border-radius: 8px;
+            background: #1a1a1a;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input[type="text"]:focus {
+            outline: none;
+            border-color: #00ff66;
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+        }
+
+        .input-group input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #444;
+            border-radius: 8px;
+            background: #1a1a1a;
+            color: #ffffff;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input[type="file"]:hover {
+            border-color: #00ff66;
+        }
+
+        .templates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .template-btn {
+            background: #1a1a1a;
+            border: 2px solid #444;
+            border-radius: 8px;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .template-btn:hover {
+            border-color: #00ff66;
+            transform: translateY(-2px);
+        }
+
+        .template-btn.active {
+            border-color: #00ff66;
+            background: rgba(0, 255, 102, 0.1);
+        }
+
+        .template-btn img {
+            width: 100%;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        .template-btn span {
+            display: block;
+            font-size: 0.8rem;
+            color: #cccccc;
+        }
+
+        .canvas-container {
+            max-width: 100%;
+            margin: 20px 0;
+        }
+
+        #memeCanvas {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #444;
+            border-radius: 8px;
+            background: #1a1a1a;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #00ff66, #00cc52);
+            color: #000000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 102, 0.4);
+        }
+
+        .download-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .error-message {
+            background: #ff4444;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
                 gap: 20px;
             }
 
-            .meme-controls-panel, .meme-preview-panel {
-                background: #1e293b;
-                border: 1px solid #334155;
-                border-radius: 8px;
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .controls-panel,
+            .preview-panel {
                 padding: 20px;
             }
 
-            .meme-section-title {
-                font-size: 1.1rem;
-                margin-bottom: 15px;
-                color: #3b82f6;
-                font-weight: 600;
-            }
-
-            .meme-input-group {
-                margin-bottom: 15px;
-            }
-
-            .meme-input-group label {
-                display: block;
-                margin-bottom: 6px;
-                font-weight: 500;
-                color: #e2e8f0;
-                font-size: 0.9rem;
-            }
-
-            .meme-input-group input[type="text"] {
-                width: 100%;
-                padding: 10px 12px;
-                border: 1px solid #475569;
-                border-radius: 6px;
-                background: #334155;
-                color: #f1f5f9;
-                font-size: 0.9rem;
-            }
-
-            .meme-input-group input[type="text"]:focus {
-                outline: none;
-                border-color: #3b82f6;
-            }
-
-            .meme-input-group input[type="file"] {
-                width: 100%;
-                padding: 10px;
-                border: 2px dashed #475569;
-                border-radius: 6px;
-                background: #334155;
-                color: #f1f5f9;
-                cursor: pointer;
-                font-size: 0.9rem;
-            }
-
-            .meme-templates {
-                display: grid;
+            .templates {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
-                margin-top: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Meme Text Generator</h1>
+            <p>Create custom memes with top and bottom text. Choose a template or upload your own image. Free, fast, and easy!</p>
+        </div>
+
+        <div class="main-content">
+            <div class="controls-panel">
+                <h2 class="section-title">🎨 Customize Your Meme</h2>
+                
+                <div class="input-group">
+                    <label for="topText">Top Text:</label>
+                    <input type="text" id="topText" placeholder="Enter top text...">
+                </div>
+
+                <div class="input-group">
+                    <label for="bottomText">Bottom Text:</label>
+                    <input type="text" id="bottomText" placeholder="Enter bottom text...">
+                </div>
+
+                <div class="input-group">
+                    <label for="imageUpload">Upload Your Image:</label>
+                    <input type="file" id="imageUpload" accept="image/*">
+                </div>
+
+                <div class="input-group">
+                    <label>Or Choose a Template:</label>
+                    <div class="templates">
+                        <div class="template-btn" data-url="https://i.imgur.com/9AWGItt.jpg">
+                            <img src="https://i.imgur.com/9AWGItt.jpg" alt="Distracted Boyfriend">
+                            <span>Distracted Boyfriend</span>
+                        </div>
+                        <div class="template-btn" data-url="https://i.imgur.com/6bguDPh.jpg">
+                            <img src="https://i.imgur.com/6bguDPh.jpg" alt="Drake Hotline">
+                            <span>Drake Hotline</span>
+                        </div>
+                        <div class="template-btn" data-url="https://i.imgur.com/Caa0WgW.jpg">
+                            <img src="https://i.imgur.com/Caa0WgW.jpg" alt="Woman Yelling at Cat">
+                            <span>Woman & Cat</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="error-message" id="errorMessage"></div>
+            </div>
+
+            <div class="preview-panel">
+                <h2 class="section-title">👀 Live Preview</h2>
+                <div class="canvas-container">
+                    <canvas id="memeCanvas" width="500" height="500"></canvas>
+                </div>
+                <button class="download-btn" id="downloadBtn" disabled>📥 Download Meme</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class MemeGenerator {
+            constructor() {
+                this.canvas = document.getElementById('memeCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.currentImage = null;
+                this.topText = '';
+                this.bottomText = '';
+                
+                this.initializeEventListeners();
+                this.drawPlaceholder();
             }
 
-            .meme-template-btn {
-                background: #334155;
-                border: 1px solid #475569;
-                border-radius: 6px;
-                padding: 8px;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                text-align: center;
-            }
+            initializeEventListeners() {
+                // Text input listeners
+                document.getElementById('topText').addEventListener('input', (e) => {
+                    this.topText = e.target.value.toUpperCase();
+                    this.drawMeme();
+                });
 
-            .meme-template-btn:hover {
-                border-color: #3b82f6;
-            }
+                document.getElementById('bottomText').addEventListener('input', (e) => {
+                    this.bottomText = e.target.value.toUpperCase();
+                    this.drawMeme();
+                });
 
-            .meme-template-btn.active {
-                border-color: #3b82f6;
-                background: rgba(59, 130, 246, 0.1);
-            }
+                // File upload listener
+                document.getElementById('imageUpload').addEventListener('change', (e) => {
+                    this.handleImageUpload(e.target.files[0]);
+                });
 
-            .meme-template-btn img {
-                width: 100%;
-                height: 50px;
-                object-fit: cover;
-                border-radius: 4px;
-                margin-bottom: 4px;
-            }
-
-            .meme-template-btn span {
-                display: block;
-                font-size: 0.7rem;
-                color: #cbd5e1;
-            }
-
-            .meme-canvas-container {
-                max-width: 100%;
-                margin: 15px 0;
-            }
-
-            #memeCanvas {
-                max-width: 100%;
-                height: auto;
-                border: 1px solid #475569;
-                border-radius: 6px;
-                background: #334155;
-            }
-
-            .meme-download-btn {
-                background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-                color: #ffffff;
-                border: none;
-                padding: 12px 20px;
-                font-size: 0.9rem;
-                font-weight: 600;
-                border-radius: 6px;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                width: 100%;
-            }
-
-            .meme-download-btn:hover {
-                transform: translateY(-1px);
-            }
-
-            .meme-download-btn:disabled {
-                background: #475569;
-                cursor: not-allowed;
-                transform: none;
-            }
-
-            .meme-error-message {
-                background: #dc2626;
-                color: white;
-                padding: 10px 12px;
-                border-radius: 6px;
-                margin: 8px 0;
-                display: none;
-                font-size: 0.8rem;
-            }
-
-            @media (max-width: 768px) {
-                .meme-main-content {
-                    grid-template-columns: 1fr;
-                    gap: 15px;
-                }
-            }
-        </style>
-
-        <script>
-            class MemeGeneratorPopup {
-                constructor() {
-                    this.canvas = document.getElementById('memeCanvas');
-                    this.ctx = this.canvas.getContext('2d');
-                    this.currentImage = null;
-                    this.topText = '';
-                    this.bottomText = '';
-                    
-                    this.initializeEventListeners();
-                    this.drawPlaceholder();
-                }
-
-                initializeEventListeners() {
-                    document.getElementById('topText').addEventListener('input', (e) => {
-                        this.topText = e.target.value.toUpperCase();
-                        this.drawMeme();
+                // Template selection listeners
+                document.querySelectorAll('.template-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        this.selectTemplate(btn);
                     });
+                });
 
-                    document.getElementById('bottomText').addEventListener('input', (e) => {
-                        this.bottomText = e.target.value.toUpperCase();
-                        this.drawMeme();
-                    });
-
-                    document.getElementById('imageUpload').addEventListener('change', (e) => {
-                        this.handleImageUpload(e.target.files[0]);
-                    });
-
-                    document.querySelectorAll('.meme-template-btn').forEach(btn => {
-                        btn.addEventListener('click', () => {
-                            this.selectTemplate(btn);
-                        });
-                    });
-
-                    document.getElementById('memeDownloadBtn').addEventListener('click', () => {
-                        this.downloadMeme();
-                    });
-                }
-
-                handleImageUpload(file) {
-                    if (!file) return;
-                    if (!file.type.startsWith('image/')) {
-                        this.showError('Please select a valid image file.');
-                        return;
-                    }
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        this.loadImage(e.target.result);
-                    };
-                    reader.readAsDataURL(file);
-                    document.querySelectorAll('.meme-template-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                }
-
-                selectTemplate(templateBtn) {
-                    document.querySelectorAll('.meme-template-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    templateBtn.classList.add('active');
-                    document.getElementById('imageUpload').value = '';
-                    this.loadImage(templateBtn.dataset.url);
-                }
-
-                loadImage(src) {
-                    const img = new Image();
-                    img.crossOrigin = 'anonymous';
-                    img.onload = () => {
-                        this.currentImage = img;
-                        this.resizeCanvas(img);
-                        this.drawMeme();
-                        this.enableDownload();
-                        this.hideError();
-                    };
-                    img.onerror = () => {
-                        this.showError('Failed to load image. Please try another image.');
-                    };
-                    img.src = src;
-                }
-
-                resizeCanvas(img) {
-                    const maxWidth = 400;
-                    const maxHeight = 400;
-                    let { width, height } = img;
-                    const scale = Math.min(maxWidth / width, maxHeight / height);
-                    if (scale < 1) {
-                        width *= scale;
-                        height *= scale;
-                    }
-                    this.canvas.width = width;
-                    this.canvas.height = height;
-                }
-
-                drawMeme() {
-                    if (!this.currentImage) return;
-                    const { canvas, ctx } = this;
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.drawImage(this.currentImage, 0, 0, canvas.width, canvas.height);
-                    const fontSize = Math.max(16, canvas.width / 20);
-                    ctx.font = \`bold \${fontSize}px Impact, Arial Black, sans-serif\`;
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'top';
-                    this.drawTextWithOutline(this.topText, canvas.width / 2, 15);
-                    ctx.textBaseline = 'bottom';
-                    this.drawTextWithOutline(this.bottomText, canvas.width / 2, canvas.height - 15);
-                }
-
-                drawTextWithOutline(text, x, y) {
-                    if (!text) return;
-                    const { ctx } = this;
-                    ctx.strokeStyle = '#000000';
-                    ctx.lineWidth = 3;
-                    ctx.strokeText(text, x, y);
-                    ctx.fillStyle = '#FFFFFF';
-                    ctx.fillText(text, x, y);
-                }
-
-                drawPlaceholder() {
-                    const { canvas, ctx } = this;
-                    ctx.fillStyle = '#334155';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = '#94a3b8';
-                    ctx.font = '14px Inter, sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('Upload an image or select a template', canvas.width / 2, canvas.height / 2);
-                }
-
-                downloadMeme() {
-                    if (!this.currentImage) return;
-                    const link = document.createElement('a');
-                    link.download = 'meme.png';
-                    link.href = this.canvas.toDataURL('image/png');
-                    link.click();
-                }
-
-                enableDownload() {
-                    document.getElementById('memeDownloadBtn').disabled = false;
-                }
-
-                showError(message) {
-                    const errorDiv = document.getElementById('memeErrorMessage');
-                    errorDiv.textContent = message;
-                    errorDiv.style.display = 'block';
-                }
-
-                hideError() {
-                    document.getElementById('memeErrorMessage').style.display = 'none';
-                }
+                // Download button listener
+                document.getElementById('downloadBtn').addEventListener('click', () => {
+                    this.downloadMeme();
+                });
             }
 
-            // Initialize when popup opens
-            setTimeout(() => {
-                new MemeGeneratorPopup();
-            }, 100);
-        </script>
-    `
-}
+            handleImageUpload(file) {
+                if (!file) return;
+
+                if (!file.type.startsWith('image/')) {
+                    this.showError('Please select a valid image file.');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.loadImage(e.target.result);
+                };
+                reader.readAsDataURL(file);
+
+                // Clear template selection
+                document.querySelectorAll('.template-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+            }
+
+            selectTemplate(templateBtn) {
+                // Update active state
+                document.querySelectorAll('.template-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                templateBtn.classList.add('active');
+
+                // Clear file input
+                document.getElementById('imageUpload').value = '';
+
+                // Load template image
+                this.loadImage(templateBtn.dataset.url);
+            }
+
+            loadImage(src) {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                
+                img.onload = () => {
+                    this.currentImage = img;
+                    this.resizeCanvas(img);
+                    this.drawMeme();
+                    this.enableDownload();
+                    this.hideError();
+                };
+
+                img.onerror = () => {
+                    this.showError('Failed to load image. Please try another image.');
+                };
+
+                img.src = src;
+            }
+
+            resizeCanvas(img) {
+                const maxWidth = 500;
+                const maxHeight = 500;
+                
+                let { width, height } = img;
+                
+                // Calculate scaling to fit within max dimensions
+                const scale = Math.min(maxWidth / width, maxHeight / height);
+                
+                if (scale < 1) {
+                    width *= scale;
+                    height *= scale;
+                }
+
+                this.canvas.width = width;
+                this.canvas.height = height;
+            }
+
+            drawMeme() {
+                if (!this.currentImage) return;
+
+                const { canvas, ctx } = this;
+                
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw image
+                ctx.drawImage(this.currentImage, 0, 0, canvas.width, canvas.height);
+                
+                // Set text properties
+                const fontSize = Math.max(20, canvas.width / 15);
+                ctx.font = `bold ${fontSize}px Impact, Arial Black, sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+                
+                // Draw text with outline
+                this.drawTextWithOutline(this.topText, canvas.width / 2, 20);
+                
+                ctx.textBaseline = 'bottom';
+                this.drawTextWithOutline(this.bottomText, canvas.width / 2, canvas.height - 20);
+            }
+
+            drawTextWithOutline(text, x, y) {
+                if (!text) return;
+                
+                const { ctx } = this;
+                
+                // Draw black outline
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = 4;
+                ctx.strokeText(text, x, y);
+                
+                // Draw white fill
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillText(text, x, y);
+            }
+
+            drawPlaceholder() {
+                const { canvas, ctx } = this;
+                
+                ctx.fillStyle = '#1a1a1a';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = '#666666';
+                ctx.font = '20px Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('Upload an image or select a template', canvas.width / 2, canvas.height / 2);
+            }
+
+            downloadMeme() {
+                if (!this.currentImage) return;
+
+                const link = document.createElement('a');
+                link.download = 'meme.png';
+                link.href = this.canvas.toDataURL('image/png');
+                link.click();
+            }
+
+            enableDownload() {
+                document.getElementById('downloadBtn').disabled = false;
+            }
+
+            showError(message) {
+                const errorDiv = document.getElementById('errorMessage');
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            }
+
+            hideError() {
+                document.getElementById('errorMessage').style.display = 'none';
+            }
+        }
+
+        // Initialize the meme generator when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new MemeGenerator();
+        });
+    </script>
+</body>
+</html>
+

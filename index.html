@@ -1549,22 +1549,50 @@
     </section>
 
     <!-- Tools Section -->
-    <section id="tools" class="tools-section">
-        <div class="container">
-            <h2 class="section-title">All Tools</h2>
-            <div class="tools-filter">
-                <button class="filter-btn active" data-category="all">All Tools</button>
-                <button class="filter-btn" data-category="text">Text Tools</button>
-                <button class="filter-btn" data-category="generator">Generators</button>
-                <button class="filter-btn" data-category="calculator">Calculators</button>
-                <button class="filter-btn" data-category="converter">Converters</button>
-            </div>
-            
-            <div class="tools-grid" id="tools-grid">
-                <!-- Tools will be dynamically generated -->
-            </div>
+    
+<section id="tools" class="tools-section">
+    <div class="container">
+        <h2 class="section-title">All Tools</h2>
+        <div class="tools-filter">
+            <button class="filter-btn active" data-category="all">All Tools</button>
+            <button class="filter-btn" data-category="text">Text Tools</button>
+            <button class="filter-btn" data-category="generator">Generators</button>
+            <button class="filter-btn" data-category="calculator">Calculators</button>
+            <button class="filter-btn" data-category="converter">Converters</button>
         </div>
-    </section>
+        
+        <div class="tools-grid" id="tools-grid">
+            <!-- Password Generator -->
+            <a href="password-generator.html" class="tool-card" data-category="generator">
+                <div class="tool-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Password Generator</h3>
+                <p>Generate secure passwords with custom options</p>
+            </a>
+            
+            <!-- QR Code Generator -->
+            <a href="qr-generator.html" class="tool-card" data-category="generator">
+                <div class="tool-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <h3>QR Code Generator</h3>
+                <p>Create QR codes for any text or URL</p>
+            </a>
+            
+            <!-- Meme Generator -->
+            <a href="meme-generator.html" class="tool-card" data-category="generator">
+                <div class="tool-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <h3>Meme Generator</h3>
+                <p>Create custom memes with text and templates</p>
+            </a>
+            
+            <!-- Add ALL your other tools here with the same pattern -->
+        </div>
+    </div>
+</section>
 
     <!-- About Section -->
     

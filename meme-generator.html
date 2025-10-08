@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meme Text Generator - The Tool Nest</title>
+    <title>Meme Generator - Online ToolStack</title>
     <style>
+        /* Use the same dark theme styles from your main site */
+        :root {
+            --primary-blue: #0066ff;
+            --primary-blue-dark: #0052cc;
+            --secondary-purple: #8a2be2;
+            --accent-teal: #00d4aa;
+            --text-dark: #f7fafc;
+            --text-light: #a0aec0;
+            --bg-light: #1a202c;
+            --bg-white: #2d3748;
+            --bg-dark: #0f1419;
+            --border-color: #4a5568;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,224 +33,231 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
+            background-color: var(--bg-dark);
             min-height: 100vh;
-            color: #ffffff;
             padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
+            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
         }
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
         }
 
         .header h1 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #00ff66, #00cc52);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .header p {
+            color: var(--text-light);
             font-size: 1.1rem;
-            color: #cccccc;
         }
 
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .controls-panel {
-            background: #2a2a2a;
-            border: 2px solid #00ff66;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.1);
-        }
-
-        .preview-panel {
-            background: #2a2a2a;
-            border: 2px solid #00ff66;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.1);
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: #00ff66;
-            border-bottom: 2px solid #00ff66;
-            padding-bottom: 10px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        .input-group input[type="text"] {
+        .tool-interface {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #444;
-            border-radius: 8px;
-            background: #1a1a1a;
-            color: #ffffff;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
         }
 
-        .input-group input[type="text"]:focus {
+        .tool-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .tool-input, .tool-textarea, .tool-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        .tool-input:focus, .tool-textarea:focus, .tool-select:focus {
             outline: none;
-            border-color: #00ff66;
-            box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
         }
 
-        .input-group input[type="file"] {
-            width: 100%;
-            padding: 12px;
-            border: 2px dashed #444;
-            border-radius: 8px;
-            background: #1a1a1a;
-            color: #ffffff;
-            cursor: pointer;
-            transition: border-color 0.3s ease;
+        .tool-textarea {
+            min-height: 80px;
+            resize: vertical;
         }
 
-        .input-group input[type="file"]:hover {
-            border-color: #00ff66;
+        .tool-buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
         }
 
-        .templates {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .template-btn {
-            background: #1a1a1a;
-            border: 2px solid #444;
-            border-radius: 8px;
-            padding: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .template-btn:hover {
-            border-color: #00ff66;
-            transform: translateY(-2px);
-        }
-
-        .template-btn.active {
-            border-color: #00ff66;
-            background: rgba(0, 255, 102, 0.1);
-        }
-
-        .template-btn img {
-            width: 100%;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 5px;
-        }
-
-        .template-btn span {
-            display: block;
-            font-size: 0.8rem;
-            color: #cccccc;
-        }
-
-        .canvas-container {
-            max-width: 100%;
-            margin: 20px 0;
-        }
-
-        #memeCanvas {
-            max-width: 100%;
-            height: auto;
-            border: 2px solid #444;
-            border-radius: 8px;
-            background: #1a1a1a;
-        }
-
-        .download-btn {
-            background: linear-gradient(45deg, #00ff66, #00cc52);
-            color: #000000;
+        .tool-button {
+            background: var(--primary-blue);
+            color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 20px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            text-decoration: none;
         }
 
-        .download-btn:hover {
+        .tool-button:hover {
+            background: var(--primary-blue-dark);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 102, 0.4);
+            box-shadow: var(--shadow);
         }
 
-        .download-btn:disabled {
-            background: #666;
+        .tool-button.secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+        }
+
+        .tool-button.secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .tool-button:disabled {
+            background: var(--border-color);
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
 
-        .error-message {
-            background: #ff4444;
-            color: white;
-            padding: 10px;
-            border-radius: 8px;
-            margin: 10px 0;
-            display: none;
+        .meme-preview {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: var(--bg-dark);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
         }
 
-        .loading {
-            display: none;
-            color: #00ff66;
+        #memeCanvas {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            background: var(--bg-white);
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .template-btn {
+            background: var(--bg-dark);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
             text-align: center;
-            margin: 10px 0;
+        }
+
+        .template-btn:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .template-btn.active {
+            border-color: var(--primary-blue);
+            background: rgba(0, 102, 255, 0.1);
+        }
+
+        .template-btn img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-btn span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 16px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: slideInRight 0.3s ease-out;
+            max-width: 300px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .notification-success { background: var(--success); }
+        .notification-error { background: var(--error); }
+        .notification-info { background: var(--primary-blue); }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .container {
+                padding: 1rem;
+                margin: 0 10px;
             }
 
             .header h1 {
                 font-size: 2rem;
             }
 
-            .controls-panel,
-            .preview-panel {
-                padding: 20px;
+            .tool-buttons {
+                flex-direction: column;
             }
 
-            .templates {
+            .tool-button {
+                justify-content: center;
+            }
+
+            .template-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
@@ -238,58 +266,77 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎯 Meme Text Generator</h1>
-            <p>Create custom memes with top and bottom text. Choose a template or upload your own image. Free, fast, and easy!</p>
+            <h1>🎭 Meme Generator</h1>
+            <p>Create custom memes with your own text and images. Choose from templates or upload your own!</p>
         </div>
 
-        <div class="main-content">
-            <div class="controls-panel">
-                <h2 class="section-title">🎨 Customize Your Meme</h2>
-                
-                <div class="input-group">
-                    <label for="topText">Top Text:</label>
-                    <input type="text" id="topText" placeholder="Enter top text...">
-                </div>
-
-                <div class="input-group">
-                    <label for="bottomText">Bottom Text:</label>
-                    <input type="text" id="bottomText" placeholder="Enter bottom text...">
-                </div>
-
-                <div class="input-group">
-                    <label for="imageUpload">Upload Your Image:</label>
-                    <input type="file" id="imageUpload" accept="image/*">
-                </div>
-
-                <div class="input-group">
-                    <label>Or Choose a Template:</label>
-                    <div class="templates">
-                        <!-- Fixed template URLs with reliable sources -->
-                        <div class="template-btn" data-url="https://i.imgflip.com/1bij.jpg">
-                            <img src="https://i.imgflip.com/1bij.jpg" alt="Two Buttons" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA4MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjMzMzIi8+Cjx0ZXh0IHg9IjQwIiB5PSIzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+QnV0dG9uczwvdGV4dD4KPC9zdmc+'">
-                            <span>Two Buttons</span>
-                        </div>
-                        <div class="template-btn" data-url="https://i.imgflip.com/261o3j.jpg">
-                            <img src="https://i.imgflip.com/261o3j.jpg" alt="Drake" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA4MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjMzMzIi8+Cjx0ZXh0IHg9IjQwIiB5PSIzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+RHJha2U8L3RleHQ+Cjwvc3ZnPg==';">
-                            <span>Drake</span>
-                        </div>
-                        <div class="template-btn" data-url="https://i.imgflip.com/1g8my4.jpg">
-                            <img src="https://i.imgflip.com/1g8my4.jpg" alt="Two Buttons" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA4MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjMzMzIi8+Cjx0ZXh0IHg9IjQwIiB5PSIzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+Q2F0PC90ZXh0Pgo8L3N2Zz4=';">
-                            <span>Cat</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="loading" id="loadingMessage">Loading image...</div>
-                <div class="error-message" id="errorMessage"></div>
+        <div class="tool-interface">
+            <div class="tool-group">
+                <label class="tool-label" for="topText">Top Text:</label>
+                <input type="text" id="topText" class="tool-input" placeholder="Enter top text for your meme...">
             </div>
 
-            <div class="preview-panel">
-                <h2 class="section-title">👀 Live Preview</h2>
-                <div class="canvas-container">
-                    <canvas id="memeCanvas" width="500" height="500"></canvas>
+            <div class="tool-group">
+                <label class="tool-label" for="bottomText">Bottom Text:</label>
+                <input type="text" id="bottomText" class="tool-input" placeholder="Enter bottom text for your meme...">
+            </div>
+
+            <div class="tool-group">
+                <label class="tool-label" for="imageUpload">Upload Your Image:</label>
+                <input type="file" id="imageUpload" class="tool-input" accept="image/*">
+                <small style="color: var(--text-light); display: block; margin-top: 0.5rem;">
+                    <i class="fas fa-info-circle"></i> Supports JPG, PNG, GIF, WebP
+                </small>
+            </div>
+
+            <div class="tool-group">
+                <label class="tool-label">Or Choose a Template:</label>
+                <div class="template-grid">
+                    <div class="template-btn" data-url="https://i.imgur.com/9AWGItt.jpg">
+                        <img src="https://i.imgur.com/9AWGItt.jpg" alt="Distracted Boyfriend">
+                        <span>Distracted BF</span>
+                    </div>
+                    <div class="template-btn" data-url="https://i.imgur.com/6bguDPh.jpg">
+                        <img src="https://i.imgur.com/6bguDPh.jpg" alt="Drake Hotline">
+                        <span>Drake</span>
+                    </div>
+                    <div class="template-btn" data-url="https://i.imgur.com/Caa0WgW.jpg">
+                        <img src="https://i.imgur.com/Caa0WgW.jpg" alt="Woman Yelling at Cat">
+                        <span>Woman & Cat</span>
+                    </div>
+                    <div class="template-btn" data-url="https://i.imgur.com/dY6lYVq.jpg">
+                        <img src="https://i.imgur.com/dY6lYVq.jpg" alt="Change My Mind">
+                        <span>Change My Mind</span>
+                    </div>
+                    <div class="template-btn" data-url="https://i.imgur.com/yehPk7p.jpg">
+                        <img src="https://i.imgur.com/yehPk7p.jpg" alt="Two Buttons">
+                        <span>Two Buttons</span>
+                    </div>
+                    <div class="template-btn" data-url="https://i.imgur.com/4vYDo2n.jpg">
+                        <img src="https://i.imgur.com/4vYDo2n.jpg" alt="Left Exit 12">
+                        <span>Left Exit 12</span>
+                    </div>
                 </div>
-                <button class="download-btn" id="downloadBtn" disabled>📥 Download Meme</button>
+            </div>
+
+            <div class="tool-buttons">
+                <button class="tool-button" onclick="generateMeme()">
+                    <i class="fas fa-sync"></i> Generate Meme
+                </button>
+                <button class="tool-button secondary" onclick="downloadMeme()" id="downloadBtn" disabled>
+                    <i class="fas fa-download"></i> Download Meme
+                </button>
+                <button class="tool-button secondary" onclick="clearMeme()">
+                    <i class="fas fa-broom"></i> Clear
+                </button>
+            </div>
+
+            <div class="meme-preview">
+                <canvas id="memeCanvas" width="500" height="500"></canvas>
+                <div id="meme-placeholder" style="color: var(--text-light); padding: 2rem;">
+                    <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                    <p>Your meme will appear here</p>
+                </div>
             </div>
         </div>
     </div>
@@ -302,10 +349,9 @@
                 this.currentImage = null;
                 this.topText = '';
                 this.bottomText = '';
-                this.isLoading = false;
                 
                 this.initializeEventListeners();
-                this.drawPlaceholder();
+                this.showPlaceholder();
             }
 
             initializeEventListeners() {
@@ -331,39 +377,20 @@
                         this.selectTemplate(btn);
                     });
                 });
-
-                // Download button listener
-                document.getElementById('downloadBtn').addEventListener('click', () => {
-                    this.downloadMeme();
-                });
             }
 
             handleImageUpload(file) {
                 if (!file) return;
 
                 if (!file.type.startsWith('image/')) {
-                    this.showError('Please select a valid image file (JPEG, PNG, GIF).');
+                    this.showNotification('Please select a valid image file.', 'error');
                     return;
                 }
 
-                // Check file size (max 5MB)
-                if (file.size > 5 * 1024 * 1024) {
-                    this.showError('Image size should be less than 5MB.');
-                    return;
-                }
-
-                this.showLoading();
                 const reader = new FileReader();
-                
                 reader.onload = (e) => {
                     this.loadImage(e.target.result);
                 };
-                
-                reader.onerror = () => {
-                    this.hideLoading();
-                    this.showError('Failed to read the image file.');
-                };
-                
                 reader.readAsDataURL(file);
 
                 // Clear template selection
@@ -383,26 +410,24 @@
                 document.getElementById('imageUpload').value = '';
 
                 // Load template image
-                this.showLoading();
                 this.loadImage(templateBtn.dataset.url);
             }
 
             loadImage(src) {
                 const img = new Image();
+                img.crossOrigin = 'anonymous';
                 
                 img.onload = () => {
-                    this.hideLoading();
                     this.currentImage = img;
                     this.resizeCanvas(img);
                     this.drawMeme();
                     this.enableDownload();
-                    this.hideError();
+                    this.hidePlaceholder();
+                    this.showNotification('Image loaded successfully!', 'success');
                 };
 
                 img.onerror = () => {
-                    this.hideLoading();
-                    this.showError('Failed to load image. Please try another image or template.');
-                    this.drawPlaceholder();
+                    this.showNotification('Failed to load image. Please try another image.', 'error');
                 };
 
                 img.src = src;
@@ -414,18 +439,20 @@
                 
                 let { width, height } = img;
                 
-                // Calculate scaling to fit within max dimensions while maintaining aspect ratio
-                const scale = Math.min(maxWidth / width, maxHeight / height, 1); // Don't scale up
+                // Calculate scaling to fit within max dimensions
+                const scale = Math.min(maxWidth / width, maxHeight / height);
                 
-                this.canvas.width = width * scale;
-                this.canvas.height = height * scale;
+                if (scale < 1) {
+                    width *= scale;
+                    height *= scale;
+                }
+
+                this.canvas.width = width;
+                this.canvas.height = height;
             }
 
             drawMeme() {
-                if (!this.currentImage) {
-                    this.drawPlaceholder();
-                    return;
-                }
+                if (!this.currentImage) return;
 
                 const { canvas, ctx } = this;
                 
@@ -439,18 +466,13 @@
                 const fontSize = Math.max(20, canvas.width / 15);
                 ctx.font = `bold ${fontSize}px Impact, Arial Black, sans-serif`;
                 ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
                 
-                // Draw top text
-                if (this.topText) {
-                    ctx.textBaseline = 'top';
-                    this.drawTextWithOutline(this.topText, canvas.width / 2, 10);
-                }
+                // Draw text with outline
+                this.drawTextWithOutline(this.topText, canvas.width / 2, 20);
                 
-                // Draw bottom text
-                if (this.bottomText) {
-                    ctx.textBaseline = 'bottom';
-                    this.drawTextWithOutline(this.bottomText, canvas.width / 2, canvas.height - 10);
-                }
+                ctx.textBaseline = 'bottom';
+                this.drawTextWithOutline(this.bottomText, canvas.width / 2, canvas.height - 20);
             }
 
             drawTextWithOutline(text, x, y) {
@@ -461,7 +483,6 @@
                 // Draw black outline
                 ctx.strokeStyle = '#000000';
                 ctx.lineWidth = 4;
-                ctx.lineJoin = 'round';
                 ctx.strokeText(text, x, y);
                 
                 // Draw white fill
@@ -469,69 +490,116 @@
                 ctx.fillText(text, x, y);
             }
 
-            drawPlaceholder() {
-                const { canvas, ctx } = this;
-                
-                ctx.fillStyle = '#1a1a1a';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                ctx.fillStyle = '#666666';
-                ctx.font = '16px Arial, sans-serif';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText('Upload an image or select a template', canvas.width / 2, canvas.height / 2);
+            showPlaceholder() {
+                document.getElementById('meme-placeholder').style.display = 'block';
+                this.canvas.style.display = 'none';
+            }
+
+            hidePlaceholder() {
+                document.getElementById('meme-placeholder').style.display = 'none';
+                this.canvas.style.display = 'block';
             }
 
             downloadMeme() {
-                if (!this.currentImage) return;
+                if (!this.currentImage) {
+                    this.showNotification('Please generate a meme first', 'error');
+                    return;
+                }
 
                 try {
                     const link = document.createElement('a');
-                    link.download = `meme-${Date.now()}.png`;
+                    link.download = 'meme.png';
                     link.href = this.canvas.toDataURL('image/png');
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
+                    this.showNotification('Meme downloaded successfully!', 'success');
                 } catch (error) {
-                    this.showError('Failed to download meme. Please try again.');
+                    this.showNotification('Failed to download meme', 'error');
                 }
+            }
+
+            clearMeme() {
+                this.currentImage = null;
+                this.topText = '';
+                this.bottomText = '';
+                document.getElementById('topText').value = '';
+                document.getElementById('bottomText').value = '';
+                document.getElementById('imageUpload').value = '';
+                document.querySelectorAll('.template-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.showPlaceholder();
+                this.disableDownload();
+                this.showNotification('Meme cleared', 'info');
             }
 
             enableDownload() {
                 document.getElementById('downloadBtn').disabled = false;
             }
 
-            showLoading() {
-                this.isLoading = true;
-                document.getElementById('loadingMessage').style.display = 'block';
+            disableDownload() {
                 document.getElementById('downloadBtn').disabled = true;
             }
 
-            hideLoading() {
-                this.isLoading = false;
-                document.getElementById('loadingMessage').style.display = 'none';
-            }
+            showNotification(message, type = 'info') {
+                // Remove existing notifications
+                document.querySelectorAll('.notification').forEach(notification => {
+                    notification.remove();
+                });
 
-            showError(message) {
-                const errorDiv = document.getElementById('errorMessage');
-                errorDiv.textContent = message;
-                errorDiv.style.display = 'block';
-            }
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.innerHTML = `
+                    <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'times' : 'info'}"></i>
+                    <span>${message}</span>
+                `;
 
-            hideError() {
-                document.getElementById('errorMessage').style.display = 'none';
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.style.animation = 'slideInRight 0.3s ease-out reverse';
+                        setTimeout(() => {
+                            if (notification.parentNode) {
+                                document.body.removeChild(notification);
+                            }
+                        }, 300);
+                    }
+                }, 3000);
             }
         }
 
-        // Initialize the meme generator when the page loads
+        // Global functions for button clicks
+        let memeGenerator;
+
+        function generateMeme() {
+            if (!memeGenerator.currentImage) {
+                memeGenerator.showNotification('Please select an image or template first', 'error');
+                return;
+            }
+            memeGenerator.drawMeme();
+            memeGenerator.showNotification('Meme generated!', 'success');
+        }
+
+        function downloadMeme() {
+            memeGenerator.downloadMeme();
+        }
+
+        function clearMeme() {
+            memeGenerator.clearMeme();
+        }
+
+        // Initialize when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            new MemeGenerator();
+            memeGenerator = new MemeGenerator();
         });
 
-        // Handle page errors
-        window.addEventListener('error', (e) => {
-            console.error('Page error:', e.error);
-        });
+        // Add Font Awesome for icons (same as your main site)
+        const faLink = document.createElement('link');
+        faLink.rel = 'stylesheet';
+        faLink.href = 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css';
+        document.head.appendChild(faLink);
     </script>
 </body>
 </html>

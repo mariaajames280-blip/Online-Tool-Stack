@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Block access to system or private files (optional but recommended)
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /cgi-bin/
+
+# Sitemap location
 Sitemap: https://www.onlinetoolstack.site/sitemap.xml

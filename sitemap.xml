@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset 
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
-                      http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- Homepage -->
   <url>
@@ -12,40 +8,21 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Main Sections -->
-  <url>
-    <loc>https://www.onlinetoolstack.site/#about</loc>
-  </url>
-  <url>
-    <loc>https://www.onlinetoolstack.site/#contact</loc>
-  </url>
-  <url>
-    <loc>https://www.onlinetoolstack.site/#privacy</loc>
-  </url>
-  <url>
-    <loc>https://www.onlinetoolstack.site/#terms</loc>
-  </url>
+  <!-- Main Pages -->
+  <url><loc>https://www.onlinetoolstack.site/about.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/contact.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/blog.html</loc></url>
 
   <!-- Tools -->
-  <url><loc>https://www.onlinetoolstack.site/#password-generator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#qr-code-generator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#color-picker</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#base64-encoder-decoder</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#text-counter</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#json-formatter</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#hash-generator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#calculator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#percentage-calculator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#bmi-calculator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#unit-converter</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#timestamp-converter</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#text-case-converter</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#html-encoder</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#css-minifier</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#lorem-generator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#gradient-generator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#image-resizer</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#regex-tester</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/#meme-generator</loc></url>
-
+  <url><loc>https://www.onlinetoolstack.site/url-shortener.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/password-generator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/qr-generator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/color-picker.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/bmi-calculator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/unit-converter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/json-formatter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/text-counter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/css-minifier.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/lorem-generator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/image-resizer.html</loc></url>
 </urlset>

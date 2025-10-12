@@ -1,28 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Homepage -->
+  
+  <!-- Homepage & Main Pages -->
   <url>
     <loc>https://www.onlinetoolstack.site/</loc>
     <lastmod>2025-10-07</lastmod>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://www.onlinetoolstack.site/about.html</loc>
+    <lastmod>2025-10-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.onlinetoolstack.site/contact.html</loc>
+    <lastmod>2025-10-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.onlinetoolstack.site/blog.html</loc>
+    <lastmod>2025-10-07</lastmod>
+    <priority>0.8</priority>
+  </url>
 
-  <!-- Main Pages -->
-  <url><loc>https://www.onlinetoolstack.site/about.html</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/contact.html</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/blog.html</loc></url>
-
-  <!-- Tools -->
-  <url><loc>https://www.onlinetoolstack.site/url-shortener.html</loc></url>
+  <!-- All Tool Pages -->
   <url><loc>https://www.onlinetoolstack.site/password-generator.html</loc></url>
   <url><loc>https://www.onlinetoolstack.site/qr-generator.html</loc></url>
   <url><loc>https://www.onlinetoolstack.site/color-picker.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/meme-generator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/base64-encoder-decoder.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/url-shortener.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/text-counter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/hash-generator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/json-formatter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/calculator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/percentage-calculator.html</loc></url>
   <url><loc>https://www.onlinetoolstack.site/bmi-calculator.html</loc></url>
   <url><loc>https://www.onlinetoolstack.site/unit-converter.html</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/json-formatter.html</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/text-counter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/timestamp-converter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/text-case-converter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/html-encoder-decoder.html</loc></url>
   <url><loc>https://www.onlinetoolstack.site/css-minifier.html</loc></url>
   <url><loc>https://www.onlinetoolstack.site/lorem-generator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/css-gradient-generator.html</loc></url>
   <url><loc>https://www.onlinetoolstack.site/image-resizer.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/regex-tester.html</loc></url>
+
 </urlset>

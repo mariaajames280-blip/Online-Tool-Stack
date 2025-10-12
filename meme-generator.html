@@ -239,6 +239,20 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -292,35 +306,35 @@
             <div class="tool-group">
                 <label class="tool-label">Or Choose a Template:</label>
                 <div class="template-grid">
-                    <div class="template-btn" data-url="https://i.imgur.com/9AWGItt.jpg">
-                        <img src="https://i.imgur.com/9AWGItt.jpg" alt="Distracted Boyfriend">
-                        <span>Distracted BF</span>
-                    </div>
-                    <div class="template-btn" data-url="https://i.imgur.com/6bguDPh.jpg">
-                        <img src="https://i.imgur.com/6bguDPh.jpg" alt="Drake Hotline">
-                        <span>Drake</span>
-                    </div>
-                    <div class="template-btn" data-url="https://i.imgur.com/Caa0WgW.jpg">
-                        <img src="https://i.imgur.com/Caa0WgW.jpg" alt="Woman Yelling at Cat">
-                        <span>Woman & Cat</span>
-                    </div>
-                    <div class="template-btn" data-url="https://i.imgur.com/dY6lYVq.jpg">
-                        <img src="https://i.imgur.com/dY6lYVq.jpg" alt="Change My Mind">
-                        <span>Change My Mind</span>
-                    </div>
-                    <div class="template-btn" data-url="https://i.imgur.com/yehPk7p.jpg">
-                        <img src="https://i.imgur.com/yehPk7p.jpg" alt="Two Buttons">
+                    <div class="template-btn" data-url="https://i.imgflip.com/1bij.jpg">
+                        <img src="https://i.imgflip.com/1bij.jpg" alt="Two Buttons" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+VHdvIEJ1dHRvbnM8L3RleHQ+PC9zdmc+'">
                         <span>Two Buttons</span>
                     </div>
-                    <div class="template-btn" data-url="https://i.imgur.com/4vYDo2n.jpg">
-                        <img src="https://i.imgur.com/4vYDo2n.jpg" alt="Left Exit 12">
+                    <div class="template-btn" data-url="https://i.imgflip.com/1g8my4.jpg">
+                        <img src="https://i.imgflip.com/1g8my4.jpg" alt="Drake" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+RHJha2U8L3RleHQ+PC9zdmc+'">
+                        <span>Drake</span>
+                    </div>
+                    <div class="template-btn" data-url="https://i.imgflip.com/1ur9b0.jpg">
+                        <img src="https://i.imgflip.com/1ur9b0.jpg" alt="Woman Yelling at Cat" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+V29tYW4gJiBDYXQ8L3RleHQ+PC9zdmc+'">
+                        <span>Woman & Cat</span>
+                    </div>
+                    <div class="template-btn" data-url="https://i.imgflip.com/261o3j.jpg">
+                        <img src="https://i.imgflip.com/261o3j.jpg" alt="Change My Mind" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+Q2hhbmdlIE15IE1pbmQ8L3RleHQ+PC9zdmc+'">
+                        <span>Change My Mind</span>
+                    </div>
+                    <div class="template-btn" data-url="https://i.imgflip.com/345v97.jpg">
+                        <img src="https://i.imgflip.com/345v97.jpg" alt="Distracted Boyfriend" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+RGlzdHJhY3RlZCBCRjwvdGV4dD48L3N2Zz4='">
+                        <span>Distracted BF</span>
+                    </div>
+                    <div class="template-btn" data-url="https://i.imgflip.com/3oevdk.jpg">
+                        <img src="https://i.imgflip.com/3oevdk.jpg" alt="Left Exit 12" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+TGVmdCBFeGl0IDEyPC90ZXh0Pjwvc3ZnPg=='">
                         <span>Left Exit 12</span>
                     </div>
                 </div>
             </div>
 
             <div class="tool-buttons">
-                <button class="tool-button" onclick="generateMeme()">
+                <button class="tool-button" onclick="generateMeme()" id="generateBtn">
                     <i class="fas fa-sync"></i> Generate Meme
                 </button>
                 <button class="tool-button secondary" onclick="downloadMeme()" id="downloadBtn" disabled>
@@ -349,6 +363,7 @@
                 this.currentImage = null;
                 this.topText = '';
                 this.bottomText = '';
+                this.isGenerating = false;
                 
                 this.initializeEventListeners();
                 this.showPlaceholder();
@@ -409,13 +424,30 @@
                 // Clear file input
                 document.getElementById('imageUpload').value = '';
 
+                // Show loading state
+                this.showLoading();
+
                 // Load template image
                 this.loadImage(templateBtn.dataset.url);
             }
 
+            showLoading() {
+                const generateBtn = document.getElementById('generateBtn');
+                const originalHTML = generateBtn.innerHTML;
+                generateBtn.innerHTML = '<div class="loading"></div> Loading...';
+                generateBtn.disabled = true;
+                this.isGenerating = true;
+            }
+
+            hideLoading() {
+                const generateBtn = document.getElementById('generateBtn');
+                generateBtn.innerHTML = '<i class="fas fa-sync"></i> Generate Meme';
+                generateBtn.disabled = false;
+                this.isGenerating = false;
+            }
+
             loadImage(src) {
                 const img = new Image();
-                img.crossOrigin = 'anonymous';
                 
                 img.onload = () => {
                     this.currentImage = img;
@@ -423,11 +455,13 @@
                     this.drawMeme();
                     this.enableDownload();
                     this.hidePlaceholder();
+                    this.hideLoading();
                     this.showNotification('Image loaded successfully!', 'success');
                 };
 
                 img.onerror = () => {
-                    this.showNotification('Failed to load image. Please try another image.', 'error');
+                    this.hideLoading();
+                    this.showNotification('Failed to load image. Please try another image or template.', 'error');
                 };
 
                 img.src = src;
@@ -469,10 +503,10 @@
                 ctx.textBaseline = 'top';
                 
                 // Draw text with outline
-                this.drawTextWithOutline(this.topText, canvas.width / 2, 20);
+                this.drawTextWithOutline(this.topText, canvas.width / 2, 10);
                 
                 ctx.textBaseline = 'bottom';
-                this.drawTextWithOutline(this.bottomText, canvas.width / 2, canvas.height - 20);
+                this.drawTextWithOutline(this.bottomText, canvas.width / 2, canvas.height - 10);
             }
 
             drawTextWithOutline(text, x, y) {
@@ -508,7 +542,7 @@
 
                 try {
                     const link = document.createElement('a');
-                    link.download = 'meme.png';
+                    link.download = 'meme-' + Date.now() + '.png';
                     link.href = this.canvas.toDataURL('image/png');
                     document.body.appendChild(link);
                     link.click();
@@ -516,6 +550,7 @@
                     this.showNotification('Meme downloaded successfully!', 'success');
                 } catch (error) {
                     this.showNotification('Failed to download meme', 'error');
+                    console.error('Download error:', error);
                 }
             }
 
@@ -550,8 +585,13 @@
 
                 const notification = document.createElement('div');
                 notification.className = `notification notification-${type}`;
+                
+                let icon = 'info';
+                if (type === 'success') icon = 'check';
+                if (type === 'error') icon = 'times';
+                
                 notification.innerHTML = `
-                    <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'times' : 'info'}"></i>
+                    <i class="fas fa-${icon}"></i>
                     <span>${message}</span>
                 `;
 
@@ -595,10 +635,10 @@
             memeGenerator = new MemeGenerator();
         });
 
-        // Add Font Awesome for icons (same as your main site)
+        // Add Font Awesome for icons
         const faLink = document.createElement('link');
         faLink.rel = 'stylesheet';
-        faLink.href = 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css';
+        faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
         document.head.appendChild(faLink);
     </script>
 </body>

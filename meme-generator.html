@@ -70,6 +70,24 @@
             font-size: 1.1rem;
         }
 
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            padding: 8px 16px;
+            border: 1px solid var(--primary-blue);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
         .tool-group {
             margin-bottom: 1.5rem;
         }
@@ -272,6 +290,10 @@
 </head>
 <body>
     <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Tools
+        </a>
+        
         <div class="header">
             <h1>🎭 Meme Generator</h1>
             <p>Create custom memes with your own text and images. Choose from templates or upload your own!</p>
@@ -368,12 +390,12 @@
             setupEventListeners() {
                 // Text inputs
                 document.getElementById('topText').addEventListener('input', (e) => {
-                    this.topText = e.target.value;
+                    this.topText = e.target.value.toUpperCase();
                     this.drawMeme();
                 });
 
                 document.getElementById('bottomText').addEventListener('input', (e) => {
-                    this.bottomText = e.target.value;
+                    this.bottomText = e.target.value.toUpperCase();
                     this.drawMeme();
                 });
 

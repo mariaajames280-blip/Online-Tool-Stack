@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator - Online ToolStack</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Use the same dark theme styles from your main site */
         :root {
             --primary-blue: #0066ff;
             --primary-blue-dark: #0052cc;
@@ -33,11 +33,10 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
-            background-color: var(--bg-dark);
             min-height: 100vh;
             padding: 20px;
         }
@@ -71,10 +70,6 @@
             font-size: 1.1rem;
         }
 
-        .tool-interface {
-            width: 100%;
-        }
-
         .tool-group {
             margin-bottom: 1.5rem;
         }
@@ -86,7 +81,7 @@
             color: var(--text-dark);
         }
 
-        .tool-input, .tool-textarea, .tool-select {
+        .tool-input {
             width: 100%;
             padding: 12px 16px;
             border: 1px solid var(--border-color);
@@ -98,15 +93,10 @@
             color: var(--text-dark);
         }
 
-        .tool-input:focus, .tool-textarea:focus, .tool-select:focus {
+        .tool-input:focus {
             outline: none;
             border-color: var(--primary-blue);
             box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
-        }
-
-        .tool-textarea {
-            min-height: 80px;
-            resize: vertical;
         }
 
         .tool-buttons {
@@ -129,7 +119,6 @@
             align-items: center;
             gap: 8px;
             font-size: 14px;
-            text-decoration: none;
         }
 
         .tool-button:hover {
@@ -169,7 +158,7 @@
             max-width: 100%;
             height: auto;
             border-radius: var(--radius);
-            background: var(--bg-white);
+            background: white;
         }
 
         .template-grid {
@@ -221,7 +210,7 @@
             border-radius: 6px;
             color: white;
             font-weight: 500;
-            z-index: 10000;
+            z-index: 1000;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -253,24 +242,28 @@
             to { transform: rotate(360deg); }
         }
 
+        .placeholder {
+            color: var(--text-light);
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .placeholder i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
-                margin: 0 10px;
             }
-
             .header h1 {
                 font-size: 2rem;
             }
-
             .tool-buttons {
                 flex-direction: column;
             }
-
-            .tool-button {
-                justify-content: center;
-            }
-
             .template-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -287,12 +280,12 @@
         <div class="tool-interface">
             <div class="tool-group">
                 <label class="tool-label" for="topText">Top Text:</label>
-                <input type="text" id="topText" class="tool-input" placeholder="Enter top text for your meme...">
+                <input type="text" id="topText" class="tool-input" placeholder="When you see your code finally work...">
             </div>
 
             <div class="tool-group">
                 <label class="tool-label" for="bottomText">Bottom Text:</label>
-                <input type="text" id="bottomText" class="tool-input" placeholder="Enter bottom text for your meme...">
+                <input type="text" id="bottomText" class="tool-input" placeholder="But then you find a new bug">
             </div>
 
             <div class="tool-group">
@@ -307,27 +300,27 @@
                 <label class="tool-label">Or Choose a Template:</label>
                 <div class="template-grid">
                     <div class="template-btn" data-url="https://i.imgflip.com/1bij.jpg">
-                        <img src="https://i.imgflip.com/1bij.jpg" alt="Two Buttons" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+VHdvIEJ1dHRvbnM8L3RleHQ+PC9zdmc+'">
+                        <img src="https://i.imgflip.com/1bij.jpg" alt="Two Buttons">
                         <span>Two Buttons</span>
                     </div>
                     <div class="template-btn" data-url="https://i.imgflip.com/1g8my4.jpg">
-                        <img src="https://i.imgflip.com/1g8my4.jpg" alt="Drake" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+RHJha2U8L3RleHQ+PC9zdmc+'">
+                        <img src="https://i.imgflip.com/1g8my4.jpg" alt="Drake">
                         <span>Drake</span>
                     </div>
                     <div class="template-btn" data-url="https://i.imgflip.com/1ur9b0.jpg">
-                        <img src="https://i.imgflip.com/1ur9b0.jpg" alt="Woman Yelling at Cat" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+V29tYW4gJiBDYXQ8L3RleHQ+PC9zdmc+'">
+                        <img src="https://i.imgflip.com/1ur9b0.jpg" alt="Woman Yelling at Cat">
                         <span>Woman & Cat</span>
                     </div>
                     <div class="template-btn" data-url="https://i.imgflip.com/261o3j.jpg">
-                        <img src="https://i.imgflip.com/261o3j.jpg" alt="Change My Mind" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+Q2hhbmdlIE15IE1pbmQ8L3RleHQ+PC9zdmc+'">
+                        <img src="https://i.imgflip.com/261o3j.jpg" alt="Change My Mind">
                         <span>Change My Mind</span>
                     </div>
                     <div class="template-btn" data-url="https://i.imgflip.com/345v97.jpg">
-                        <img src="https://i.imgflip.com/345v97.jpg" alt="Distracted Boyfriend" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+RGlzdHJhY3RlZCBCRjwvdGV4dD48L3N2Zz4='">
+                        <img src="https://i.imgflip.com/345v97.jpg" alt="Distracted Boyfriend">
                         <span>Distracted BF</span>
                     </div>
                     <div class="template-btn" data-url="https://i.imgflip.com/3oevdk.jpg">
-                        <img src="https://i.imgflip.com/3oevdk.jpg" alt="Left Exit 12" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiMyZDM3NDgiLz48dGV4dCB4PSI1MCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2EwYWVjMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+TGVmdCBFeGl0IDEyPC90ZXh0Pjwvc3ZnPg=='">
+                        <img src="https://i.imgflip.com/3oevdk.jpg" alt="Left Exit 12">
                         <span>Left Exit 12</span>
                     </div>
                 </div>
@@ -347,8 +340,8 @@
 
             <div class="meme-preview">
                 <canvas id="memeCanvas" width="500" height="500"></canvas>
-                <div id="meme-placeholder" style="color: var(--text-light); padding: 2rem;">
-                    <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                <div id="meme-placeholder" class="placeholder">
+                    <i class="fas fa-image"></i>
                     <p>Your meme will appear here</p>
                 </div>
             </div>
@@ -363,30 +356,34 @@
                 this.currentImage = null;
                 this.topText = '';
                 this.bottomText = '';
-                this.isGenerating = false;
                 
-                this.initializeEventListeners();
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
                 this.showPlaceholder();
             }
 
-            initializeEventListeners() {
-                // Text input listeners
+            setupEventListeners() {
+                // Text inputs
                 document.getElementById('topText').addEventListener('input', (e) => {
-                    this.topText = e.target.value.toUpperCase();
+                    this.topText = e.target.value;
                     this.drawMeme();
                 });
 
                 document.getElementById('bottomText').addEventListener('input', (e) => {
-                    this.bottomText = e.target.value.toUpperCase();
+                    this.bottomText = e.target.value;
                     this.drawMeme();
                 });
 
-                // File upload listener
+                // File upload
                 document.getElementById('imageUpload').addEventListener('change', (e) => {
-                    this.handleImageUpload(e.target.files[0]);
+                    const file = e.target.files[0];
+                    if (file) this.handleImageUpload(file);
                 });
 
-                // Template selection listeners
+                // Templates
                 document.querySelectorAll('.template-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
                         this.selectTemplate(btn);
@@ -395,10 +392,8 @@
             }
 
             handleImageUpload(file) {
-                if (!file) return;
-
                 if (!file.type.startsWith('image/')) {
-                    this.showNotification('Please select a valid image file.', 'error');
+                    this.showNotification('Please select a valid image file', 'error');
                     return;
                 }
 
@@ -414,73 +409,57 @@
                 });
             }
 
-            selectTemplate(templateBtn) {
-                // Update active state
-                document.querySelectorAll('.template-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                templateBtn.classList.add('active');
-
-                // Clear file input
+            selectTemplate(btn) {
+                document.querySelectorAll('.template-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
                 document.getElementById('imageUpload').value = '';
-
-                // Show loading state
+                
                 this.showLoading();
-
-                // Load template image
-                this.loadImage(templateBtn.dataset.url);
+                this.loadImage(btn.dataset.url);
             }
 
             showLoading() {
-                const generateBtn = document.getElementById('generateBtn');
-                const originalHTML = generateBtn.innerHTML;
-                generateBtn.innerHTML = '<div class="loading"></div> Loading...';
-                generateBtn.disabled = true;
-                this.isGenerating = true;
+                const btn = document.getElementById('generateBtn');
+                btn.innerHTML = '<div class="loading"></div> Loading...';
+                btn.disabled = true;
             }
 
             hideLoading() {
-                const generateBtn = document.getElementById('generateBtn');
-                generateBtn.innerHTML = '<i class="fas fa-sync"></i> Generate Meme';
-                generateBtn.disabled = false;
-                this.isGenerating = false;
+                const btn = document.getElementById('generateBtn');
+                btn.innerHTML = '<i class="fas fa-sync"></i> Generate Meme';
+                btn.disabled = false;
             }
 
             loadImage(src) {
                 const img = new Image();
-                
                 img.onload = () => {
                     this.currentImage = img;
-                    this.resizeCanvas(img);
+                    this.resizeCanvas();
                     this.drawMeme();
-                    this.enableDownload();
                     this.hidePlaceholder();
                     this.hideLoading();
+                    this.enableDownload();
                     this.showNotification('Image loaded successfully!', 'success');
                 };
-
                 img.onerror = () => {
                     this.hideLoading();
-                    this.showNotification('Failed to load image. Please try another image or template.', 'error');
+                    this.showNotification('Failed to load image. Please try another.', 'error');
                 };
-
                 img.src = src;
             }
 
-            resizeCanvas(img) {
-                const maxWidth = 500;
-                const maxHeight = 500;
+            resizeCanvas() {
+                if (!this.currentImage) return;
                 
-                let { width, height } = img;
+                const maxSize = 500;
+                let { width, height } = this.currentImage;
                 
-                // Calculate scaling to fit within max dimensions
-                const scale = Math.min(maxWidth / width, maxHeight / height);
-                
+                const scale = Math.min(maxSize / width, maxSize / height);
                 if (scale < 1) {
                     width *= scale;
                     height *= scale;
                 }
-
+                
                 this.canvas.width = width;
                 this.canvas.height = height;
             }
@@ -488,39 +467,40 @@
             drawMeme() {
                 if (!this.currentImage) return;
 
-                const { canvas, ctx } = this;
-                
-                // Clear canvas
+                const { ctx, canvas } = this;
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
                 // Draw image
                 ctx.drawImage(this.currentImage, 0, 0, canvas.width, canvas.height);
                 
-                // Set text properties
-                const fontSize = Math.max(20, canvas.width / 15);
+                // Text styling
+                const fontSize = Math.max(24, canvas.width / 15);
                 ctx.font = `bold ${fontSize}px Impact, Arial Black, sans-serif`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'top';
                 
-                // Draw text with outline
-                this.drawTextWithOutline(this.topText, canvas.width / 2, 10);
+                // Draw top text
+                if (this.topText) {
+                    this.drawText(this.topText, canvas.width / 2, 15);
+                }
                 
-                ctx.textBaseline = 'bottom';
-                this.drawTextWithOutline(this.bottomText, canvas.width / 2, canvas.height - 10);
+                // Draw bottom text
+                if (this.bottomText) {
+                    ctx.textBaseline = 'bottom';
+                    this.drawText(this.bottomText, canvas.width / 2, canvas.height - 15);
+                }
             }
 
-            drawTextWithOutline(text, x, y) {
-                if (!text) return;
-                
+            drawText(text, x, y) {
                 const { ctx } = this;
                 
-                // Draw black outline
-                ctx.strokeStyle = '#000000';
-                ctx.lineWidth = 4;
+                // Outline
+                ctx.strokeStyle = 'black';
+                ctx.lineWidth = 6;
                 ctx.strokeText(text, x, y);
                 
-                // Draw white fill
-                ctx.fillStyle = '#FFFFFF';
+                // Fill
+                ctx.fillStyle = 'white';
                 ctx.fillText(text, x, y);
             }
 
@@ -542,15 +522,12 @@
 
                 try {
                     const link = document.createElement('a');
-                    link.download = 'meme-' + Date.now() + '.png';
-                    link.href = this.canvas.toDataURL('image/png');
-                    document.body.appendChild(link);
+                    link.download = `meme-${Date.now()}.png`;
+                    link.href = this.canvas.toDataURL();
                     link.click();
-                    document.body.removeChild(link);
-                    this.showNotification('Meme downloaded successfully!', 'success');
+                    this.showNotification('Meme downloaded!', 'success');
                 } catch (error) {
-                    this.showNotification('Failed to download meme', 'error');
-                    console.error('Download error:', error);
+                    this.showNotification('Download failed', 'error');
                 }
             }
 
@@ -566,7 +543,7 @@
                 });
                 this.showPlaceholder();
                 this.disableDownload();
-                this.showNotification('Meme cleared', 'info');
+                this.showNotification('Cleared', 'info');
             }
 
             enableDownload() {
@@ -577,45 +554,33 @@
                 document.getElementById('downloadBtn').disabled = true;
             }
 
-            showNotification(message, type = 'info') {
-                // Remove existing notifications
-                document.querySelectorAll('.notification').forEach(notification => {
-                    notification.remove();
-                });
-
+            showNotification(message, type) {
+                // Remove existing
+                document.querySelectorAll('.notification').forEach(n => n.remove());
+                
                 const notification = document.createElement('div');
                 notification.className = `notification notification-${type}`;
-                
-                let icon = 'info';
-                if (type === 'success') icon = 'check';
-                if (type === 'error') icon = 'times';
-                
                 notification.innerHTML = `
-                    <i class="fas fa-${icon}"></i>
+                    <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'times' : 'info'}"></i>
                     <span>${message}</span>
                 `;
-
+                
                 document.body.appendChild(notification);
-
+                
                 setTimeout(() => {
                     if (notification.parentNode) {
-                        notification.style.animation = 'slideInRight 0.3s ease-out reverse';
-                        setTimeout(() => {
-                            if (notification.parentNode) {
-                                document.body.removeChild(notification);
-                            }
-                        }, 300);
+                        notification.remove();
                     }
                 }, 3000);
             }
         }
 
-        // Global functions for button clicks
+        // Global functions
         let memeGenerator;
 
         function generateMeme() {
             if (!memeGenerator.currentImage) {
-                memeGenerator.showNotification('Please select an image or template first', 'error');
+                memeGenerator.showNotification('Please select an image first', 'error');
                 return;
             }
             memeGenerator.drawMeme();
@@ -630,16 +595,10 @@
             memeGenerator.clearMeme();
         }
 
-        // Initialize when page loads
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             memeGenerator = new MemeGenerator();
         });
-
-        // Add Font Awesome for icons
-        const faLink = document.createElement('link');
-        faLink.rel = 'stylesheet';
-        faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-        document.head.appendChild(faLink);
     </script>
 </body>
 </html>

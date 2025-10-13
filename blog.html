@@ -411,48 +411,92 @@
     </button>
 
     <!-- Scripts -->
-    <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
+   <script src="main.js"></script>
+   <script src="animations.js"></script>
     
     <!-- Blog functionality -->
-    <script>
-        // Category filtering
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Update active button
-                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+   <script>
+    // Category filtering
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-                const category = btn.dataset.category;
-                const articles = document.querySelectorAll('.blog-card');
+            const category = btn.dataset.category;
+            const articles = document.querySelectorAll('.blog-card');
 
-                articles.forEach(article => {
-                    if (category === 'all' || article.dataset.category === category) {
-                        article.style.display = 'block';
-                        article.classList.add('animate-fade-in');
-                    } else {
-                        article.style.display = 'none';
-                    }
-                });
+            articles.forEach(article => {
+                if (category === 'all' || article.dataset.category === category) {
+                    article.style.display = 'block';
+                    article.classList.add('animate-fade-in');
+                } else {
+                    article.style.display = 'none';
+                }
             });
         });
+    });
 
-        // Newsletter form
-        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('.newsletter-input').value;
-            
-            // Simulate subscription
-            showNotification('Successfully subscribed to newsletter!', 'success');
-            this.reset();
-        });
+    // Newsletter form
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('.newsletter-input').value;
+        
+        // Simulate subscription
+        showNotification('Successfully subscribed to newsletter!', 'success');
+        this.reset();
+    });
 
-        // Load more functionality (simulated)
-        document.getElementById('load-more-btn').addEventListener('click', function() {
-            showNotification('More articles coming soon!', 'info');
-        });
-    </script>
-    
+    // Load more functionality (simulated)
+    document.getElementById('load-more-btn').addEventListener('click', function() {
+        showNotification('More articles coming soon!', 'info');
+    });
+
+    // NOTIFICATION FUNCTION - ADD THIS
+    function showNotification(message, type) {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+            ${message}
+        `;
+        
+        // Style the notification
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #222222;
+            border: 1px solid #ffdd00;
+            border-radius: 8px;
+            padding: 1rem;
+            color: #ffdd00;
+            z-index: 10000;
+            max-width: 300px;
+            box-shadow: 0 4px 12px rgba(255, 221, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        `;
+        
+        // Add different colors based on type
+        if (type === 'success') {
+            notification.style.borderColor = '#28a745';
+            notification.querySelector('i').style.color = '#28a745';
+        } else if (type === 'info') {
+            notification.style.borderColor = '#ffdd00';
+            notification.querySelector('i').style.color = '#ffdd00';
+        }
+        
+        document.body.appendChild(notification);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+</script>
     <!-- Google AdSense -->
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});

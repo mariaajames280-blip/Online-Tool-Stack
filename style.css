@@ -1,12 +1,17 @@
 /* Online ToolStack - Main Styles */
 
 :root {
-    /* Color Variables - Yellow Theme */
+    /* Color Variables - Yellow Theme - FIXED */
     --primary-yellow: #ffdd00;
     --secondary-yellow: #ffcc00;
     --accent-yellow: #ffee33;
     --light-yellow: #ffff66;
     --dark-yellow: #cc9900;
+    
+    /* ADD THESE 3 MISSING LINES - THIS FIXES THE BLACK & WHITE ISSUE! */
+    --primary-blue: #ffdd00;
+    --secondary-blue: #ffcc00;
+    --accent-blue: #ffee33;
     
     --bg-primary: #000000;
     --bg-secondary: #111111;
@@ -46,7 +51,6 @@
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
 }
-
 /* Reset and Base Styles */
 * {
     margin: 0;

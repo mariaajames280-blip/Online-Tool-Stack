@@ -32,32 +32,37 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
     
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXX" crossorigin="anonymous"></script>
     
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Online ToolStack",
-        "description": "Professional web tools for developers and digital professionals",
-        "url": "https://onlinetoolstack.com",
-        "logo": "https://onlinetoolstack.com/logo.png",
-        "sameAs": [
-            "https://twitter.com/onlinetoolstack",
-            "https://github.com/onlinetoolstack"
-        ],
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "Customer Service",
-            "email": "contact@onlinetoolstack.com"
-        }
+    <!-- Emergency Color Fix -->
+    <style>
+    :root {
+        --primary-blue: #ffdd00 !important;
+        --secondary-blue: #ffcc00 !important;
+        --accent-blue: #ffee33 !important;
     }
-    </script>
+    body {
+        color: #ffdd00 !important;
+        background: #000000 !important;
+    }
+    .navbar {
+        background: rgba(0,0,0,0.95) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+    .btn-primary {
+        background: #ffdd00 !important;
+        color: #000000 !important;
+    }
+    .gradient-text {
+        background: linear-gradient(135deg, #ffdd00, #ffcc00) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+    }
+    </style>
 </head>
 <body>
     <!-- Navigation -->

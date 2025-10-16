@@ -291,7 +291,7 @@ body {
 
 .btn-secondary {
     background: transparent;
-    color: var(--primary-blue);
+    color: var(--accent-yellow);
     border-color: var(--primary-blue);
 }
 

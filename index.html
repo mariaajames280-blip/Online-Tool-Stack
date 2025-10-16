@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,26 +22,11 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- ✅ Color Fix -->
-  <style>
-    :root {
-      --primary-yellow: #FFD700 !important;
-      --accent-yellow: #FFC300 !important;
-      --bg-primary: #000000 !important;
-      --text-primary: #ffdd00 !important;
-      --border-color: #ffdd00 !important;
-    }
-    html, body { filter: none !important; }
-    body { background: var(--bg-primary) !important; color: var(--text-primary) !important; }
-    a, .btn-primary, .nav-link, .card-icon { color: var(--text-primary) !important; background: none !important; }
-    .btn-primary { background: var(--accent-yellow) !important; }
-  </style>
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
@@ -48,39 +35,360 @@
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXX" crossorigin="anonymous"></script>
+
+  <!-- Emergency CSS Fix -->
+  <style>
+    /* EMERGENCY STYLES TO FIX LAYOUT */
+    :root {
+      --primary-yellow: #FFD700;
+      --accent-yellow: #FFC300;
+      --bg-primary: #000000;
+      --text-primary: #ffdd00;
+      --border-color: #ffdd00;
+      --bg-secondary: #111111;
+      --bg-card: #222222;
+    }
+
+    body {
+      background: var(--bg-primary) !important;
+      color: var(--text-primary) !important;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Hero Section Emergency Fix */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      padding: 80px 0 0 0;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent-yellow), var(--primary-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin-bottom: 40px;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary, .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--accent-yellow);
+      color: #000;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent-yellow);
+      border-color: var(--accent-yellow);
+    }
+
+    /* Featured Tools Emergency Fix */
+    .featured-section {
+      padding: 80px 0;
+      background: var(--bg-secondary);
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--text-primary);
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .featured-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-yellow);
+    }
+
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent-yellow), var(--primary-yellow));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .card-icon i {
+      font-size: 2rem;
+      color: #000;
+    }
+
+    .featured-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-primary);
+    }
+
+    .featured-card p {
+      color: var(--text-primary);
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    /* Tools Section Emergency Fix */
+    .tools-section {
+      padding: 80px 0;
+    }
+
+    .tools-filter {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+    }
+
+    .filter-btn {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 12px 24px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--accent-yellow);
+      color: #000;
+      border-color: var(--accent-yellow);
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .tool-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-yellow);
+    }
+
+    .tool-card-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .tool-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--accent-yellow), var(--primary-yellow));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tool-icon i {
+      font-size: 1.3rem;
+      color: #000;
+    }
+
+    .tool-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .tool-card p {
+      color: var(--text-primary);
+      opacity: 0.8;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .tool-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tool-tag {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Navigation Emergency Fix */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent-yellow);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .featured-grid,
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tools-filter {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 
-
-
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Online ToolStack - Professional Web Tools">
-    <meta property="og:description" content="Free online tools for developers and professionals">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://onlinetoolstack.com">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Online ToolStack">
-    <meta name="twitter:description" content="Professional web tools collection">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="tools.css">
-<link rel="stylesheet" href="animations.css">
-
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXX" crossorigin="anonymous"></script>
-</head>
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen">
@@ -211,23 +519,10 @@
             </div>
             
             <div class="tools-grid" id="tools-grid">
-                <!-- Tools will be dynamically generated -->
+                <!-- Tools will be loaded by emergency script -->
             </div>
         </div>
     </section>
-
-    <!-- AdSense Banner -->
-    <div class="ad-container">
-        <!-- AdSense Banner Ad -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXX"
-             data-ad-slot="1234567890"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-    </div>
-
-
 
     <!-- Footer -->
     <footer class="footer">
@@ -239,11 +534,6 @@
                         <span>Online ToolStack</span>
                     </div>
                     <p>Professional web tools for developers and digital creators. All tools are free and easy to use.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </div>
                 </div>
                 
                 <div class="footer-section">
@@ -259,24 +549,10 @@
                 <div class="footer-section">
                     <h4>Popular Tools</h4>
                     <ul>
-                        <li><a href="#" data-tool="password-generator">Password Generator</a></li>
-                        <li><a href="#" data-tool="qr-generator">QR Code Generator</a></li>
-                        <li><a href="#" data-tool="color-picker">Color Picker</a></li>
-                        <li><a href="#" data-tool="url-shortener">URL Shortener</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Categories</h4>
-                    <ul>
-                        <li><a href="#" data-category="text">Text Tools</a></li>
-                        <li><a href="#" data-category="generator">Generators</a></li>
-                        <li><a href="#" data-category="calculator">Calculators</a></li>
-                        <li><a href="#" data-category="converter">Converters</a></li>
-                        <li><a href="#" data-category="seo">SEO Tools</a></li>
-                        <li><a href="#" data-category="developer">Developer</a></li>
-                        <li><a href="#" data-category="security">Security</a></li>
-                        <li><a href="#" data-category="business">Business</a></li>
+                        <li><a href="password-generator.html">Password Generator</a></li>
+                        <li><a href="qr-generator.html">QR Code Generator</a></li>
+                        <li><a href="color-picker.html">Color Picker</a></li>
+                        <li><a href="url-shortener.html">URL Shortener</a></li>
                     </ul>
                 </div>
             </div>
@@ -287,31 +563,106 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-   
-<button id="back-to-top" class="back-to-top">
-  <i class="fas fa-chevron-up"></i>
-</button>
+    <!-- Emergency JavaScript -->
+    <script>
+        // Hide loading screen
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loading-screen');
+            if (loader) {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.style.display = 'none', 500);
+                }, 1000);
+            }
+            
+            // Load tools immediately
+            loadAllTools();
+        });
 
-<!-- Temporary inline script to hide loader -->
-<script>
-  window.addEventListener('load', () => {
-    const loader = document.getElementById('loading-screen');
-    if (loader) {
-      loader.style.opacity = '0';
-      setTimeout(() => loader.style.display = 'none', 500);
-    }
-  });
-</script>
+        // Emergency tools loader
+        function loadAllTools() {
+            console.log('🚀 Loading tools emergency...');
+            
+            const toolsGrid = document.getElementById('tools-grid');
+            if (!toolsGrid) {
+                console.error('❌ Tools grid not found');
+                return;
+            }
 
-<!-- Your Scripts -->
-<script src="main.js"></script>
-<script src="tools.js"></script>
-<script src="animations.js"></script>
+            const tools = [
+                { name: 'Password Generator', category: 'security', icon: 'lock', description: 'Generate secure passwords with custom options' },
+                { name: 'QR Code Generator', category: 'generator', icon: 'qrcode', description: 'Create QR codes for any text or URL' },
+                { name: 'Color Picker', category: 'design', icon: 'palette', description: 'Pick colors and get HEX, RGB, HSL values' },
+                { name: 'Base64 Encoder', category: 'developer', icon: 'code', description: 'Encode and decode Base64 strings' },
+                { name: 'URL Shortener', category: 'seo', icon: 'link', description: 'Shorten long URLs for sharing' },
+                { name: 'JSON Formatter', category: 'developer', icon: 'braces', description: 'Format and validate JSON data' },
+                { name: 'Text Counter', category: 'text', icon: 'text-width', description: 'Count words, characters, sentences' },
+                { name: 'Case Converter', category: 'text', icon: 'font', description: 'Convert text between different cases' },
+                { name: 'Unit Converter', category: 'converter', icon: 'ruler-combined', description: 'Convert between measurement units' },
+                { name: 'Currency Converter', category: 'converter', icon: 'dollar-sign', description: 'Convert between world currencies' },
+                { name: 'Age Calculator', category: 'calculator', icon: 'birthday-cake', description: 'Calculate age from birth date' },
+                { name: 'BMI Calculator', category: 'calculator', icon: 'weight', description: 'Calculate Body Mass Index' }
+            ];
 
-<!-- Google AdSense Auto Ads -->
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+            let html = '';
+            tools.forEach((tool, index) => {
+                html += `
+                    <div class="tool-card" data-category="${tool.category}" style="animation-delay: ${index * 0.1}s">
+                        <div class="tool-card-header">
+                            <div class="tool-icon">
+                                <i class="fas fa-${tool.icon}"></i>
+                            </div>
+                            <h3>${tool.name}</h3>
+                        </div>
+                        <p>${tool.description}</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">${tool.category}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            toolsGrid.innerHTML = html;
+            console.log('✅ Loaded ' + tools.length + ' tools');
+
+            // Initialize filters
+            initFilters();
+        }
+
+        function initFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const toolCards = document.querySelectorAll('.tool-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    toolCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        // Simple navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

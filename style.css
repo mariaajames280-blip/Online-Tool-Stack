@@ -489,9 +489,9 @@ body {
 
 .filter-btn:hover,
 .filter-btn.active {
-    background: var(--primary-blue);
+    background: var(--accent-yellow);
     color: white;
-    border-color: var(--primary-blue);
+    border-color: var(--accent-yellow);
 }
 
 .tools-grid {

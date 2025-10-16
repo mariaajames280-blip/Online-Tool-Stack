@@ -651,7 +651,7 @@ body {
     gap: var(--spacing-sm);
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--primary-blue);
+    color: var(--accent-yellow);
     margin-bottom: var(--spacing-md);
 }
 

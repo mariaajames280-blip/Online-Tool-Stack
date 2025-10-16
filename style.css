@@ -426,7 +426,7 @@ body {
 }
 
 .featured-card:hover {
-    border-color: var(--primary-blue);
+    border-color: var(--accent-yellow);
     box-shadow: var(--shadow-glow);
     transform: translateY(-8px);
 }

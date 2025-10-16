@@ -870,7 +870,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-blue);
+    background: var(--primary-yellow);
     border-radius: 4px;
 }
 
@@ -880,6 +880,6 @@ body {
 
 /* Selection */
 ::selection {
-    background: var(--primary-blue);
+    background: var(--primary-yellow);
     color: white;
 }

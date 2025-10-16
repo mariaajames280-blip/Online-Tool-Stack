@@ -700,7 +700,7 @@ body {
 .social-links a:hover {
     background: var(--primary-yellow);
     color: white;
-    border-color: var(--primary-blue);
+    border-color: var(--primary-yellow);
 }
 
 .footer-bottom {

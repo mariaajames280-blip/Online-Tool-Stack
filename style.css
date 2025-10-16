@@ -21,56 +21,57 @@
   --text-secondary: #ffcc00;
   --text-muted: #ccaa00;
   --text-accent: var(--accent-yellow);
+
+  /* --- Borders & Fonts --- */
+  --border-color: #ffdd00;
+  --border-light: #ffcc00;
+
+  /* Typography */
+  --font-primary: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(255, 221, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(255, 221, 0, 0.15);
+  --shadow-lg: 0 10px 25px rgba(255, 221, 0, 0.2);
+  --shadow-glow: 0 0 20px rgba(255, 221, 0, 0.3);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }
 
 /* Online ToolStack - Main Styles */
 
-    --border-color: #ffdd00;
-    --border-light: #ffcc00;
-    
-    /* Typography */
-    --font-primary: 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    
-    /* Spacing */
-    --spacing-xs: 0.25rem;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
-    --spacing-2xl: 3rem;
-    --spacing-3xl: 4rem;
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 3px rgba(255, 221, 0, 0.1);
-    --shadow-md: 0 4px 12px rgba(255, 221, 0, 0.15);
-    --shadow-lg: 0 10px 25px rgba(255, 221, 0, 0.2);
-    --shadow-glow: 0 0 20px rgba(255, 221, 0, 0.3);
-    
-    /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.5s ease;
-}
-
 /* Reset and Base Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: var(--font-primary);
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
+  font-family: var(--font-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
+
 
 /* Loading Screen */
 #loading-screen {

@@ -296,7 +296,7 @@ body {
 }
 
 .btn-secondary:hover {
-    background: var(--primary-blue);
+    background: var(--accent-yellow);
     color: white;
     transform: translateY(-2px);
 }

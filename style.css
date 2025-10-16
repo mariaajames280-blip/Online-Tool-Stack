@@ -278,7 +278,7 @@ body {
 }
 
 .btn-primary {
-    background: var(--primary-blue);
+    background: var(--accent-yellow);
     color: white;
     box-shadow: var(--shadow-md);
 }

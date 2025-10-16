@@ -490,5 +490,62 @@
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
+        <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/tools.js"></script>
+    <script src="js/animations.js"></script>
+
+    <!-- 🚨 TOOLS FIX -->
+    <script>
+    setTimeout(function() {
+        const toolsGrid = document.getElementById('tools-grid');
+        if (toolsGrid && toolsGrid.children.length === 0) {
+            console.log('🔄 Loading tools via emergency script...');
+            
+            const emergencyTools = [
+                { name: 'Password Generator', category: 'security', icon: 'lock', description: 'Generate secure passwords with custom options' },
+                { name: 'QR Code Generator', category: 'generator', icon: 'qrcode', description: 'Create QR codes for any text or URL' },
+                { name: 'Color Picker', category: 'design', icon: 'palette', description: 'Pick colors and get HEX, RGB, HSL values' },
+                { name: 'Base64 Encoder', category: 'developer', icon: 'code', description: 'Encode and decode Base64 strings' },
+                { name: 'URL Shortener', category: 'seo', icon: 'link', description: 'Shorten long URLs for sharing and tracking' },
+                { name: 'JSON Formatter', category: 'developer', icon: 'braces', description: 'Format and validate JSON data' },
+                { name: 'Text Counter', category: 'text', icon: 'text-width', description: 'Count words, characters, sentences' },
+                { name: 'Case Converter', category: 'text', icon: 'font', description: 'Convert text between different cases' },
+                { name: 'Unit Converter', category: 'converter', icon: 'ruler-combined', description: 'Convert between measurement units' },
+                { name: 'Currency Converter', category: 'converter', icon: 'dollar-sign', description: 'Convert between world currencies' },
+                { name: 'Age Calculator', category: 'calculator', icon: 'birthday-cake', description: 'Calculate age from birth date' },
+                { name: 'BMI Calculator', category: 'calculator', icon: 'weight', description: 'Calculate Body Mass Index' }
+            ];
+
+            let html = '';
+            emergencyTools.forEach((tool, index) => {
+                html += `
+                    <div class="tool-card" data-category="${tool.category}">
+                        <div class="tool-card-header">
+                            <div class="tool-icon">
+                                <i class="fas fa-${tool.icon}"></i>
+                            </div>
+                            <h3>${tool.name}</h3>
+                        </div>
+                        <p>${tool.description}</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">${tool.category}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            toolsGrid.innerHTML = html;
+            console.log('✅ Emergency tools loaded');
+        }
+    }, 2000);
+    </script>
+    
+    <!-- Google AdSense Auto Ads -->
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
 </body>
 </html>

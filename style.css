@@ -512,7 +512,7 @@ body {
 }
 
 .tool-card:hover {
-    border-color: var(--primary-blue);
+    border-color: var(--accent-yellow);
     box-shadow: var(--shadow-md);
     transform: translateY(-4px);
 }

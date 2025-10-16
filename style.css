@@ -348,7 +348,7 @@ body {
 
 .floating-card i {
     font-size: 2rem;
-    color: var(--primary-blue);
+    color: var(--accent-yellow);
 }
 
 .floating-card span {

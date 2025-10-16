@@ -267,18 +267,30 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+   
+<button id="back-to-top" class="back-to-top">
+  <i class="fas fa-chevron-up"></i>
+</button>
 
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
-    <script src="js/tools.js"></script>
-    <script src="js/animations.js"></script>
-    
-    <!-- Google AdSense Auto Ads -->
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+<!-- Temporary inline script to hide loader -->
+<script>
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loading-screen');
+    if (loader) {
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.display = 'none', 500);
+    }
+  });
+</script>
+
+<!-- Your Scripts -->
+<script src="js/main.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/animations.js"></script>
+
+<!-- Google AdSense Auto Ads -->
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </body>
 </html>

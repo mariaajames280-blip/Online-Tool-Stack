@@ -292,7 +292,7 @@ body {
 .btn-secondary {
     background: transparent;
     color: var(--accent-yellow);
-    border-color: var(--primary-blue);
+    border-color: var(--accent-yellow);
 }
 
 .btn-secondary:hover {

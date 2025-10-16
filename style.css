@@ -1,24 +1,30 @@
+:root {
+  /* --- Yellow & Black Theme --- */
+  --background-black: #000000;   /* page background */
+  --text-yellow: #FFD700;        /* main text color */
+  --text-white: #FFFFFF;         /* secondary text */
+  --primary-yellow: #FFD700;     /* buttons, borders, icons */
+  --accent-yellow: #FFC300;      /* hover highlights, accent elements */
+
+  /* Optional for smooth gradients or shadows */
+  --shadow-yellow: rgba(255, 215, 0, 0.3);
+  --shadow-accent: rgba(255, 195, 0, 0.3);
+
+  /* --- Background & Text Shades --- */
+  --bg-primary: #000000;
+  --bg-secondary: #111111;
+  --bg-tertiary: #1a1a1a;
+  --bg-card: #222222;
+  --bg-hover: #333333;
+
+  --text-primary: #ffdd00;
+  --text-secondary: #ffcc00;
+  --text-muted: #ccaa00;
+  --text-accent: var(--accent-yellow);
+}
+
 /* Online ToolStack - Main Styles */
 
-:root {
-    /* Color Variables - Yellow Theme */
-    --primary-yellow: #ffdd00;
-    --secondary-yellow: #ffcc00;
-    --accent-yellow: #ffee33;
-    --light-yellow: #ffff66;
-    --dark-yellow: #cc9900;
-    
-    --bg-primary: #000000;
-    --bg-secondary: #111111;
-    --bg-tertiary: #1a1a1a;
-    --bg-card: #222222;
-    --bg-hover: #333333;
-    
-    --text-primary: #ffdd00;
-    --text-secondary: #ffcc00;
-    --text-muted: #ccaa00;
-    --text-accent: var(--accent-yellow);
-    
     --border-color: #ffdd00;
     --border-light: #ffcc00;
     

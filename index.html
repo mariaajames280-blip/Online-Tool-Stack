@@ -8,15 +8,13 @@
     <meta name="author" content="Online ToolStack">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
-    <link rel="stylesheet" href="style.css">
-     <script src="main.js" defer></script>
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Online ToolStack - 20+ Free Professional Online Tools">
     <meta property="og:description" content="Access 20+ powerful online tools for free. Compress images, convert PDFs, generate QR codes, and much more!">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/">
-    <meta property="og:image" content="https://yourdomain.com/images/og-image.jpg">
+    <meta property="og:url" content="https://www.onlinetoolstack.site/">
+    <meta property="og:image" content="https://www.onlinetoolstack.site/images/og-image.jpg">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -24,7 +22,7 @@
     <meta name="twitter:description" content="Access 20+ powerful online tools for free. Compress images, convert PDFs, generate QR codes, and much more!">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://yourdomain.com/">
+    <link rel="canonical" href="https://www.onlinetoolstack.site/">
     
     <title>Online ToolStack - 20+ Free Professional Online Tools | Image Compressor, PDF Converter & More</title>
     
@@ -39,31 +37,6 @@
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Online ToolStack",
-        "description": "20+ Free Professional Online Tools for Developers, Designers, and Content Creators",
-        "url": "https://yourdomain.com/",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://yourdomain.com/tools.html?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
-    }
-    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -79,7 +52,7 @@
                 </button>
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="#featured-tools">Tools</a></li> <!-- Changed from tools.html -->
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -96,7 +69,7 @@
                 <p class="hero-subtitle">20+ Professional Online Tools for Developers, Designers & Content Creators</p>
                 <p class="hero-description">Free, fast, and easy-to-use tools that work directly in your browser. No registration required!</p>
                 <div class="hero-buttons">
-                    <a href="tools.html" class="btn btn-primary">Explore Tools</a>
+                    <a href="#featured-tools" class="btn btn-primary">Explore Tools</a> <!-- Changed from tools.html -->
                     <a href="#featured-tools" class="btn btn-secondary">Learn More</a>
                 </div>
             </div>
@@ -126,7 +99,7 @@
                     </div>
                     <h3>Image Compressor</h3>
                     <p>Compress images without losing quality. Reduce file size for faster loading.</p>
-                    <a href="tools.html#image-compressor" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <a href="image-compressor.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a> <!-- Fixed link -->
                 </div>
 
                 <div class="tool-card fade-in-up">
@@ -135,7 +108,7 @@
                     </div>
                     <h3>PDF to Word Converter</h3>
                     <p>Convert PDF files to editable Word documents instantly.</p>
-                    <a href="tools.html#pdf-converter" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <a href="pdf-converter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a> <!-- Fixed link -->
                 </div>
 
                 <div class="tool-card fade-in-up">
@@ -144,7 +117,7 @@
                     </div>
                     <h3>QR Code Generator</h3>
                     <p>Create custom QR codes for URLs, text, and contact information.</p>
-                    <a href="tools.html#qr-generator" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <a href="qr-generator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a> <!-- Fixed link -->
                 </div>
 
                 <div class="tool-card fade-in-up">
@@ -153,7 +126,7 @@
                     </div>
                     <h3>Password Generator</h3>
                     <p>Generate strong, secure passwords with customizable options.</p>
-                    <a href="tools.html#password-generator" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <a href="password-generator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a> <!-- Fixed link -->
                 </div>
 
                 <div class="tool-card fade-in-up">
@@ -162,7 +135,7 @@
                     </div>
                     <h3>Color Picker</h3>
                     <p>Pick colors and generate beautiful color palettes for your designs.</p>
-                    <a href="tools.html#color-picker" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <a href="color-picker.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a> <!-- Fixed link -->
                 </div>
 
                 <div class="tool-card fade-in-up">
@@ -171,7 +144,7 @@
                     </div>
                     <h3>JSON Formatter</h3>
                     <p>Format, validate, and beautify JSON data with syntax highlighting.</p>
-                    <a href="tools.html#json-formatter" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <a href="json-formatter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a> <!-- Fixed link -->
                 </div>
             </div>
         </div>
@@ -299,7 +272,7 @@
             <div class="cta-content">
                 <h2>Ready to Boost Your Productivity?</h2>
                 <p>Start using our powerful tools now. No registration required!</p>
-                <a href="tools.html" class="btn btn-primary btn-lg">Browse All Tools</a>
+                <a href="#featured-tools" class="btn btn-primary btn-lg">Browse All Tools</a> <!-- Fixed link -->
             </div>
         </div>
     </section>
@@ -323,7 +296,7 @@
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="tools.html">All Tools</a></li>
+                        <li><a href="#featured-tools">All Tools</a></li> <!-- Fixed link -->
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="about.html">About Us</a></li>
                     </ul>
@@ -338,17 +311,16 @@
                     </ul>
                 </div>
 
-               <div class="footer-section">
-    <h4>Popular Tools</h4>
-    <ul class="footer-links">
-        <li><a href="tools.html#image-compressor">Image Compressor</a></li>
-        <li><a href="tools.html#pdf-converter">PDF Converter</a></li>
-        <li><a href="tools.html#qr-generator">QR Code Generator</a></li>
-        <li><a href="tools.html#password-generator">Password Generator</a></li>
-    </ul>
-</div>
-
-
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="qr-generator.html">QR Code Generator</a></li> <!-- Fixed links -->
+                        <li><a href="password-generator.html">Password Generator</a></li>
+                        <li><a href="color-picker.html">Color Picker</a></li>
+                        <li><a href="base64-encoder.html">Base64 Encoder</a></li>
+                    </ul>
+                </div>
+            </div>
 
             <div class="footer-bottom">
                 <p>&copy; 2025 Online ToolStack. All rights reserved.</p>
@@ -356,13 +328,10 @@
         </div>
     </footer>
 
-        <!-- Toast Notification -->
+    <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
 
     <!-- JavaScript -->
-    <script src="tools.js"></script>
-    <script src="animations.js"></script>
     <script src="main.js"></script>
-
 </body>
 </html>

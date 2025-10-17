@@ -3,324 +3,436 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
     <title>Color Picker - Online ToolStack</title>
-    <meta name="description" content="Pick colors and get HEX, RGB, HSL values - Free online tool at Online ToolStack">
-    <meta name="keywords" content="color picker, generator tools, online tools, web tools, hex rgb hsl">
-    <meta name="author" content="Online ToolStack">
-    <link rel="canonical" href="https://onlinetoolstack.com/color-picker.html">
+    <meta name="description" content="Pick colors and generate beautiful color palettes - Free online tool at Online ToolStack">
     
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Color Picker - Online ToolStack">
-    <meta property="og:description" content="Pick colors and get HEX, RGB, HSL values">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://onlinetoolstack.com/color-picker.html">
-    <meta property="og:site_name" content="Online ToolStack">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Color Picker - Online ToolStack">
-    <meta name="twitter:description" content="Pick colors and get HEX, RGB, HSL values">
-    <meta name="twitter:site" content="@onlinetoolstack">
-    
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Color Picker",
-        "description": "Pick colors and get HEX, RGB, HSL values",
-        "url": "https://onlinetoolstack.com/color-picker.html",
-        "applicationCategory": "Utility",
-        "operatingSystem": "Web",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "provider": {
-            "@type": "Organization",
-            "name": "Online ToolStack",
-            "url": "https://onlinetoolstack.com"
-        }
-    }
-    </script>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/tools.css">
-    <link rel="stylesheet" href="css/tool-pages.css">
-    <link rel="stylesheet" href="css/animations.css">
-    
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXX" crossorigin="anonymous"></script>
+
+    <style>
+        .tool-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .color-picker-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .color-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .color-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            border: 3px solid #e1e5e9;
+            margin-bottom: 1rem;
+        }
+
+        .color-values {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .color-value-item {
+            display: flex;
+            justify-content: between;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .color-value-label {
+            font-weight: 600;
+            min-width: 80px;
+        }
+
+        .color-value {
+            font-family: 'Inter', monospace;
+            font-weight: 500;
+        }
+
+        .tool-buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-tool {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-outline {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-tool:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .tool-features {
+            background: #f8f9fa;
+            padding: 3rem 0;
+            margin-top: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .color-picker-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="/">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
                     <i class="fas fa-tools"></i>
                     <span>Online ToolStack</span>
                 </a>
-            </div>
-            
-            <div class="nav-menu" id="nav-menu">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/#tools" class="nav-link">All Tools</a>
-                <a href="/about.html" class="nav-link">About</a>
-                <a href="/contact.html" class="nav-link">Contact</a>
-                <a href="/blog.html" class="nav-link">Blog</a>
-            </div>
-            
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#featured-tools">Tools</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Breadcrumb Navigation -->
-    <div class="breadcrumb-container">
-        <nav class="breadcrumb">
-            <a href="/" class="breadcrumb-item">
-                <i class="fas fa-home"></i> Home
-            </a>
-            <span class="breadcrumb-separator">
-                <i class="fas fa-chevron-right"></i>
-            </span>
-            <a href="/#tools" class="breadcrumb-item">Tools</a>
-            <span class="breadcrumb-separator">
-                <i class="fas fa-chevron-right"></i>
-            </span>
-            <span class="breadcrumb-current">Color Picker</span>
-        </nav>
-    </div>
-
-    <!-- Tool Header -->
-    <section class="tool-header">
-        <div class="tool-header-container">
-            <div class="tool-header-content">
-                <div class="tool-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <div class="tool-info">
-                    <h1 class="tool-title">Color Picker</h1>
-                    <p class="tool-description">Pick colors and get HEX, RGB, HSL values</p>
-                    <div class="tool-meta">
-                        <span class="tool-category">
-                            <i class="fas fa-tag"></i> generator
-                        </span>
-                        <span class="tool-featured"><i class="fas fa-star"></i> Featured</span>
-                    </div>
-                </div>
-            </div>
-            <div class="tool-actions">
-                <button onclick="window.history.back()" class="btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Back
-                </button>
-                <a href="/" class="btn-primary">
-                    <i class="fas fa-home"></i> All Tools
-                </a>
+    <!-- Tool Header Section -->
+    <section class="hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 80px 0;">
+        <div class="container">
+            <div class="hero-content">
+                <h1 style="color: white; text-align: center;">Color Picker</h1>
+                <p class="hero-description" style="color: white; text-align: center;">
+                    Pick colors and generate beautiful color palettes with HEX, RGB, and HSL values.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Tool Content -->
-    <div class="tool-content">
-        <div class="tool-main" id="tool-main">
-            <!-- Tool content will be loaded here -->
-        </div>
-
-        <!-- Related Tools -->
-        <div class="related-tools">
-            <h3><i class="fas fa-tools"></i> Related Tools</h3>
-            <div class="related-tools-grid" id="related-tools-grid">
-                <!-- Related tools will be populated here -->
+    <section class="section">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header" style="text-align: center; margin-bottom: 2rem;">
+                    <h3><i class="fas fa-palette"></i> Color Picker</h3>
+                    <p>Select colors and get their values in multiple formats</p>
+                </div>
+                
+                <div class="color-picker-section">
+                    <div class="color-inputs">
+                        <label for="color-picker">Select Color:</label>
+                        <input type="color" id="color-picker" value="#007bff" oninput="updateColor()" style="width: 100%; height: 50px;">
+                        
+                        <label for="hex-input">HEX Value:</label>
+                        <input type="text" id="hex-input" value="#007bff" oninput="updateFromHex()" placeholder="#000000">
+                        
+                        <div class="tool-buttons">
+                            <button onclick="copyColor('hex')" class="btn-tool btn-primary">
+                                <i class="fas fa-copy"></i> Copy HEX
+                            </button>
+                            <button onclick="copyColor('rgb')" class="btn-tool btn-primary">
+                                <i class="fas fa-copy"></i> Copy RGB
+                            </button>
+                            <button onclick="copyColor('hsl')" class="btn-tool btn-primary">
+                                <i class="fas fa-copy"></i> Copy HSL
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="color-preview" id="color-preview" style="background: #007bff;"></div>
+                        <div class="color-values">
+                            <h4 style="margin-bottom: 1rem;">Color Values:</h4>
+                            <div class="color-value-item">
+                                <span class="color-value-label">HEX:</span>
+                                <span class="color-value" id="hex-value">#007bff</span>
+                            </div>
+                            <div class="color-value-item">
+                                <span class="color-value-label">RGB:</span>
+                                <span class="color-value" id="rgb-value">rgb(0, 123, 255)</span>
+                            </div>
+                            <div class="color-value-item">
+                                <span class="color-value-label">HSL:</span>
+                                <span class="color-value" id="hsl-value">hsl(211, 100%, 50%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="tool-features">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Why Use Our Color Picker?</h2>
+            <p class="section-subtitle" style="text-align: center;">Professional color tools for designers and developers</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye-dropper"></i>
+                    </div>
+                    <h4>Precise Color Selection</h4>
+                    <p>Pick exact colors with our advanced color picker and get precise values.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>Multiple Formats</h4>
+                    <p>Get color values in HEX, RGB, and HSL formats for different use cases.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-copy"></i>
+                    </div>
+                    <h4>Easy Copy</h4>
+                    <p>Copy color values with a single click for quick use in your projects.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Mobile Friendly</h4>
+                    <p>Works perfectly on all devices - desktop, tablet, and mobile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Need More Tools?</h2>
+                <p>Explore our complete collection of 20+ professional online tools</p>
+                <a href="index.html#featured-tools" class="btn btn-primary btn-lg">Browse All Tools</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
+        <div class="container">
+            <div class="footer-content">
                 <div class="footer-section">
-                    <div class="footer-logo">
-                        <i class="fas fa-tools"></i>
-                        <span>Online ToolStack</span>
-                    </div>
-                    <p class="footer-description">
-                        Professional web tools for developers, content creators, and digital professionals. 
-                        All tools are free, fast, and secure.
-                    </p>
+                    <h3>Online ToolStack</h3>
+                    <p>Professional online tools for everyone. Free, fast, and secure.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h3 class="footer-title">Quick Links</h3>
+                    <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/#tools">All Tools</a></li>
-                        <li><a href="/about.html">About Us</a></li>
-                        <li><a href="/contact.html">Contact</a></li>
-                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#featured-tools">All Tools</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h3 class="footer-title">Tool Categories</h3>
+                    <h4>Legal</h4>
                     <ul class="footer-links">
-                        <li><a href="/#category-text">Text Tools</a></li>
-                        <li><a href="/#category-generator">Generators</a></li>
-                        <li><a href="/#category-calculator">Calculators</a></li>
-                        <li><a href="/#category-converter">Converters</a></li>
-                        <li><a href="/#category-seo">SEO Tools</a></li>
-                        <li><a href="/#category-developer">Developer Tools</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h3 class="footer-title">Legal</h3>
+                    <h4>Popular Tools</h4>
                     <ul class="footer-links">
-                        <li><a href="/privacy.html">Privacy Policy</a></li>
-                        <li><a href="/terms.html">Terms of Service</a></li>
+                        <li><a href="qr-generator.html">QR Code Generator</a></li>
+                        <li><a href="password-generator.html">Password Generator</a></li>
+                        <li><a href="color-picker.html">Color Picker</a></li>
+                        <li><a href="base64-encoder.html">Base64 Encoder</a></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
-                <p>&copy; 2024 Online ToolStack. All rights reserved.</p>
+                <p>&copy; 2025 Online ToolStack. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
-    <script src="js/tools.js"></script>
-    <script src="js/animations.js"></script>
+    <!-- JavaScript for Color Picker -->
     <script>
-        // Initialize the specific tool
+        function updateColor() {
+            const colorPicker = document.getElementById('color-picker');
+            const hexInput = document.getElementById('hex-input');
+            const colorPreview = document.getElementById('color-preview');
+            const hexValue = document.getElementById('hex-value');
+            const rgbValue = document.getElementById('rgb-value');
+            const hslValue = document.getElementById('hsl-value');
+            
+            const color = colorPicker.value;
+            hexInput.value = color;
+            colorPreview.style.background = color;
+            hexValue.textContent = color;
+            
+            // Convert HEX to RGB
+            const r = parseInt(color.substr(1, 2), 16);
+            const g = parseInt(color.substr(3, 2), 16);
+            const b = parseInt(color.substr(5, 2), 16);
+            rgbValue.textContent = `rgb(${r}, ${g}, ${b})`;
+            
+            // Convert RGB to HSL
+            const hsl = rgbToHsl(r, g, b);
+            hslValue.textContent = `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`;
+        }
+
+        function updateFromHex() {
+            const hexInput = document.getElementById('hex-input');
+            const colorPicker = document.getElementById('color-picker');
+            let hex = hexInput.value;
+            
+            // Add # if missing
+            if (hex.charAt(0) !== '#') {
+                hex = '#' + hex;
+            }
+            
+            // Validate HEX format
+            if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex)) {
+                colorPicker.value = hex.length === 7 ? hex : 
+                    '#' + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3];
+                updateColor();
+            }
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+
+            return {
+                h: h * 360,
+                s: s * 100,
+                l: l * 100
+            };
+        }
+
+        function copyColor(format) {
+            let textToCopy = '';
+            
+            switch (format) {
+                case 'hex':
+                    textToCopy = document.getElementById('hex-value').textContent;
+                    break;
+                case 'rgb':
+                    textToCopy = document.getElementById('rgb-value').textContent;
+                    break;
+                case 'hsl':
+                    textToCopy = document.getElementById('hsl-value').textContent;
+                    break;
+            }
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert(`${format.toUpperCase()} value copied to clipboard!`);
+            });
+        }
+
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            const toolMain = document.getElementById('tool-main');
-            const toolId = 'color-picker';
+            updateColor();
             
-            // Load tool HTML
-            toolMain.innerHTML = getToolHTML(toolId);
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
             
-            // Initialize tool functionality
-            initializeTool(toolId);
-            
-            // Initialize shared functionality
-            initializeSharedFunctionality();
-            
-            // Load related tools
-            loadRelatedTools(toolId);
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
         });
-        
-        // Load related tools
-        function loadRelatedTools(currentToolId) {
-            const toolsData = window.toolsData || []; // Access from main.js
-            const currentTool = toolsData.find(t => t.id === currentToolId);
-            if (!currentTool) return;
-            
-            // Get tools from same category
-            const relatedTools = toolsData
-                .filter(tool => 
-                    tool.category === currentTool.category && 
-                    tool.id !== currentToolId
-                )
-                .slice(0, 6);
-            
-            // If not enough from same category, add featured tools
-            if (relatedTools.length < 3) {
-                const additionalTools = toolsData
-                    .filter(tool => 
-                        tool.featured && 
-                        tool.id !== currentToolId &&
-                        !relatedTools.find(rt => rt.id === tool.id)
-                    )
-                    .slice(0, 6 - relatedTools.length);
-                
-                relatedTools.push(...additionalTools);
-            }
-            
-            const relatedGrid = document.getElementById('related-tools-grid');
-            if (relatedGrid && relatedTools.length > 0) {
-                relatedGrid.innerHTML = relatedTools.map(tool => `
-                    <a href="${tool.id}.html" class="related-tool-card">
-                        <div class="tool-card-icon">
-                            <i class="${tool.icon}"></i>
-                        </div>
-                        <div class="tool-card-name">${tool.name}</div>
-                        <div class="tool-card-description">${tool.description}</div>
-                    </a>
-                `).join('');
-            }
-        }
-        
-        // Initialize shared functionality from template
-        function initializeSharedFunctionality() {
-            // Mobile menu toggle
-            const navToggle = document.getElementById('nav-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('active');
-                    navToggle.classList.toggle('active');
-                });
-            }
-
-            // Back to top functionality
-            const backToTop = document.getElementById('back-to-top');
-            if (backToTop) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 300) {
-                        backToTop.classList.add('show');
-                    } else {
-                        backToTop.classList.remove('show');
-                    }
-                });
-
-                backToTop.addEventListener('click', () => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-        }
     </script>
 </body>
 </html>

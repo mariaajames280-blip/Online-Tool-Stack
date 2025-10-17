@@ -1,38 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <meta name="description" content="Online ToolStack - 20+ Free Professional Online Tools for Developers, Designers, and Content Creators. Image Compressor, PDF Converter, QR Code Generator, Password Generator, and more!">
-    <meta name="keywords" content="online tools, free tools, developer tools, image compressor, pdf converter, qr code generator, password generator, color picker, text to speech, base64 encoder, json formatter">
+    
+    <!-- SEO Meta Tags -->
+    <title>Base64 Encoder/Decoder - Online ToolStack</title>
+    <meta name="description" content="Encode and decode Base64 strings - Free online tool at Online ToolStack">
+    <meta name="keywords" content="base64 encoder decoder, converter tools, online tools, web tools, base64 encode decode">
     <meta name="author" content="Online ToolStack">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://onlinetoolstack.site/base64-encoder.html">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Online ToolStack - 20+ Free Professional Online Tools">
-    <meta property="og:description" content="Access 20+ powerful online tools for free. Compress images, convert PDFs, generate QR codes, and much more!">
+    <meta property="og:title" content="Base64 Encoder/Decoder - Online ToolStack">
+    <meta property="og:description" content="Encode and decode Base64 strings">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.onlinetoolstack.site/">
+    <meta property="og:url" content="https://onlinetoolstack.site/base64-encoder.html">
+    <meta property="og:site_name" content="Online ToolStack">
     
-    <title>Online ToolStack - 20+ Free Professional Online Tools | Image Compressor, PDF Converter & More</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
-    <!-- CORRECTED CSS PATH -->
-   <link rel="stylesheet" href="https://www.onlinetoolstack.site/style.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <!-- CSS & FONTS -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <nav class="navbar">
         <div class="container">
             <div class="nav-content">
                 <a href="index.html" class="logo">
@@ -43,8 +36,8 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="#featured-tools">Tools</a></li> <!-- Changed from tools.html -->
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#featured-tools">Tools</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -53,278 +46,142 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content fade-in">
-                <h1>Welcome to <span class="highlight-blue">Online ToolStack</span></h1>
-                <p class="hero-subtitle">20+ Professional Online Tools for Developers, Designers & Content Creators</p>
-                <p class="hero-description">Free, fast, and easy-to-use tools that work directly in your browser. No registration required!</p>
-                <div class="hero-buttons">
-                    <a href="#featured-tools" class="btn btn-primary">Explore Tools</a> <!-- Changed from tools.html -->
-                    <a href="#featured-tools" class="btn btn-secondary">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Google AdSense Placeholder 1 -->
-    <div class="adsense-placeholder">
-        <div class="container">
-            <div class="ad-container">
-                <!-- Google AdSense Code Here -->
-                <p class="ad-label">Advertisement</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Featured Tools Section -->
-    <!-- Featured Tools Section -->
-<section id="featured-tools" class="section">
-    <div class="container">
-        <h2 class="section-title">Featured <span class="highlight-yellow">Tools</span></h2>
-        <p class="section-subtitle">Most popular and powerful tools used by thousands daily</p>
-        
-        <div class="tools-grid">
-            <div class="tool-card fade-in-up">
-                <div class="tool-icon">
-                    <i class="fas fa-qrcode"></i>
-                </div>
-                <h3>QR Code Generator</h3>
-                <p>Create custom QR codes for URLs, text, and contact information.</p>
-                <a href="qr-generator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="tool-card fade-in-up">
-                <div class="tool-icon">
-                    <i class="fas fa-key"></i>
-                </div>
-                <h3>Password Generator</h3>
-                <p>Generate strong, secure passwords with customizable options.</p>
-                <a href="password-generator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="tool-card fade-in-up">
-                <div class="tool-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <h3>Color Picker</h3>
-                <p>Pick colors and generate beautiful color palettes for your designs.</p>
-                <a href="color-picker.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="tool-card fade-in-up">
-                <div class="tool-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <h3>Base64 Encoder</h3>
-                <p>Encode and decode base64 strings and files.</p>
-                <a href="base64-encoder.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="tool-card fade-in-up">
-                <div class="tool-icon">
-                    <i class="fas fa-calculator"></i>
-                </div>
-                <h3>Calculator</h3>
-                <p>A simple and easy-to-use calculator for basic arithmetic.</p>
-                <a href="calculator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="tool-card fade-in-up">
-                <div class="tool-icon">
-                    <i class="fas fa-tools"></i>
-                </div>
-                <h3>Batch Tool Generator</h3>
-                <p>Generate multiple tools at once for batch processing.</p>
-                <a href="batch-tool-generator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
-    <!-- Tool Categories -->
-    <section class="section bg-dark">
-        <div class="container">
-            <h2 class="section-title">Tool <span class="highlight-blue">Categories</span></h2>
-            <p class="section-subtitle">Organized tools for every need</p>
-            
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-image"></i>
-                    </div>
-                    <h3>Image Tools</h3>
-                    <p>Image Compressor, Image Resizer, and more</p>
-                    <span class="category-count">2 Tools</span>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3>File Converters</h3>
-                    <p>PDF Converter, Markdown Converter, and more</p>
-                    <span class="category-count">2 Tools</span>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Developer Tools</h3>
-                    <p>JSON Formatter, Base64 Encoder, Hash Generator, UUID Generator, Minifier</p>
-                    <span class="category-count">5 Tools</span>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Security Tools</h3>
-                    <p>Password Generator, Hash Generator, and more</p>
-                    <span class="category-count">2 Tools</span>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-text-height"></i>
-                    </div>
-                    <h3>Text Tools</h3>
-                    <p>Word Counter, Lorem Ipsum Generator, Text to Speech</p>
-                    <span class="category-count">3 Tools</span>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <h3>Calculators</h3>
-                    <p>Age Calculator, BMI Calculator, Unit Converter</p>
-                    <span class="category-count">3 Tools</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Google AdSense Placeholder 2 -->
-    <div class="adsense-placeholder">
-        <div class="container">
-            <div class="ad-container">
-                <!-- Google AdSense Code Here -->
-                <p class="ad-label">Advertisement</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Features Section -->
+    <!-- Tool Content -->
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Why Choose <span class="highlight-yellow">ToolStack?</span></h2>
-            <p class="section-subtitle">Powerful features that make your work easier</p>
+            <h1 class="section-title">Base64 Encoder/Decoder</h1>
             
-            <div class="features-grid">
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
+            <div class="tool-container">
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-code"></i> Base64 Tool</h3>
+                        <p>Encode text to Base64 or decode Base64 to text</p>
                     </div>
-                    <h3>Lightning Fast</h3>
-                    <p>All tools work directly in your browser for instant results</p>
-                </div>
-
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon">
-                        <i class="fas fa-lock"></i>
+                    
+                    <div class="tool-input-section">
+                        <label for="input-text">Input Text:</label>
+                        <textarea id="input-text" placeholder="Enter text to encode or Base64 to decode..." rows="4"></textarea>
                     </div>
-                    <h3>100% Secure</h3>
-                    <p>Your data never leaves your device. Complete privacy guaranteed</p>
-                </div>
-
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                    
+                    <div class="tool-buttons">
+                        <button onclick="encodeBase64()" class="btn btn-primary">
+                            <i class="fas fa-lock"></i> Encode to Base64
+                        </button>
+                        <button onclick="decodeBase64()" class="btn btn-secondary">
+                            <i class="fas fa-lock-open"></i> Decode from Base64
+                        </button>
+                        <button onclick="clearText()" class="btn btn-outline">
+                            <i class="fas fa-eraser"></i> Clear
+                        </button>
                     </div>
-                    <h3>Mobile Friendly</h3>
-                    <p>Works perfectly on all devices - desktop, tablet, and mobile</p>
-                </div>
-
-                <div class="feature-card fade-in-up">
-                    <div class="feature-icon">
-                        <i class="fas fa-dollar-sign"></i>
+                    
+                    <div class="tool-output-section">
+                        <label for="output-text">Result:</label>
+                        <textarea id="output-text" placeholder="Result will appear here..." rows="4" readonly></textarea>
                     </div>
-                    <h3>Completely Free</h3>
-                    <p>All tools are free to use. No hidden fees or subscriptions</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Boost Your Productivity?</h2>
-                <p>Start using our powerful tools now. No registration required!</p>
-                <a href="#featured-tools" class="btn btn-primary btn-lg">Browse All Tools</a> <!-- Fixed link -->
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-   <footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Online ToolStack</h3>
-                <p>Professional online tools for everyone. Free, fast, and secure.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Online ToolStack</h3>
+                    <p>Professional online tools for everyone. Free, fast, and secure.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#featured-tools">All Tools</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="qr-generator.html">QR Code Generator</a></li>
+                        <li><a href="password-generator.html">Password Generator</a></li>
+                        <li><a href="color-picker.html">Color Picker</a></li>
+                        <li><a href="base64-encoder.html">Base64 Encoder</a></li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Updated Quick Links Section -->
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#featured-tools">All Tools</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul class="footer-links">
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Popular Tools</h4>
-                <ul class="footer-links">
-                    <li><a href="qr-generator.html">QR Code Generator</a></li>
-                    <li><a href="password-generator.html">Password Generator</a></li>
-                    <li><a href="color-picker.html">Color Picker</a></li>
-                    <li><a href="base64-encoder.html">Base64 Encoder</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Online ToolStack. All rights reserved.</p>
             </div>
         </div>
+    </footer>
 
-        <div class="footer-bottom">
-            <p>&copy; 2025 Online ToolStack. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
-    <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
+    <!-- JavaScript for Base64 Tool -->
+    <script>
+        function encodeBase64() {
+            const input = document.getElementById('input-text').value;
+            if (!input) {
+                alert('Please enter some text to encode.');
+                return;
+            }
+            try {
+                const encoded = btoa(unescape(encodeURIComponent(input)));
+                document.getElementById('output-text').value = encoded;
+            } catch (error) {
+                alert('Error encoding text: ' + error.message);
+            }
+        }
 
-    <!-- JavaScript -->
-    <script src="main.js"></script>
+        function decodeBase64() {
+            const input = document.getElementById('input-text').value;
+            if (!input) {
+                alert('Please enter Base64 text to decode.');
+                return;
+            }
+            try {
+                const decoded = decodeURIComponent(escape(atob(input)));
+                document.getElementById('output-text').value = decoded;
+            } catch (error) {
+                alert('Error decoding Base64: ' + error.message);
+            }
+        }
+
+        function clearText() {
+            document.getElementById('input-text').value = '';
+            document.getElementById('output-text').value = '';
+        }
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>

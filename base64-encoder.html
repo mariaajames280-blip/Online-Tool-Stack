@@ -3,321 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
     <title>Base64 Encoder/Decoder - Online ToolStack</title>
     <meta name="description" content="Encode and decode Base64 strings - Free online tool at Online ToolStack">
     <meta name="keywords" content="base64 encoder decoder, converter tools, online tools, web tools, base64 encode decode">
     <meta name="author" content="Online ToolStack">
-    <link rel="canonical" href="https://onlinetoolstack.com/base64-encoder.html">
     
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Base64 Encoder/Decoder - Online ToolStack">
-    <meta property="og:description" content="Encode and decode Base64 strings">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://onlinetoolstack.com/base64-encoder.html">
-    <meta property="og:site_name" content="Online ToolStack">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Base64 Encoder/Decoder - Online ToolStack">
-    <meta name="twitter:description" content="Encode and decode Base64 strings">
-    <meta name="twitter:site" content="@onlinetoolstack">
-    
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Base64 Encoder/Decoder",
-        "description": "Encode and decode Base64 strings",
-        "url": "https://onlinetoolstack.com/base64-encoder.html",
-        "applicationCategory": "Utility",
-        "operatingSystem": "Web",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "provider": {
-            "@type": "Organization",
-            "name": "Online ToolStack",
-            "url": "https://onlinetoolstack.com"
-        }
-    }
-    </script>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <!-- CSS & FONTS -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/tools.css">
-    <link rel="stylesheet" href="css/tool-pages.css">
-    <link rel="stylesheet" href="css/animations.css">
+
+    <style>
+        .tool-interface {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .input-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-family: 'Inter', monospace;
+            font-size: 0.9rem;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-tool {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-encode {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-decode {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-clear {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-tool:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .result-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #f8f9fa;
+        }
+
+        .copy-btn {
+            background: #17a2b8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .tool-features {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-success {
+            background: #28a745;
+        }
+
+        .toast-info {
+            background: #17a2b8;
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="/">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
                     <i class="fas fa-tools"></i>
                     <span>Online ToolStack</span>
                 </a>
-            </div>
-            
-            <div class="nav-menu" id="nav-menu">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/#tools" class="nav-link">All Tools</a>
-                <a href="/about.html" class="nav-link">About</a>
-                <a href="/contact.html" class="nav-link">Contact</a>
-                <a href="/blog.html" class="nav-link">Blog</a>
-            </div>
-            
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#featured-tools">Tools</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Breadcrumb Navigation -->
-    <div class="breadcrumb-container">
-        <nav class="breadcrumb">
-            <a href="/" class="breadcrumb-item">
-                <i class="fas fa-home"></i> Home
-            </a>
-            <span class="breadcrumb-separator">
-                <i class="fas fa-chevron-right"></i>
-            </span>
-            <a href="/#tools" class="breadcrumb-item">Tools</a>
-            <span class="breadcrumb-separator">
-                <i class="fas fa-chevron-right"></i>
-            </span>
-            <span class="breadcrumb-current">Base64 Encoder/Decoder</span>
-        </nav>
-    </div>
-
     <!-- Tool Header -->
-    <section class="tool-header">
-        <div class="tool-header-container">
-            <div class="tool-header-content">
-                <div class="tool-icon">
-                    <i class="fas fa-code"></i>
+    <section class="section">
+        <div class="container">
+            <div class="tool-header" style="text-align: center; margin-bottom: 2rem;">
+                <h1 class="section-title">Base64 Encoder/Decoder</h1>
+                <p class="section-subtitle">Encode text to Base64 or decode Base64 back to text instantly</p>
+            </div>
+
+            <!-- Base64 Tool Interface -->
+            <div class="tool-interface">
+                <div class="input-group">
+                    <label for="inputText">
+                        <i class="fas fa-pencil-alt"></i> Input Text:
+                    </label>
+                    <textarea 
+                        id="inputText" 
+                        placeholder="Enter text to encode or Base64 string to decode..."
+                        oninput="autoDetectAction()"
+                    ></textarea>
                 </div>
-                <div class="tool-info">
-                    <h1 class="tool-title">Base64 Encoder/Decoder</h1>
-                    <p class="tool-description">Encode and decode Base64 strings</p>
-                    <div class="tool-meta">
-                        <span class="tool-category">
-                            <i class="fas fa-tag"></i> converter
-                        </span>
-                        <span class="tool-featured"><i class="fas fa-star"></i> Featured</span>
-                    </div>
+
+                <div class="button-group">
+                    <button class="btn-tool btn-encode" onclick="encodeBase64()">
+                        <i class="fas fa-lock"></i> Encode to Base64
+                    </button>
+                    <button class="btn-tool btn-decode" onclick="decodeBase64()">
+                        <i class="fas fa-lock-open"></i> Decode from Base64
+                    </button>
+                    <button class="btn-tool btn-clear" onclick="clearAll()">
+                        <i class="fas fa-eraser"></i> Clear All
+                    </button>
+                </div>
+
+                <div class="result-section">
+                    <label for="outputText">
+                        <i class="fas fa-code"></i> Result:
+                    </label>
+                    <textarea 
+                        id="outputText" 
+                        placeholder="Result will appear here..."
+                        readonly
+                    ></textarea>
+                    <button class="copy-btn" onclick="copyToClipboard()">
+                        <i class="fas fa-copy"></i> Copy Result
+                    </button>
                 </div>
             </div>
-            <div class="tool-actions">
-                <button onclick="window.history.back()" class="btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Back
-                </button>
-                <a href="/" class="btn-primary">
-                    <i class="fas fa-home"></i> All Tools
-                </a>
+
+            <!-- Tool Features -->
+            <div class="tool-features">
+                <h3 style="text-align: center; margin-bottom: 1rem;">
+                    <i class="fas fa-star"></i> About Base64 Encoding
+                </h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Secure Data Transfer</h4>
+                        <p>Base64 encoding ensures safe transfer of binary data through text-based systems</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>Instant Conversion</h4>
+                        <p>Encode or decode Base64 strings in real-time with our fast processing</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>Mobile Friendly</h4>
+                        <p>Works perfectly on all devices - desktop, tablet, and mobile</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Tool Content -->
-    <div class="tool-content">
-        <div class="tool-main" id="tool-main">
-            <!-- Tool content will be loaded here -->
-        </div>
-
-        <!-- Related Tools -->
-        <div class="related-tools">
-            <h3><i class="fas fa-tools"></i> Related Tools</h3>
-            <div class="related-tools-grid" id="related-tools-grid">
-                <!-- Related tools will be populated here -->
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
+        <div class="container">
+            <div class="footer-content">
                 <div class="footer-section">
-                    <div class="footer-logo">
-                        <i class="fas fa-tools"></i>
-                        <span>Online ToolStack</span>
-                    </div>
-                    <p class="footer-description">
-                        Professional web tools for developers, content creators, and digital professionals. 
-                        All tools are free, fast, and secure.
-                    </p>
+                    <h3>Online ToolStack</h3>
+                    <p>Professional online tools for everyone. Free, fast, and secure.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h3 class="footer-title">Quick Links</h3>
+                    <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/#tools">All Tools</a></li>
-                        <li><a href="/about.html">About Us</a></li>
-                        <li><a href="/contact.html">Contact</a></li>
-                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#featured-tools">All Tools</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h3 class="footer-title">Tool Categories</h3>
+                    <h4>Legal</h4>
                     <ul class="footer-links">
-                        <li><a href="/#category-text">Text Tools</a></li>
-                        <li><a href="/#category-generator">Generators</a></li>
-                        <li><a href="/#category-calculator">Calculators</a></li>
-                        <li><a href="/#category-converter">Converters</a></li>
-                        <li><a href="/#category-seo">SEO Tools</a></li>
-                        <li><a href="/#category-developer">Developer Tools</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h3 class="footer-title">Legal</h3>
+                    <h4>Popular Tools</h4>
                     <ul class="footer-links">
-                        <li><a href="/privacy.html">Privacy Policy</a></li>
-                        <li><a href="/terms.html">Terms of Service</a></li>
+                        <li><a href="qr-generator.html">QR Code Generator</a></li>
+                        <li><a href="password-generator.html">Password Generator</a></li>
+                        <li><a href="color-picker.html">Color Picker</a></li>
+                        <li><a href="base64-encoder.html">Base64 Encoder</a></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
-                <p>&copy; 2024 Online ToolStack. All rights reserved.</p>
+                <p>&copy; 2025 Online ToolStack. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
-    <script src="js/tools.js"></script>
-    <script src="js/animations.js"></script>
+    <!-- JavaScript for Base64 Tool -->
     <script>
-        // Initialize the specific tool
-        document.addEventListener('DOMContentLoaded', function() {
-            const toolMain = document.getElementById('tool-main');
-            const toolId = 'base64-encoder';
-            
-            // Load tool HTML
-            toolMain.innerHTML = getToolHTML(toolId);
-            
-            // Initialize tool functionality
-            initializeTool(toolId);
-            
-            // Initialize shared functionality
-            initializeSharedFunctionality();
-            
-            // Load related tools
-            loadRelatedTools(toolId);
-        });
-        
-        // Load related tools
-        function loadRelatedTools(currentToolId) {
-            const toolsData = window.toolsData || []; // Access from main.js
-            const currentTool = toolsData.find(t => t.id === currentToolId);
-            if (!currentTool) return;
-            
-            // Get tools from same category
-            const relatedTools = toolsData
-                .filter(tool => 
-                    tool.category === currentTool.category && 
-                    tool.id !== currentToolId
-                )
-                .slice(0, 6);
-            
-            // If not enough from same category, add featured tools
-            if (relatedTools.length < 3) {
-                const additionalTools = toolsData
-                    .filter(tool => 
-                        tool.featured && 
-                        tool.id !== currentToolId &&
-                        !relatedTools.find(rt => rt.id === tool.id)
-                    )
-                    .slice(0, 6 - relatedTools.length);
-                
-                relatedTools.push(...additionalTools);
+        function encodeBase64() {
+            const input = document.getElementById('inputText').value;
+            if (!input) {
+                alert('Please enter some text to encode.');
+                return;
             }
-            
-            const relatedGrid = document.getElementById('related-tools-grid');
-            if (relatedGrid && relatedTools.length > 0) {
-                relatedGrid.innerHTML = relatedTools.map(tool => `
-                    <a href="${tool.id}.html" class="related-tool-card">
-                        <div class="tool-card-icon">
-                            <i class="${tool.icon}"></i>
-                        </div>
-                        <div class="tool-card-name">${tool.name}</div>
-                        <div class="tool-card-description">${tool.description}</div>
-                    </a>
-                `).join('');
+            try {
+                const encoded = btoa(unescape(encodeURIComponent(input)));
+                document.getElementById('outputText').value = encoded;
+                showToast('Text encoded successfully!', 'success');
+            } catch (error) {
+                alert('Error encoding text: ' + error.message);
             }
         }
-        
-        // Initialize shared functionality from template
-        function initializeSharedFunctionality() {
-            // Mobile menu toggle
-            const navToggle = document.getElementById('nav-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('active');
-                    navToggle.classList.toggle('active');
-                });
-            }
 
-            // Back to top functionality
-            const backToTop = document.getElementById('back-to-top');
-            if (backToTop) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 300) {
-                        backToTop.classList.add('show');
-                    } else {
-                        backToTop.classList.remove('show');
+        function decodeBase64() {
+            const input = document.getElementById('inputText').value;
+            if (!input) {
+                alert('Please enter Base64 text to decode.');
+                return;
+            }
+            try {
+                const decoded = decodeURIComponent(escape(atob(input)));
+                document.getElementById('outputText').value = decoded;
+                showToast('Base64 decoded successfully!', 'success');
+            } catch (error) {
+                alert('Error decoding Base64: Invalid Base64 string');
+            }
+        }
+
+        function clearAll() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputText').value = '';
+            showToast('Cleared!', 'info');
+        }
+
+        function copyToClipboard() {
+            const outputText = document.getElementById('outputText');
+            if (!outputText.value) {
+                alert('No result to copy!');
+                return;
+            }
+            
+            outputText.select();
+            outputText.setSelectionRange(0, 99999);
+            
+            try {
+                navigator.clipboard.writeText(outputText.value);
+                showToast('Copied to clipboard!', 'success');
+            } catch (err) {
+                document.execCommand('copy');
+                showToast('Copied to clipboard!', 'success');
+            }
+        }
+
+        function autoDetectAction() {
+            const input = document.getElementById('inputText').value;
+            if (input.trim() === '') {
+                document.getElementById('outputText').value = '';
+            }
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <i class="fas fa-${type === 'success' ? 'check' : 'info'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
                     }
-                });
+                }, 300);
+            }, 3000);
+        }
 
-                backToTop.addEventListener('click', () => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
                 });
             }
-        }
+        });
     </script>
 </body>
 </html>

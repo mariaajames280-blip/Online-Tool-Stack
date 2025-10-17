@@ -3,320 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
     <title>Calculator - Online ToolStack</title>
-    <meta name="description" content="Basic arithmetic calculator - Free online tool at Online ToolStack">
-    <meta name="keywords" content="calculator, calculator tools, online tools, web tools, arithmetic calculator">
-    <meta name="author" content="Online ToolStack">
-    <link rel="canonical" href="https://onlinetoolstack.com/calculator.html">
+    <meta name="description" content="Simple and easy-to-use calculator for basic arithmetic - Free online tool at Online ToolStack">
     
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Calculator - Online ToolStack">
-    <meta property="og:description" content="Basic arithmetic calculator">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://onlinetoolstack.com/calculator.html">
-    <meta property="og:site_name" content="Online ToolStack">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Calculator - Online ToolStack">
-    <meta name="twitter:description" content="Basic arithmetic calculator">
-    <meta name="twitter:site" content="@onlinetoolstack">
-    
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Calculator",
-        "description": "Basic arithmetic calculator",
-        "url": "https://onlinetoolstack.com/calculator.html",
-        "applicationCategory": "Utility",
-        "operatingSystem": "Web",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "provider": {
-            "@type": "Organization",
-            "name": "Online ToolStack",
-            "url": "https://onlinetoolstack.com"
-        }
-    }
-    </script>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/tools.css">
-    <link rel="stylesheet" href="css/tool-pages.css">
-    <link rel="stylesheet" href="css/animations.css">
+
+    <style>
+        .tool-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .calculator-display {
+            background: #f8f9fa;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 600;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-family: 'Inter', monospace;
+        }
+
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .calc-btn {
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #f8f9fa;
+            border: 2px solid #e1e5e9;
+        }
+
+        .calc-btn:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .calc-btn.operator {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .calc-btn.operator:hover {
+            background: #0056b3;
+        }
+
+        .calc-btn.equals {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+            grid-column: span 2;
+        }
+
+        .calc-btn.equals:hover {
+            background: #1e7e34;
+        }
+
+        .calc-btn.clear {
+            background: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .calc-btn.clear:hover {
+            background: #c82333;
+        }
+
+        .tool-features {
+            background: #f8f9fa;
+            padding: 3rem 0;
+            margin-top: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="/">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
                     <i class="fas fa-tools"></i>
                     <span>Online ToolStack</span>
                 </a>
-            </div>
-            
-            <div class="nav-menu" id="nav-menu">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/#tools" class="nav-link">All Tools</a>
-                <a href="/about.html" class="nav-link">About</a>
-                <a href="/contact.html" class="nav-link">Contact</a>
-                <a href="/blog.html" class="nav-link">Blog</a>
-            </div>
-            
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#featured-tools">Tools</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Breadcrumb Navigation -->
-    <div class="breadcrumb-container">
-        <nav class="breadcrumb">
-            <a href="/" class="breadcrumb-item">
-                <i class="fas fa-home"></i> Home
-            </a>
-            <span class="breadcrumb-separator">
-                <i class="fas fa-chevron-right"></i>
-            </span>
-            <a href="/#tools" class="breadcrumb-item">Tools</a>
-            <span class="breadcrumb-separator">
-                <i class="fas fa-chevron-right"></i>
-            </span>
-            <span class="breadcrumb-current">Calculator</span>
-        </nav>
-    </div>
-
-    <!-- Tool Header -->
-    <section class="tool-header">
-        <div class="tool-header-container">
-            <div class="tool-header-content">
-                <div class="tool-icon">
-                    <i class="fas fa-calculator"></i>
-                </div>
-                <div class="tool-info">
-                    <h1 class="tool-title">Calculator</h1>
-                    <p class="tool-description">Basic arithmetic calculator</p>
-                    <div class="tool-meta">
-                        <span class="tool-category">
-                            <i class="fas fa-tag"></i> calculator
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="tool-actions">
-                <button onclick="window.history.back()" class="btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Back
-                </button>
-                <a href="/" class="btn-primary">
-                    <i class="fas fa-home"></i> All Tools
-                </a>
+    <!-- Tool Header Section -->
+    <section class="hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 80px 0;">
+        <div class="container">
+            <div class="hero-content">
+                <h1 style="color: white; text-align: center;">Calculator</h1>
+                <p class="hero-description" style="color: white; text-align: center;">
+                    Simple and easy-to-use calculator for basic arithmetic operations. Free and instant calculations.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Tool Content -->
-    <div class="tool-content">
-        <div class="tool-main" id="tool-main">
-            <!-- Tool content will be loaded here -->
-        </div>
-
-        <!-- Related Tools -->
-        <div class="related-tools">
-            <h3><i class="fas fa-tools"></i> Related Tools</h3>
-            <div class="related-tools-grid" id="related-tools-grid">
-                <!-- Related tools will be populated here -->
+    <section class="section">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header" style="text-align: center; margin-bottom: 2rem;">
+                    <h3><i class="fas fa-calculator"></i> Calculator</h3>
+                    <p>Perform basic arithmetic calculations</p>
+                </div>
+                
+                <div class="calculator-display" id="display">0</div>
+                
+                <div class="calculator-buttons">
+                    <button class="calc-btn clear" onclick="clearDisplay()">C</button>
+                    <button class="calc-btn" onclick="backspace()">⌫</button>
+                    <button class="calc-btn operator" onclick="appendOperator('/')">/</button>
+                    <button class="calc-btn operator" onclick="appendOperator('*')">×</button>
+                    
+                    <button class="calc-btn" onclick="appendNumber('7')">7</button>
+                    <button class="calc-btn" onclick="appendNumber('8')">8</button>
+                    <button class="calc-btn" onclick="appendNumber('9')">9</button>
+                    <button class="calc-btn operator" onclick="appendOperator('-')">-</button>
+                    
+                    <button class="calc-btn" onclick="appendNumber('4')">4</button>
+                    <button class="calc-btn" onclick="appendNumber('5')">5</button>
+                    <button class="calc-btn" onclick="appendNumber('6')">6</button>
+                    <button class="calc-btn operator" onclick="appendOperator('+')">+</button>
+                    
+                    <button class="calc-btn" onclick="appendNumber('1')">1</button>
+                    <button class="calc-btn" onclick="appendNumber('2')">2</button>
+                    <button class="calc-btn" onclick="appendNumber('3')">3</button>
+                    <button class="calc-btn" onclick="appendNumber('0')">0</button>
+                    
+                    <button class="calc-btn" onclick="appendDecimal()">.</button>
+                    <button class="calc-btn equals" onclick="calculate()">=</button>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="tool-features">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Why Use Our Calculator?</h2>
+            <p class="section-subtitle" style="text-align: center;">Simple, reliable, and always available</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>Lightning Fast</h4>
+                    <p>Get instant results with our optimized calculation engine.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Mobile Optimized</h4>
+                    <p>Works perfectly on all devices - desktop, tablet, and mobile.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Complete Privacy</h4>
+                    <p>Your calculations are processed locally and never stored.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <h4>Always Available</h4>
+                    <p>Access your calculator anytime, anywhere with internet connection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Need More Tools?</h2>
+                <p>Explore our complete collection of 20+ professional online tools</p>
+                <a href="index.html#featured-tools" class="btn btn-primary btn-lg">Browse All Tools</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
+        <div class="container">
+            <div class="footer-content">
                 <div class="footer-section">
-                    <div class="footer-logo">
-                        <i class="fas fa-tools"></i>
-                        <span>Online ToolStack</span>
-                    </div>
-                    <p class="footer-description">
-                        Professional web tools for developers, content creators, and digital professionals. 
-                        All tools are free, fast, and secure.
-                    </p>
+                    <h3>Online ToolStack</h3>
+                    <p>Professional online tools for everyone. Free, fast, and secure.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h3 class="footer-title">Quick Links</h3>
+                    <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/#tools">All Tools</a></li>
-                        <li><a href="/about.html">About Us</a></li>
-                        <li><a href="/contact.html">Contact</a></li>
-                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#featured-tools">All Tools</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h3 class="footer-title">Tool Categories</h3>
+                    <h4>Legal</h4>
                     <ul class="footer-links">
-                        <li><a href="/#category-text">Text Tools</a></li>
-                        <li><a href="/#category-generator">Generators</a></li>
-                        <li><a href="/#category-calculator">Calculators</a></li>
-                        <li><a href="/#category-converter">Converters</a></li>
-                        <li><a href="/#category-seo">SEO Tools</a></li>
-                        <li><a href="/#category-developer">Developer Tools</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h3 class="footer-title">Legal</h3>
+                    <h4>Popular Tools</h4>
                     <ul class="footer-links">
-                        <li><a href="/privacy.html">Privacy Policy</a></li>
-                        <li><a href="/terms.html">Terms of Service</a></li>
+                        <li><a href="qr-generator.html">QR Code Generator</a></li>
+                        <li><a href="password-generator.html">Password Generator</a></li>
+                        <li><a href="color-picker.html">Color Picker</a></li>
+                        <li><a href="base64-encoder.html">Base64 Encoder</a></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
-                <p>&copy; 2024 Online ToolStack. All rights reserved.</p>
+                <p>&copy; 2025 Online ToolStack. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
-    <script src="js/tools.js"></script>
-    <script src="js/animations.js"></script>
+    <!-- JavaScript for Calculator -->
     <script>
-        // Initialize the specific tool
+        let display = document.getElementById('display');
+        let currentInput = '0';
+        let previousInput = '';
+        let operation = null;
+        let resetDisplay = false;
+
+        function updateDisplay() {
+            display.textContent = currentInput;
+        }
+
+        function appendNumber(number) {
+            if (currentInput === '0' || resetDisplay) {
+                currentInput = number;
+                resetDisplay = false;
+            } else {
+                currentInput += number;
+            }
+            updateDisplay();
+        }
+
+        function appendOperator(op) {
+            if (operation !== null) calculate();
+            previousInput = currentInput;
+            operation = op;
+            resetDisplay = true;
+        }
+
+        function appendDecimal() {
+            if (resetDisplay) {
+                currentInput = '0.';
+                resetDisplay = false;
+            } else if (!currentInput.includes('.')) {
+                currentInput += '.';
+            }
+            updateDisplay();
+        }
+
+        function calculate() {
+            if (operation === null || resetDisplay) return;
+            
+            const prev = parseFloat(previousInput);
+            const current = parseFloat(currentInput);
+            let result;
+
+            switch (operation) {
+                case '+':
+                    result = prev + current;
+                    break;
+                case '-':
+                    result = prev - current;
+                    break;
+                case '*':
+                    result = prev * current;
+                    break;
+                case '/':
+                    result = prev / current;
+                    break;
+                default:
+                    return;
+            }
+
+            currentInput = result.toString();
+            operation = null;
+            previousInput = '';
+            resetDisplay = true;
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            currentInput = '0';
+            previousInput = '';
+            operation = null;
+            updateDisplay();
+        }
+
+        function backspace() {
+            if (currentInput.length > 1) {
+                currentInput = currentInput.slice(0, -1);
+            } else {
+                currentInput = '0';
+            }
+            updateDisplay();
+        }
+
+        // Mobile menu functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const toolMain = document.getElementById('tool-main');
-            const toolId = 'calculator';
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
             
-            // Load tool HTML
-            toolMain.innerHTML = getToolHTML(toolId);
-            
-            // Initialize tool functionality
-            initializeTool(toolId);
-            
-            // Initialize shared functionality
-            initializeSharedFunctionality();
-            
-            // Load related tools
-            loadRelatedTools(toolId);
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
         });
-        
-        // Load related tools
-        function loadRelatedTools(currentToolId) {
-            const toolsData = window.toolsData || []; // Access from main.js
-            const currentTool = toolsData.find(t => t.id === currentToolId);
-            if (!currentTool) return;
-            
-            // Get tools from same category
-            const relatedTools = toolsData
-                .filter(tool => 
-                    tool.category === currentTool.category && 
-                    tool.id !== currentToolId
-                )
-                .slice(0, 6);
-            
-            // If not enough from same category, add featured tools
-            if (relatedTools.length < 3) {
-                const additionalTools = toolsData
-                    .filter(tool => 
-                        tool.featured && 
-                        tool.id !== currentToolId &&
-                        !relatedTools.find(rt => rt.id === tool.id)
-                    )
-                    .slice(0, 6 - relatedTools.length);
-                
-                relatedTools.push(...additionalTools);
-            }
-            
-            const relatedGrid = document.getElementById('related-tools-grid');
-            if (relatedGrid && relatedTools.length > 0) {
-                relatedGrid.innerHTML = relatedTools.map(tool => `
-                    <a href="${tool.id}.html" class="related-tool-card">
-                        <div class="tool-card-icon">
-                            <i class="${tool.icon}"></i>
-                        </div>
-                        <div class="tool-card-name">${tool.name}</div>
-                        <div class="tool-card-description">${tool.description}</div>
-                    </a>
-                `).join('');
-            }
-        }
-        
-        // Initialize shared functionality from template
-        function initializeSharedFunctionality() {
-            // Mobile menu toggle
-            const navToggle = document.getElementById('nav-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('active');
-                    navToggle.classList.toggle('active');
-                });
-            }
-
-            // Back to top functionality
-            const backToTop = document.getElementById('back-to-top');
-            if (backToTop) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 300) {
-                        backToTop.classList.add('show');
-                    } else {
-                        backToTop.classList.remove('show');
-                    }
-                });
-
-                backToTop.addEventListener('click', () => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-        }
     </script>
 </body>
 </html>

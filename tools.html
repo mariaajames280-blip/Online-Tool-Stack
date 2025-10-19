@@ -3,1890 +3,891 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Access 20+ free online tools including image compressor, QR code generator, password generator, JSON formatter, and more. All tools work in your browser.">
-    <meta name="keywords" content="online tools, free tools, web tools, converter, generator, calculator, developer tools">
-    <title>All Tools - Online ToolStack</title>
+    <meta name="description" content="20+ Free Professional Online Tools - Image Compressor, PDF Converter, QR Code Generator, Password Generator, Color Picker, JSON Formatter, and more!">
+    <meta name="keywords" content="online tools, image compressor, pdf converter, qr code generator, password generator, color picker, text to speech, base64 encoder, json formatter, word counter, hash generator">
+    <meta name="author" content="Online ToolStack">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourdomain.com/tools.html">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-card: #161616;
-            --color-blue: #00d4ff;
-            --color-yellow: #ffd700;
-            --color-white: #ffffff;
-            --color-gray: #a0a0a0;
-            --color-success: #10b981;
-            --color-error: #ef4444;
-            --transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--color-white);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
-        }
-
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--color-blue);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--color-yellow);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--color-white);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--color-blue);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .page-header h1 {
-            font-size: 3rem;
-            color: var(--color-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .page-header p {
-            color: var(--color-gray);
-            font-size: 1.2rem;
-        }
-
-        .tools-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .tool-section {
-            background: var(--bg-card);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid #2a2a2a;
-            transition: var(--transition);
-        }
-
-        .tool-section:hover {
-            border-color: var(--color-blue);
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.15);
-        }
-
-        .tool-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #2a2a2a;
-        }
-
-        .tool-header h2 {
-            color: var(--color-yellow);
-            font-size: 1.8rem;
-        }
-
-        .tool-header .icon {
-            font-size: 2rem;
-        }
-
-        .tool-content {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        label {
-            color: var(--color-blue);
-            font-weight: 500;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        input[type="email"],
-        input[type="file"],
-        textarea,
-        select {
-            background: var(--bg-secondary);
-            border: 1px solid #2a2a2a;
-            border-radius: 8px;
-            padding: 0.75rem;
-            color: var(--color-white);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        input:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            border-color: var(--color-blue);
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-        }
-
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-            font-family: 'Courier New', monospace;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        button, .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--color-blue);
-            color: var(--bg-primary);
-        }
-
-        .btn-primary:hover {
-            background: #00b8e6;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: var(--color-yellow);
-            color: var(--bg-primary);
-        }
-
-        .btn-secondary:hover {
-            background: #e6c200;
-            transform: translateY(-2px);
-        }
-
-        .btn-danger {
-            background: var(--color-error);
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background: #dc2626;
-        }
-
-        .output-box {
-            background: var(--bg-secondary);
-            border: 1px solid #2a2a2a;
-            border-radius: 8px;
-            padding: 1rem;
-            min-height: 100px;
-            color: var(--color-white);
-            font-family: 'Courier New', monospace;
-            word-break: break-all;
-        }
-
-        .color-preview {
-            width: 100%;
-            height: 100px;
-            border-radius: 8px;
-            border: 2px solid #2a2a2a;
-        }
-
-        .palette-colors {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 1rem;
-        }
-
-        .palette-color {
-            aspect-ratio: 1;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: white;
-            text-shadow: 0 0 5px black;
-        }
-
-        .palette-color:hover {
-            transform: scale(1.1);
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--bg-card);
-            color: var(--color-white);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--color-blue);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            animation: slideIn 0.3s ease;
-        }
-
-        .toast.success {
-            border-left-color: var(--color-success);
-        }
-
-        .toast.error {
-            border-left-color: var(--color-error);
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .checkbox-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--color-gray);
-            cursor: pointer;
-        }
-
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-        .range-group {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        input[type="range"] {
-            flex: 1;
-            height: 6px;
-            background: var(--bg-secondary);
-            border-radius: 3px;
-            outline: none;
-        }
-
-        .range-value {
-            color: var(--color-yellow);
-            font-weight: bold;
-            min-width: 50px;
-        }
-
-        .info-box {
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid var(--color-blue);
-            border-radius: 8px;
-            padding: 1rem;
-            color: var(--color-blue);
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 2rem;
-            }
-            
-            .tool-header h2 {
-                font-size: 1.5rem;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            button, .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        .image-preview {
-            max-width: 100%;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-
-        #qrCanvas {
-            max-width: 300px;
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-        }
-
-        .strength-meter {
-            height: 10px;
-            background: var(--bg-secondary);
-            border-radius: 5px;
-            overflow: hidden;
-            margin-top: 0.5rem;
-        }
-
-        .strength-bar {
-            height: 100%;
-            transition: var(--transition);
-            border-radius: 5px;
-        }
-
-        .timer-display {
-            font-size: 4rem;
-            color: var(--color-yellow);
-            text-align: center;
-            font-weight: bold;
-            margin: 2rem 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-        }
-
-        .stat-item {
-            background: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            color: var(--color-yellow);
-            font-weight: bold;
-        }
-
-        .stat-label {
-            color: var(--color-gray);
-            font-size: 0.9rem;
-        }
-    </style>
+    <title>All Tools - Online ToolStack | 20+ Free Professional Online Tools</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    
+    <!-- Marked.js for Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Online Tools",
+        "description": "20+ Free Professional Online Tools for Developers and Content Creators",
+        "url": "https://yourdomain.com/tools.html"
+    }
+    </script>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html" class="logo">⚡ Online<span>ToolStack</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="tools.html">Tools</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container">
-        <div class="page-header">
-            <h1>All Tools</h1>
-            <p>20 powerful, free tools at your fingertips</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Online ToolStack</span>
+                </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tools.html" class="active">Tools</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        <div class="tools-grid">
-            <!-- Tool 1: Image Compressor -->
-            <div class="tool-section" id="image-compressor">
-                <div class="tool-header">
-                    <span class="icon">🖼️</span>
-                    <h2>Image Compressor</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Select Image</label>
-                        <input type="file" id="compressInput" accept="image/*">
-                    </div>
-                    <div class="input-group">
-                        <label>Quality: <span id="qualityValue">80</span>%</label>
-                        <input type="range" id="compressQuality" min="10" max="100" value="80">
-                    </div>
-                    <canvas id="compressCanvas" style="display:none;"></canvas>
-                    <img id="compressPreview" class="image-preview" style="display:none;">
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="compressImage()">Compress</button>
-                        <button class="btn-secondary" onclick="downloadCompressed()">Download</button>
-                        <button class="btn-danger" onclick="resetCompress()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 2: PDF to Word Converter -->
-            <div class="tool-section" id="pdf-converter">
-                <div class="tool-header">
-                    <span class="icon">📄</span>
-                    <h2>PDF to Word Converter</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Upload PDF</label>
-                        <input type="file" id="pdfInput" accept=".pdf">
-                    </div>
-                    <div class="info-box" id="pdfInfo">Upload a PDF to see file information</div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="processPDF()">Convert</button>
-                        <button class="btn-danger" onclick="resetPDF()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 3: QR Code Generator -->
-            <div class="tool-section" id="qr-generator">
-                <div class="tool-header">
-                    <span class="icon">📱</span>
-                    <h2>QR Code Generator</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Text or URL</label>
-                        <input type="text" id="qrText" placeholder="Enter text or URL">
-                    </div>
-                    <canvas id="qrCanvas" style="display:none;"></canvas>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="generateQR()">Generate QR</button>
-                        <button class="btn-secondary" onclick="downloadQR()">Download</button>
-                        <button class="btn-danger" onclick="resetQR()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 4: Password Generator -->
-            <div class="tool-section" id="password-generator">
-                <div class="tool-header">
-                    <span class="icon">🔐</span>
-                    <h2>Password Generator</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Password Length: <span id="pwdLength">16</span></label>
-                        <input type="range" id="passwordLength" min="8" max="32" value="16">
-                    </div>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="includeUppercase" checked> Uppercase
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="includeLowercase" checked> Lowercase
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="includeNumbers" checked> Numbers
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="includeSymbols" checked> Symbols
-                        </label>
-                    </div>
-                    <div class="output-box" id="passwordOutput">Click Generate to create password</div>
-                    <div class="strength-meter">
-                        <div class="strength-bar" id="strengthBar"></div>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="generatePassword()">Generate</button>
-                        <button class="btn-secondary" onclick="copyPassword()">Copy</button>
-                        <button class="btn-danger" onclick="resetPassword()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 5: URL Shortener -->
-            <div class="tool-section" id="url-shortener">
-                <div class="tool-header">
-                    <span class="icon">🔗</span>
-                    <h2>URL Shortener</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Enter Long URL</label>
-                        <input type="text" id="longUrl" placeholder="https://example.com/very-long-url">
-                    </div>
-                    <div class="output-box" id="shortUrl">Your shortened URL will appear here</div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="shortenURL()">Shorten</button>
-                        <button class="btn-secondary" onclick="copyShortURL()">Copy</button>
-                        <button class="btn-danger" onclick="resetURL()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 6: Color Picker -->
-            <div class="tool-section" id="color-picker">
-                <div class="tool-header">
-                    <span class="icon">🎨</span>
-                    <h2>Color Picker & Palette</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Pick a Color</label>
-                        <input type="color" id="colorPicker" value="#00d4ff" style="width:100%;height:60px;cursor:pointer;">
-                    </div>
-                    <div class="grid-2">
-                        <div class="output-box" id="hexColor">#00d4ff</div>
-                        <div class="output-box" id="rgbColor">rgb(0, 212, 255)</div>
-                    </div>
-                    <div class="palette-colors" id="paletteColors"></div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="generatePalette()">Generate Palette</button>
-                        <button class="btn-secondary" onclick="copyColor()">Copy HEX</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 7: Text to Speech -->
-            <div class="tool-section" id="text-to-speech">
-                <div class="tool-header">
-                    <span class="icon">🔊</span>
-                    <h2>Text to Speech</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Enter Text</label>
-                        <textarea id="ttsText" placeholder="Type or paste text here..."></textarea>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="speakText()">🔊 Speak</button>
-                        <button class="btn-danger" onclick="stopSpeech()">⏹️ Stop</button>
-                        <button class="btn-danger" onclick="resetTTS()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 8: Base64 Encoder/Decoder -->
-            <div class="tool-section" id="base64-encoder">
-                <div class="tool-header">
-                    <span class="icon">🔤</span>
-                    <h2>Base64 Encoder/Decoder</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Input Text</label>
-                        <textarea id="base64Input" placeholder="Enter text to encode or decode..."></textarea>
-                    </div>
-                    <div class="input-group">
-                        <label>Output</label>
-                        <textarea id="base64Output" readonly></textarea>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="encodeBase64()">Encode</button>
-                        <button class="btn-primary" onclick="decodeBase64()">Decode</button>
-                        <button class="btn-secondary" onclick="copyBase64()">Copy</button>
-                        <button class="btn-danger" onclick="resetBase64()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 9: JSON Formatter -->
-            <div class="tool-section" id="json-formatter">
-                <div class="tool-header">
-                    <span class="icon">📋</span>
-                    <h2>JSON Formatter & Validator</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>JSON Input</label>
-                        <textarea id="jsonInput" placeholder='{"key": "value"}'></textarea>
-                    </div>
-                    <div class="input-group">
-                        <label>Formatted Output</label>
-                        <textarea id="jsonOutput" readonly></textarea>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="formatJSON()">Format</button>
-                        <button class="btn-primary" onclick="minifyJSON()">Minify</button>
-                        <button class="btn-secondary" onclick="copyJSON()">Copy</button>
-                        <button class="btn-danger" onclick="resetJSON()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 10: Word Counter -->
-            <div class="tool-section" id="word-counter">
-                <div class="tool-header">
-                    <span class="icon">📝</span>
-                    <h2>Word Counter</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Enter Text</label>
-                        <textarea id="wordCountText" placeholder="Type or paste your text here..."></textarea>
-                    </div>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-value" id="wordCount">0</div>
-                            <div class="stat-label">Words</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="charCount">0</div>
-                            <div class="stat-label">Characters</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="sentenceCount">0</div>
-                            <div class="stat-label">Sentences</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="paragraphCount">0</div>
-                            <div class="stat-label">Paragraphs</div>
-                        </div>
-                    </div>
-                    <button class="btn-danger" onclick="resetWordCount()">Reset</button>
-                </div>
-            </div>
-
-            <!-- Tool 11: Image Resizer -->
-            <div class="tool-section" id="image-resizer">
-                <div class="tool-header">
-                    <span class="icon">📐</span>
-                    <h2>Image Resizer</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Select Image</label>
-                        <input type="file" id="resizeInput" accept="image/*">
-                    </div>
-                    <div class="grid-2">
-                        <div class="input-group">
-                            <label>Width (px)</label>
-                            <input type="number" id="resizeWidth" placeholder="800">
-                        </div>
-                        <div class="input-group">
-                            <label>Height (px)</label>
-                            <input type="number" id="resizeHeight" placeholder="600">
-                        </div>
-                    </div>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="maintainRatio" checked> Maintain aspect ratio
-                    </label>
-                    <canvas id="resizeCanvas" style="display:none;"></canvas>
-                    <img id="resizePreview" class="image-preview" style="display:none;">
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="resizeImage()">Resize</button>
-                        <button class="btn-secondary" onclick="downloadResized()">Download</button>
-                        <button class="btn-danger" onclick="resetResize()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 12: Hash Generator -->
-            <div class="tool-section" id="hash-generator">
-                <div class="tool-header">
-                    <span class="icon">🔒</span>
-                    <h2>Hash Generator</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Input Text</label>
-                        <textarea id="hashInput" placeholder="Enter text to hash..."></textarea>
-                    </div>
-                    <div class="input-group">
-                        <label>MD5</label>
-                        <div class="output-box" id="md5Output">Hash will appear here</div>
-                    </div>
-                    <div class="input-group">
-                        <label>SHA-256</label>
-                        <div class="output-box" id="sha256Output">Hash will appear here</div>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="generateHashes()">Generate</button>
-                        <button class="btn-secondary" onclick="copyHash('md5')">Copy MD5</button>
-                        <button class="btn-secondary" onclick="copyHash('sha256')">Copy SHA-256</button>
-                        <button class="btn-danger" onclick="resetHash()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 13: UUID Generator -->
-            <div class="tool-section" id="uuid-generator">
-                <div class="tool-header">
-                    <span class="icon">🆔</span>
-                    <h2>UUID Generator</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Number of UUIDs</label>
-                        <input type="number" id="uuidCount" value="5" min="1" max="50">
-                    </div>
-                    <div class="input-group">
-                        <label>Generated UUIDs</label>
-                        <textarea id="uuidOutput" readonly></textarea>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="generateUUIDs()">Generate</button>
-                        <button class="btn-secondary" onclick="copyUUIDs()">Copy All</button>
-                        <button class="btn-danger" onclick="resetUUID()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 14: Lorem Ipsum Generator -->
-            <div class="tool-section" id="lorem-generator">
-                <div class="tool-header">
-                    <span class="icon">📜</span>
-                    <h2>Lorem Ipsum Generator</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="grid-2">
-                        <div class="input-group">
-                            <label>Type</label>
-                            <select id="loremType">
-                                <option value="paragraphs">Paragraphs</option>
-                                <option value="sentences">Sentences</option>
-                                <option value="words">Words</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <label>Count</label>
-                            <input type="number" id="loremCount" value="3" min="1" max="50">
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label>Generated Text</label>
-                        <textarea id="loremOutput" readonly></textarea>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="generateLorem()">Generate</button>
-                        <button class="btn-secondary" onclick="copyLorem()">Copy</button>
-                        <button class="btn-danger" onclick="resetLorem()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 15: Code Minifier -->
-            <div class="tool-section" id="code-minifier">
-                <div class="tool-header">
-                    <span class="icon">⚙️</span>
-                    <h2>HTML/CSS/JS Minifier</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Code Type</label>
-                        <select id="codeType">
-                            <option value="html">HTML</option>
-                            <option value="css">CSS</option>
-                            <option value="js">JavaScript</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label>Input Code</label>
-                        <textarea id="codeInput" placeholder="Paste your code here..."></textarea>
-                    </div>
-                    <div class="input-group">
-                        <label>Minified Output</label>
-                        <textarea id="codeOutput" readonly></textarea>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="minifyCode()">Minify</button>
-                        <button class="btn-secondary" onclick="copyCode()">Copy</button>
-                        <button class="btn-danger" onclick="resetMinifier()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 16: Markdown to HTML -->
-            <div class="tool-section" id="markdown-converter">
-                <div class="tool-header">
-                    <span class="icon">📝</span>
-                    <h2>Markdown to HTML</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Markdown Input</label>
-                        <textarea id="markdownInput" placeholder="# Heading&#10;**bold** *italic*"></textarea>
-                    </div>
-                    <div class="input-group">
-                        <label>HTML Output</label>
-                        <textarea id="markdownOutput" readonly></textarea>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="convertMarkdown()">Convert</button>
-                        <button class="btn-secondary" onclick="copyMarkdown()">Copy</button>
-                        <button class="btn-danger" onclick="resetMarkdown()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 17: Unit Converter -->
-            <div class="tool-section" id="unit-converter">
-                <div class="tool-header">
-                    <span class="icon">📏</span>
-                    <h2>Unit Converter</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Category</label>
-                        <select id="unitCategory" onchange="updateUnitOptions()">
-                            <option value="length">Length</option>
-                            <option value="weight">Weight</option>
-                            <option value="temperature">Temperature</option>
-                        </select>
-                    </div>
-                    <div class="grid-2">
-                        <div class="input-group">
-                            <label>From</label>
-                            <select id="unitFrom"></select>
-                        </div>
-                        <div class="input-group">
-                            <label>To</label>
-                            <select id="unitTo"></select>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label>Value</label>
-                        <input type="number" id="unitValue" placeholder="Enter value">
-                    </div>
-                    <div class="output-box" id="unitResult">Result will appear here</div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="convertUnit()">Convert</button>
-                        <button class="btn-danger" onclick="resetUnit()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 18: Age Calculator -->
-            <div class="tool-section" id="age-calculator">
-                <div class="tool-header">
-                    <span class="icon">🎂</span>
-                    <h2>Age Calculator</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Date of Birth</label>
-                        <input type="date" id="birthDate">
-                    </div>
-                    <div class="stats-grid" id="ageStats" style="display:none;">
-                        <div class="stat-item">
-                            <div class="stat-value" id="ageYears">0</div>
-                            <div class="stat-label">Years</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="ageMonths">0</div>
-                            <div class="stat-label">Months</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="ageDays">0</div>
-                            <div class="stat-label">Days</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="ageHours">0</div>
-                            <div class="stat-label">Hours</div>
-                        </div>
-                    </div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="calculateAge()">Calculate</button>
-                        <button class="btn-danger" onclick="resetAge()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 19: BMI Calculator -->
-            <div class="tool-section" id="bmi-calculator">
-                <div class="tool-header">
-                    <span class="icon">⚖️</span>
-                    <h2>BMI Calculator</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="grid-2">
-                        <div class="input-group">
-                            <label>Weight (kg)</label>
-                            <input type="number" id="weight" placeholder="70">
-                        </div>
-                        <div class="input-group">
-                            <label>Height (cm)</label>
-                            <input type="number" id="height" placeholder="170">
-                        </div>
-                    </div>
-                    <div class="output-box" id="bmiResult">Your BMI will appear here</div>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="calculateBMI()">Calculate</button>
-                        <button class="btn-danger" onclick="resetBMI()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tool 20: Countdown Timer -->
-            <div class="tool-section" id="countdown-timer">
-                <div class="tool-header">
-                    <span class="icon">⏱️</span>
-                    <h2>Countdown Timer</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="grid-2">
-                        <div class="input-group">
-                            <label>Minutes</label>
-                            <input type="number" id="timerMinutes" value="5" min="0">
-                        </div>
-                        <div class="input-group">
-                            <label>Seconds</label>
-                            <input type="number" id="timerSeconds" value="0" min="0" max="59">
-                        </div>
-                    </div>
-                    <div class="timer-display" id="timerDisplay">05:00</div>
-                    <div class="button-group">
-                        <button class="btn-primary" id="timerBtn" onclick="startTimer()">Start</button>
-                        <button class="btn-danger" onclick="resetTimer()">Reset</button>
-                    </div>
-                </div>
-            </div>
-
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li><a href="index.html">Home</a></li>
+                <li class="separator">/</li>
+                <li class="active">Tools</li>
+            </ul>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    
-    <script>
-        // Toast Notification Function
-        function showToast(message, type = 'success') {
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-
-        // Tool 1: Image Compressor
-        let compressedImage = null;
-        document.getElementById('compressQuality').addEventListener('input', (e) => {
-            document.getElementById('qualityValue').textContent = e.target.value;
-        });
-
-        function compressImage() {
-            const input = document.getElementById('compressInput');
-            const quality = document.getElementById('compressQuality').value / 100;
-            
-            if (!input.files[0]) {
-                showToast('Please select an image', 'error');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.getElementById('compressCanvas');
-                    const ctx = canvas.getContext('2d');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    ctx.drawImage(img, 0, 0);
-                    
-                    canvas.toBlob((blob) => {
-                        compressedImage = blob;
-                        const url = URL.createObjectURL(blob);
-                        const preview = document.getElementById('compressPreview');
-                        preview.src = url;
-                        preview.style.display = 'block';
-                        showToast('Image compressed successfully!');
-                    }, 'image/jpeg', quality);
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-
-        function downloadCompressed() {
-            if (!compressedImage) {
-                showToast('Please compress an image first', 'error');
-                return;
-            }
-            const url = URL.createObjectURL(compressedImage);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'compressed-image.jpg';
-            a.click();
-            showToast('Image downloaded!');
-        }
-
-        function resetCompress() {
-            document.getElementById('compressInput').value = '';
-            document.getElementById('compressPreview').style.display = 'none';
-            compressedImage = null;
-            showToast('Reset complete');
-        }
-
-        // Tool 2: PDF Converter
-        function processPDF() {
-            const input = document.getElementById('pdfInput');
-            if (!input.files[0]) {
-                showToast('Please select a PDF file', 'error');
-                return;
-            }
-            const file = input.files[0];
-            document.getElementById('pdfInfo').innerHTML = `
-                <strong>File:</strong> ${file.name}<br>
-                <strong>Size:</strong> ${(file.size / 1024).toFixed(2)} KB<br>
-                <strong>Type:</strong> ${file.type}
-            `;
-            showToast('PDF info loaded (conversion requires backend)');
-        }
-
-        function resetPDF() {
-            document.getElementById('pdfInput').value = '';
-            document.getElementById('pdfInfo').textContent = 'Upload a PDF to see file information';
-            showToast('Reset complete');
-        }
-
-        // Tool 3: QR Code Generator
-        let qrCode = null;
-        function generateQR() {
-            const text = document.getElementById('qrText').value;
-            if (!text) {
-                showToast('Please enter text or URL', 'error');
-                return;
-            }
-            
-            const canvas = document.getElementById('qrCanvas');
-            canvas.innerHTML = '';
-            canvas.style.display = 'block';
-            
-            qrCode = new QRCode(canvas, {
-                text: text,
-                width: 256,
-                height: 256,
-                colorDark: "#000000",
-                colorLight: "#ffffff"
-            });
-            
-            showToast('QR code generated!');
-        }
-
-        function downloadQR() {
-            const canvas = document.querySelector('#qrCanvas canvas');
-            if (!canvas) {
-                showToast('Please generate QR code first', 'error');
-                return;
-            }
-            const url = canvas.toDataURL();
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'qrcode.png';
-            a.click();
-            showToast('QR code downloaded!');
-        }
-
-        function resetQR() {
-            document.getElementById('qrText').value = '';
-            document.getElementById('qrCanvas').innerHTML = '';
-            document.getElementById('qrCanvas').style.display = 'none';
-            showToast('Reset complete');
-        }
-
-        // Tool 4: Password Generator
-        document.getElementById('passwordLength').addEventListener('input', (e) => {
-            document.getElementById('pwdLength').textContent = e.target.value;
-        });
-
-        function generatePassword() {
-            const length = document.getElementById('passwordLength').value;
-            const upper = document.getElementById('includeUppercase').checked;
-            const lower = document.getElementById('includeLowercase').checked;
-            const numbers = document.getElementById('includeNumbers').checked;
-            const symbols = document.getElementById('includeSymbols').checked;
-            
-            let chars = '';
-            if (upper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            if (lower) chars += 'abcdefghijklmnopqrstuvwxyz';
-            if (numbers) chars += '0123456789';
-            if (symbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
-            
-            if (!chars) {
-                showToast('Please select at least one character type', 'error');
-                return;
-            }
-            
-            let password = '';
-            for (let i = 0; i < length; i++) {
-                password += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            
-            document.getElementById('passwordOutput').textContent = password;
-            
-            // Calculate strength
-            let strength = 0;
-            if (upper) strength += 25;
-            if (lower) strength += 25;
-            if (numbers) strength += 25;
-            if (symbols) strength += 25;
-            
-            const bar = document.getElementById('strengthBar');
-            bar.style.width = strength + '%';
-            if (strength < 50) bar.style.background = '#ef4444';
-            else if (strength < 75) bar.style.background = '#f59e0b';
-            else bar.style.background = '#10b981';
-            
-            showToast('Password generated!');
-        }
-
-        function copyPassword() {
-            const password = document.getElementById('passwordOutput').textContent;
-            if (password === 'Click Generate to create password') {
-                showToast('Please generate a password first', 'error');
-                return;
-            }
-            navigator.clipboard.writeText(password);
-            showToast('Password copied to clipboard!');
-        }
-
-        function resetPassword() {
-            document.getElementById('passwordOutput').textContent = 'Click Generate to create password';
-            document.getElementById('strengthBar').style.width = '0';
-            showToast('Reset complete');
-        }
-
-        // Tool 5: URL Shortener
-        function shortenURL() {
-            const url = document.getElementById('longUrl').value;
-            if (!url) {
-                showToast('Please enter a URL', 'error');
-                return;
-            }
-            const short = 'https://short.url/' + Math.random().toString(36).substr(2, 6);
-            document.getElementById('shortUrl').textContent = short;
-            showToast('URL shortened!');
-        }
-
-        function copyShortURL() {
-            const url = document.getElementById('shortUrl').textContent;
-            if (url === 'Your shortened URL will appear here') {
-                showToast('Please shorten a URL first', 'error');
-                return;
-            }
-            navigator.clipboard.writeText(url);
-            showToast('URL copied to clipboard!');
-        }
-
-        function resetURL() {
-            document.getElementById('longUrl').value = '';
-            document.getElementById('shortUrl').textContent = 'Your shortened URL will appear here';
-            showToast('Reset complete');
-        }
-
-        // Tool 6: Color Picker
-        document.getElementById('colorPicker').addEventListener('input', (e) => {
-            const hex = e.target.value;
-            document.getElementById('hexColor').textContent = hex;
-            const rgb = hexToRgb(hex);
-            document.getElementById('rgbColor').textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-        });
-
-        function hexToRgb(hex) {
-            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            return result ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
-            } : null;
-        }
-
-        function generatePalette() {
-            const baseColor = document.getElementById('colorPicker').value;
-            const palette = document.getElementById('paletteColors');
-            palette.innerHTML = '';
-            
-            for (let i = 0; i < 5; i++) {
-                const div = document.createElement('div');
-                const color = adjustColor(baseColor, (i - 2) * 30);
-                div.className = 'palette-color';
-                div.style.background = color;
-                div.textContent = color;
-                div.onclick = () => {
-                    navigator.clipboard.writeText(color);
-                    showToast('Color copied: ' + color);
-                };
-                palette.appendChild(div);
-            }
-            showToast('Palette generated!');
-        }
-
-        function adjustColor(color, amount) {
-            const num = parseInt(color.slice(1), 16);
-            const r = Math.min(255, Math.max(0, (num >> 16) + amount));
-            const g = Math.min(255, Math.max(0, ((num >> 8) & 0x00FF) + amount));
-            const b = Math.min(255, Math.max(0, (num & 0x0000FF) + amount));
-            return '#' + ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
-        }
-
-        function copyColor() {
-            const color = document.getElementById('hexColor').textContent;
-            navigator.clipboard.writeText(color);
-            showToast('Color copied: ' + color);
-        }
-
-        // Tool 7: Text to Speech
-        let speech = new SpeechSynthesisUtterance();
-        
-        function speakText() {
-            const text = document.getElementById('ttsText').value;
-            if (!text) {
-                showToast('Please enter text', 'error');
-                return;
-            }
-            speech.text = text;
-            speechSynthesis.speak(speech);
-            showToast('Speaking...');
-        }
-
-        function stopSpeech() {
-            speechSynthesis.cancel();
-            showToast('Speech stopped');
-        }
-
-        function resetTTS() {
-            document.getElementById('ttsText').value = '';
-            stopSpeech();
-            showToast('Reset complete');
-        }
-
-        // Tool 8: Base64 Encoder/Decoder
-        function encodeBase64() {
-            const input = document.getElementById('base64Input').value;
-            if (!input) {
-                showToast('Please enter text', 'error');
-                return;
-            }
-            const encoded = btoa(input);
-            document.getElementById('base64Output').value = encoded;
-            showToast('Text encoded!');
-        }
-
-        function decodeBase64() {
-            const input = document.getElementById('base64Input').value;
-            if (!input) {
-                showToast('Please enter text', 'error');
-                return;
-            }
-            try {
-                const decoded = atob(input);
-                document.getElementById('base64Output').value = decoded;
-                showToast('Text decoded!');
-            } catch (e) {
-                showToast('Invalid Base64 string', 'error');
-            }
-        }
-
-        function copyBase64() {
-            const output = document.getElementById('base64Output').value;
-            if (!output) {
-                showToast('Nothing to copy', 'error');
-                return;
-            }
-            navigator.clipboard.writeText(output);
-            showToast('Copied to clipboard!');
-        }
-
-        function resetBase64() {
-            document.getElementById('base64Input').value = '';
-            document.getElementById('base64Output').value = '';
-            showToast('Reset complete');
-        }
-
-        // Tool 9: JSON Formatter
-        function formatJSON() {
-            const input = document.getElementById('jsonInput').value;
-            if (!input) {
-                showToast('Please enter JSON', 'error');
-                return;
-            }
-            try {
-                const obj = JSON.parse(input);
-                const formatted = JSON.stringify(obj, null, 2);
-                document.getElementById('jsonOutput').value = formatted;
-                showToast('JSON formatted!');
-            } catch (e) {
-                showToast('Invalid JSON: ' + e.message, 'error');
-            }
-        }
-
-        function minifyJSON() {
-            const input = document.getElementById('jsonInput').value;
-            if (!input) {
-                showToast('Please enter JSON', 'error');
-                return;
-            }
-            try {
-                const obj = JSON.parse(input);
-                const minified = JSON.stringify(obj);
-                document.getElementById('jsonOutput').value = minified;
-                showToast('JSON minified!');
-            } catch (e) {
-                showToast('Invalid JSON: ' + e.message, 'error');
-            }
-        }
-
-        function copyJSON() {
-            const output = document.getElementById('jsonOutput').value;
-            if (!output) {
-                showToast('Nothing to copy', 'error');
-                return;
-            }
-            navigator.clipboard.writeText(output);
-            showToast('Copied to clipboard!');
-        }
-
-        function resetJSON() {
-            document.getElementById('jsonInput').value = '';
-            document.getElementById('jsonOutput').value = '';
-            showToast('Reset complete');
-        }
-
-        // Tool 10: Word Counter
-        document.getElementById('wordCountText').addEventListener('input', updateWordCount);
-        
-        function updateWordCount() {
-            const text = document.getElementById('wordCountText').value;
-            const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
-            const chars = text.length;
-            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
-            const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0).length;
-            
-            document.getElementById('wordCount').textContent = words;
-            document.getElementById('charCount').textContent = chars;
-            document.getElementById('sentenceCount').textContent = sentences;
-            document.getElementById('paragraphCount').textContent = paragraphs;
-        }
-
-        function resetWordCount() {
-            document.getElementById('wordCountText').value = '';
-            updateWordCount();
-            showToast('Reset complete');
-        }
-
-        // Tool 11: Image Resizer
-        let resizedImage = null;
-        
-        function resizeImage() {
-            const input = document.getElementById('resizeInput');
-            const width = parseInt(document.getElementById('resizeWidth').value);
-            const height = parseInt(document.getElementById('resizeHeight').value);
-            const maintainRatio = document.getElementById('maintainRatio').checked;
-            
-            if (!input.files[0]) {
-                showToast('Please select an image', 'error');
-                return;
-            }
-            if (!width && !height) {
-                showToast('Please enter width or height', 'error');
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.getElementById('resizeCanvas');
-                    const ctx = canvas.getContext('2d');
-                    
-                    let newWidth = width || img.width;
-                    let newHeight = height || img.height;
-                    
-                    if (maintainRatio) {
-                        if (width && !height) {
-                            newHeight = (img.height * width) / img.width;
-                        } else if (height && !width) {
-                            newWidth = (img.width * height) / img.height;
-                        }
-                    }
-                    
-                    canvas.width = newWidth;
-                    canvas.height = newHeight;
-                    ctx.drawImage(img, 0, 0, newWidth, newHeight);
-                    
-                    canvas.toBlob((blob) => {
-                        resizedImage = blob;
-                        const url = URL.createObjectURL(blob);
-                        const preview = document.getElementById('resizePreview');
-                        preview.src = url;
-                        preview.style.display = 'block';
-                        showToast(`Image resized to ${newWidth}x${newHeight}!`);
-                    });
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-
-        function downloadResized() {
-            if (!resizedImage) {
-                showToast('Please resize an image first', 'error');
-                return;
-            }
-            const url = URL.createObjectURL(resizedImage);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'resized-image.png';
-            a.click();
-            showToast('Image downloaded!');
-        }
-
-        function resetResize() {
-            document.getElementById('resizeInput').value = '';
-            document.getElementById('resizeWidth').value = '';
-            document.getElementById('resizeHeight').value = '';
-            document.getElementById('resizePreview').style.display = 'none';
-            resizedImage = null;
-            showToast('Reset complete');
-        }
-
-        // Tool 12: Hash Generator
-        function generateHashes() {
-            const input = document.getElementById('hashInput').value;
-            if (!input) {
-                showToast('Please enter text', 'error');
-                return;
-            }
-            
-            const md5 = CryptoJS.MD5(input).toString();
-            const sha256 = CryptoJS.SHA256(input).toString();
-            
-            document.getElementById('md5Output').textContent = md5;
-            document.getElementById('sha256Output').textContent = sha256;
-            showToast('Hashes generated!');
-        }
-
-        function copyHash(type) {
-            const hash = document.getElementById(type + 'Output').textContent;
-            if (hash === 'Hash will appear here') {
-                showToast('Please generate hashes first', 'error');
-                return;
-            }
-            navigator.clipboard.writeText(hash);
-            showToast(type.toUpperCase() + ' hash copied!');
-        }
-
-        function resetHash() {
-            document.getElementById('hashInput').value = '';
-            document.getElementById('md5Output').textContent = 'Hash will appear here';
-            document.getElementById('sha256Output').textContent = 'Hash will appear here';
-            showToast('Reset complete');
-        }
-
-        // Tool 13: UUID Generator
-        function generateUUIDs() {
-            const count = parseInt(document.getElementById('uuidCount').value);
-            let uuids = [];
-            for (let i = 0; i < count; i++) {
-                uuids.push(generateUUID());
-            }
-            document.getElementById('uuidOutput').value = uuids.join('\n');
-            showToast(`${count} UUIDs generated!`);
-        }
-
-        function generateUUID() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                const r = Math.random() * 16 | 0;
-                const v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-        }
-
-        function copyUUIDs() {
-            const uuids = document.getElementById('uuidOutput').value;
-            if (!uuids) {
-                showToast('Please generate UUIDs first', 'error');
-                return;
-            }
-            navigator.clipboard.writeText(uuids);
-            showToast('UUIDs copied!');
-        }
-
-        function resetUUID() {
-            document.getElementById('uuidOutput').value = '';
-            showToast('Reset complete');
-        }
-
-        // Tool 14: Lorem Ipsum Generator
-        const loremWords = ['lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'sed', 'do', 'eiusmod', 'tempor', 'incididunt', 'ut', 'labore', 'et', 'dolore', 'magna', 'aliqua'];
-        
-        function generateLorem() {
-            const type = document.getElementById('loremType').value;
-            const count = parseInt(document.getElementById('loremCount').value);
-            let result = '';
-            
-            if (type === 'words') {
-                for (let i = 0; i < count; i++) {
-                    result += loremWords[Math.floor(Math.random() * loremWords.length)] + ' ';
-                }
-            } else if (type === 'sentences') {
-                for (let i = 0; i < count; i++) {
-                    const wordCount = 10 + Math.floor(Math.random() * 10);
-                    let sentence = '';
-                    for (let j = 0; j < wordCount; j++) {
-                        sentence += loremWords[Math.floor(Math.random() * loremWords.length)] + ' ';
-                    }
-                    result += sentence.trim() + '. ';
-                }
-            } else {
-                for (let i = 0; i < count; i++) {
-                    const sentenceCount = 3 + Math.floor(Math.random() * 4);
-                    let paragraph = '';
-                    for (let j = 0; j < sentenceCount; j++) {
-                        const wordCount = 10 + Math.floor(Math.random() * 10);
-                        let sentence = '';
-                        for (let k = 0; k < wordCount; k++) {
-                            sentence += loremWords[Math.floor(Math.random() * loremWords.length)] + ' ';
-                        }
-                        paragraph += sentence.trim() + '. ';
-                    }
-                    result += paragraph.trim() + '\n\n';
-                }
-            }
-            
-            document.getElementById('loremOutput').value = result.trim();
-            showToast('Lorem ipsum generated!');
-        }
-
-        function copyLorem() {
-            const lorem = document.getElementById('loremOutput').value;
-            if (!lorem) {
-                showToast('Please generate text first', 'error');
-                return;
-            }
-            navigator.clipboard.writeText(lorem);
-            showToast('Text copied!');
-        }
-
-        function resetLorem() {
-            document.getElementById('loremOutput').value = '';
-            showToast('Reset complete');
-        }
-
-        // Tool 15: Code Minifier
-        function minifyCode() {
-            const type = document.getElementById('codeType').value;
-            const input = document.getElementById('codeInput').value;
-            
-            if (!input) {
-                showToast('Please enter code', 'error');
-                return;
-            }
-            
-            let output = input;
-            if (type === 'html' || type === 'css' || type === 'js') {
-                output = input.replace(/\s+/g, ' ').replace(/>\s+</g, '><').trim();
-            }
-            
-            document.getElementById('codeOutput').value = output;
-            const savings = ((1 - output.length / input.length) * 100).toFixed(1);
-            showToast(`Code minified! Saved ${savings}%`);
-        }
-
-        function copyCode() {
-            const code = document.getElementById('codeOutput').value;
-            if (!code) {
-                showToast('Please minify code first', 'error');
-                return;
-            }
-            navigator.clipboard.writeText(code);
-            showToast('Code copied!');
-        }
-
-        function resetMinifier() {
-            document.getElementById('codeInput').value = '';
-            document.getElementById('codeOutput').value = '';
-            showToast('Reset complete');
-        }
-
-        // Tool 16: Markdown to HTML
-        function convertMarkdown() {
-            const input = document.getElementById('markdownInput').value;
-            if (!input) {
-                showToast('Please enter Markdown', 'error');
-                return;
-            }
-            
-            let html = input
-                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-                .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
-                .replace(/\*(.*)\*/gim, '<em>$1</em>')
-                .replace(/\n/gim, '<br>');
-            
-            document.getElementById('markdownOutput').value = html;
-            showToast('Markdown converted!');
-        }
-
-        function copyMarkdown() {
-            const html = document.getElementById('markdownOutput').value;
-            if (!html) {
-                showToast('Please convert Markdown first', 'error');
-                return;
-            }
-            navigator.clipboard.writeText(html);
-            showToast('HTML copied!');
-        }
-
-        function resetMarkdown() {
-            document.getElementById('markdownInput').value = '';
-            document.getElementById('markdownOutput').value = '';
-            showToast('Reset complete');
-        }
-
-        // Tool 17: Unit Converter
-        const units = {
-            length: { meter: 1, kilometer: 1000, centimeter: 0.01, mile: 1609.34, foot: 0.3048, inch: 0.0254 },
-            weight: { kilogram: 1, gram: 0.001, pound: 0.453592, ounce: 0.0283495, ton: 1000 },
-            temperature: { celsius: 'C', fahrenheit: 'F', kelvin: 'K' }
-        };
-
-        function updateUnitOptions() {
-            const category = document.getElementById('unitCategory').value;
-            const fromSelect = document.getElementById('unitFrom');
-            const toSelect = document.getElementById('unitTo');
-            
-            fromSelect.innerHTML = '';
-            toSelect.innerHTML = '';
-            
-            Object.keys(units[category]).forEach(unit => {
-                fromSelect.innerHTML += `<option value="${unit}">${unit}</option>`;
-                toSelect.innerHTML += `<option value="${unit}">${unit}</option>`;
-            });
-        }
-
-        function convertUnit() {
-            const category = document.getElementById('unitCategory').value;
-            const from = document.getElementById('unitFrom').value;
-            const to = document.getElementById('unitTo').value;
-            const value = parseFloat(document.getElementById('unitValue').value);
-            
-            if (isNaN(value)) {
-                showToast('Please enter a valid number', 'error');
-                return;
-            }
-            
-            let result;
-            if (category === 'temperature') {
-                result = convertTemperature(value, from, to);
-            } else {
-                const baseValue = value * units[category][from];
-                result = baseValue / units[category][to];
-            }
-            
-            document.getElementById('unitResult').textContent = `${value} ${from} = ${result.toFixed(4)} ${to}`;
-            showToast('Conversion complete!');
-        }
-
-        function convertTemperature(value, from, to) {
-            let celsius;
-            if (from === 'celsius') celsius = value;
-            else if (from === 'fahrenheit') celsius = (value - 32) * 5/9;
-            else celsius = value - 273.15;
-            
-            if (to === 'celsius') return celsius;
-            else if (to === 'fahrenheit') return celsius * 9/5 + 32;
-            else return celsius + 273.15;
-        }
-
-        function resetUnit() {
-            document.getElementById('unitValue').value = '';
-            document.getElementById('unitResult').textContent = 'Result will appear here';
-            showToast('Reset complete');
-        }
-
-        updateUnitOptions();
-
-        // Tool 18: Age Calculator
-        function calculateAge() {
-            const birthDate = new Date(document.getElementById('birthDate').value);
-            if (!document.getElementById('birthDate').value) {
-                showToast('Please select a date', 'error');
-                return;
-            }
-            
-            const now = new Date();
-            const diff = now - birthDate;
-            
-            const years = Math.floor(diff / (365.25 * 24 * 60 * 60 * 1000));
-            const months = Math.floor((diff % (365.25 * 24 * 60 * 60 * 1000)) / (30.44 * 24 * 60 * 60 * 1000));
-            const days = Math.floor(diff / (24 * 60 * 60 * 1000));
-            const hours = Math.floor(diff / (60 * 60 * 1000));
-            
-            document.getElementById('ageYears').textContent = years;
-            document.getElementById('ageMonths').textContent = months;
-            document.getElementById('ageDays').textContent = days;
-            document.getElementById('ageHours').textContent = hours;
-            document.getElementById('ageStats').style.display = 'grid';
-            
-            showToast('Age calculated!');
-        }
-
-        function resetAge() {
-            document.getElementById('birthDate').value = '';
-            document.getElementById('ageStats').style.display = 'none';
-            showToast('Reset complete');
-        }
-
-        // Tool 19: BMI Calculator
-        function calculateBMI() {
-            const weight = parseFloat(document.getElementById('weight').value);
-            const height = parseFloat(document.getElementById('height').value) / 100;
-            
-            if (!weight || !height) {
-                showToast('Please enter weight and height', 'error');
-                return;
-            }
-            
-            const bmi = weight / (height * height);
-            let category = '';
-            
-            if (bmi < 18.5) category = 'Underweight';
-            else if (bmi < 25) category = 'Normal weight';
-            else if (bmi < 30) category = 'Overweight';
-            else category = 'Obese';
-            
-            document.getElementById('bmiResult').innerHTML = `
-                <strong>BMI:</strong> ${bmi.toFixed(1)}<br>
-                <strong>Category:</strong> ${category}
-            `;
-            showToast('BMI calculated!');
-        }
-
-        function resetBMI() {
-            document.getElementById('weight').value = '';
-            document.getElementById('height').value = '';
-            document.getElementById('bmiResult').textContent = 'Your BMI will appear here';
-            showToast('Reset complete');
-        }
-
-        // Tool 20: Countdown Timer
-        let timerInterval = null;
-        let totalSeconds = 0;
-        
-        function startTimer() {
-            const minutes = parseInt(document.getElementById('timerMinutes').value) || 0;
-            const seconds = parseInt(document.getElementById('timerSeconds').value) || 0;
-            
-            if (timerInterval) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-                document.getElementById('timerBtn').textContent = 'Start';
-                document.getElementById('timerBtn').onclick = startTimer;
-                showToast('Timer paused');
-                return;
-            }
-            
-            totalSeconds = minutes * 60 + seconds;
-            
-            if (totalSeconds <= 0) {
-                showToast('Please set a time', 'error');
-                return;
-            }
-            
-            document.getElementById('timerBtn').textContent = 'Pause';
-            
-            timerInterval = setInterval(() => {
-                totalSeconds--;
-                
-                const mins = Math.floor(totalSeconds / 60);
-                const secs = totalSeconds % 60;
-                
-                document.getElementById('timerDisplay').textContent = 
-                    `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-                
-                if (totalSeconds <= 0) {
-                    clearInterval(timerInterval);
-                    timerInterval = null;
-                    document.getElementById('timerBtn').textContent = 'Start';
-                    showToast('Time\'s up! ⏰');
-                }
-            }, 1000);
-            
-            showToast('Timer started!');
-        }
-
-        function resetTimer() {
-            clearInterval(timerInterval);
-            timerInterval = null;
-            totalSeconds = 0;
-            document.getElementById('timerMinutes').value = '5';
-            document.getElementById('timerSeconds').value = '0';
-            document.getElementById('timerDisplay').textContent = '05:00';
-            document.getElementById('timerBtn').textContent = 'Start';
-            document.getElementById('timerBtn').onclick = startTimer;
-            showToast('Timer reset');
-        }
-
-        // Smooth scroll to tool on page load
-        window.addEventListener('load', () => {
-            const hash = window.location.hash;
-            if (hash) {
-                const element = document.querySelector(hash);
-                if (element) {
-                    setTimeout(() => {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 100);
-                }
-            }
-        });
-    </script>
+    <!-- Tools Header -->
+    <section class="section">
+        <div class="container">
+            <h1 class="section-title">Professional <span class="highlight-blue">Online Tools</span></h1>
+            <p class="section-subtitle">20+ powerful tools to boost your productivity</p>
+        </div>
+    </section>
+
+    <!-- Tool 1: Image Compressor -->
+    <div id="image-compressor" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-compress"></i> Image Compressor</h2>
+                <p>Compress images while maintaining quality</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="imageFile">Upload Image</label>
+                    <input type="file" id="imageFile" class="form-control" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="compressionQuality">Compression Quality: <span id="qualityValue">80</span>%</label>
+                    <input type="range" id="compressionQuality" min="1" max="100" value="80">
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="compressImage()">Compress Image</button>
+                    <button class="btn btn-reset" onclick="resetImageCompressor()">Reset</button>
+                    <button class="btn btn-download" id="downloadCompressed" style="display:none;" onclick="downloadCompressedImage()">Download</button>
+                </div>
+                <div id="imageOutput" style="display:none;" class="output-container">
+                    <h3>Result</h3>
+                    <div class="result-row">
+                        <span class="result-label">Original Size:</span>
+                        <span class="result-value" id="originalSize">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Compressed Size:</span>
+                        <span class="result-value" id="compressedSize">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Reduction:</span>
+                        <span class="result-value" id="reduction">-</span>
+                    </div>
+                    <canvas id="compressedCanvas" style="max-width: 100%; border: 1px solid var(--color-blue); border-radius: 8px; margin-top: 1rem;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AdSense Placeholder -->
+    <div class="adsense-placeholder">
+        <div class="container">
+            <div class="ad-container">
+                <p class="ad-label">Advertisement</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 2: PDF to Word Converter -->
+    <div id="pdf-converter" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-file-pdf"></i> PDF to Word Converter</h2>
+                <p>Convert PDF files to editable Word documents</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="pdfFile">Upload PDF File</label>
+                    <input type="file" id="pdfFile" class="form-control" accept=".pdf">
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="convertPDF()">Convert to Word</button>
+                    <button class="btn btn-reset" onclick="resetPDFConverter()">Reset</button>
+                </div>
+                <div id="pdfOutput" style="display:none;" class="output-container">
+                    <h3>Conversion Info</h3>
+                    <p>Note: This is a client-side demo. For actual PDF to Word conversion, server-side processing or external APIs are required.</p>
+                    <p>Your file: <strong id="pdfFileName"></strong></p>
+                    <p>Size: <strong id="pdfFileSize"></strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 3: QR Code Generator -->
+    <div id="qr-generator" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-qrcode"></i> QR Code Generator</h2>
+                <p>Generate custom QR codes for any text or URL</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="qrText">Enter Text or URL</label>
+                    <input type="text" id="qrText" class="form-control" placeholder="https://example.com">
+                </div>
+                <div class="form-group">
+                    <label for="qrSize">QR Code Size: <span id="qrSizeValue">256</span>px</label>
+                    <input type="range" id="qrSize" min="128" max="512" value="256" step="64">
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="generateQR()">Generate QR Code</button>
+                    <button class="btn btn-reset" onclick="resetQR()">Reset</button>
+                    <button class="btn btn-download" id="downloadQR" style="display:none;" onclick="downloadQR()">Download QR</button>
+                </div>
+                <div id="qrOutput" class="qr-output" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 4: Password Generator -->
+    <div id="password-generator" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-key"></i> Password Generator</h2>
+                <p>Generate strong, secure passwords</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="passwordLength">Password Length: <span id="lengthValue">16</span></label>
+                    <input type="range" id="passwordLength" min="8" max="64" value="16">
+                </div>
+                <div class="form-group">
+                    <label>Include:</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeUppercase" checked> Uppercase (A-Z)
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeLowercase" checked> Lowercase (a-z)
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeNumbers" checked> Numbers (0-9)
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeSymbols" checked> Symbols (!@#$%)
+                        </label>
+                    </div>
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="generatePassword()">Generate Password</button>
+                    <button class="btn btn-reset" onclick="resetPassword()">Reset</button>
+                    <button class="btn btn-download" id="copyPassword" style="display:none;" onclick="copyPassword()">Copy Password</button>
+                </div>
+                <div id="passwordOutput" style="display:none;" class="output-container">
+                    <h3>Generated Password</h3>
+                    <div style="background: var(--color-dark); padding: 1rem; border-radius: 6px; word-break: break-all; font-family: 'Courier New', monospace; font-size: 1.2rem; color: var(--color-yellow);" id="generatedPassword"></div>
+                    <div style="margin-top: 1rem;">
+                        <strong>Strength:</strong> <span id="passwordStrength"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 5: URL Shortener -->
+    <div id="url-shortener" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-link"></i> URL Shortener</h2>
+                <p>Shorten long URLs (simulated)</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="longURL">Enter Long URL</label>
+                    <input type="url" id="longURL" class="form-control" placeholder="https://example.com/very/long/url">
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="shortenURL()">Shorten URL</button>
+                    <button class="btn btn-reset" onclick="resetURLShortener()">Reset</button>
+                    <button class="btn btn-download" id="copyShortURL" style="display:none;" onclick="copyShortURL()">Copy URL</button>
+                </div>
+                <div id="urlOutput" style="display:none;" class="output-container">
+                    <h3>Shortened URL</h3>
+                    <div style="background: var(--color-dark); padding: 1rem; border-radius: 6px; font-size: 1.2rem; color: var(--color-blue);" id="shortURL"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 6: Color Picker -->
+    <div id="color-picker" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-palette"></i> Color Picker & Palette Generator</h2>
+                <p>Pick colors and generate palettes</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="colorPicker">Select Color</label>
+                    <input type="color" id="colorPicker" class="form-control" value="#00d4ff">
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="generatePalette()">Generate Palette</button>
+                    <button class="btn btn-reset" onclick="resetColorPicker()">Reset</button>
+                </div>
+                <div id="colorOutput" class="output-container">
+                    <h3>Color Information</h3>
+                    <div class="result-row">
+                        <span class="result-label">HEX:</span>
+                        <span class="result-value" id="hexValue">#00d4ff</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">RGB:</span>
+                        <span class="result-value" id="rgbValue">rgb(0, 212, 255)</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">HSL:</span>
+                        <span class="result-value" id="hslValue">hsl(193, 100%, 50%)</span>
+                    </div>
+                    <div id="paletteOutput" style="margin-top: 1rem;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AdSense Placeholder -->
+    <div class="adsense-placeholder">
+        <div class="container">
+            <div class="ad-container">
+                <p class="ad-label">Advertisement</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 7: Text to Speech -->
+    <div id="text-to-speech" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-volume-up"></i> Text to Speech Converter</h2>
+                <p>Convert text to speech using browser API</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="ttsText">Enter Text</label>
+                    <textarea id="ttsText" class="form-control" placeholder="Enter text to convert to speech..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ttsSpeed">Speech Speed: <span id="speedValue">1.0</span>x</label>
+                    <input type="range" id="ttsSpeed" min="0.5" max="2" value="1" step="0.1">
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="speakText()">Speak</button>
+                    <button class="btn btn-secondary" onclick="stopSpeech()">Stop</button>
+                    <button class="btn btn-reset" onclick="resetTTS()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 8: Base64 Encoder/Decoder -->
+    <div id="base64-tool" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-code"></i> Base64 Encoder/Decoder</h2>
+                <p>Encode or decode Base64 strings</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="base64Input">Enter Text</label>
+                    <textarea id="base64Input" class="form-control" placeholder="Enter text to encode or decode..."></textarea>
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="encodeBase64()">Encode</button>
+                    <button class="btn btn-secondary" onclick="decodeBase64()">Decode</button>
+                    <button class="btn btn-reset" onclick="resetBase64()">Reset</button>
+                    <button class="btn btn-download" onclick="copyBase64Output()">Copy Output</button>
+                </div>
+                <div id="base64Output" style="display:none;" class="output-container">
+                    <h3>Result</h3>
+                    <pre id="base64Result"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 9: JSON Formatter -->
+    <div id="json-formatter" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-brackets-curly"></i> JSON Formatter & Validator</h2>
+                <p>Format, validate, and beautify JSON</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="jsonInput">Enter JSON</label>
+                    <textarea id="jsonInput" class="form-control" placeholder='{"key": "value"}'></textarea>
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="formatJSON()">Format JSON</button>
+                    <button class="btn btn-secondary" onclick="minifyJSON()">Minify JSON</button>
+                    <button class="btn btn-reset" onclick="resetJSON()">Reset</button>
+                    <button class="btn btn-download" onclick="copyJSONOutput()">Copy Output</button>
+                </div>
+                <div id="jsonOutput" style="display:none;" class="output-container">
+                    <h3>Result</h3>
+                    <pre id="jsonResult"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 10: Word Counter -->
+    <div id="word-counter" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-text-width"></i> Word Counter & Character Counter</h2>
+                <p>Count words, characters, sentences, and paragraphs</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="wordCountText">Enter Text</label>
+                    <textarea id="wordCountText" class="form-control" placeholder="Type or paste your text here..." oninput="countWords()"></textarea>
+                </div>
+                <div class="output-container">
+                    <h3>Statistics</h3>
+                    <div class="result-row">
+                        <span class="result-label">Words:</span>
+                        <span class="result-value" id="wordCount">0</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Characters (with spaces):</span>
+                        <span class="result-value" id="charCountWithSpaces">0</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Characters (no spaces):</span>
+                        <span class="result-value" id="charCountNoSpaces">0</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Sentences:</span>
+                        <span class="result-value" id="sentenceCount">0</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Paragraphs:</span>
+                        <span class="result-value" id="paragraphCount">0</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Reading Time:</span>
+                        <span class="result-value" id="readingTime">0 min</span>
+                    </div>
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-reset" onclick="resetWordCounter()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AdSense Placeholder -->
+    <div class="adsense-placeholder">
+        <div class="container">
+            <div class="ad-container">
+                <p class="ad-label">Advertisement</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 11: Image Resizer -->
+    <div id="image-resizer" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-expand-arrows-alt"></i> Image Resizer</h2>
+                <p>Resize images to custom dimensions</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="resizeImageFile">Upload Image</label>
+                    <input type="file" id="resizeImageFile" class="form-control" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="resizeWidth">Width (px)</label>
+                    <input type="number" id="resizeWidth" class="form-control" value="800" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="resizeHeight">Height (px)</label>
+                    <input type="number" id="resizeHeight" class="form-control" value="600" min="1">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="maintainAspect" checked> Maintain aspect ratio
+                    </label>
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="resizeImage()">Resize Image</button>
+                    <button class="btn btn-reset" onclick="resetImageResizer()">Reset</button>
+                    <button class="btn btn-download" id="downloadResized" style="display:none;" onclick="downloadResizedImage()">Download</button>
+                </div>
+                <div id="resizeOutput" style="display:none;" class="output-container">
+                    <h3>Result</h3>
+                    <div class="result-row">
+                        <span class="result-label">Original:</span>
+                        <span class="result-value" id="originalDimensions">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">New:</span>
+                        <span class="result-value" id="newDimensions">-</span>
+                    </div>
+                    <canvas id="resizedCanvas" style="max-width: 100%; border: 1px solid var(--color-blue); border-radius: 8px; margin-top: 1rem;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 12: Hash Generator -->
+    <div id="hash-generator" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-hashtag"></i> Hash Generator</h2>
+                <p>Generate MD5, SHA-1, and SHA-256 hashes</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="hashInput">Enter Text</label>
+                    <textarea id="hashInput" class="form-control" placeholder="Enter text to hash..."></textarea>
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="generateHash()">Generate Hashes</button>
+                    <button class="btn btn-reset" onclick="resetHashGenerator()">Reset</button>
+                </div>
+                <div id="hashOutput" style="display:none;" class="output-container">
+                    <h3>Generated Hashes</h3>
+                    <div class="result-row">
+                        <span class="result-label">MD5:</span>
+                        <span class="result-value" id="md5Hash" style="word-break: break-all; cursor: pointer;" onclick="copyHash('md5Hash')">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">SHA-1:</span>
+                        <span class="result-value" id="sha1Hash" style="word-break: break-all; cursor: pointer;" onclick="copyHash('sha1Hash')">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">SHA-256:</span>
+                        <span class="result-value" id="sha256Hash" style="word-break: break-all; cursor: pointer;" onclick="copyHash('sha256Hash')">-</span>
+                    </div>
+                    <p style="color: var(--color-gray); font-size: 0.9rem; margin-top: 1rem;">Click on any hash to copy</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 13: UUID Generator -->
+    <div id="uuid-generator" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-fingerprint"></i> UUID Generator</h2>
+                <p>Generate unique identifiers (UUID/GUID)</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="uuidCount">Number of UUIDs</label>
+                    <input type="number" id="uuidCount" class="form-control" value="1" min="1" max="100">
+                </div>
+                <div class="form-group">
+                    <label for="uuidVersion">UUID Version</label>
+                    <select id="uuidVersion" class="form-control">
+                        <option value="v4">Version 4 (Random)</option>
+                    </select>
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="generateUUID()">Generate UUIDs</button>
+                    <button class="btn btn-reset" onclick="resetUUID()">Reset</button>
+                    <button class="btn btn-download" onclick="copyUUIDs()">Copy All</button>
+                </div>
+                <div id="uuidOutput" style="display:none;" class="output-container">
+                    <h3>Generated UUIDs</h3>
+                    <pre id="uuidList" style="font-family: 'Courier New', monospace;"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 14: Lorem Ipsum Generator -->
+    <div id="lorem-generator" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-paragraph"></i> Lorem Ipsum Generator</h2>
+                <p>Generate placeholder text</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="loremType">Type</label>
+                    <select id="loremType" class="form-control">
+                        <option value="paragraphs">Paragraphs</option>
+                        <option value="sentences">Sentences</option>
+                        <option value="words">Words</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="loremCount">Count</label>
+                    <input type="number" id="loremCount" class="form-control" value="3" min="1" max="100">
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="generateLoremIpsum()">Generate</button>
+                    <button class="btn btn-reset" onclick="resetLoremIpsum()">Reset</button>
+                    <button class="btn btn-download" onclick="copyLoremIpsum()">Copy Text</button>
+                </div>
+                <div id="loremResult" style="display:none;" class="output-container">
+                    <h3>Generated Text</h3>
+                    <pre id="loremOutput" style="white-space: pre-wrap;"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AdSense Placeholder -->
+    <div class="adsense-placeholder">
+        <div class="container">
+            <div class="ad-container">
+                <p class="ad-label">Advertisement</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 15: HTML/CSS/JS Minifier -->
+    <div id="code-minifier" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-compress-alt"></i> HTML/CSS/JS Minifier</h2>
+                <p>Minify HTML, CSS, and JavaScript code</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="codeType">Code Type</label>
+                    <select id="codeType" class="form-control">
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="js">JavaScript</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="minifierInput">Enter Code</label>
+                    <textarea id="minifierInput" class="form-control" placeholder="Paste your code here..."></textarea>
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="minifyCode()">Minify Code</button>
+                    <button class="btn btn-reset" onclick="resetMinifier()">Reset</button>
+                    <button class="btn btn-download" onclick="copyMinifiedCode()">Copy Output</button>
+                </div>
+                <div id="minifierOutput" style="display:none;" class="output-container">
+                    <h3>Minified Code</h3>
+                    <div class="result-row">
+                        <span class="result-label">Original Size:</span>
+                        <span class="result-value" id="minifierOriginalSize">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Minified Size:</span>
+                        <span class="result-value" id="minifierMinifiedSize">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Reduction:</span>
+                        <span class="result-value" id="minifierReduction">-</span>
+                    </div>
+                    <pre id="minifiedCode"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 16: Markdown to HTML -->
+    <div id="markdown-converter" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-markdown"></i> Markdown to HTML Converter</h2>
+                <p>Convert Markdown to HTML</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="markdownInput">Enter Markdown</label>
+                    <textarea id="markdownInput" class="form-control" placeholder="# Heading\n\nParagraph text..."></textarea>
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="convertMarkdown()">Convert to HTML</button>
+                    <button class="btn btn-reset" onclick="resetMarkdown()">Reset</button>
+                    <button class="btn btn-download" onclick="copyMarkdownHTML()">Copy HTML</button>
+                </div>
+                <div id="markdownOutput" style="display:none;" class="output-container">
+                    <h3>HTML Output</h3>
+                    <pre id="markdownHTML"></pre>
+                    <h3 style="margin-top: 2rem;">Preview</h3>
+                    <div id="markdownPreview" style="background: var(--color-dark); padding: 1rem; border-radius: 6px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 17: Unit Converter -->
+    <div id="unit-converter" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-exchange-alt"></i> Unit Converter</h2>
+                <p>Convert between different units</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="unitCategory">Category</label>
+                    <select id="unitCategory" class="form-control">
+                        <option value="length">Length</option>
+                        <option value="weight">Weight</option>
+                        <option value="temperature">Temperature</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="unitValue">Value</label>
+                    <input type="number" id="unitValue" class="form-control" placeholder="Enter value" step="any">
+                </div>
+                <div class="form-group">
+                    <label for="fromUnit">From</label>
+                    <select id="fromUnit" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                    <label for="toUnit">To</label>
+                    <select id="toUnit" class="form-control"></select>
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="convertUnit()">Convert</button>
+                    <button class="btn btn-reset" onclick="resetUnitConverter()">Reset</button>
+                </div>
+                <div id="conversionOutput" style="display:none;" class="output-container">
+                    <h3>Result</h3>
+                    <p id="unitResult" style="font-size: 1.2rem; color: var(--color-yellow); font-weight: 600;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 18: Age Calculator -->
+    <div id="age-calculator" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-birthday-cake"></i> Age Calculator</h2>
+                <p>Calculate your exact age</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="birthdate">Enter Your Birthdate</label>
+                    <input type="date" id="birthdate" class="form-control">
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="calculateAge()">Calculate Age</button>
+                    <button class="btn btn-reset" onclick="resetAgeCalculator()">Reset</button>
+                </div>
+                <div id="ageOutput" style="display:none;" class="output-container">
+                    <h3>Your Age</h3>
+                    <div class="result-row">
+                        <span class="result-label">Years:</span>
+                        <span class="result-value" id="ageYears">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Months:</span>
+                        <span class="result-value" id="ageMonths">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Days:</span>
+                        <span class="result-value" id="ageDays">-</span>
+                    </div>
+                    <h3 style="margin-top: 1.5rem;">Total</h3>
+                    <div class="result-row">
+                        <span class="result-label">Total Days:</span>
+                        <span class="result-value" id="totalDays">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Total Weeks:</span>
+                        <span class="result-value" id="totalWeeks">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Total Months:</span>
+                        <span class="result-value" id="totalMonths">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 19: BMI Calculator -->
+    <div id="bmi-calculator" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-weight"></i> BMI Calculator</h2>
+                <p>Calculate your Body Mass Index</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="bmiUnit">Unit System</label>
+                    <select id="bmiUnit" class="form-control">
+                        <option value="metric">Metric (kg, cm)</option>
+                        <option value="imperial">Imperial (lb, in)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight</label>
+                    <input type="number" id="weight" class="form-control" placeholder="Enter weight" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="height">Height</label>
+                    <input type="number" id="height" class="form-control" placeholder="Enter height" step="0.1">
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="calculateBMI()">Calculate BMI</button>
+                    <button class="btn btn-reset" onclick="resetBMI()">Reset</button>
+                </div>
+                <div id="bmiOutput" style="display:none;" class="output-container">
+                    <h3>Your BMI</h3>
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="font-size: 3rem; font-weight: 700; color: var(--color-blue);" id="bmiValue">-</div>
+                        <div style="font-size: 1.5rem; font-weight: 600; margin-top: 0.5rem;" id="bmiCategory">-</div>
+                    </div>
+                    <div style="background: var(--color-dark); padding: 1rem; border-radius: 6px; margin-top: 1rem;">
+                        <p style="margin: 0.5rem 0;"><strong>Underweight:</strong> BMI < 18.5</p>
+                        <p style="margin: 0.5rem 0;"><strong>Normal:</strong> BMI 18.5 - 24.9</p>
+                        <p style="margin: 0.5rem 0;"><strong>Overweight:</strong> BMI 25 - 29.9</p>
+                        <p style="margin: 0.5rem 0;"><strong>Obese:</strong> BMI ≥ 30</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool 20: Countdown Timer -->
+    <div id="countdown-timer" class="container">
+        <div class="tool-container fade-in-up">
+            <div class="tool-header">
+                <h2><i class="fas fa-clock"></i> Countdown Timer</h2>
+                <p>Count down to a specific date and time</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="countdownDate">Target Date</label>
+                    <input type="date" id="countdownDate" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="countdownTime">Target Time</label>
+                    <input type="time" id="countdownTime" class="form-control">
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="startCountdown()">Start Countdown</button>
+                    <button class="btn btn-secondary" onclick="stopCountdown()">Stop</button>
+                    <button class="btn btn-reset" onclick="resetCountdown()">Reset</button>
+                </div>
+                <div id="countdownDisplay" style="display:none;" class="output-container">
+                    <h3>Time Remaining</h3>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center; margin-top: 2rem;">
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-blue);" id="countdownDays">00</div>
+                            <div style="color: var(--color-yellow); font-weight: 600; margin-top: 0.5rem;">Days</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-blue);" id="countdownHours">00</div>
+                            <div style="color: var(--color-yellow); font-weight: 600; margin-top: 0.5rem;">Hours</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-blue);" id="countdownMinutes">00</div>
+                            <div style="color: var(--color-yellow); font-weight: 600; margin-top: 0.5rem;">Minutes</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-blue);" id="countdownSeconds">00</div>
+                            <div style="color: var(--color-yellow); font-weight: 600; margin-top: 0.5rem;">Seconds</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final AdSense Placeholder -->
+    <div class="adsense-placeholder">
+        <div class="container">
+            <div class="ad-container">
+                <p class="ad-label">Advertisement</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Online ToolStack</h3>
+                    <p>Professional online tools for everyone. Free, fast, and secure.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tools.html">All Tools</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="#image-compressor">Image Compressor</a></li>
+                        <li><a href="#pdf-converter">PDF Converter</a></li>
+                        <li><a href="#qr-generator">QR Code Generator</a></li>
+                        <li><a href="#password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Online ToolStack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/tools-part1.js"></script>
+    <script src="js/tools-part2.js"></script>
 </body>
 </html>

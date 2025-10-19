@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FB14XD7KT4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-FB14XD7KT4');
-  </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB14XD7KT4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FB14XD7KT4');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Online ToolStack - 20+ free professional tools for productivity, development & content creation. Image compression, QR codes, converters & more!">
@@ -24,6 +24,7 @@
     <meta name="twitter:description" content="20+ free online tools for productivity, development & content creation">
     <meta name="twitter:image" content="https://www.onlinetoolstack.site/og-image.jpg">
     <link rel="canonical" href="https://www.onlinetoolstack.site/" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <title>Online ToolStack - Free Professional Online Tools</title>
     
     <!-- Schema.org Structured Data -->
@@ -41,7 +42,6 @@
       }
     }
     </script>
-    
     
     <style>
         * {
@@ -273,7 +273,7 @@
             line-height: 1.6;
         }
 
-        /* Tools Grid */
+        /* Tools Grid - UPDATED FOR INTERNAL LINKS */
         .tools-showcase {
             max-width: 1200px;
             margin: 4rem auto;
@@ -294,12 +294,17 @@
             transition: var(--transition);
             border: 1px solid #2a2a2a;
             cursor: pointer;
+            display: block;
+            text-decoration: none;
+            color: inherit;
         }
 
         .tool-card:hover {
             transform: translateY(-5px);
             border-color: var(--color-blue);
             box-shadow: 0 8px 30px rgba(0, 212, 255, 0.15);
+            text-decoration: none;
+            color: inherit;
         }
 
         .tool-card h4 {
@@ -460,16 +465,16 @@
     <!-- Header Navigation -->
     <header>
         <nav>
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 ⚡ Online<span>ToolStack</span>
             </a>
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="tools.html">Tools</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/tools.html">All Tools</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -479,8 +484,8 @@
         <h1>Welcome to <span>ToolStack</span></h1>
         <p>Your Ultimate Collection of 20+ Free Professional Online Tools</p>
         <div class="cta-buttons">
-            <a href="tools.html" class="btn btn-primary">Explore Tools</a>
-            <a href="about.html" class="btn btn-secondary">Learn More</a>
+            <a href="/tools.html" class="btn btn-primary">Explore Tools</a>
+            <a href="/about.html" class="btn btn-secondary">Learn More</a>
         </div>
     </section>
 
@@ -513,48 +518,48 @@
         </div>
     </section>
 
-    <!-- Popular Tools Showcase -->
+    <!-- Popular Tools Showcase - FIXED INTERNAL LINKS -->
     <section class="tools-showcase">
         <h2 class="section-title">Popular Tools</h2>
         <p class="section-subtitle">Most used tools by our community</p>
         
         <div class="tools-grid">
-            <div class="tool-card" onclick="location.href='tools.html#image-compressor'">
+            <a href="/tools/image-compressor.html" class="tool-card" aria-label="Image Compressor Tool">
                 <h4>🖼️ Image Compressor</h4>
                 <p>Reduce image file size without losing quality</p>
-            </div>
-            <div class="tool-card" onclick="location.href='tools.html#qr-generator'">
+            </a>
+            <a href="/tools/qr-generator.html" class="tool-card" aria-label="QR Code Generator Tool">
                 <h4>📱 QR Code Generator</h4>
                 <p>Create custom QR codes instantly</p>
-            </div>
-            <div class="tool-card" onclick="location.href='tools.html#password-generator'">
+            </a>
+            <a href="/tools/password-generator.html" class="tool-card" aria-label="Password Generator Tool">
                 <h4>🔐 Password Generator</h4>
                 <p>Generate secure random passwords</p>
-            </div>
-            <div class="tool-card" onclick="location.href='tools.html#color-picker'">
+            </a>
+            <a href="/tools/color-picker.html" class="tool-card" aria-label="Color Picker Tool">
                 <h4>🎨 Color Picker</h4>
                 <p>Pick colors and create palettes</p>
-            </div>
-            <div class="tool-card" onclick="location.href='tools.html#json-formatter'">
+            </a>
+            <a href="/tools/json-formatter.html" class="tool-card" aria-label="JSON Formatter Tool">
                 <h4>📋 JSON Formatter</h4>
                 <p>Format and validate JSON data</p>
-            </div>
-            <div class="tool-card" onclick="location.href='tools.html#word-counter'">
+            </a>
+            <a href="/tools/word-counter.html" class="tool-card" aria-label="Word Counter Tool">
                 <h4>📝 Word Counter</h4>
                 <p>Count words, characters, and more</p>
-            </div>
-            <div class="tool-card" onclick="location.href='tools.html#base64-encoder'">
+            </a>
+            <a href="/tools/base64-encoder.html" class="tool-card" aria-label="Base64 Encoder Tool">
                 <h4>🔤 Base64 Encoder</h4>
                 <p>Encode and decode Base64 strings</p>
-            </div>
-            <div class="tool-card" onclick="location.href='tools.html#unit-converter'">
+            </a>
+            <a href="/tools/unit-converter.html" class="tool-card" aria-label="Unit Converter Tool">
                 <h4>📏 Unit Converter</h4>
                 <p>Convert between different units</p>
-            </div>
+            </a>
         </div>
         
         <div style="text-align: center; margin-top: 2rem;">
-            <a href="tools.html" class="btn btn-primary">View All 20 Tools</a>
+            <a href="/tools.html" class="btn btn-primary">View All 20 Tools</a>
         </div>
     </section>
 
@@ -590,20 +595,21 @@
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="tools.html">All Tools</a>
-                <a href="about.html">About Us</a>
-                <a href="blog.html">Blog</a>
+                <a href="/">Home</a>
+                <a href="/tools.html">All Tools</a>
+                <a href="/about.html">About Us</a>
+                <a href="/blog.html">Blog</a>
             </div>
             <div class="footer-section">
                 <h3>Legal</h3>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="contact.html">Contact Us</a>
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/contact.html">Contact Us</a>
             </div>
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <p>Stay updated with latest tools and features</p>
+                <!-- Add social media links here when available -->
             </div>
         </div>
         <div class="footer-bottom">

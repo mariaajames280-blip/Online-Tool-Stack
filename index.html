@@ -42,180 +42,36 @@
       }
     }
     </script>
+    </script>
+    <!-- ❌ DELETE OLD CSS (this part) ❌ -->
+    
+    <!-- ✅ ADD NEW STRONGER CSS HERE ✅ -->
     <style>
     /* ===================================
-       TEMPORARY FIX - Tools Page Colors
+       STRONG FIX - Tools Page Colors
        =================================== */
     
-    /* Fix all tool containers */
-    .tool-container { 
-        background: #1a1a1a !important; 
-        color: white !important; 
-        padding: 2rem !important; 
-        border-radius: 12px !important; 
-        margin: 2rem 0 !important;
-        border: 1px solid #00d4ff !important;
-        box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1) !important;
-    }
-    
-    /* Fix tool headers */
-    .tool-header h2 { 
-        color: #00d4ff !important; 
-        margin-bottom: 0.5rem !important;
-    }
-    .tool-header p { 
-        color: #888888 !important; 
-        font-size: 1.1rem !important;
-    }
-    
-    /* Fix form labels */
-    .form-group label { 
-        color: #ffd700 !important; 
-        font-weight: 600 !important;
-        margin-bottom: 0.5rem !important;
-        display: block !important;
-    }
-    
-    /* Fix form inputs */
-    .form-control { 
-        background: #0a0a0a !important; 
-        color: white !important; 
-        border: 1px solid #00d4ff !important; 
-        padding: 12px !important;
-        border-radius: 8px !important;
-        width: 100% !important;
-        font-size: 1rem !important;
-    }
-    
-    .form-control:focus {
-        outline: none !important;
-        border-color: #ffd700 !important;
-        box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1) !important;
-    }
-    
-    /* Fix buttons */
-    .btn { 
-        background: #00d4ff !important; 
-        color: black !important; 
-        border: none !important;
-        padding: 12px 24px !important;
-        border-radius: 8px !important;
-        font-weight: 600 !important;
-        cursor: pointer !important;
-        transition: all 0.3s ease !important;
-        text-decoration: none !important;
-        display: inline-block !important;
-    }
-    
-    .btn:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4) !important;
-    }
-    
-    .btn-reset {
-        background: #ef4444 !important;
-        color: white !important;
-    }
-    
-    .btn-download {
-        background: #10b981 !important;
-        color: white !important;
-    }
-    
-    /* Fix output containers */
-    .output-container { 
-        background: #0a0a0a !important; 
-        border: 1px solid #00d4ff !important; 
-        border-radius: 8px !important;
-        padding: 1.5rem !important;
-        margin-top: 1rem !important;
-    }
-    
-    .output-container h3 {
-        color: #ffd700 !important;
-        margin-bottom: 1rem !important;
-    }
-    
-    /* Fix result rows */
-    .result-row {
-        display: flex !important;
-        justify-content: space-between !important;
-        padding: 12px !important;
+    /* Target ALL containers with tools */
+    div.container {
         background: #1a1a1a !important;
-        border-radius: 6px !important;
+        border: 2px solid #00d4ff !important;
+        border-radius: 12px !important;
+        padding: 2rem !important;
+        margin: 2rem 0 !important;
+    }
+    
+    /* Target ALL h2 elements in tools */
+    div.container h2 {
+        color: #00d4ff !important;
+        font-size: 1.8rem !important;
         margin-bottom: 0.5rem !important;
     }
     
-    .result-label {
-        color: #ffd700 !important;
-        font-weight: 600 !important;
-    }
+    /* ... rest of the new CSS ... */
+    </style>
     
-    .result-value {
-        color: #00d4ff !important;
-        font-weight: 600 !important;
-    }
-    
-    /* Fix QR code output */
-    .qr-output {
-        text-align: center !important;
-        padding: 2rem !important;
-    }
-    
-    .qr-output canvas {
-        max-width: 100% !important;
-        border: 2px solid #00d4ff !important;
-        border-radius: 8px !important;
-    }
-    
-    /* Fix checkbox groups */
-    .checkbox-group {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 1rem !important;
-    }
-    
-    .checkbox-label {
-        display: flex !important;
-        align-items: center !important;
-        gap: 0.5rem !important;
-        color: #cccccc !important;
-        cursor: pointer !important;
-    }
-    
-    /* Fix textareas */
-    textarea.form-control {
-        min-height: 120px !important;
-        resize: vertical !important;
-        font-family: 'Courier New', monospace !important;
-    }
-    
-    /* Fix range inputs */
-    input[type="range"] {
-        width: 100% !important;
-        height: 6px !important;
-        background: rgba(0, 212, 255, 0.2) !important;
-        border-radius: 3px !important;
-    }
-    
-    input[type="range"]::-webkit-slider-thumb {
-        background: #00d4ff !important;
-        width: 20px !important;
-        height: 20px !important;
-        border-radius: 50% !important;
-        cursor: pointer !important;
-    }
-    
-    /* Fix color inputs */
-    input[type="color"] {
-        width: 100% !important;
-        height: 60px !important;
-        border: none !important;
-        border-radius: 8px !important;
-        cursor: pointer !important;
-    }
-</style>
-    
+    <style>
+        * {
     <style>
         * {
             margin: 0;

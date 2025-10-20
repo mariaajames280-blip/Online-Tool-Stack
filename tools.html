@@ -1279,6 +1279,92 @@
             <!-- Continue with Tools 27-40 in next part -->
         </div>
     </div>
+            </div>
+    </div>
+
+    <!-- PASTE YOUR PDF TOOLS CODE STARTING FROM HERE -->
+
+<!-- Tool 24: PDF to Images -->
+<div id="pdf-to-images" class="container">
+    <div class="tool-container fade-in-up">
+        <div class="tool-header">
+            <h2><i class="fas fa-images"></i> PDF to Images</h2>
+            <p>Convert PDF pages to image files (JPG, PNG)</p>
+        </div>
+        <div class="tool-content">
+            <div class="form-group">
+                <label for="pdfToImageFile">Select PDF File</label>
+                <input type="file" id="pdfToImageFile" class="form-control" accept=".pdf">
+            </div>
+            <div class="form-group">
+                <label for="imageFormat">Output Format</label>
+                <select id="imageFormat" class="form-control">
+                    <option value="jpg">JPG (Smaller Size)</option>
+                    <option value="png">PNG (Better Quality)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="imageDPI">Image Quality (DPI)</label>
+                <select id="imageDPI" class="form-control">
+                    <option value="72">72 DPI (Screen)</option>
+                    <option value="150">150 DPI (Standard)</option>
+                    <option value="300" selected>300 DPI (High Quality)</option>
+                    <option value="600">600 DPI (Print Quality)</option>
+                </select>
+            </div>
+            <div class="tool-buttons">
+                <button class="btn btn-primary" onclick="convertPDFToImages()"><i class="fas fa-image"></i> Convert to Images</button>
+                <button class="btn btn-reset" onclick="resetPDFToImages()">Reset</button>
+            </div>
+            <div id="pdfToImageOutput" style="display:none;" class="output-container">
+                <h3>Conversion Settings</h3>
+                <div class="result-row">
+                    <span class="result-label">PDF File:</span>
+                    <span class="result-value" id="pdfToImageName">-</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Output Format:</span>
+                    <span class="result-value" id="outputFormat">-</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Quality:</span>
+                    <span class="result-value" id="outputDPI">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tool 25: Images to PDF -->
+<div id="images-to-pdf" class="container">
+    <div class="tool-container fade-in-up">
+        <div class="tool-header">
+            <h2><i class="fas fa-file-image"></i> Images to PDF</h2>
+            <p>Convert multiple images into a single PDF</p>
+        </div>
+        <div class="tool-content">
+            <div class="form-group">
+                <label for="imagesToPdfFiles">Select Images (Multiple)</label>
+                <input type="file" id="imagesToPdfFiles" class="form-control" accept="image/*" multiple>
+            </div>
+            <div class="tool-buttons">
+                <button class="btn btn-primary" onclick="convertImagesToPDF()"><i class="fas fa-file-pdf"></i> Create PDF</button>
+                <button class="btn btn-reset" onclick="resetImagesToPDF()">Reset</button>
+            </div>
+            <div id="imagesToPdfOutput" style="display:none;" class="output-container">
+                <h3>Images Selected</h3>
+                <div class="result-row">
+                    <span class="result-label">Number of Images:</span>
+                    <span class="result-value" id="imageToPdfCount">-</span>
+                </div>
+                <div id="imageToPdfPreview" style="margin-top: 1rem;"></div>
+            </div>
+        </div>
+    
+
+<!-- CONTINUE PASTING ALL YOUR OTHER PDF TOOLS (26-40) HERE -->
+
+    <!-- PASTE YOUR PDF TOOLS CODE ENDING HERE -->
 
     <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>

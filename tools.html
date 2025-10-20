@@ -12,15 +12,13 @@
         filter: grayscale(0) !important;
         -webkit-filter: grayscale(0) !important;
     }
-    
-    html, body, header, nav, section, footer, div, a, h1, h2, h3, h4, p {
-        filter: grayscale(0) !important;
-        -webkit-filter: grayscale(0) !important;
-    }
     </style>
 
     <!-- Link to your external CSS file -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 </head>
 <body>
     <!-- Header Navigation -->
@@ -49,95 +47,226 @@
         <!-- Tools Grid -->
         <div class="tools-grid">
             <!-- Image Tools -->
-            <div class="tool-card" onclick="location.href='#image-compressor'">
+            <div class="tool-card" onclick="scrollToTool('image-compressor')">
                 <div class="tool-icon">🖼️</div>
                 <h3>Image Compressor</h3>
                 <p>Reduce image file size without losing quality</p>
-                <a href="#image-compressor" class="tool-link">Use Tool →</a>
+                <span class="tool-link">Use Tool →</span>
             </div>
 
-            <div class="tool-card" onclick="location.href='#qr-generator'">
+            <div class="tool-card" onclick="scrollToTool('qr-generator')">
                 <div class="tool-icon">📱</div>
                 <h3>QR Code Generator</h3>
                 <p>Create custom QR codes for URLs and text</p>
-                <a href="#qr-generator" class="tool-link">Use Tool →</a>
+                <span class="tool-link">Use Tool →</span>
             </div>
 
-            <div class="tool-card" onclick="location.href='#image-resizer'">
-                <div class="tool-icon">📐</div>
-                <h3>Image Resizer</h3>
-                <p>Resize images to exact dimensions</p>
-                <a href="#image-resizer" class="tool-link">Use Tool →</a>
-            </div>
-
-            <!-- Security Tools -->
-            <div class="tool-card" onclick="location.href='#password-generator'">
+            <div class="tool-card" onclick="scrollToTool('password-generator')">
                 <div class="tool-icon">🔐</div>
                 <h3>Password Generator</h3>
                 <p>Generate secure random passwords</p>
-                <a href="#password-generator" class="tool-link">Use Tool →</a>
+                <span class="tool-link">Use Tool →</span>
             </div>
 
-            <div class="tool-card" onclick="location.href='#hash-generator'">
-                <div class="tool-icon">🔑</div>
-                <h3>Hash Generator</h3>
-                <p>Generate MD5, SHA-1, SHA-256 hashes</p>
-                <a href="#hash-generator" class="tool-link">Use Tool →</a>
+            <div class="tool-card" onclick="scrollToTool('word-counter')">
+                <div class="tool-icon">📝</div>
+                <h3>Word Counter</h3>
+                <p>Count words, characters, and sentences</p>
+                <span class="tool-link">Use Tool →</span>
             </div>
 
-            <!-- Developer Tools -->
-            <div class="tool-card" onclick="location.href='#json-formatter'">
-                <div class="tool-icon">📋</div>
-                <h3>JSON Formatter</h3>
-                <p>Format and validate JSON data</p>
-                <a href="#json-formatter" class="tool-link">Use Tool →</a>
-            </div>
-
-            <div class="tool-card" onclick="location.href='#html-formatter'">
-                <div class="tool-icon">🌐</div>
-                <h3>HTML Formatter</h3>
-                <p>Format and beautify HTML code</p>
-                <a href="#html-formatter" class="tool-link">Use Tool →</a>
-            </div>
-
-            <div class="tool-card" onclick="location.href='#css-formatter'">
+            <div class="tool-card" onclick="scrollToTool('color-picker')">
                 <div class="tool-icon">🎨</div>
-                <h3>CSS Formatter</h3>
-                <p>Format and beautify CSS code</p>
-                <a href="#css-formatter" class="tool-link">Use Tool →</a>
+                <h3>Color Picker</h3>
+                <p>Pick colors and get HEX, RGB values</p>
+                <span class="tool-link">Use Tool →</span>
             </div>
 
-            <!-- Add more tools here following the same pattern -->
-            <!-- You can add the remaining 30+ tools -->
-
+            <!-- Add more tool cards as needed -->
         </div>
 
-        <!-- Tool Sections (will be implemented later) -->
+        <!-- ==================== -->
+        <!-- WORKING TOOLS BELOW -->
+        <!-- ==================== -->
+
+        <!-- Image Compressor Tool -->
         <section id="image-compressor" class="tool-container">
             <div class="tool-header">
                 <h2>🖼️ Image Compressor</h2>
                 <p>Reduce image file size without losing quality</p>
             </div>
             <div class="tool-content">
-                <p style="text-align: center; color: var(--color-yellow);">
-                    🔧 Tool functionality coming soon! Working on the JavaScript implementation.
-                </p>
+                <div class="form-group">
+                    <label for="imageInput">Select Image:</label>
+                    <input type="file" id="imageInput" accept="image/*" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="qualityRange">Compression Quality: <span id="qualityValue">70%</span></label>
+                    <input type="range" id="qualityRange" min="10" max="100" value="70" class="form-control">
+                </div>
+
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="compressImage()">Compress Image</button>
+                    <button class="btn btn-reset" onclick="resetImageCompressor()">Reset</button>
+                </div>
+
+                <div id="imageResult" class="output-container" style="display: none;">
+                    <h3>Compressed Result</h3>
+                    <div id="imageComparison"></div>
+                </div>
             </div>
         </section>
 
+        <!-- QR Code Generator Tool -->
         <section id="qr-generator" class="tool-container">
             <div class="tool-header">
                 <h2>📱 QR Code Generator</h2>
                 <p>Create custom QR codes instantly</p>
             </div>
             <div class="tool-content">
-                <p style="text-align: center; color: var(--color-yellow);">
-                    🔧 Tool functionality coming soon! Working on the JavaScript implementation.
-                </p>
+                <div class="form-group">
+                    <label for="qrText">Enter Text or URL:</label>
+                    <textarea id="qrText" placeholder="Enter your text or URL here..." class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="generateQRCode()">Generate QR Code</button>
+                    <button class="btn btn-reset" onclick="resetQRGenerator()">Reset</button>
+                </div>
+
+                <div id="qrResult" class="output-container" style="display: none;">
+                    <h3>Your QR Code</h3>
+                    <div class="qr-output">
+                        <canvas id="qrCanvas"></canvas>
+                    </div>
+                    <div class="tool-buttons">
+                        <button class="btn btn-download" onclick="downloadQRCode()">Download QR Code</button>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Add more tool sections here -->
+        <!-- Password Generator Tool -->
+        <section id="password-generator" class="tool-container">
+            <div class="tool-header">
+                <h2>🔐 Password Generator</h2>
+                <p>Generate secure random passwords</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="passwordLength">Password Length: <span id="lengthValue">12</span> characters</label>
+                    <input type="range" id="passwordLength" min="8" max="32" value="12" class="form-control">
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="uppercase" checked> Include Uppercase (A-Z)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="lowercase" checked> Include Lowercase (a-z)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="numbers" checked> Include Numbers (0-9)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="symbols"> Include Symbols (!@#$%^&*)
+                    </label>
+                </div>
+
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="generatePassword()">Generate Password</button>
+                    <button class="btn btn-download" onclick="copyPassword()">Copy Password</button>
+                </div>
+
+                <div id="passwordResult" class="output-container" style="display: none;">
+                    <h3>Generated Password</h3>
+                    <div class="result-row">
+                        <span class="result-label">Password:</span>
+                        <span class="result-value" id="generatedPassword"></span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Strength:</span>
+                        <span class="result-value" id="passwordStrength"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Word Counter Tool -->
+        <section id="word-counter" class="tool-container">
+            <div class="tool-header">
+                <h2>📝 Word Counter</h2>
+                <p>Count words, characters, and sentences</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="wordText">Enter Text:</label>
+                    <textarea id="wordText" placeholder="Type or paste your text here..." class="form-control" rows="6"></textarea>
+                </div>
+
+                <div class="tool-buttons">
+                    <button class="btn btn-primary" onclick="countWords()">Count Words</button>
+                    <button class="btn btn-reset" onclick="resetWordCounter()">Clear Text</button>
+                </div>
+
+                <div id="wordResult" class="output-container">
+                    <h3>Text Statistics</h3>
+                    <div class="result-row">
+                        <span class="result-label">Words:</span>
+                        <span class="result-value" id="wordCount">0</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Characters:</span>
+                        <span class="result-value" id="charCount">0</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Characters (no spaces):</span>
+                        <span class="result-value" id="charNoSpaceCount">0</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Sentences:</span>
+                        <span class="result-value" id="sentenceCount">0</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Paragraphs:</span>
+                        <span class="result-value" id="paragraphCount">0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Color Picker Tool -->
+        <section id="color-picker" class="tool-container">
+            <div class="tool-header">
+                <h2>🎨 Color Picker</h2>
+                <p>Pick colors and get HEX, RGB values</p>
+            </div>
+            <div class="tool-content">
+                <div class="form-group">
+                    <label for="colorPicker">Select Color:</label>
+                    <input type="color" id="colorPicker" value="#00d4ff" class="form-control">
+                </div>
+
+                <div id="colorResult" class="output-container">
+                    <h3>Color Values</h3>
+                    <div class="result-row">
+                        <span class="result-label">HEX:</span>
+                        <span class="result-value" id="hexValue">#00d4ff</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">RGB:</span>
+                        <span class="result-value" id="rgbValue">rgb(0, 212, 255)</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Preview:</span>
+                        <span class="result-value">
+                            <div id="colorPreview" style="display: inline-block; width: 50px; height: 30px; background: #00d4ff; border: 2px solid var(--color-blue); border-radius: 4px;"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -168,7 +297,19 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle (same as homepage)
+        // ==================== //
+        // TOOL FUNCTIONALITY  //
+        // ==================== //
+
+        // Scroll to tool function
+        function scrollToTool(toolId) {
+            const element = document.getElementById(toolId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
 
@@ -177,21 +318,229 @@
             mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
 
-        // Smooth scroll to tools
-        document.querySelectorAll('.tool-card, .tool-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
+        // ==================== //
+        // IMAGE COMPRESSOR    //
+        // ==================== //
+        document.getElementById('qualityRange').addEventListener('input', function() {
+            document.getElementById('qualityValue').textContent = this.value + '%';
         });
+
+        function compressImage() {
+            const fileInput = document.getElementById('imageInput');
+            const quality = document.getElementById('qualityRange').value / 100;
+            
+            if (!fileInput.files[0]) {
+                alert('Please select an image first!');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                    const originalSize = (file.size / 1024).toFixed(2);
+                    const compressedSize = ((compressedDataUrl.length * 3) / 4 / 1024).toFixed(2);
+                    
+                    document.getElementById('imageComparison').innerHTML = `
+                        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <h4>Original</h4>
+                                <img src="${e.target.result}" style="max-width: 200px; border: 2px solid var(--color-error); border-radius: 8px;">
+                                <p>${originalSize} KB</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <h4>Compressed</h4>
+                                <img src="${compressedDataUrl}" style="max-width: 200px; border: 2px solid var(--color-success); border-radius: 8px;">
+                                <p>${compressedSize} KB</p>
+                                <p>${((1 - compressedSize/originalSize) * 100).toFixed(1)}% smaller</p>
+                            </div>
+                        </div>
+                        <div class="tool-buttons" style="margin-top: 1rem;">
+                            <button class="btn btn-download" onclick="downloadImage('${compressedDataUrl}', 'compressed-image.jpg')">Download Compressed Image</button>
+                        </div>
+                    `;
+                    
+                    document.getElementById('imageResult').style.display = 'block';
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetImageCompressor() {
+            document.getElementById('imageInput').value = '';
+            document.getElementById('imageResult').style.display = 'none';
+            document.getElementById('qualityRange').value = 70;
+            document.getElementById('qualityValue').textContent = '70%';
+        }
+
+        // ==================== //
+        // QR CODE GENERATOR   //
+        // ==================== //
+        function generateQRCode() {
+            const text = document.getElementById('qrText').value.trim();
+            if (!text) {
+                alert('Please enter some text or URL!');
+                return;
+            }
+
+            const canvas = document.getElementById('qrCanvas');
+            QRCode.toCanvas(canvas, text, {
+                width: 200,
+                margin: 2,
+                color: {
+                    dark: '#00d4ff',
+                    light: '#000000'
+                }
+            }, function(error) {
+                if (error) {
+                    alert('Error generating QR code: ' + error);
+                    return;
+                }
+                document.getElementById('qrResult').style.display = 'block';
+            });
+        }
+
+        function downloadQRCode() {
+            const canvas = document.getElementById('qrCanvas');
+            const link = document.createElement('a');
+            link.download = 'qrcode.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function resetQRGenerator() {
+            document.getElementById('qrText').value = '';
+            document.getElementById('qrResult').style.display = 'none';
+        }
+
+        // ==================== //
+        // PASSWORD GENERATOR  //
+        // ==================== //
+        document.getElementById('passwordLength').addEventListener('input', function() {
+            document.getElementById('lengthValue').textContent = this.value;
+        });
+
+        function generatePassword() {
+            const length = document.getElementById('passwordLength').value;
+            const uppercase = document.getElementById('uppercase').checked;
+            const lowercase = document.getElementById('lowercase').checked;
+            const numbers = document.getElementById('numbers').checked;
+            const symbols = document.getElementById('symbols').checked;
+
+            let chars = '';
+            if (uppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (lowercase) chars += 'abcdefghijklmnopqrstuvwxyz';
+            if (numbers) chars += '0123456789';
+            if (symbols) chars += '!@#$%^&*';
+
+            if (!chars) {
+                alert('Please select at least one character type!');
+                return;
+            }
+
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+
+            document.getElementById('generatedPassword').textContent = password;
+            document.getElementById('passwordStrength').textContent = getPasswordStrength(password);
+            document.getElementById('passwordResult').style.display = 'block';
+        }
+
+        function getPasswordStrength(password) {
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.length >= 12) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+            if (strength <= 2) return 'Weak 🔴';
+            if (strength <= 4) return 'Medium 🟡';
+            return 'Strong 🟢';
+        }
+
+        function copyPassword() {
+            const password = document.getElementById('generatedPassword').textContent;
+            if (password) {
+                navigator.clipboard.writeText(password).then(() => {
+                    alert('Password copied to clipboard!');
+                });
+            }
+        }
+
+        // ==================== //
+        // WORD COUNTER        //
+        // ==================== //
+        document.getElementById('wordText').addEventListener('input', countWords);
+
+        function countWords() {
+            const text = document.getElementById('wordText').value;
+            
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const characters = text.length;
+            const charactersNoSpace = text.replace(/\s/g, '').length;
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim()).length;
+            const paragraphs = text.split(/\n+/).filter(p => p.trim()).length;
+
+            document.getElementById('wordCount').textContent = words;
+            document.getElementById('charCount').textContent = characters;
+            document.getElementById('charNoSpaceCount').textContent = charactersNoSpace;
+            document.getElementById('sentenceCount').textContent = sentences;
+            document.getElementById('paragraphCount').textContent = paragraphs;
+        }
+
+        function resetWordCounter() {
+            document.getElementById('wordText').value = '';
+            countWords();
+        }
+
+        // ==================== //
+        // COLOR PICKER        //
+        // ==================== //
+        document.getElementById('colorPicker').addEventListener('input', function() {
+            const hex = this.value;
+            const rgb = hexToRgb(hex);
+            
+            document.getElementById('hexValue').textContent = hex;
+            document.getElementById('rgbValue').textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+            document.getElementById('colorPreview').style.background = hex;
+        });
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : { r: 0, g: 0, b: 0 };
+        }
+
+        // ==================== //
+        // UTILITY FUNCTIONS   //
+        // ==================== //
+        function downloadImage(dataUrl, filename) {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = filename;
+            link.click();
+        }
+
+        // Initialize word counter on page load
+        countWords();
     </script>
 </body>
 </html>

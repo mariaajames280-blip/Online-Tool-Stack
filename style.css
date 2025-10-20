@@ -1,7 +1,6 @@
 /* ===================================
    Online ToolStack - Professional CSS
    Black Background with Blue/Yellow Theme
-   GRAYSCALE ISSUE FIXED
    =================================== */
 
 /* CSS Variables */
@@ -42,7 +41,6 @@ body {
     color: var(--color-gray-light);
     line-height: 1.6;
     overflow-x: hidden;
-    /* GRAYSCALE FILTER REMOVED - This was causing the issue */
 }
 
 /* Typography */

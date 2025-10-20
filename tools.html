@@ -613,68 +613,92 @@
         document.addEventListener('DOMContentLoaded', function() {
             countWords();
         });
-                // ==================== //
-        // QR CODE GENERATOR FIX //
+                       // ==================== //
+        // QR CODE GENERATOR   //
         // ==================== //
-        function generateSimpleQR() {
-            const text = document.getElementById('qrText').value.trim();
-            if (!text) {
-                alert('Please enter some text or URL!');
-                return;
-            }
+        let qr;
 
-            // Get selected color
-            const colorRadio = document.querySelector('input[name="qrColor"]:checked');
-            const color = '#' + colorRadio.value;
-
-            // Generate QR code to canvas
-            const canvas = document.getElementById('qrCanvas');
-            if (!canvas) {
-                alert('QR Code system not ready. Please refresh the page.');
-                return;
-            }
-
-            QRCode.toCanvas(canvas, text, {
-                width: 300,
-                margin: 2,
-                color: {
-                    dark: color,
-                    light: '#00000000' // Transparent background
-                }
-            }, function(error) {
-                if (error) {
-                    alert('Error generating QR code: ' + error);
-                    return;
-                }
-                
-                // Convert canvas to image for display
-                const qrImage = document.getElementById('qrImage');
-                qrImage.src = canvas.toDataURL('image/png');
-                
-                // Show result section
-                document.getElementById('qrResult').style.display = 'block';
-            });
+        function switchMode() {
+            // Hide all modes
+            document.querySelectorAll(".mode").forEach(el => el.style.display = 'none');
+            
+            // Show selected mode
+            const mode = document.getElementById("mode").value;
+            if (mode === "text") document.getElementById("textMode").style.display = 'block';
+            if (mode === "wifi") document.getElementById("wifiMode").style.display = 'block';
+            if (mode === "vcard") document.getElementById("vcardMode").style.display = 'block';
         }
 
-        function downloadQRCode() {
-            const canvas = document.getElementById('qrCanvas');
-            if (!canvas) {
-                alert('Please generate a QR code first!');
-                return;
+        function generateQR() {
+            const qrContainer = document.getElementById("qrcode");
+            const mode = document.getElementById("mode").value;
+            let data = "";
+
+            if (mode === "text") {
+                data = document.getElementById("qrInput").value.trim();
+            } else if (mode === "wifi") {
+                const ssid = document.getElementById("ssid").value.trim();
+                const password = document.getElementById("password").value.trim();
+                const encryption = document.getElementById("encryption").value;
+                data = `WIFI:T:${encryption};S:${ssid};P:${password};;`;
+            } else if (mode === "vcard") {
+                const name = document.getElementById("name").value.trim();
+                const phone = document.getElementById("phone").value.trim();
+                const email = document.getElementById("email").value.trim();
+                data = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTEL:${phone}\nEMAIL:${email}\nEND:VCARD`;
             }
-            
-            const link = document.createElement('a');
-            link.download = 'qrcode.png';
-            link.href = canvas.toDataURL('image/png');
-            link.click();
+
+            // Clear previous QR code
+            qrContainer.innerHTML = "<h3 style='color: var(--color-yellow);'>Your QR Code</h3>";
+
+            if (data) {
+                qr = new QRCode(qrContainer, {
+                    text: data,
+                    width: 250,
+                    height: 250,
+                });
+                document.getElementById("downloadBtn").style.display = 'inline-block';
+                qrContainer.style.display = 'block';
+            } else {
+                alert("Please fill in the required fields!");
+            }
+        }
+
+        function downloadQR() {
+            const img = document.querySelector("#qrcode img");
+            if (img) {
+                const link = document.createElement("a");
+                link.href = img.src;
+                link.download = "qrcode.png";
+                link.click();
+            } else {
+                alert("Please generate a QR code first!");
+            }
         }
 
         function resetQRGenerator() {
-            document.getElementById('qrText').value = '';
-            document.getElementById('qrResult').style.display = 'none';
-            const qrImage = document.getElementById('qrImage');
-            if (qrImage) qrImage.src = '';
+            document.getElementById("mode").value = "text";
+            document.getElementById("qrInput").value = "";
+            document.getElementById("ssid").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("name").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("qrcode").innerHTML = "<h3 style='color: var(--color-yellow);'>Your QR Code</h3>";
+            document.getElementById("qrcode").style.display = 'none';
+            document.getElementById("downloadBtn").style.display = 'none';
+            switchMode(); // Reset to text mode
         }
+
+        // Initialize functions on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            countWords();
+            // Initialize QR code generator to text mode
+            switchMode();
+        });
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>

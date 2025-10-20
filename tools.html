@@ -1032,4 +1032,1360 @@
                             <div class="stat-label">Months</div>
                         </div>
                         <div class="stat-item">
-                            <
+                            <div class="stat-value" id="ageDays">0</div>
+                            <div class="stat-label">Days</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="ageHours">0</div>
+                            <div class="stat-label">Hours</div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="calculateAge()">Calculate</button>
+                        <button class="btn-danger" onclick="resetAge()">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 19: BMI Calculator -->
+            <div class="tool-section" id="bmi-calculator">
+                <div class="tool-header">
+                    <span class="icon">⚖️</span>
+                    <h2>BMI Calculator</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label>Weight (kg)</label>
+                            <input type="number" id="weight" placeholder="70">
+                        </div>
+                        <div class="input-group">
+                            <label>Height (cm)</label>
+                            <input type="number" id="height" placeholder="170">
+                        </div>
+                    </div>
+                    <div class="output-box" id="bmiResult">Your BMI will appear here</div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="calculateBMI()">Calculate</button>
+                        <button class="btn-danger" onclick="resetBMI()">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 20: Countdown Timer -->
+            <div class="tool-section" id="countdown-timer">
+                <div class="tool-header">
+                    <span class="icon">⏱️</span>
+                    <h2>Countdown Timer</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label>Minutes</label>
+                            <input type="number" id="timerMinutes" value="5" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label>Seconds</label>
+                            <input type="number" id="timerSeconds" value="0" min="0" max="59">
+                        </div>
+                    </div>
+                    <div class="timer-display" id="timerDisplay">05:00</div>
+                    <div class="button-group">
+                        <button class="btn-primary" id="timerBtn" onclick="startTimer()">Start</button>
+                        <button class="btn-danger" onclick="resetTimer()">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 21: Case Converter -->
+            <div class="tool-section" id="case-converter">
+                <div class="tool-header">
+                    <span class="icon">🔠</span>
+                    <h2>Case Converter</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Enter Text</label>
+                        <textarea id="caseInput" placeholder="Enter text to convert..."></textarea>
+                    </div>
+                    <div class="case-buttons">
+                        <button class="btn-primary" onclick="convertToUpper()">UPPERCASE</button>
+                        <button class="btn-primary" onclick="convertToLower()">lowercase</button>
+                        <button class="btn-primary" onclick="convertToTitle()">Title Case</button>
+                        <button class="btn-primary" onclick="convertToSentence()">Sentence case</button>
+                    </div>
+                    <div class="input-group">
+                        <label>Converted Text</label>
+                        <textarea id="caseOutput" readonly></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-secondary" onclick="copyCase()">Copy</button>
+                        <button class="btn-danger" onclick="resetCase()">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 22: Random Number Generator -->
+            <div class="tool-section" id="random-number">
+                <div class="tool-header">
+                    <span class="icon">🎲</span>
+                    <h2>Random Number Generator</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label>Minimum</label>
+                            <input type="number" id="randomMin" value="1">
+                        </div>
+                        <div class="input-group">
+                            <label>Maximum</label>
+                            <input type="number" id="randomMax" value="100">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>How many numbers?</label>
+                        <input type="number" id="randomCount" value="5" min="1" max="50">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="generateRandomNumbers()">Generate</button>
+                        <button class="btn-danger" onclick="resetRandom()">Reset</button>
+                    </div>
+                    <div class="random-numbers" id="randomNumbers"></div>
+                </div>
+            </div>
+
+            <!-- Tool 23: Text Diff Checker -->
+            <div class="tool-section" id="text-diff">
+                <div class="tool-header">
+                    <span class="icon">📊</span>
+                    <h2>Text Diff Checker</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label>Original Text</label>
+                            <textarea id="diffOriginal" placeholder="Enter original text..."></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Modified Text</label>
+                            <textarea id="diffModified" placeholder="Enter modified text..."></textarea>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="compareText()">Compare</button>
+                        <button class="btn-danger" onclick="resetDiff()">Reset</button>
+                    </div>
+                    <div class="diff-result" id="diffResult"></div>
+                </div>
+            </div>
+
+            <!-- Tool 24: IP Address Lookup -->
+            <div class="tool-section" id="ip-lookup">
+                <div class="tool-header">
+                    <span class="icon">🌐</span>
+                    <h2>IP Address Lookup</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Enter IP Address (optional)</label>
+                        <input type="text" id="ipAddress" placeholder="Leave empty for your IP">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="lookupIP()">Lookup IP</button>
+                        <button class="btn-danger" onclick="resetIP()">Reset</button>
+                    </div>
+                    <div class="output-box" id="ipResult">IP information will appear here</div>
+                </div>
+            </div>
+
+            <!-- Tool 25: Time Zone Converter -->
+            <div class="tool-section" id="timezone-converter">
+                <div class="tool-header">
+                    <span class="icon">🕒</span>
+                    <h2>Time Zone Converter</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label>From Timezone</label>
+                            <select id="timezoneFrom">
+                                <option value="UTC">UTC</option>
+                                <option value="EST">EST</option>
+                                <option value="PST">PST</option>
+                                <option value="CET">CET</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>To Timezone</label>
+                            <select id="timezoneTo">
+                                <option value="UTC">UTC</option>
+                                <option value="EST">EST</option>
+                                <option value="PST">PST</option>
+                                <option value="CET">CET</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Date & Time</label>
+                        <input type="datetime-local" id="timezoneDateTime">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="convertTimezone()">Convert</button>
+                        <button class="btn-danger" onclick="resetTimezone()">Reset</button>
+                    </div>
+                    <div class="output-box" id="timezoneResult">Converted time will appear here</div>
+                </div>
+            </div>
+
+            <!-- Tool 26: Currency Converter -->
+            <div class="tool-section" id="currency-converter">
+                <div class="tool-header">
+                    <span class="icon">💱</span>
+                    <h2>Currency Converter</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label>From Currency</label>
+                            <select id="currencyFrom">
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>To Currency</label>
+                            <select id="currencyTo">
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Amount</label>
+                        <input type="number" id="currencyAmount" placeholder="Enter amount" step="0.01">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="convertCurrency()">Convert</button>
+                        <button class="btn-danger" onclick="resetCurrency()">Reset</button>
+                    </div>
+                    <div class="output-box" id="currencyResult">Conversion result will appear here</div>
+                </div>
+            </div>
+
+            <!-- Continue with Tools 27-40 in next part -->
+        </div>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script>
+        // Toast Notification Function
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Tool 1: Image Compressor
+        let compressedImage = null;
+        document.getElementById('compressQuality').addEventListener('input', (e) => {
+            document.getElementById('qualityValue').textContent = e.target.value;
+        });
+
+        function compressImage() {
+            const input = document.getElementById('compressInput');
+            const quality = document.getElementById('compressQuality').value / 100;
+            
+            if (!input.files[0]) {
+                showToast('Please select an image', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.getElementById('compressCanvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    
+                    canvas.toBlob((blob) => {
+                        compressedImage = blob;
+                        const url = URL.createObjectURL(blob);
+                        const preview = document.getElementById('compressPreview');
+                        preview.src = url;
+                        preview.style.display = 'block';
+                        showToast('Image compressed successfully!');
+                    }, 'image/jpeg', quality);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        function downloadCompressed() {
+            if (!compressedImage) {
+                showToast('Please compress an image first', 'error');
+                return;
+            }
+            const url = URL.createObjectURL(compressedImage);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'compressed-image.jpg';
+            a.click();
+            showToast('Image downloaded!');
+        }
+
+        function resetCompress() {
+            document.getElementById('compressInput').value = '';
+            document.getElementById('compressPreview').style.display = 'none';
+            compressedImage = null;
+            showToast('Reset complete');
+        }
+
+        // Tool 2: PDF Converter
+        function processPDF() {
+            const input = document.getElementById('pdfInput');
+            if (!input.files[0]) {
+                showToast('Please select a PDF file', 'error');
+                return;
+            }
+            const file = input.files[0];
+            document.getElementById('pdfInfo').innerHTML = `
+                <strong>File:</strong> ${file.name}<br>
+                <strong>Size:</strong> ${(file.size / 1024).toFixed(2)} KB<br>
+                <strong>Type:</strong> ${file.type}
+            `;
+            showToast('PDF info loaded (conversion requires backend)');
+        }
+
+        function resetPDF() {
+            document.getElementById('pdfInput').value = '';
+            document.getElementById('pdfInfo').textContent = 'Upload a PDF to see file information';
+            showToast('Reset complete');
+        }
+
+        // Tool 3: QR Code Generator
+        let qrCode = null;
+        function generateQR() {
+            const text = document.getElementById('qrText').value;
+            if (!text) {
+                showToast('Please enter text or URL', 'error');
+                return;
+            }
+            
+            const canvas = document.getElementById('qrCanvas');
+            canvas.innerHTML = '';
+            canvas.style.display = 'block';
+            
+            qrCode = new QRCode(canvas, {
+                text: text,
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff"
+            });
+            
+            showToast('QR code generated!');
+        }
+
+        function downloadQR() {
+            const canvas = document.querySelector('#qrCanvas canvas');
+            if (!canvas) {
+                showToast('Please generate QR code first', 'error');
+                return;
+            }
+            const url = canvas.toDataURL();
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'qrcode.png';
+            a.click();
+            showToast('QR code downloaded!');
+        }
+
+        function resetQR() {
+            document.getElementById('qrText').value = '';
+            document.getElementById('qrCanvas').innerHTML = '';
+            document.getElementById('qrCanvas').style.display = 'none';
+            showToast('Reset complete');
+        }
+
+        // Tool 4: Password Generator
+        document.getElementById('passwordLength').addEventListener('input', (e) => {
+            document.getElementById('pwdLength').textContent = e.target.value;
+        });
+
+        function generatePassword() {
+            const length = document.getElementById('passwordLength').value;
+            const upper = document.getElementById('includeUppercase').checked;
+            const lower = document.getElementById('includeLowercase').checked;
+            const numbers = document.getElementById('includeNumbers').checked;
+            const symbols = document.getElementById('includeSymbols').checked;
+            
+            let chars = '';
+            if (upper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (lower) chars += 'abcdefghijklmnopqrstuvwxyz';
+            if (numbers) chars += '0123456789';
+            if (symbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            
+            if (!chars) {
+                showToast('Please select at least one character type', 'error');
+                return;
+            }
+            
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            document.getElementById('passwordOutput').textContent = password;
+            
+            // Calculate strength
+            let strength = 0;
+            if (upper) strength += 25;
+            if (lower) strength += 25;
+            if (numbers) strength += 25;
+            if (symbols) strength += 25;
+            
+            const bar = document.getElementById('strengthBar');
+            bar.style.width = strength + '%';
+            if (strength < 50) bar.style.background = '#ef4444';
+            else if (strength < 75) bar.style.background = '#f59e0b';
+            else bar.style.background = '#10b981';
+            
+            showToast('Password generated!');
+        }
+
+        function copyPassword() {
+            const password = document.getElementById('passwordOutput').textContent;
+            if (password === 'Click Generate to create password') {
+                showToast('Please generate a password first', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(password);
+            showToast('Password copied to clipboard!');
+        }
+
+        function resetPassword() {
+            document.getElementById('passwordOutput').textContent = 'Click Generate to create password';
+            document.getElementById('strengthBar').style.width = '0';
+            showToast('Reset complete');
+        }
+
+        // Tool 5: URL Shortener
+        function shortenURL() {
+            const url = document.getElementById('longUrl').value;
+            if (!url) {
+                showToast('Please enter a URL', 'error');
+                return;
+            }
+            const short = 'https://short.url/' + Math.random().toString(36).substr(2, 6);
+            document.getElementById('shortUrl').textContent = short;
+            showToast('URL shortened!');
+        }
+
+        function copyShortURL() {
+            const url = document.getElementById('shortUrl').textContent;
+            if (url === 'Your shortened URL will appear here') {
+                showToast('Please shorten a URL first', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(url);
+            showToast('URL copied to clipboard!');
+        }
+
+        function resetURL() {
+            document.getElementById('longUrl').value = '';
+            document.getElementById('shortUrl').textContent = 'Your shortened URL will appear here';
+            showToast('Reset complete');
+        }
+
+        // Tool 6: Color Picker
+        document.getElementById('colorPicker').addEventListener('input', (e) => {
+            const hex = e.target.value;
+            document.getElementById('hexColor').textContent = hex;
+            const rgb = hexToRgb(hex);
+            document.getElementById('rgbColor').textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+        });
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        function generatePalette() {
+            const baseColor = document.getElementById('colorPicker').value;
+            const palette = document.getElementById('paletteColors');
+            palette.innerHTML = '';
+            
+            for (let i = 0; i < 5; i++) {
+                const div = document.createElement('div');
+                const color = adjustColor(baseColor, (i - 2) * 30);
+                div.className = 'palette-color';
+                div.style.background = color;
+                div.textContent = color;
+                div.onclick = () => {
+                    navigator.clipboard.writeText(color);
+                    showToast('Color copied: ' + color);
+                };
+                palette.appendChild(div);
+            }
+            showToast('Palette generated!');
+        }
+
+        function adjustColor(color, amount) {
+            const num = parseInt(color.slice(1), 16);
+            const r = Math.min(255, Math.max(0, (num >> 16) + amount));
+            const g = Math.min(255, Math.max(0, ((num >> 8) & 0x00FF) + amount));
+            const b = Math.min(255, Math.max(0, (num & 0x0000FF) + amount));
+            return '#' + ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
+        }
+
+        function copyColor() {
+            const color = document.getElementById('hexColor').textContent;
+            navigator.clipboard.writeText(color);
+            showToast('Color copied: ' + color);
+        }
+
+        // Tool 7: Text to Speech
+        let speech = new SpeechSynthesisUtterance();
+        
+        function speakText() {
+            const text = document.getElementById('ttsText').value;
+            if (!text) {
+                showToast('Please enter text', 'error');
+                return;
+            }
+            speech.text = text;
+            speechSynthesis.speak(speech);
+            showToast('Speaking...');
+        }
+
+        function stopSpeech() {
+            speechSynthesis.cancel();
+            showToast('Speech stopped');
+        }
+
+        function resetTTS() {
+            document.getElementById('ttsText').value = '';
+            stopSpeech();
+            showToast('Reset complete');
+        }
+
+        // Tool 8: Base64 Encoder/Decoder
+        function encodeBase64() {
+            const input = document.getElementById('base64Input').value;
+            if (!input) {
+                showToast('Please enter text', 'error');
+                return;
+            }
+            const encoded = btoa(input);
+            document.getElementById('base64Output').value = encoded;
+            showToast('Text encoded!');
+        }
+
+        function decodeBase64() {
+            const input = document.getElementById('base64Input').value;
+            if (!input) {
+                showToast('Please enter text', 'error');
+                return;
+            }
+            try {
+                const decoded = atob(input);
+                document.getElementById('base64Output').value = decoded;
+                showToast('Text decoded!');
+            } catch (e) {
+                showToast('Invalid Base64 string', 'error');
+            }
+        }
+
+        function copyBase64() {
+            const output = document.getElementById('base64Output').value;
+            if (!output) {
+                showToast('Nothing to copy', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(output);
+            showToast('Copied to clipboard!');
+        }
+
+        function resetBase64() {
+            document.getElementById('base64Input').value = '';
+            document.getElementById('base64Output').value = '';
+            showToast('Reset complete');
+        }
+
+        // Tool 9: JSON Formatter
+        function formatJSON() {
+            const input = document.getElementById('jsonInput').value;
+            if (!input) {
+                showToast('Please enter JSON', 'error');
+                return;
+            }
+            try {
+                const obj = JSON.parse(input);
+                const formatted = JSON.stringify(obj, null, 2);
+                document.getElementById('jsonOutput').value = formatted;
+                showToast('JSON formatted!');
+            } catch (e) {
+                showToast('Invalid JSON: ' + e.message, 'error');
+            }
+        }
+
+        function minifyJSON() {
+            const input = document.getElementById('jsonInput').value;
+            if (!input) {
+                showToast('Please enter JSON', 'error');
+                return;
+            }
+            try {
+                const obj = JSON.parse(input);
+                const minified = JSON.stringify(obj);
+                document.getElementById('jsonOutput').value = minified;
+                showToast('JSON minified!');
+            } catch (e) {
+                showToast('Invalid JSON: ' + e.message, 'error');
+            }
+        }
+
+        function copyJSON() {
+            const output = document.getElementById('jsonOutput').value;
+            if (!output) {
+                showToast('Nothing to copy', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(output);
+            showToast('Copied to clipboard!');
+        }
+
+        function resetJSON() {
+            document.getElementById('jsonInput').value = '';
+            document.getElementById('jsonOutput').value = '';
+            showToast('Reset complete');
+        }
+
+        // Tool 10: Word Counter
+        document.getElementById('wordCountText').addEventListener('input', updateWordCount);
+        
+        function updateWordCount() {
+            const text = document.getElementById('wordCountText').value;
+            const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+            const chars = text.length;
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+            const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0).length;
+            
+            document.getElementById('wordCount').textContent = words;
+            document.getElementById('charCount').textContent = chars;
+            document.getElementById('sentenceCount').textContent = sentences;
+            document.getElementById('paragraphCount').textContent = paragraphs;
+        }
+
+        function resetWordCount() {
+            document.getElementById('wordCountText').value = '';
+            updateWordCount();
+            showToast('Reset complete');
+        }
+
+        // Tool 11: Image Resizer
+        let resizedImage = null;
+        
+        function resizeImage() {
+            const input = document.getElementById('resizeInput');
+            const width = parseInt(document.getElementById('resizeWidth').value);
+            const height = parseInt(document.getElementById('resizeHeight').value);
+            const maintainRatio = document.getElementById('maintainRatio').checked;
+            
+            if (!input.files[0]) {
+                showToast('Please select an image', 'error');
+                return;
+            }
+            if (!width && !height) {
+                showToast('Please enter width or height', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.getElementById('resizeCanvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    let newWidth = width || img.width;
+                    let newHeight = height || img.height;
+                    
+                    if (maintainRatio) {
+                        if (width && !height) {
+                            newHeight = (img.height * width) / img.width;
+                        } else if (height && !width) {
+                            newWidth = (img.width * height) / img.height;
+                        }
+                    }
+                    
+                    canvas.width = newWidth;
+                    canvas.height = newHeight;
+                    ctx.drawImage(img, 0, 0, newWidth, newHeight);
+                    
+                    canvas.toBlob((blob) => {
+                        resizedImage = blob;
+                        const url = URL.createObjectURL(blob);
+                        const preview = document.getElementById('resizePreview');
+                        preview.src = url;
+                        preview.style.display = 'block';
+                        showToast(`Image resized to ${newWidth}x${newHeight}!`);
+                    });
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        function downloadResized() {
+            if (!resizedImage) {
+                showToast('Please resize an image first', 'error');
+                return;
+            }
+            const url = URL.createObjectURL(resizedImage);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'resized-image.png';
+            a.click();
+            showToast('Image downloaded!');
+        }
+
+        function resetResize() {
+            document.getElementById('resizeInput').value = '';
+            document.getElementById('resizeWidth').value = '';
+            document.getElementById('resizeHeight').value = '';
+            document.getElementById('resizePreview').style.display = 'none';
+            resizedImage = null;
+            showToast('Reset complete');
+        }
+
+        // Tool 12: Hash Generator
+        function generateHashes() {
+            const input = document.getElementById('hashInput').value;
+            if (!input) {
+                showToast('Please enter text', 'error');
+                return;
+            }
+            
+            const md5 = CryptoJS.MD5(input).toString();
+            const sha256 = CryptoJS.SHA256(input).toString();
+            
+            document.getElementById('md5Output').textContent = md5;
+            document.getElementById('sha256Output').textContent = sha256;
+            showToast('Hashes generated!');
+        }
+
+        function copyHash(type) {
+            const hash = document.getElementById(type + 'Output').textContent;
+            if (hash === 'Hash will appear here') {
+                showToast('Please generate hashes first', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(hash);
+            showToast(type.toUpperCase() + ' hash copied!');
+        }
+
+        function resetHash() {
+            document.getElementById('hashInput').value = '';
+            document.getElementById('md5Output').textContent = 'Hash will appear here';
+            document.getElementById('sha256Output').textContent = 'Hash will appear here';
+            showToast('Reset complete');
+        }
+
+        // Tool 13: UUID Generator
+        function generateUUIDs() {
+            const count = parseInt(document.getElementById('uuidCount').value);
+            let uuids = [];
+            for (let i = 0; i < count; i++) {
+                uuids.push(generateUUID());
+            }
+            document.getElementById('uuidOutput').value = uuids.join('\n');
+            showToast(`${count} UUIDs generated!`);
+        }
+
+        function generateUUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function copyUUIDs() {
+            const uuids = document.getElementById('uuidOutput').value;
+            if (!uuids) {
+                showToast('Please generate UUIDs first', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(uuids);
+            showToast('UUIDs copied!');
+        }
+
+        function resetUUID() {
+            document.getElementById('uuidOutput').value = '';
+            showToast('Reset complete');
+        }
+
+        // Tool 14: Lorem Ipsum Generator
+        const loremWords = ['lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'sed', 'do', 'eiusmod', 'tempor', 'incididunt', 'ut', 'labore', 'et', 'dolore', 'magna', 'aliqua'];
+        
+        function generateLorem() {
+            const type = document.getElementById('loremType').value;
+            const count = parseInt(document.getElementById('loremCount').value);
+            let result = '';
+            
+            if (type === 'words') {
+                for (let i = 0; i < count; i++) {
+                    result += loremWords[Math.floor(Math.random() * loremWords.length)] + ' ';
+                }
+            } else if (type === 'sentences') {
+                for (let i = 0; i < count; i++) {
+                    const wordCount = 10 + Math.floor(Math.random() * 10);
+                    let sentence = '';
+                    for (let j = 0; j < wordCount; j++) {
+                        sentence += loremWords[Math.floor(Math.random() * loremWords.length)] + ' ';
+                    }
+                    result += sentence.trim() + '. ';
+                }
+            } else {
+                for (let i = 0; i < count; i++) {
+                    const sentenceCount = 3 + Math.floor(Math.random() * 4);
+                    let paragraph = '';
+                    for (let j = 0; j < sentenceCount; j++) {
+                        const wordCount = 10 + Math.floor(Math.random() * 10);
+                        let sentence = '';
+                        for (let k = 0; k < wordCount; k++) {
+                            sentence += loremWords[Math.floor(Math.random() * loremWords.length)] + ' ';
+                        }
+                        paragraph += sentence.trim() + '. ';
+                    }
+                    result += paragraph.trim() + '\n\n';
+                }
+            }
+            
+            document.getElementById('loremOutput').value = result.trim();
+            showToast('Lorem ipsum generated!');
+        }
+
+        function copyLorem() {
+            const lorem = document.getElementById('loremOutput').value;
+            if (!lorem) {
+                showToast('Please generate text first', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(lorem);
+            showToast('Text copied!');
+        }
+
+        function resetLorem() {
+            document.getElementById('loremOutput').value = '';
+            showToast('Reset complete');
+        }
+
+        // Tool 15: Code Minifier
+        function minifyCode() {
+            const type = document.getElementById('codeType').value;
+            const input = document.getElementById('codeInput').value;
+            
+            if (!input) {
+                showToast('Please enter code', 'error');
+                return;
+            }
+            
+            let output = input;
+            if (type === 'html' || type === 'css' || type === 'js') {
+                output = input.replace(/\s+/g, ' ').replace(/>\s+</g, '><').trim();
+            }
+            
+            document.getElementById('codeOutput').value = output;
+            const savings = ((1 - output.length / input.length) * 100).toFixed(1);
+            showToast(`Code minified! Saved ${savings}%`);
+        }
+
+        function copyCode() {
+            const code = document.getElementById('codeOutput').value;
+            if (!code) {
+                showToast('Please minify code first', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(code);
+            showToast('Code copied!');
+        }
+
+        function resetMinifier() {
+            document.getElementById('codeInput').value = '';
+            document.getElementById('codeOutput').value = '';
+            showToast('Reset complete');
+        }
+
+        // Tool 16: Markdown to HTML
+        function convertMarkdown() {
+            const input = document.getElementById('markdownInput').value;
+            if (!input) {
+                showToast('Please enter Markdown', 'error');
+                return;
+            }
+            
+            let html = input
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+                .replace(/\*(.*)\*/gim, '<em>$1</em>')
+                .replace(/\n/gim, '<br>');
+            
+            document.getElementById('markdownOutput').value = html;
+            showToast('Markdown converted!');
+        }
+
+        function copyMarkdown() {
+            const html = document.getElementById('markdownOutput').value;
+            if (!html) {
+                showToast('Please convert Markdown first', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(html);
+            showToast('HTML copied!');
+        }
+
+        function resetMarkdown() {
+            document.getElementById('markdownInput').value = '';
+            document.getElementById('markdownOutput').value = '';
+            showToast('Reset complete');
+        }
+
+        // Tool 17: Unit Converter
+        const units = {
+            length: { meter: 1, kilometer: 1000, centimeter: 0.01, mile: 1609.34, foot: 0.3048, inch: 0.0254 },
+            weight: { kilogram: 1, gram: 0.001, pound: 0.453592, ounce: 0.0283495, ton: 1000 },
+            temperature: { celsius: 'C', fahrenheit: 'F', kelvin: 'K' },
+            digital: { byte: 1, kilobyte: 1024, megabyte: 1048576, gigabyte: 1073741824 }
+        };
+
+        function updateUnitOptions() {
+            const category = document.getElementById('unitCategory').value;
+            const fromSelect = document.getElementById('unitFrom');
+            const toSelect = document.getElementById('unitTo');
+            
+            fromSelect.innerHTML = '';
+            toSelect.innerHTML = '';
+            
+            Object.keys(units[category]).forEach(unit => {
+                fromSelect.innerHTML += `<option value="${unit}">${unit}</option>`;
+                toSelect.innerHTML += `<option value="${unit}">${unit}</option>`;
+            });
+        }
+
+        function convertUnit() {
+            const category = document.getElementById('unitCategory').value;
+            const from = document.getElementById('unitFrom').value;
+            const to = document.getElementById('unitTo').value;
+            const value = parseFloat(document.getElementById('unitValue').value);
+            
+            if (isNaN(value)) {
+                showToast('Please enter a valid number', 'error');
+                return;
+            }
+            
+            let result;
+            if (category === 'temperature') {
+                result = convertTemperature(value, from, to);
+            } else {
+                const baseValue = value * units[category][from];
+                result = baseValue / units[category][to];
+            }
+            
+            document.getElementById('unitResult').textContent = `${value} ${from} = ${result.toFixed(4)} ${to}`;
+            showToast('Conversion complete!');
+        }
+
+        function convertTemperature(value, from, to) {
+            let celsius;
+            if (from === 'celsius') celsius = value;
+            else if (from === 'fahrenheit') celsius = (value - 32) * 5/9;
+            else celsius = value - 273.15;
+            
+            if (to === 'celsius') return celsius;
+            else if (to === 'fahrenheit') return celsius * 9/5 + 32;
+            else return celsius + 273.15;
+        }
+
+        function resetUnit() {
+            document.getElementById('unitValue').value = '';
+            document.getElementById('unitResult').textContent = 'Result will appear here';
+            showToast('Reset complete');
+        }
+
+        updateUnitOptions();
+
+        // Tool 18: Age Calculator
+        function calculateAge() {
+            const birthDate = new Date(document.getElementById('birthDate').value);
+            if (!document.getElementById('birthDate').value) {
+                showToast('Please select a date', 'error');
+                return;
+            }
+            
+            const now = new Date();
+            const diff = now - birthDate;
+            
+            const years = Math.floor(diff / (365.25 * 24 * 60 * 60 * 1000));
+            const months = Math.floor((diff % (365.25 * 24 * 60 * 60 * 1000)) / (30.44 * 24 * 60 * 60 * 1000));
+            const days = Math.floor(diff / (24 * 60 * 60 * 1000));
+            const hours = Math.floor(diff / (60 * 60 * 1000));
+            
+            document.getElementById('ageYears').textContent = years;
+            document.getElementById('ageMonths').textContent = months;
+            document.getElementById('ageDays').textContent = days;
+            document.getElementById('ageHours').textContent = hours;
+            document.getElementById('ageStats').style.display = 'grid';
+            
+            showToast('Age calculated!');
+        }
+
+        function resetAge() {
+            document.getElementById('birthDate').value = '';
+            document.getElementById('ageStats').style.display = 'none';
+            showToast('Reset complete');
+        }
+
+        // Tool 19: BMI Calculator
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100;
+            
+            if (!weight || !height) {
+                showToast('Please enter weight and height', 'error');
+                return;
+            }
+            
+            const bmi = weight / (height * height);
+            let category = '';
+            
+            if (bmi < 18.5) category = 'Underweight';
+            else if (bmi < 25) category = 'Normal weight';
+            else if (bmi < 30) category = 'Overweight';
+            else category = 'Obese';
+            
+            document.getElementById('bmiResult').innerHTML = `
+                <strong>BMI:</strong> ${bmi.toFixed(1)}<br>
+                <strong>Category:</strong> ${category}
+            `;
+            showToast('BMI calculated!');
+        }
+
+        function resetBMI() {
+            document.getElementById('weight').value = '';
+            document.getElementById('height').value = '';
+            document.getElementById('bmiResult').textContent = 'Your BMI will appear here';
+            showToast('Reset complete');
+        }
+
+        // Tool 20: Countdown Timer
+        let timerInterval = null;
+        let totalSeconds = 0;
+        
+        function startTimer() {
+            const minutes = parseInt(document.getElementById('timerMinutes').value) || 0;
+            const seconds = parseInt(document.getElementById('timerSeconds').value) || 0;
+            
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                document.getElementById('timerBtn').textContent = 'Start';
+                document.getElementById('timerBtn').onclick = startTimer;
+                showToast('Timer paused');
+                return;
+            }
+            
+            totalSeconds = minutes * 60 + seconds;
+            
+            if (totalSeconds <= 0) {
+                showToast('Please set a time', 'error');
+                return;
+            }
+            
+            document.getElementById('timerBtn').textContent = 'Pause';
+            
+            timerInterval = setInterval(() => {
+                totalSeconds--;
+                
+                const mins = Math.floor(totalSeconds / 60);
+                const secs = totalSeconds % 60;
+                
+                document.getElementById('timerDisplay').textContent = 
+                    `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                
+                if (totalSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    document.getElementById('timerBtn').textContent = 'Start';
+                    showToast('Time\'s up! ⏰');
+                }
+            }, 1000);
+            
+            showToast('Timer started!');
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            totalSeconds = 0;
+            document.getElementById('timerMinutes').value = '5';
+            document.getElementById('timerSeconds').value = '0';
+            document.getElementById('timerDisplay').textContent = '05:00';
+            document.getElementById('timerBtn').textContent = 'Start';
+            document.getElementById('timerBtn').onclick = startTimer;
+            showToast('Timer reset');
+        }
+
+        // Tool 21: Case Converter
+        function convertToUpper() {
+            const input = document.getElementById('caseInput').value;
+            document.getElementById('caseOutput').value = input.toUpperCase();
+            showToast('Converted to UPPERCASE');
+        }
+
+        function convertToLower() {
+            const input = document.getElementById('caseInput').value;
+            document.getElementById('caseOutput').value = input.toLowerCase();
+            showToast('Converted to lowercase');
+        }
+
+        function convertToTitle() {
+            const input = document.getElementById('caseInput').value;
+            document.getElementById('caseOutput').value = input.replace(/\w\S*/g, function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+            showToast('Converted to Title Case');
+        }
+
+        function convertToSentence() {
+            const input = document.getElementById('caseInput').value;
+            document.getElementById('caseOutput').value = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+            showToast('Converted to Sentence case');
+        }
+
+        function copyCase() {
+            const output = document.getElementById('caseOutput').value;
+            if (!output) {
+                showToast('Please convert text first', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(output);
+            showToast('Text copied!');
+        }
+
+        function resetCase() {
+            document.getElementById('caseInput').value = '';
+            document.getElementById('caseOutput').value = '';
+            showToast('Reset complete');
+        }
+
+        // Tool 22: Random Number Generator
+        function generateRandomNumbers() {
+            const min = parseInt(document.getElementById('randomMin').value);
+            const max = parseInt(document.getElementById('randomMax').value);
+            const count = parseInt(document.getElementById('randomCount').value);
+            
+            if (min >= max) {
+                showToast('Minimum must be less than maximum', 'error');
+                return;
+            }
+            
+            const numbers = [];
+            for (let i = 0; i < count; i++) {
+                numbers.push(Math.floor(Math.random() * (max - min + 1)) + min);
+            }
+            
+            const container = document.getElementById('randomNumbers');
+            container.innerHTML = '';
+            numbers.forEach(num => {
+                const div = document.createElement('div');
+                div.className = 'random-number';
+                div.textContent = num;
+                container.appendChild(div);
+            });
+            
+            showToast(`${count} random numbers generated!`);
+        }
+
+        function resetRandom() {
+            document.getElementById('randomMin').value = '1';
+            document.getElementById('randomMax').value = '100';
+            document.getElementById('randomCount').value = '5';
+            document.getElementById('randomNumbers').innerHTML = '';
+            showToast('Reset complete');
+        }
+
+        // Tool 23: Text Diff Checker
+        function compareText() {
+            const original = document.getElementById('diffOriginal').value;
+            const modified = document.getElementById('diffModified').value;
+            
+            if (!original || !modified) {
+                showToast('Please enter both texts', 'error');
+                return;
+            }
+            
+            const diff = generateDiff(original, modified);
+            document.getElementById('diffResult').innerHTML = diff;
+            showToast('Text comparison complete!');
+        }
+
+        function generateDiff(original, modified) {
+            // Simple diff implementation
+            let result = '';
+            const origLines = original.split('\n');
+            const modLines = modified.split('\n');
+            
+            for (let i = 0; i < Math.max(origLines.length, modLines.length); i++) {
+                const origLine = origLines[i] || '';
+                const modLine = modLines[i] || '';
+                
+                if (origLine === modLine) {
+                    result += origLine + '\n';
+                } else {
+                    if (origLine) result += `<div class="diff-removed">- ${origLine}</div>`;
+                    if (modLine) result += `<div class="diff-added">+ ${modLine}</div>`;
+                }
+            }
+            
+            return result;
+        }
+
+        function resetDiff() {
+            document.getElementById('diffOriginal').value = '';
+            document.getElementById('diffModified').value = '';
+            document.getElementById('diffResult').innerHTML = '';
+            showToast('Reset complete');
+        }
+
+        // Tool 24: IP Address Lookup
+        async function lookupIP() {
+            const ip = document.getElementById('ipAddress').value;
+            
+            try {
+                const response = await fetch(`https://api.ipify.org?format=json`);
+                const data = await response.json();
+                document.getElementById('ipResult').textContent = `Your IP Address: ${data.ip}\n\nNote: Detailed IP lookup requires backend service.`;
+                showToast('IP lookup complete!');
+            } catch (error) {
+                document.getElementById('ipResult').textContent = 'Error fetching IP information';
+                showToast('IP lookup failed', 'error');
+            }
+        }
+
+        function resetIP() {
+            document.getElementById('ipAddress').value = '';
+            document.getElementById('ipResult').textContent = 'IP information will appear here';
+            showToast('Reset complete');
+        }
+
+        // Tool 25: Time Zone Converter
+        function convertTimezone() {
+            const from = document.getElementById('timezoneFrom').value;
+            const to = document.getElementById('timezoneTo').value;
+            const dateTime = document.getElementById('timezoneDateTime').value;
+            
+            if (!dateTime) {
+                showToast('Please select date and time', 'error');
+                return;
+            }
+            
+            // Simple timezone conversion (demo)
+            const date = new Date(dateTime);
+            const offset = getTimezoneOffset(from, to);
+            date.setHours(date.getHours() + offset);
+            
+            document.getElementById('timezoneResult').textContent = 
+                `Converted: ${date.toLocaleString()} (${to})`;
+            showToast('Timezone converted!');
+        }
+
+        function getTimezoneOffset(from, to) {
+            const offsets = {
+                'UTC': 0,
+                'EST': -5,
+                'PST': -8,
+                'CET': 1
+            };
+            return offsets[to] - offsets[from];
+        }
+
+        function resetTimezone() {
+            document.getElementById('timezoneDateTime').value = '';
+            document.getElementById('timezoneResult').textContent = 'Converted time will appear here';
+            showToast('Reset complete');
+        }
+
+        // Tool 26: Currency Converter
+        async function convertCurrency() {
+            const from = document.getElementById('currencyFrom').value;
+            const to = document.getElementById('currencyTo').value;
+            const amount = parseFloat(document.getElementById('currencyAmount').value);
+            
+            if (!amount || amount <= 0) {
+                showToast('Please enter a valid amount', 'error');
+                return;
+            }
+            
+            // Mock conversion rates (in real app, use API)
+            const rates = {
+                'USD': { 'EUR': 0.85, 'GBP': 0.73, 'JPY': 110.0 },
+                'EUR': { 'USD': 1.18, 'GBP': 0.86, 'JPY': 129.0 },
+                'GBP': { 'USD': 1.37, 'EUR': 1.16, 'JPY': 150.0 },
+                'JPY': { 'USD': 0.0091, 'EUR': 0.0078, 'GBP': 0.0067 }
+            };
+            
+            let result;
+            if (from === to) {
+                result = amount;
+            } else {
+                result = amount * rates[from][to];
+            }
+            
+            document.getElementById('currencyResult').textContent = 
+                `${amount} ${from} = ${result.toFixed(2)} ${to}`;
+            showToast('Currency converted!');
+        }
+
+        function resetCurrency() {
+            document.getElementById('currencyAmount').value = '';
+            document.getElementById('currencyResult').textContent = 'Conversion result will appear here';
+            showToast('Reset complete');
+        }
+
+        // Smooth scroll to tool on page load
+        window.addEventListener('load', () => {
+            const hash = window.location.hash;
+            if (hash) {
+                const element = document.querySelector(hash);
+                if (element) {
+                    setTimeout(() => {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

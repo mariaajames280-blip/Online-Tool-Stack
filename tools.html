@@ -147,6 +147,7 @@
 
        <!-- QR Code Generator Tool -->
 
+<!-- QR Code Generator Tool -->
 <section id="qr-generator" class="tool-section">
     <div class="tool-header">
         <h2>📱 QR Code Generator</h2>
@@ -182,12 +183,12 @@
         <div id="qrResult" class="real-time-result" style="display: none;">
             <h3 style="color: var(--color-yellow);">Your QR Code</h3>
             <div style="text-align: center; padding: 1rem;">
+                <!-- ADD CANVAS FOR QR CODE -->
+                <canvas id="qrCanvas" style="display: none;"></canvas>
                 <img id="qrImage" src="" alt="QR Code" style="max-width: 300px; border: 3px solid var(--color-blue); border-radius: 8px; padding: 10px;">
             </div>
             <div class="tool-buttons">
-                <button class="btn btn-download" id="downloadBtn" onclick="downloadQRCode()" disabled style="opacity: 0.6;">
-    Download QR Code
-</button>
+                <button class="btn btn-download" onclick="downloadQRCode()">Download QR Code</button>
             </div>
         </div>
     </div>

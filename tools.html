@@ -152,45 +152,66 @@
 <section id="qr-generator" class="tool-section">
     <div class="tool-header">
         <h2>📱 QR Code Generator</h2>
-        <p>Create custom QR codes instantly</p>
+        <p>Create QR codes for text, links, Wi-Fi, or contact info</p>
     </div>
     
     <div class="tool-interface">
+        <!-- Mode Selector -->
         <div class="form-group">
-            <label for="qrText">Enter Text or URL:</label>
-            <textarea id="qrText" placeholder="Enter your text or URL here..." class="form-control" rows="3"></textarea>
+            <label>Select Mode:</label>
+            <select id="mode" onchange="switchMode()" class="form-control">
+                <option value="text">Text / URL</option>
+                <option value="wifi">Wi-Fi</option>
+                <option value="vcard">vCard Contact</option>
+            </select>
         </div>
 
-        <div class="form-group">
-            <label>QR Code Color:</label>
-            <div class="checkbox-group">
-                <label class="checkbox-label">
-                    <input type="radio" name="qrColor" value="00d4ff" checked> Blue
-                </label>
-                <label class="checkbox-label">
-                    <input type="radio" name="qrColor" value="ffd700"> Yellow
-                </label>
-                <label class="checkbox-label">
-                    <input type="radio" name="qrColor" value="000000"> Black
-                </label>
+        <!-- Input Sections -->
+        <div id="textMode" class="mode">
+            <div class="form-group">
+                <label for="qrInput">Enter Text or URL:</label>
+                <textarea id="qrInput" rows="5" class="form-control" placeholder="Enter text or link here..."></textarea>
             </div>
         </div>
 
+        <div id="wifiMode" class="mode" style="display: none;">
+            <div class="form-group">
+                <input id="ssid" type="text" placeholder="Wi-Fi SSID" class="form-control">
+            </div>
+            <div class="form-group">
+                <input id="password" type="text" placeholder="Wi-Fi Password" class="form-control">
+            </div>
+            <div class="form-group">
+                <select id="encryption" class="form-control">
+                    <option value="WPA">WPA/WPA2</option>
+                    <option value="WEP">WEP</option>
+                    <option value="">None</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="vcardMode" class="mode" style="display: none;">
+            <div class="form-group">
+                <input id="name" type="text" placeholder="Full Name" class="form-control">
+            </div>
+            <div class="form-group">
+                <input id="phone" type="text" placeholder="Phone Number" class="form-control">
+            </div>
+            <div class="form-group">
+                <input id="email" type="email" placeholder="Email Address" class="form-control">
+            </div>
+        </div>
+
+        <!-- Buttons -->
         <div class="tool-buttons">
-            <button class="btn btn-primary" onclick="generateSimpleQR()">Generate QR Code</button>
+            <button class="btn btn-primary" onclick="generateQR()">Generate QR Code</button>
+            <button class="btn btn-download" onclick="downloadQR()" id="downloadBtn" style="display: none;">Download QR Code</button>
             <button class="btn btn-reset" onclick="resetQRGenerator()">Reset</button>
         </div>
 
-        <div id="qrResult" class="real-time-result" style="display: none;">
+        <!-- QR Code Display -->
+        <div id="qrcode" class="real-time-result" style="display: none; text-align: center; padding: 1rem;">
             <h3 style="color: var(--color-yellow);">Your QR Code</h3>
-            <div style="text-align: center; padding: 1rem;">
-                <!-- ADD CANVAS FOR QR CODE -->
-                <canvas id="qrCanvas" style="display: none;"></canvas>
-                <img id="qrImage" src="" alt="QR Code" style="max-width: 300px; border: 3px solid var(--color-blue); border-radius: 8px; padding: 10px;">
-            </div>
-            <div class="tool-buttons">
-                <button class="btn btn-download" onclick="downloadQRCode()">Download QR Code</button>
-            </div>
         </div>
     </div>
 </section>

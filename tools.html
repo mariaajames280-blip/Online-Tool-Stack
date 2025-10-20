@@ -801,39 +801,135 @@
                 </div>
             </div>
 
-            <!-- Tool 11: Image Resizer -->
-            <div class="tool-section" id="image-resizer">
-                <div class="tool-header">
-                    <span class="icon">📐</span>
-                    <h2>Image Resizer</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Select Image</label>
-                        <input type="file" id="resizeInput" accept="image/*">
-                    </div>
-                    <div class="grid-2">
-                        <div class="input-group">
-                            <label>Width (px)</label>
-                            <input type="number" id="resizeWidth" placeholder="800">
-                        </div>
-                        <div class="input-group">
-                            <label>Height (px)</label>
-                            <input type="number" id="resizeHeight" placeholder="600">
-                        </div>
-                    </div>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="maintainRatio" checked> Maintain aspect ratio
-                    </label>
-                    <canvas id="resizeCanvas" style="display:none;"></canvas>
-                    <img id="resizePreview" class="image-preview" style="display:none;">
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="resizeImage()">Resize</button>
-                        <button class="btn-secondary" onclick="downloadResized()">Download</button>
-                        <button class="btn-danger" onclick="resetResize()">Reset</button>
-                    </div>
-                </div>
-            </div>
+                   // Tool 11: Image Resizer - IMPROVED VERSION
+        let resizedImage = null;
+        let originalImageData = null;
+        
+        // Show original image when selected
+        document.getElementById('resizeInput').addEventListener('change', function(e) {
+            if (e.target.files[0]) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        document.getElementById('originalPreview').src = e.target.result;
+                        document.getElementById('originalPreviewContainer').style.display = 'block';
+                        document.getElementById('originalSize').textContent = (file.size / 1024).toFixed(2) + ' KB';
+                        document.getElementById('originalDimensions').textContent = img.width + ' × ' + img.height;
+                        
+                        // Store original image data
+                        originalImageData = {
+                            src: e.target.result,
+                            width: img.width,
+                            height: img.height,
+                            size: file.size
+                        };
+                        
+                        // Auto-fill dimensions with original size
+                        document.getElementById('resizeWidth').value = img.width;
+                        document.getElementById('resizeHeight').value = img.height;
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        function resizeImage() {
+            const input = document.getElementById('resizeInput');
+            const width = parseInt(document.getElementById('resizeWidth').value);
+            const height = parseInt(document.getElementById('resizeHeight').value);
+            const maintainRatio = document.getElementById('maintainRatio').checked;
+            
+            if (!input.files[0]) {
+                showToast('Please select an image', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    let newWidth = width || img.width;
+                    let newHeight = height || img.height;
+                    
+                    // Calculate dimensions maintaining aspect ratio if needed
+                    if (maintainRatio) {
+                        const aspectRatio = img.width / img.height;
+                        if (width && !height) {
+                            newHeight = Math.round(width / aspectRatio);
+                        } else if (height && !width) {
+                            newWidth = Math.round(height * aspectRatio);
+                        } else if (width && height) {
+                            const widthRatio = width / img.width;
+                            const heightRatio = height / img.height;
+                            const ratio = Math.min(widthRatio, heightRatio);
+                            newWidth = Math.round(img.width * ratio);
+                            newHeight = Math.round(img.height * ratio);
+                        }
+                    }
+                    
+                    canvas.width = newWidth;
+                    canvas.height = newHeight;
+                    
+                    // Draw image with smooth scaling
+                    ctx.imageSmoothingQuality = 'high';
+                    ctx.drawImage(img, 0, 0, newWidth, newHeight);
+                    
+                    // Convert to blob
+                    canvas.toBlob((blob) => {
+                        resizedImage = blob;
+                        const url = URL.createObjectURL(blob);
+                        const preview = document.getElementById('resizePreview');
+                        preview.src = url;
+                        
+                        // Show resized preview container
+                        document.getElementById('resizedPreviewContainer').style.display = 'block';
+                        document.getElementById('resizedDimensions').textContent = newWidth + ' × ' + newHeight;
+                        
+                        // Calculate size reduction
+                        const sizeReduction = ((1 - (blob.size / originalImageData.size)) * 100).toFixed(1);
+                        document.getElementById('sizeReduction').textContent = 
+                            sizeReduction > 0 ? sizeReduction + '% smaller' : 'Size increased';
+                        
+                        showToast(`Image resized to ${newWidth}×${newHeight}!`);
+                    }, 'image/png', 0.95);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        function downloadResized() {
+            if (!resizedImage) {
+                showToast('Please resize an image first', 'error');
+                return;
+            }
+            const url = URL.createObjectURL(resizedImage);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'resized-image.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('Resized image downloaded!');
+        }
+
+        function resetResize() {
+            document.getElementById('resizeInput').value = '';
+            document.getElementById('resizeWidth').value = '';
+            document.getElementById('resizeHeight').value = '';
+            document.getElementById('originalPreviewContainer').style.display = 'none';
+            document.getElementById('resizedPreviewContainer').style.display = 'none';
+            resizedImage = null;
+            originalImageData = null;
+            showToast('Reset complete');
+        }
 
             <!-- Tool 12: Hash Generator -->
             <div class="tool-section" id="hash-generator">

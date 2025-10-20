@@ -16,6 +16,7 @@
 
     <!-- Link to your external CSS file -->
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     
     <!-- Additional CSS for Tools -->
     <style>
@@ -591,6 +592,68 @@
         document.addEventListener('DOMContentLoaded', function() {
             countWords();
         });
+                // ==================== //
+        // QR CODE GENERATOR FIX //
+        // ==================== //
+        function generateSimpleQR() {
+            const text = document.getElementById('qrText').value.trim();
+            if (!text) {
+                alert('Please enter some text or URL!');
+                return;
+            }
+
+            // Get selected color
+            const colorRadio = document.querySelector('input[name="qrColor"]:checked');
+            const color = '#' + colorRadio.value;
+
+            // Generate QR code to canvas
+            const canvas = document.getElementById('qrCanvas');
+            if (!canvas) {
+                alert('QR Code system not ready. Please refresh the page.');
+                return;
+            }
+
+            QRCode.toCanvas(canvas, text, {
+                width: 300,
+                margin: 2,
+                color: {
+                    dark: color,
+                    light: '#00000000' // Transparent background
+                }
+            }, function(error) {
+                if (error) {
+                    alert('Error generating QR code: ' + error);
+                    return;
+                }
+                
+                // Convert canvas to image for display
+                const qrImage = document.getElementById('qrImage');
+                qrImage.src = canvas.toDataURL('image/png');
+                
+                // Show result section
+                document.getElementById('qrResult').style.display = 'block';
+            });
+        }
+
+        function downloadQRCode() {
+            const canvas = document.getElementById('qrCanvas');
+            if (!canvas) {
+                alert('Please generate a QR code first!');
+                return;
+            }
+            
+            const link = document.createElement('a');
+            link.download = 'qrcode.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function resetQRGenerator() {
+            document.getElementById('qrText').value = '';
+            document.getElementById('qrResult').style.display = 'none';
+            const qrImage = document.getElementById('qrImage');
+            if (qrImage) qrImage.src = '';
+        }
     </script>
 </body>
 </html>

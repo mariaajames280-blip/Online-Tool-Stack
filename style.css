@@ -1,7 +1,21 @@
 /* ===================================
    Online ToolStack - Professional CSS
-   Black Background with Blue/Yellow Theme
+   BLACK & WHITE FIX - FULL COLOR GUARANTEED
    =================================== */
+
+/* FORCE FULL COLOR - OVERRIDE ANY GRAYSCALE */
+* {
+    filter: grayscale(0) !important;
+    -webkit-filter: grayscale(0) !important;
+}
+
+html, body, div, section, header, footer, nav, main, article, aside, 
+.navbar, .hero, .section, .tool-card, .category-card, .feature-card, 
+.tool-container, .footer, .container, .btn, .logo, .nav-links, 
+.hero-content, .tools-grid, .categories-grid, .features-grid {
+    filter: grayscale(0) !important;
+    -webkit-filter: grayscale(0) !important;
+}
 
 /* CSS Variables */
 :root {
@@ -43,6 +57,7 @@ body {
     overflow-x: hidden;
 }
 
+/* REST OF YOUR ORIGINAL CSS GOES HERE - EXACTLY AS YOU HAD IT */
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     color: var(--color-white);

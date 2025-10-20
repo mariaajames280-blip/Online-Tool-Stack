@@ -1787,7 +1787,8 @@
             showToast('Reset complete');
         }
 
-        // Tool 11: Image Resizer
+        
+               // Tool 11: Image Resizer - CORRECTED VERSION
         let resizedImage = null;
         
         function resizeImage() {
@@ -1800,41 +1801,51 @@
                 showToast('Please select an image', 'error');
                 return;
             }
-            if (!width && !height) {
-                showToast('Please enter width or height', 'error');
-                return;
-            }
             
             const reader = new FileReader();
             reader.onload = (e) => {
                 const img = new Image();
                 img.onload = () => {
-                    const canvas = document.getElementById('resizeCanvas');
+                    const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
                     
                     let newWidth = width || img.width;
                     let newHeight = height || img.height;
                     
+                    // Calculate dimensions maintaining aspect ratio if needed
                     if (maintainRatio) {
+                        const aspectRatio = img.width / img.height;
                         if (width && !height) {
-                            newHeight = (img.height * width) / img.width;
+                            newHeight = width / aspectRatio;
                         } else if (height && !width) {
-                            newWidth = (img.width * height) / img.height;
+                            newWidth = height * aspectRatio;
+                        } else if (width && height) {
+                            const widthRatio = width / img.width;
+                            const heightRatio = height / img.height;
+                            const ratio = Math.min(widthRatio, heightRatio);
+                            newWidth = img.width * ratio;
+                            newHeight = img.height * ratio;
                         }
                     }
                     
                     canvas.width = newWidth;
                     canvas.height = newHeight;
+                    
+                    // Draw image with smooth scaling
+                    ctx.imageSmoothingQuality = 'high';
                     ctx.drawImage(img, 0, 0, newWidth, newHeight);
                     
+                    // Convert to blob
                     canvas.toBlob((blob) => {
                         resizedImage = blob;
                         const url = URL.createObjectURL(blob);
                         const preview = document.getElementById('resizePreview');
                         preview.src = url;
                         preview.style.display = 'block';
-                        showToast(`Image resized to ${newWidth}x${newHeight}!`);
-                    });
+                        preview.alt = `Resized to ${Math.round(newWidth)}x${Math.round(newHeight)}`;
+                        
+                        showToast(`Image resized to ${Math.round(newWidth)}x${Math.round(newHeight)}!`);
+                    }, 'image/png', 0.95);
                 };
                 img.src = e.target.result;
             };
@@ -1850,7 +1861,10 @@
             const a = document.createElement('a');
             a.href = url;
             a.download = 'resized-image.png';
+            document.body.appendChild(a);
             a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
             showToast('Image downloaded!');
         }
 

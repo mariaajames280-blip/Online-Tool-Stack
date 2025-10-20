@@ -3,700 +3,1033 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Tools - Online ToolStack</title>
+    <meta name="description" content="Access 40+ free online tools including image compressor, QR code generator, password generator, JSON formatter, converters, calculators and more. All tools work in your browser.">
+    <meta name="keywords" content="online tools, free tools, web tools, converter, generator, calculator, developer tools, 40 tools">
+    <title>40+ Free Online Tools - Online ToolStack</title>
     
-    <!-- EMERGENCY COLOR FIX -->
     <style>
-    /* FORCE FULL COLOR - OVERRIDE ANY GRAYSCALE */
-    * {
-        filter: grayscale(0) !important;
-        -webkit-filter: grayscale(0) !important;
-    }
-    </style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Link to your external CSS file -->
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    
-    <!-- Additional CSS for Tools -->
-    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #161616;
+            --color-blue: #00d4ff;
+            --color-yellow: #ffd700;
+            --color-white: #ffffff;
+            --color-gray: #a0a0a0;
+            --color-success: #10b981;
+            --color-error: #ef4444;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--color-white);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-blue);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--color-yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-blue);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--color-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--color-gray);
+            font-size: 1.2rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
         .tool-section {
-            margin: 3rem 0;
-            padding: 2rem 0;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-        }
-        
-        .tool-section:last-child {
-            border-bottom: none;
-        }
-        
-        .tool-interface {
-            background: var(--color-dark);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 12px;
+            background: var(--bg-card);
+            border-radius: 15px;
             padding: 2rem;
+            border: 1px solid #2a2a2a;
+            transition: var(--transition);
+        }
+
+        .tool-section:hover {
+            border-color: var(--color-blue);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.15);
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #2a2a2a;
+        }
+
+        .tool-header h2 {
+            color: var(--color-yellow);
+            font-size: 1.8rem;
+        }
+
+        .tool-header .icon {
+            font-size: 2rem;
+        }
+
+        .tool-content {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            color: var(--color-blue);
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="file"],
+        input[type="date"],
+        input[type="time"],
+        input[type="color"],
+        input[type="url"],
+        textarea,
+        select {
+            background: var(--bg-secondary);
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 0.75rem;
+            color: var(--color-white);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        button, .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--color-blue);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            background: #00b8e6;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--color-yellow);
+            color: var(--bg-primary);
+        }
+
+        .btn-secondary:hover {
+            background: #e6c200;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: var(--color-error);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .output-box {
+            background: var(--bg-secondary);
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 100px;
+            color: var(--color-white);
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        .color-preview {
+            width: 100%;
+            height: 100px;
+            border-radius: 8px;
+            border: 2px solid #2a2a2a;
+        }
+
+        .palette-colors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 1rem;
+        }
+
+        .palette-color {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: white;
+            text-shadow: 0 0 5px black;
+        }
+
+        .palette-color:hover {
+            transform: scale(1.1);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--bg-card);
+            color: var(--color-white);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-blue);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.success {
+            border-left-color: var(--color-success);
+        }
+
+        .toast.error {
+            border-left-color: var(--color-error);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-gray);
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .range-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            height: 6px;
+            background: var(--bg-secondary);
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .range-value {
+            color: var(--color-yellow);
+            font-weight: bold;
+            min-width: 50px;
+        }
+
+        .info-box {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--color-blue);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--color-blue);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .tool-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button, .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .image-preview {
+            max-width: 100%;
+            border-radius: 8px;
             margin-top: 1rem;
         }
-        
-        .real-time-result {
-            background: var(--color-black);
-            border: 1px solid rgba(0, 212, 255, 0.2);
+
+        #qrCanvas {
+            max-width: 300px;
+            background: white;
+            padding: 1rem;
             border-radius: 8px;
-            padding: 1.5rem;
+        }
+
+        .strength-meter {
+            height: 10px;
+            background: var(--bg-secondary);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .strength-bar {
+            height: 100%;
+            transition: var(--transition);
+            border-radius: 5px;
+        }
+
+        .timer-display {
+            font-size: 4rem;
+            color: var(--color-yellow);
+            text-align: center;
+            font-weight: bold;
+            margin: 2rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            color: var(--color-yellow);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--color-gray);
+            font-size: 0.9rem;
+        }
+
+        .case-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .random-numbers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
             margin-top: 1rem;
+        }
+
+        .random-number {
+            background: var(--color-blue);
+            color: var(--bg-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+
+        .diff-result {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+
+        .diff-added {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .diff-removed {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .currency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .currency-rate {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .currency-flag {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gradient-preview {
+            width: 100%;
+            height: 100px;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 2px solid #2a2a2a;
+        }
+
+        .emoji-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .emoji-item {
+            font-size: 2rem;
+            text-align: center;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .emoji-item:hover {
+            background: var(--color-blue);
+            transform: scale(1.1);
         }
     </style>
-    <!-- Add this to your tools.html head section -->
-<script src="script.js"></script>
 </head>
 <body>
-    <!-- Header Navigation -->
     <header>
         <nav>
-            <a href="/" class="logo">
-                ⚡ Online<span>ToolStack</span>
-            </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="/">Home</a></li>
-                <li><a href="/tools.html" class="active">All Tools</a></li>
-                <li><a href="/about.html">About</a></li>
-                <li><a href="/blog.html">Blog</a></li>
-                <li><a href="/contact.html">Contact</a></li>
+            <a href="index.html" class="logo">⚡ Online<span>ToolStack</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools.html" class="active">Tools</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container">
-        <section class="hero">
-            <h1>All Professional Tools</h1>
-            <p class="hero-description">40+ free online tools for productivity, development, and content creation</p>
-        </section>
+    <div class="container">
+        <div class="page-header">
+            <h1>40+ Professional Tools</h1>
+            <p>All tools work directly in your browser - 100% free and secure</p>
+        </div>
 
-        <!-- Tools Navigation -->
         <div class="tools-grid">
-            <div class="tool-card" onclick="showTool('image-compressor')">
-                <div class="tool-icon">🖼️</div>
-                <h3>Image Compressor</h3>
-                <p>Reduce image file size without losing quality</p>
-                <span class="tool-link">Use Tool →</span>
-            </div>
-
-            <div class="tool-card" onclick="showTool('qr-generator')">
-                <div class="tool-icon">📱</div>
-                <h3>QR Code Generator</h3>
-                <p>Create custom QR codes for URLs and text</p>
-                <span class="tool-link">Use Tool →</span>
-            </div>
-
-            <div class="tool-card" onclick="showTool('password-generator')">
-                <div class="tool-icon">🔐</div>
-                <h3>Password Generator</h3>
-                <p>Generate secure random passwords</p>
-                <span class="tool-link">Use Tool →</span>
-            </div>
-
-            <div class="tool-card" onclick="showTool('word-counter')">
-                <div class="tool-icon">📝</div>
-                <h3>Word Counter</h3>
-                <p>Count words, characters, and sentences</p>
-                <span class="tool-link">Use Tool →</span>
-            </div>
-
-            <div class="tool-card" onclick="showTool('color-picker')">
-                <div class="tool-icon">🎨</div>
-                <h3>Color Picker</h3>
-                <p>Pick colors and get HEX, RGB values</p>
-                <span class="tool-link">Use Tool →</span>
-            </div>
-        </div>
-
-        <!-- ==================== -->
-        <!-- WORKING TOOLS SECTIONS -->
-        <!-- ==================== -->
-
-        <!-- Image Compressor Tool -->
-        <section id="image-compressor" class="tool-section">
-            <div class="tool-header">
-                <h2>🖼️ Image Compressor</h2>
-                <p>Reduce image file size without losing quality</p>
-            </div>
-            
-            <div class="tool-interface">
-                <div class="form-group">
-                    <label for="imageInput">Select Image:</label>
-                    <input type="file" id="imageInput" accept="image/*" class="form-control">
-                    <small style="color: var(--color-gray);">Supported formats: JPG, PNG, GIF, WebP</small>
+            <!-- Tool 1: Image Compressor -->
+            <div class="tool-section" id="image-compressor">
+                <div class="tool-header">
+                    <span class="icon">🖼️</span>
+                    <h2>Image Compressor</h2>
                 </div>
-                
-                <div class="form-group">
-                    <label for="qualityRange">Compression Quality: <span id="qualityValue" style="color: var(--color-yellow);">70%</span></label>
-                    <input type="range" id="qualityRange" min="10" max="100" value="70" class="form-control">
-                </div>
-
-                <div class="tool-buttons">
-                    <button class="btn btn-primary" onclick="compressImage()">Compress Image</button>
-                    <button class="btn btn-reset" onclick="resetImageCompressor()">Reset</button>
-                </div>
-
-                <div id="imageResult" class="real-time-result" style="display: none;">
-                    <h3 style="color: var(--color-yellow);">Compression Results</h3>
-                    <div id="imageComparison"></div>
-                </div>
-            </div>
-        </section>
-
-       <!-- QR Code Generator Tool -->
-
-<!-- QR Code Generator Tool -->
-<section id="qr-generator" class="tool-section">
-    <div class="tool-header">
-        <h2>📱 QR Code Generator</h2>
-        <p>Create QR codes for text, links, Wi-Fi, or contact info</p>
-    </div>
-    
-    <div class="tool-interface">
-        <!-- Mode Selector -->
-        <div class="form-group">
-            <label>Select Mode:</label>
-            <select id="mode" onchange="switchMode()" class="form-control">
-                <option value="text">Text / URL</option>
-                <option value="wifi">Wi-Fi</option>
-                <option value="vcard">vCard Contact</option>
-            </select>
-        </div>
-
-        <!-- Input Sections -->
-        <div id="textMode" class="mode">
-            <div class="form-group">
-                <label for="qrInput">Enter Text or URL:</label>
-                <textarea id="qrInput" rows="5" class="form-control" placeholder="Enter text or link here..."></textarea>
-            </div>
-        </div>
-
-        <div id="wifiMode" class="mode" style="display: none;">
-            <div class="form-group">
-                <input id="ssid" type="text" placeholder="Wi-Fi SSID" class="form-control">
-            </div>
-            <div class="form-group">
-                <input id="password" type="text" placeholder="Wi-Fi Password" class="form-control">
-            </div>
-            <div class="form-group">
-                <select id="encryption" class="form-control">
-                    <option value="WPA">WPA/WPA2</option>
-                    <option value="WEP">WEP</option>
-                    <option value="">None</option>
-                </select>
-            </div>
-        </div>
-
-        <div id="vcardMode" class="mode" style="display: none;">
-            <div class="form-group">
-                <input id="name" type="text" placeholder="Full Name" class="form-control">
-            </div>
-            <div class="form-group">
-                <input id="phone" type="text" placeholder="Phone Number" class="form-control">
-            </div>
-            <div class="form-group">
-                <input id="email" type="email" placeholder="Email Address" class="form-control">
-            </div>
-        </div>
-
-        <!-- Buttons -->
-        <div class="tool-buttons">
-            <button class="btn btn-primary" onclick="generateQR()">Generate QR Code</button>
-            <button class="btn btn-download" onclick="downloadQR()" id="downloadBtn" style="display: none;">Download QR Code</button>
-            <button class="btn btn-reset" onclick="resetQRGenerator()">Reset</button>
-        </div>
-
-        <!-- QR Code Display -->
-        <div id="qrcode" class="real-time-result" style="display: none; text-align: center; padding: 1rem;">
-            <h3 style="color: var(--color-yellow);">Your QR Code</h3>
-        </div>
-    </div>
-</section>
-        <!-- Password Generator Tool -->
-        <section id="password-generator" class="tool-section">
-            <div class="tool-header">
-                <h2>🔐 Password Generator</h2>
-                <p>Generate secure random passwords</p>
-            </div>
-            
-            <div class="tool-interface">
-                <div class="form-group">
-                    <label for="passwordLength">Password Length: <span id="lengthValue" style="color: var(--color-yellow);">12</span> characters</label>
-                    <input type="range" id="passwordLength" min="8" max="32" value="12" class="form-control">
-                </div>
-
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="uppercase" checked> Include Uppercase (A-Z)
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="lowercase" checked> Include Lowercase (a-z)
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="numbers" checked> Include Numbers (0-9)
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="symbols"> Include Symbols (!@#$%^&*)
-                    </label>
-                </div>
-
-                <div class="tool-buttons">
-                    <button class="btn btn-primary" onclick="generatePassword()">Generate Password</button>
-                    <button class="btn btn-download" onclick="copyPassword()">Copy to Clipboard</button>
-                </div>
-
-                <div id="passwordResult" class="real-time-result" style="display: none;">
-                    <h3 style="color: var(--color-yellow);">Generated Password</h3>
-                    <div class="result-row">
-                        <span class="result-label">Password:</span>
-                        <span class="result-value" id="generatedPassword" style="font-family: monospace; font-size: 1.1rem;"></span>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Select Image</label>
+                        <input type="file" id="compressInput" accept="image/*">
                     </div>
-                    <div class="result-row">
-                        <span class="result-label">Strength:</span>
-                        <span class="result-value" id="passwordStrength"></span>
+                    <div class="input-group">
+                        <label>Quality: <span id="qualityValue">80</span>%</label>
+                        <input type="range" id="compressQuality" min="10" max="100" value="80">
+                    </div>
+                    <canvas id="compressCanvas" style="display:none;"></canvas>
+                    <img id="compressPreview" class="image-preview" style="display:none;">
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="compressImage()">Compress</button>
+                        <button class="btn-secondary" onclick="downloadCompressed()">Download</button>
+                        <button class="btn-danger" onclick="resetCompress()">Reset</button>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Word Counter Tool -->
-        <section id="word-counter" class="tool-section">
-            <div class="tool-header">
-                <h2>📝 Word Counter</h2>
-                <p>Count words, characters, and sentences in real-time</p>
-            </div>
-            
-            <div class="tool-interface">
-                <div class="form-group">
-                    <label for="wordText">Enter Text:</label>
-                    <textarea id="wordText" placeholder="Type or paste your text here..." class="form-control" rows="6"></textarea>
+            <!-- Tool 2: PDF to Word Converter -->
+            <div class="tool-section" id="pdf-converter">
+                <div class="tool-header">
+                    <span class="icon">📄</span>
+                    <h2>PDF to Word Converter</h2>
                 </div>
-
-                <div class="tool-buttons">
-                    <button class="btn btn-reset" onclick="resetWordCounter()">Clear Text</button>
-                </div>
-
-                <div id="wordResult" class="real-time-result">
-                    <h3 style="color: var(--color-yellow);">Text Statistics</h3>
-                    <div class="result-row">
-                        <span class="result-label">Words:</span>
-                        <span class="result-value" id="wordCount">0</span>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Upload PDF</label>
+                        <input type="file" id="pdfInput" accept=".pdf">
                     </div>
-                    <div class="result-row">
-                        <span class="result-label">Characters:</span>
-                        <span class="result-value" id="charCount">0</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="result-label">Characters (no spaces):</span>
-                        <span class="result-value" id="charNoSpaceCount">0</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="result-label">Sentences:</span>
-                        <span class="result-value" id="sentenceCount">0</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="result-label">Paragraphs:</span>
-                        <span class="result-value" id="paragraphCount">0</span>
+                    <div class="info-box" id="pdfInfo">Upload a PDF to see file information</div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="processPDF()">Convert</button>
+                        <button class="btn-danger" onclick="resetPDF()">Reset</button>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Color Picker Tool -->
-        <section id="color-picker" class="tool-section">
-            <div class="tool-header">
-                <h2>🎨 Color Picker</h2>
-                <p>Pick colors and get HEX, RGB values</p>
-            </div>
-            
-            <div class="tool-interface">
-                <div class="form-group">
-                    <label for="colorPicker">Select Color:</label>
-                    <input type="color" id="colorPicker" value="#00d4ff" class="form-control" style="height: 80px;">
+            <!-- Tool 3: QR Code Generator -->
+            <div class="tool-section" id="qr-generator">
+                <div class="tool-header">
+                    <span class="icon">📱</span>
+                    <h2>QR Code Generator</h2>
                 </div>
-
-                <div id="colorResult" class="real-time-result">
-                    <h3 style="color: var(--color-yellow);">Color Values</h3>
-                    <div class="result-row">
-                        <span class="result-label">HEX:</span>
-                        <span class="result-value" id="hexValue">#00d4ff</span>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Text or URL</label>
+                        <input type="text" id="qrText" placeholder="Enter text or URL">
                     </div>
-                    <div class="result-row">
-                        <span class="result-label">RGB:</span>
-                        <span class="result-value" id="rgbValue">rgb(0, 212, 255)</span>
-                    </div>
-                    <div class="result-row">
-                        <span class="result-label">Preview:</span>
-                        <span class="result-value">
-                            <div id="colorPreview" style="display: inline-block; width: 100px; height: 50px; background: #00d4ff; border: 2px solid var(--color-blue); border-radius: 8px;"></div>
-                        </span>
+                    <canvas id="qrCanvas" style="display:none;"></canvas>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="generateQR()">Generate QR</button>
+                        <button class="btn-secondary" onclick="downloadQR()">Download</button>
+                        <button class="btn-danger" onclick="resetQR()">Reset</button>
                     </div>
                 </div>
             </div>
-        </section>
 
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Online ToolStack</h3>
-                <p>Your complete collection of free professional online tools for productivity and development.</p>
+            <!-- Tool 4: Password Generator -->
+            <div class="tool-section" id="password-generator">
+                <div class="tool-header">
+                    <span class="icon">🔐</span>
+                    <h2>Password Generator</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Password Length: <span id="pwdLength">16</span></label>
+                        <input type="range" id="passwordLength" min="8" max="32" value="16">
+                    </div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeUppercase" checked> Uppercase
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeLowercase" checked> Lowercase
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeNumbers" checked> Numbers
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeSymbols" checked> Symbols
+                        </label>
+                    </div>
+                    <div class="output-box" id="passwordOutput">Click Generate to create password</div>
+                    <div class="strength-meter">
+                        <div class="strength-bar" id="strengthBar"></div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="generatePassword()">Generate</button>
+                        <button class="btn-secondary" onclick="copyPassword()">Copy</button>
+                        <button class="btn-danger" onclick="resetPassword()">Reset</button>
+                    </div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="/">Home</a>
-                <a href="/tools.html">All Tools</a>
-                <a href="/about.html">About Us</a>
-                <a href="/blog.html">Blog</a>
+
+            <!-- Tool 5: URL Shortener -->
+            <div class="tool-section" id="url-shortener">
+                <div class="tool-header">
+                    <span class="icon">🔗</span>
+                    <h2>URL Shortener</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Enter Long URL</label>
+                        <input type="text" id="longUrl" placeholder="https://example.com/very-long-url">
+                    </div>
+                    <div class="output-box" id="shortUrl">Your shortened URL will appear here</div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="shortenURL()">Shorten</button>
+                        <button class="btn-secondary" onclick="copyShortURL()">Copy</button>
+                        <button class="btn-danger" onclick="resetURL()">Reset</button>
+                    </div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Legal</h3>
-                <a href="/privacy.html">Privacy Policy</a>
-                <a href="/terms.html">Terms of Service</a>
-                <a href="/contact.html">Contact Us</a>
+
+            <!-- Tool 6: Color Picker -->
+            <div class="tool-section" id="color-picker">
+                <div class="tool-header">
+                    <span class="icon">🎨</span>
+                    <h2>Color Picker & Palette</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Pick a Color</label>
+                        <input type="color" id="colorPicker" value="#00d4ff" style="width:100%;height:60px;cursor:pointer;">
+                    </div>
+                    <div class="grid-2">
+                        <div class="output-box" id="hexColor">#00d4ff</div>
+                        <div class="output-box" id="rgbColor">rgb(0, 212, 255)</div>
+                    </div>
+                    <div class="palette-colors" id="paletteColors"></div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="generatePalette()">Generate Palette</button>
+                        <button class="btn-secondary" onclick="copyColor()">Copy HEX</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Online ToolStack. All rights reserved. Made with ❤️ for the community.</p>
-        </div>
-    </footer>
 
-    <script>
-        // ==================== //
-        // TOOL NAVIGATION     //
-        // ==================== //
-        function showTool(toolId) {
-            const element = document.getElementById(toolId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
+            <!-- Tool 7: Text to Speech -->
+            <div class="tool-section" id="text-to-speech">
+                <div class="tool-header">
+                    <span class="icon">🔊</span>
+                    <h2>Text to Speech</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Enter Text</label>
+                        <textarea id="ttsText" placeholder="Type or paste text here..."></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="speakText()">🔊 Speak</button>
+                        <button class="btn-danger" onclick="stopSpeech()">⏹️ Stop</button>
+                        <button class="btn-danger" onclick="resetTTS()">Reset</button>
+                    </div>
+                </div>
+            </div>
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
+            <!-- Tool 8: Base64 Encoder/Decoder -->
+            <div class="tool-section" id="base64-encoder">
+                <div class="tool-header">
+                    <span class="icon">🔤</span>
+                    <h2>Base64 Encoder/Decoder</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Input Text</label>
+                        <textarea id="base64Input" placeholder="Enter text to encode or decode..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Output</label>
+                        <textarea id="base64Output" readonly></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="encodeBase64()">Encode</button>
+                        <button class="btn-primary" onclick="decodeBase64()">Decode</button>
+                        <button class="btn-secondary" onclick="copyBase64()">Copy</button>
+                        <button class="btn-danger" onclick="resetBase64()">Reset</button>
+                    </div>
+                </div>
+            </div>
 
-        if (mobileMenuBtn && navLinks) {
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-            });
-        }
+            <!-- Tool 9: JSON Formatter -->
+            <div class="tool-section" id="json-formatter">
+                <div class="tool-header">
+                    <span class="icon">📋</span>
+                    <h2>JSON Formatter & Validator</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>JSON Input</label>
+                        <textarea id="jsonInput" placeholder='{"key": "value"}'></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Formatted Output</label>
+                        <textarea id="jsonOutput" readonly></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="formatJSON()">Format</button>
+                        <button class="btn-primary" onclick="minifyJSON()">Minify</button>
+                        <button class="btn-secondary" onclick="copyJSON()">Copy</button>
+                        <button class="btn-danger" onclick="resetJSON()">Reset</button>
+                    </div>
+                </div>
+            </div>
 
-        // ==================== //
-        // IMAGE COMPRESSOR    //
-        // ==================== //
-        document.getElementById('qualityRange').addEventListener('input', function() {
-            document.getElementById('qualityValue').textContent = this.value + '%';
-        });
-
-        function compressImage() {
-            const fileInput = document.getElementById('imageInput');
-            const quality = document.getElementById('qualityRange').value / 100;
-            
-            if (!fileInput.files[0]) {
-                alert('Please select an image first!');
-                return;
-            }
-
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    ctx.drawImage(img, 0, 0);
-                    
-                    const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
-                    const originalSize = (file.size / 1024).toFixed(2);
-                    const compressedSize = ((compressedDataUrl.length * 3) / 4 / 1024).toFixed(2);
-                    
-                    document.getElementById('imageComparison').innerHTML = `
-                        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-                            <div style="text-align: center;">
-                                <h4 style="color: var(--color-error);">Original</h4>
-                                <img src="${e.target.result}" style="max-width: 200px; border: 2px solid var(--color-error); border-radius: 8px;">
-                                <p><strong>${originalSize} KB</strong></p>
-                            </div>
-                            <div style="text-align: center;">
-                                <h4 style="color: var(--color-success);">Compressed</h4>
-                                <img src="${compressedDataUrl}" style="max-width: 200px; border: 2px solid var(--color-success); border-radius: 8px;">
-                                <p><strong>${compressedSize} KB</strong></p>
-                                <p style="color: var(--color-yellow);"><strong>${((1 - compressedSize/originalSize) * 100).toFixed(1)}% smaller</strong></p>
-                            </div>
+            <!-- Tool 10: Word Counter -->
+            <div class="tool-section" id="word-counter">
+                <div class="tool-header">
+                    <span class="icon">📝</span>
+                    <h2>Word Counter</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Enter Text</label>
+                        <textarea id="wordCountText" placeholder="Type or paste your text here..."></textarea>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="wordCount">0</div>
+                            <div class="stat-label">Words</div>
                         </div>
-                        <div class="tool-buttons" style="margin-top: 1rem; text-align: center;">
-                            <button class="btn btn-download" onclick="downloadImage('${compressedDataUrl}', 'compressed-image.jpg')">Download Compressed Image</button>
+                        <div class="stat-item">
+                            <div class="stat-value" id="charCount">0</div>
+                            <div class="stat-label">Characters</div>
                         </div>
-                    `;
-                    
-                    document.getElementById('imageResult').style.display = 'block';
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
+                        <div class="stat-item">
+                            <div class="stat-value" id="sentenceCount">0</div>
+                            <div class="stat-label">Sentences</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="paragraphCount">0</div>
+                            <div class="stat-label">Paragraphs</div>
+                        </div>
+                    </div>
+                    <button class="btn-danger" onclick="resetWordCount()">Reset</button>
+                </div>
+            </div>
 
-        function resetImageCompressor() {
-            document.getElementById('imageInput').value = '';
-            document.getElementById('imageResult').style.display = 'none';
-            document.getElementById('qualityRange').value = 70;
-            document.getElementById('qualityValue').textContent = '70%';
-        }
+            <!-- Tool 11: Image Resizer -->
+            <div class="tool-section" id="image-resizer">
+                <div class="tool-header">
+                    <span class="icon">📐</span>
+                    <h2>Image Resizer</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Select Image</label>
+                        <input type="file" id="resizeInput" accept="image/*">
+                    </div>
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label>Width (px)</label>
+                            <input type="number" id="resizeWidth" placeholder="800">
+                        </div>
+                        <div class="input-group">
+                            <label>Height (px)</label>
+                            <input type="number" id="resizeHeight" placeholder="600">
+                        </div>
+                    </div>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="maintainRatio" checked> Maintain aspect ratio
+                    </label>
+                    <canvas id="resizeCanvas" style="display:none;"></canvas>
+                    <img id="resizePreview" class="image-preview" style="display:none;">
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="resizeImage()">Resize</button>
+                        <button class="btn-secondary" onclick="downloadResized()">Download</button>
+                        <button class="btn-danger" onclick="resetResize()">Reset</button>
+                    </div>
+                </div>
+            </div>
 
-        // ==================== //
-        // QR CODE GENERATOR   //
-        // ==================== //
-        function generateQRCode() {
-            const text = document.getElementById('qrText').value.trim();
-            if (!text) {
-                alert('Please enter some text or URL!');
-                return;
-            }
+            <!-- Tool 12: Hash Generator -->
+            <div class="tool-section" id="hash-generator">
+                <div class="tool-header">
+                    <span class="icon">🔒</span>
+                    <h2>Hash Generator</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Input Text</label>
+                        <textarea id="hashInput" placeholder="Enter text to hash..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>MD5</label>
+                        <div class="output-box" id="md5Output">Hash will appear here</div>
+                    </div>
+                    <div class="input-group">
+                        <label>SHA-256</label>
+                        <div class="output-box" id="sha256Output">Hash will appear here</div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="generateHashes()">Generate</button>
+                        <button class="btn-secondary" onclick="copyHash('md5')">Copy MD5</button>
+                        <button class="btn-secondary" onclick="copyHash('sha256')">Copy SHA-256</button>
+                        <button class="btn-danger" onclick="resetHash()">Reset</button>
+                    </div>
+                </div>
+            </div>
 
-            const canvas = document.getElementById('qrCanvas');
-            QRCode.toCanvas(canvas, text, {
-                width: 200,
-                margin: 2,
-                color: {
-                    dark: '#00d4ff',
-                    light: '#000000'
-                }
-            }, function(error) {
-                if (error) {
-                    alert('Error generating QR code: ' + error);
-                    return;
-                }
-                document.getElementById('qrResult').style.display = 'block';
-            });
-        }
+            <!-- Tool 13: UUID Generator -->
+            <div class="tool-section" id="uuid-generator">
+                <div class="tool-header">
+                    <span class="icon">🆔</span>
+                    <h2>UUID Generator</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Number of UUIDs</label>
+                        <input type="number" id="uuidCount" value="5" min="1" max="50">
+                    </div>
+                    <div class="input-group">
+                        <label>Generated UUIDs</label>
+                        <textarea id="uuidOutput" readonly></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="generateUUIDs()">Generate</button>
+                        <button class="btn-secondary" onclick="copyUUIDs()">Copy All</button>
+                        <button class="btn-danger" onclick="resetUUID()">Reset</button>
+                    </div>
+                </div>
+            </div>
 
-        function downloadQRCode() {
-            const canvas = document.getElementById('qrCanvas');
-            const link = document.createElement('a');
-            link.download = 'qrcode.png';
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        }
+            <!-- Tool 14: Lorem Ipsum Generator -->
+            <div class="tool-section" id="lorem-generator">
+                <div class="tool-header">
+                    <span class="icon">📜</span>
+                    <h2>Lorem Ipsum Generator</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label>Type</label>
+                            <select id="loremType">
+                                <option value="paragraphs">Paragraphs</option>
+                                <option value="sentences">Sentences</option>
+                                <option value="words">Words</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Count</label>
+                            <input type="number" id="loremCount" value="3" min="1" max="50">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Generated Text</label>
+                        <textarea id="loremOutput" readonly></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="generateLorem()">Generate</button>
+                        <button class="btn-secondary" onclick="copyLorem()">Copy</button>
+                        <button class="btn-danger" onclick="resetLorem()">Reset</button>
+                    </div>
+                </div>
+            </div>
 
-        function resetQRGenerator() {
-            document.getElementById('qrText').value = '';
-            document.getElementById('qrResult').style.display = 'none';
-        }
+            <!-- Tool 15: Code Minifier -->
+            <div class="tool-section" id="code-minifier">
+                <div class="tool-header">
+                    <span class="icon">⚙️</span>
+                    <h2>HTML/CSS/JS Minifier</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Code Type</label>
+                        <select id="codeType">
+                            <option value="html">HTML</option>
+                            <option value="css">CSS</option>
+                            <option value="js">JavaScript</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Input Code</label>
+                        <textarea id="codeInput" placeholder="Paste your code here..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Minified Output</label>
+                        <textarea id="codeOutput" readonly></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="minifyCode()">Minify</button>
+                        <button class="btn-secondary" onclick="copyCode()">Copy</button>
+                        <button class="btn-danger" onclick="resetMinifier()">Reset</button>
+                    </div>
+                </div>
+            </div>
 
-        // ==================== //
-        // PASSWORD GENERATOR  //
-        // ==================== //
-        document.getElementById('passwordLength').addEventListener('input', function() {
-            document.getElementById('lengthValue').textContent = this.value;
-        });
+            <!-- Tool 16: Markdown to HTML -->
+            <div class="tool-section" id="markdown-converter">
+                <div class="tool-header">
+                    <span class="icon">📝</span>
+                    <h2>Markdown to HTML</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Markdown Input</label>
+                        <textarea id="markdownInput" placeholder="# Heading&#10;**bold** *italic*"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>HTML Output</label>
+                        <textarea id="markdownOutput" readonly></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="convertMarkdown()">Convert</button>
+                        <button class="btn-secondary" onclick="copyMarkdown()">Copy</button>
+                        <button class="btn-danger" onclick="resetMarkdown()">Reset</button>
+                    </div>
+                </div>
+            </div>
 
-        function generatePassword() {
-            const length = document.getElementById('passwordLength').value;
-            const uppercase = document.getElementById('uppercase').checked;
-            const lowercase = document.getElementById('lowercase').checked;
-            const numbers = document.getElementById('numbers').checked;
-            const symbols = document.getElementById('symbols').checked;
+            <!-- Tool 17: Unit Converter -->
+            <div class="tool-section" id="unit-converter">
+                <div class="tool-header">
+                    <span class="icon">📏</span>
+                    <h2>Unit Converter</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Category</label>
+                        <select id="unitCategory" onchange="updateUnitOptions()">
+                            <option value="length">Length</option>
+                            <option value="weight">Weight</option>
+                            <option value="temperature">Temperature</option>
+                            <option value="digital">Digital Storage</option>
+                        </select>
+                    </div>
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label>From</label>
+                            <select id="unitFrom"></select>
+                        </div>
+                        <div class="input-group">
+                            <label>To</label>
+                            <select id="unitTo"></select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Value</label>
+                        <input type="number" id="unitValue" placeholder="Enter value">
+                    </div>
+                    <div class="output-box" id="unitResult">Result will appear here</div>
+                    <div class="button-group">
+                        <button class="btn-primary" onclick="convertUnit()">Convert</button>
+                        <button class="btn-danger" onclick="resetUnit()">Reset</button>
+                    </div>
+                </div>
+            </div>
 
-            let chars = '';
-            if (uppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            if (lowercase) chars += 'abcdefghijklmnopqrstuvwxyz';
-            if (numbers) chars += '0123456789';
-            if (symbols) chars += '!@#$%^&*';
-
-            if (!chars) {
-                alert('Please select at least one character type!');
-                return;
-            }
-
-            let password = '';
-            for (let i = 0; i < length; i++) {
-                password += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-
-            document.getElementById('generatedPassword').textContent = password;
-            document.getElementById('passwordStrength').textContent = getPasswordStrength(password);
-            document.getElementById('passwordResult').style.display = 'block';
-        }
-
-        function getPasswordStrength(password) {
-            let strength = 0;
-            if (password.length >= 8) strength++;
-            if (password.length >= 12) strength++;
-            if (/[A-Z]/.test(password)) strength++;
-            if (/[a-z]/.test(password)) strength++;
-            if (/[0-9]/.test(password)) strength++;
-            if (/[^A-Za-z0-9]/.test(password)) strength++;
-
-            if (strength <= 2) return 'Weak 🔴';
-            if (strength <= 4) return 'Medium 🟡';
-            return 'Strong 🟢';
-        }
-
-        function copyPassword() {
-            const password = document.getElementById('generatedPassword').textContent;
-            if (password) {
-                navigator.clipboard.writeText(password).then(() => {
-                    alert('Password copied to clipboard!');
-                });
-            }
-        }
-
-        // ==================== //
-        // WORD COUNTER        //
-        // ==================== //
-        document.getElementById('wordText').addEventListener('input', countWords);
-
-        function countWords() {
-            const text = document.getElementById('wordText').value;
-            
-            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-            const characters = text.length;
-            const charactersNoSpace = text.replace(/\s/g, '').length;
-            const sentences = text.split(/[.!?]+/).filter(s => s.trim()).length;
-            const paragraphs = text.split(/\n+/).filter(p => p.trim()).length;
-
-            document.getElementById('wordCount').textContent = words;
-            document.getElementById('charCount').textContent = characters;
-            document.getElementById('charNoSpaceCount').textContent = charactersNoSpace;
-            document.getElementById('sentenceCount').textContent = sentences;
-            document.getElementById('paragraphCount').textContent = paragraphs;
-        }
-
-        function resetWordCounter() {
-            document.getElementById('wordText').value = '';
-            countWords();
-        }
-
-        // ==================== //
-        // COLOR PICKER        //
-        // ==================== //
-        document.getElementById('colorPicker').addEventListener('input', function() {
-            const hex = this.value;
-            const rgb = hexToRgb(hex);
-            
-            document.getElementById('hexValue').textContent = hex.toUpperCase();
-            document.getElementById('rgbValue').textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-            document.getElementById('colorPreview').style.background = hex;
-        });
-
-        function hexToRgb(hex) {
-            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            return result ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
-            } : { r: 0, g: 0, b: 0 };
-        }
-
-        // ==================== //
-        // UTILITY FUNCTIONS   //
-        // ==================== //
-        function downloadImage(dataUrl, filename) {
-            const link = document.createElement('a');
-            link.href = dataUrl;
-            link.download = filename;
-            link.click();
-        }
-
-        // Initialize functions on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            countWords();
-        });
-                       // ==================== //
-        // QR CODE GENERATOR   //
-        // ==================== //
-        let qr;
-
-        function switchMode() {
-            // Hide all modes
-            document.querySelectorAll(".mode").forEach(el => el.style.display = 'none');
-            
-            // Show selected mode
-            const mode = document.getElementById("mode").value;
-            if (mode === "text") document.getElementById("textMode").style.display = 'block';
-            if (mode === "wifi") document.getElementById("wifiMode").style.display = 'block';
-            if (mode === "vcard") document.getElementById("vcardMode").style.display = 'block';
-        }
-
-        function generateQR() {
-            const qrContainer = document.getElementById("qrcode");
-            const mode = document.getElementById("mode").value;
-            let data = "";
-
-            if (mode === "text") {
-                data = document.getElementById("qrInput").value.trim();
-            } else if (mode === "wifi") {
-                const ssid = document.getElementById("ssid").value.trim();
-                const password = document.getElementById("password").value.trim();
-                const encryption = document.getElementById("encryption").value;
-                data = `WIFI:T:${encryption};S:${ssid};P:${password};;`;
-            } else if (mode === "vcard") {
-                const name = document.getElementById("name").value.trim();
-                const phone = document.getElementById("phone").value.trim();
-                const email = document.getElementById("email").value.trim();
-                data = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTEL:${phone}\nEMAIL:${email}\nEND:VCARD`;
-            }
-
-            // Clear previous QR code
-            qrContainer.innerHTML = "<h3 style='color: var(--color-yellow);'>Your QR Code</h3>";
-
-            if (data) {
-                qr = new QRCode(qrContainer, {
-                    text: data,
-                    width: 250,
-                    height: 250,
-                });
-                document.getElementById("downloadBtn").style.display = 'inline-block';
-                qrContainer.style.display = 'block';
-            } else {
-                alert("Please fill in the required fields!");
-            }
-        }
-
-        function downloadQR() {
-            const img = document.querySelector("#qrcode img");
-            if (img) {
-                const link = document.createElement("a");
-                link.href = img.src;
-                link.download = "qrcode.png";
-                link.click();
-            } else {
-                alert("Please generate a QR code first!");
-            }
-        }
-
-        function resetQRGenerator() {
-            document.getElementById("mode").value = "text";
-            document.getElementById("qrInput").value = "";
-            document.getElementById("ssid").value = "";
-            document.getElementById("password").value = "";
-            document.getElementById("name").value = "";
-            document.getElementById("phone").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("qrcode").innerHTML = "<h3 style='color: var(--color-yellow);'>Your QR Code</h3>";
-            document.getElementById("qrcode").style.display = 'none';
-            document.getElementById("downloadBtn").style.display = 'none';
-            switchMode(); // Reset to text mode
-        }
-
-        // Initialize functions on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            countWords();
-            // Initialize QR code generator to text mode
-            switchMode();
-        });
-    </script>
-</body>
-</html>
-   
+            <!-- Tool 18: Age Calculator -->
+            <div class="tool-section" id="age-calculator">
+                <div class="tool-header">
+                    <span class="icon">🎂</span>
+                    <h2>Age Calculator</h2>
+                </div>
+                <div class="tool-content">
+                    <div class="input-group">
+                        <label>Date of Birth</label>
+                        <input type="date" id="birthDate">
+                    </div>
+                    <div class="stats-grid" id="ageStats" style="display:none;">
+                        <div class="stat-item">
+                            <div class="stat-value" id="ageYears">0</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="ageMonths">0</div>
+                            <div class="stat-label">Months</div>
+                        </div>
+                        <div class="stat-item">
+                            <

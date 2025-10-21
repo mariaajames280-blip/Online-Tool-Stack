@@ -602,25 +602,65 @@
             </div>
 
             <!-- Tool 3: QR Code Generator -->
-            <div class="tool-section" id="qr-generator">
-                <div class="tool-header">
-                    <span class="icon">📱</span>
-                    <h2>QR Code Generator</h2>
-                </div>
-                <div class="tool-content">
-                    <div class="input-group">
-                        <label>Text or URL</label>
-                        <input type="text" id="qrText" placeholder="Enter text or URL">
-                    </div>
-                    <canvas id="qrCanvas" style="display:none;"></canvas>
-                    <div class="button-group">
-                        <button class="btn-primary" onclick="generateQR()">Generate QR</button>
-                        <button class="btn-secondary" onclick="downloadQR()">Download</button>
-                        <button class="btn-danger" onclick="resetQR()">Reset</button>
-                    </div>
-                </div>
-            </div>
+                    // Tool 3: QR Code Generator - IMPROVED VERSION
+        let qrCode = null;
+        
+        function generateQR() {
+            const text = document.getElementById('qrText').value.trim();
+            if (!text) {
+                showToast('Please enter text or URL', 'error');
+                return;
+            }
+            
+            const canvas = document.getElementById('qrCanvas');
+            canvas.innerHTML = '';
+            canvas.style.display = 'block';
+            
+            try {
+                qrCode = new QRCode(canvas, {
+                    text: text,
+                    width: 256,
+                    height: 256,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                
+                showToast('QR code generated successfully!');
+            } catch (error) {
+                showToast('Error generating QR code: ' + error.message, 'error');
+            }
+        }
 
+        function downloadQR() {
+            const canvas = document.querySelector('#qrCanvas canvas');
+            if (!canvas) {
+                showToast('Please generate QR code first', 'error');
+                return;
+            }
+            
+            try {
+                const url = canvas.toDataURL('image/png');
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'qrcode.png';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                showToast('QR code downloaded!');
+            } catch (error) {
+                showToast('Error downloading QR code', 'error');
+            }
+        }
+
+        function resetQR() {
+            document.getElementById('qrText').value = '';
+            const canvas = document.getElementById('qrCanvas');
+            canvas.innerHTML = '';
+            canvas.style.display = 'none';
+            qrCode = null;
+            showToast('Reset complete');
+        }
             <!-- Tool 4: Password Generator -->
             <div class="tool-section" id="password-generator">
                 <div class="tool-header">
@@ -2518,7 +2558,7 @@
             document.getElementById('currencyResult').textContent = 'Conversion result will appear here';
             showToast('Reset complete');
         }
-
+               
         // Smooth scroll to tool on page load
         window.addEventListener('load', () => {
             const hash = window.location.hash;

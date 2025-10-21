@@ -3,234 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Terms of Service for Online ToolStack - Terms and conditions for using our free online tools.">
+    <meta name="description" content="Terms of Service - Online ToolStack. Read our terms and conditions.">
+    <link rel="canonical" href="https://yourdomain.com/terms.html">
     <title>Terms of Service - Online ToolStack</title>
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-card: #161616;
-            --color-blue: #00d4ff;
-            --color-yellow: #ffd700;
-            --color-white: #ffffff;
-            --color-gray: #a0a0a0;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--color-white);
-            line-height: 1.8;
-        }
-        header {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
-        }
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--color-blue);
-            text-decoration: none;
-        }
-        .logo span { color: var(--color-yellow); }
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        .nav-links a {
-            color: var(--color-white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        .nav-links a:hover { color: var(--color-blue); }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-        h1 {
-            font-size: 3rem;
-            color: var(--color-blue);
-            margin-bottom: 1rem;
-        }
-        .last-updated {
-            color: var(--color-gray);
-            margin-bottom: 3rem;
-        }
-        h2 {
-            color: var(--color-yellow);
-            font-size: 1.8rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-        p {
-            color: var(--color-gray);
-            margin-bottom: 1rem;
-        }
-        ul {
-            margin-left: 2rem;
-            color: var(--color-gray);
-        }
-        li { margin-bottom: 0.5rem; }
-        strong { color: var(--color-blue); }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html" class="logo">⚡ Online<span>ToolStack</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="tools.html">Tools</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Online ToolStack</span>
+                </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tools-all-compact.html">Tools</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div class="container">
-        <h1>Terms of Service</h1>
-        <p class="last-updated">Last Updated: January 2024</p>
+    <section class="section">
+        <div class="container">
+            <h1 class="section-title">Terms of <span class="highlight-yellow">Service</span></h1>
+            <p class="section-subtitle">Last updated: December 16, 2024</p>
+            
+            <div style="max-width: 900px; margin: 3rem auto; line-height: 1.8;">
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">1. Acceptance of Terms</h2>
+                <p>By accessing and using Online ToolStack, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
 
-        <h2>1. Acceptance of Terms</h2>
-        <p>By accessing and using Online ToolStack ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these terms, please do not use the Service.</p>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">2. Description of Service</h2>
+                <p>Online ToolStack provides free online tools for various purposes including but not limited to image processing, file conversion, text manipulation, and calculations. All tools are provided "as is" without warranties of any kind.</p>
 
-        <h2>2. Use License</h2>
-        <p><strong>Permission is granted to:</strong></p>
-        <ul>
-            <li>Use all tools for personal and commercial purposes</li>
-            <li>Process unlimited files and data through the tools</li>
-            <li>Access the Service from any device or location</li>
-            <li>Use outputs generated by the tools without attribution</li>
-        </ul>
-        <p><strong>You may NOT:</strong></p>
-        <ul>
-            <li>Attempt to reverse engineer, decompile, or disassemble the tools</li>
-            <li>Use automated systems to scrape or copy the website</li>
-            <li>Distribute, sell, or sublicense the tools</li>
-            <li>Use the Service for illegal purposes</li>
-            <li>Attempt to overload or disrupt the Service</li>
-        </ul>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">3. User Responsibilities</h2>
+                <p>You agree to:</p>
+                <ul>
+                    <li>Use our tools for lawful purposes only</li>
+                    <li>Not upload or process any illegal, harmful, or malicious content</li>
+                    <li>Not attempt to hack, disrupt, or damage our services</li>
+                    <li>Not use automated tools to scrape or download content excessively</li>
+                    <li>Respect intellectual property rights</li>
+                </ul>
 
-        <h2>3. Disclaimer of Warranties</h2>
-        <p>The Service is provided "AS IS" and "AS AVAILABLE" without any warranties of any kind, either express or implied, including but not limited to:</p>
-        <ul>
-            <li>Accuracy of results produced by the tools</li>
-            <li>Uninterrupted or error-free operation</li>
-            <li>Fitness for a particular purpose</li>
-            <li>Non-infringement of third-party rights</li>
-        </ul>
-        <p>We make no guarantees about the availability, reliability, or functionality of any tool.</p>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">4. Intellectual Property</h2>
+                <p>The design, layout, and functionality of Online ToolStack are protected by copyright and other intellectual property laws. You may not copy, modify, or distribute our website content without permission.</p>
 
-        <h2>4. Limitation of Liability</h2>
-        <p>Online ToolStack and its operators shall not be liable for any damages arising from:</p>
-        <ul>
-            <li>Use or inability to use the Service</li>
-            <li>Loss of data or information</li>
-            <li>Errors or inaccuracies in tool outputs</li>
-            <li>Unauthorized access to your devices</li>
-            <li>Third-party actions or content</li>
-        </ul>
-        <p>You use the Service at your own risk. We recommend backing up important data before processing.</p>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">5. User Content</h2>
+                <p>You retain all rights to any content you upload or process using our tools. Since our tools process data locally in your browser, we do not store or claim ownership of your content.</p>
 
-        <h2>5. User Responsibilities</h2>
-        <p>You are responsible for:</p>
-        <ul>
-            <li>Ensuring you have rights to process any content through our tools</li>
-            <li>Compliance with all applicable laws and regulations</li>
-            <li>The security of your own devices and data</li>
-            <li>Verifying the accuracy of tool outputs before use</li>
-            <li>Not uploading illegal, harmful, or copyrighted content</li>
-        </ul>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">6. Disclaimer of Warranties</h2>
+                <p>Online ToolStack is provided "as is" without warranties of any kind, either express or implied. We do not guarantee that:</p>
+                <ul>
+                    <li>Our services will be uninterrupted or error-free</li>
+                    <li>The tools will produce accurate results</li>
+                    <li>Any errors will be corrected</li>
+                    <li>The website will be free from viruses or harmful components</li>
+                </ul>
 
-        <h2>6. Intellectual Property</h2>
-        <p>The Service, including its design, code, graphics, and content, is owned by Online ToolStack and protected by copyright laws. The outputs you create using our tools belong to you.</p>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">7. Limitation of Liability</h2>
+                <p>To the fullest extent permitted by law, Online ToolStack shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services.</p>
 
-        <h2>7. Third-Party Links and Services</h2>
-        <p>The Service may contain links to third-party websites or use third-party services (such as CDNs). We are not responsible for:</p>
-        <ul>
-            <li>Content on external websites</li>
-            <li>Privacy practices of third parties</li>
-            <li>Availability of external resources</li>
-        </ul>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">8. Third-Party Links and Services</h2>
+                <p>Our website may contain links to third-party websites or services. We are not responsible for the content, privacy policies, or practices of these external sites.</p>
 
-        <h2>8. Privacy</h2>
-        <p>Your privacy is important to us. Please review our <a href="privacy.html" style="color: var(--color-blue);">Privacy Policy</a> to understand how we handle data. Key points:</p>
-        <ul>
-            <li>All processing happens locally in your browser</li>
-            <li>We don't collect, store, or transmit your files</li>
-            <li>Your data stays on your device</li>
-        </ul>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">9. Google AdSense</h2>
+                <p>We use Google AdSense to display advertisements. By using our website, you agree to Google's use of cookies for personalized advertising. You can opt out of personalized ads at <a href="https://www.google.com/settings/ads" style="color: var(--color-blue);" target="_blank" rel="noopener">Google Ad Settings</a>.</p>
 
-        <h2>9. Service Modifications</h2>
-        <p>We reserve the right to:</p>
-        <ul>
-            <li>Modify or discontinue any tool or feature</li>
-            <li>Change the Service without prior notice</li>
-            <li>Impose usage limits if necessary</li>
-            <li>Update these Terms of Service</li>
-        </ul>
-        <p>Continued use of the Service after changes constitutes acceptance of new terms.</p>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">10. Modifications to Service</h2>
+                <p>We reserve the right to modify, suspend, or discontinue any part of our services at any time without notice.</p>
 
-        <h2>10. Acceptable Use Policy</h2>
-        <p>You agree NOT to use the Service to:</p>
-        <ul>
-            <li>Process illegal content or violate laws</li>
-            <li>Infringe on intellectual property rights</li>
-            <li>Distribute malware or harmful code</li>
-            <li>Harass, abuse, or harm others</li>
-            <li>Spam or send unsolicited communications</li>
-            <li>Attempt to hack or compromise the Service</li>
-        </ul>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">11. Changes to Terms</h2>
+                <p>We may update these Terms of Service at any time. Changes will be effective immediately upon posting. Your continued use of our services constitutes acceptance of the updated terms.</p>
 
-        <h2>11. Termination</h2>
-        <p>We reserve the right to:</p>
-        <ul>
-            <li>Terminate or suspend access to the Service</li>
-            <li>Block IP addresses that abuse the Service</li>
-            <li>Take legal action for violations of these terms</li>
-        </ul>
-        <p>You may stop using the Service at any time.</p>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">12. Governing Law</h2>
+                <p>These terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law provisions.</p>
 
-        <h2>12. Indemnification</h2>
-        <p>You agree to indemnify and hold harmless Online ToolStack from any claims, damages, or expenses arising from your use of the Service or violation of these terms.</p>
+                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">13. Contact Information</h2>
+                <p>For questions about these Terms of Service, please contact us at <a href="contact.html" style="color: var(--color-blue);">support@toolstack.com</a></p>
+            </div>
+        </div>
+    </section>
 
-        <h2>13. Governing Law</h2>
-        <p>These terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law provisions.</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Online ToolStack</h3>
+                    <p>Professional online tools for everyone. Free, fast, and secure.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Online ToolStack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-        <h2>14. Dispute Resolution</h2>
-        <p>Any disputes arising from these terms or use of the Service should first be addressed through our <a href="contact.html" style="color: var(--color-blue);">contact form</a>. We're committed to resolving issues amicably.</p>
-
-        <h2>15. Severability</h2>
-        <p>If any provision of these terms is found to be unenforceable, the remaining provisions will continue in full force and effect.</p>
-
-        <h2>16. Entire Agreement</h2>
-        <p>These Terms of Service, together with our Privacy Policy, constitute the entire agreement between you and Online ToolStack regarding the Service.</p>
-
-        <h2>17. Contact Information</h2>
-        <p>Questions about these terms? Contact us:</p>
-        <ul>
-            <li>Email: mariaajames280@gmail.com</li>
-            <li>Contact Form: <a href="contact.html" style="color: var(--color-blue);">contact.html</a></li>
-        </ul>
-
-        <h2>Summary</h2>
-        <p><strong>In Plain English:</strong> Use our tools freely and responsibly. All processing happens on your device. We're not liable for errors or data loss. Don't do illegal stuff. We can change things. Be nice. If you have questions, contact us!</p>
-    </div>
+    <div id="toast" class="toast"></div>
+    <script src="js/main.js"></script>
 </body>
 </html>

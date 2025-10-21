@@ -3,481 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Online ToolStack Blog - Tips, guides, and tutorials for using online tools effectively. Learn productivity hacks and best practices.">
-    <meta name="keywords" content="online tools blog, productivity tips, tool tutorials, web tools guide">
-    <title>Blog - Online ToolStack</title>
+    <meta name="description" content="Online ToolStack Blog - Tips, tutorials, and best practices for using online tools effectively.">
+    <meta name="keywords" content="tool tutorials, online tools blog, productivity tips, web development">
+    <link rel="canonical" href="https://yourdomain.com/blog.html">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-card: #161616;
-            --color-blue: #00d4ff;
-            --color-yellow: #ffd700;
-            --color-white: #ffffff;
-            --color-gray: #a0a0a0;
-            --transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--color-white);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--color-blue);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--color-yellow);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--color-white);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--color-blue);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .page-header h1 {
-            font-size: 3rem;
-            color: var(--color-blue);
-            margin-bottom: 1rem;
-        }
-
-        .page-header p {
-            font-size: 1.2rem;
-            color: var(--color-gray);
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .blog-card {
-            background: var(--bg-card);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid #2a2a2a;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--color-blue);
-            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
-        }
-
-        .blog-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #00d4ff 0%, #0ea5e9 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
-
-        .blog-content {
-            padding: 2rem;
-        }
-
-        .blog-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            color: var(--color-gray);
-            font-size: 0.9rem;
-        }
-
-        .blog-category {
-            color: var(--color-yellow);
-            font-weight: 600;
-        }
-
-        .blog-card h2 {
-            color: var(--color-blue);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .blog-excerpt {
-            color: var(--color-gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .read-more {
-            color: var(--color-yellow);
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .read-more:hover {
-            gap: 1rem;
-        }
-
-        footer {
-            background: var(--bg-secondary);
-            padding: 3rem 2rem 1rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            color: var(--color-blue);
-            margin-bottom: 1rem;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: var(--color-gray);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            transition: var(--transition);
-        }
-
-        .footer-section a:hover {
-            color: var(--color-yellow);
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #2a2a2a;
-            color: var(--color-gray);
-        }
-
-        @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 2rem;
-            }
-
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Blog - Online ToolStack | Tips & Tutorials for Online Tools</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html" class="logo">⚡ Online<span>ToolStack</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="tools.html">Tools</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container">
-        <div class="page-header">
-            <h1>Blog & Resources</h1>
-            <p>Tips, tutorials, and guides to maximize your productivity</p>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Online ToolStack</span>
+                </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tools-all-compact.html">Tools</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        <div class="blog-grid">
-            <!-- Article 1 -->
-            <article class="blog-card">
-                <div class="blog-image">🖼️</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Tutorial</span>
-                        <span>•</span>
-                        <span>5 min read</span>
-                    </div>
-                    <h2>How to Compress Images Without Losing Quality</h2>
-                    <p class="blog-excerpt">
-                        Learn the best practices for image compression. Discover optimal quality settings, format selection, and batch processing techniques to reduce file sizes while maintaining visual quality.
-                    </p>
-                   <a href="image-compression-guide.html" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <!-- Article 2 -->
-            <article class="blog-card">
-                <div class="blog-image">🔐</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Security</span>
-                        <span>•</span>
-                        <span>7 min read</span>
-                    </div>
-                    <h2>Creating Strong Passwords: A Complete Guide</h2>
-                    <p class="blog-excerpt">
-                        Master password security with our comprehensive guide. Learn about password strength, common pitfalls to avoid, and best practices for managing multiple secure passwords across platforms.
-                    </p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <!-- Article 3 -->
-            <article class="blog-card">
-                <div class="blog-image">📱</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Marketing</span>
-                        <span>•</span>
-                        <span>6 min read</span>
-                    </div>
-                    <h2>QR Codes for Business: Creative Uses</h2>
-                    <p class="blog-excerpt">
-                        Explore innovative ways businesses use QR codes for marketing, customer engagement, and contactless experiences. Includes real-world examples and implementation strategies.
-                    </p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <!-- Article 4 -->
-            <article class="blog-card">
-                <div class="blog-image">⚙️</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Development</span>
-                        <span>•</span>
-                        <span>8 min read</span>
-                    </div>
-                    <h2>Optimizing Web Performance with Code Minification</h2>
-                    <p class="blog-excerpt">
-                        Understand how code minification improves website loading times. Learn about different minification techniques for HTML, CSS, and JavaScript, with practical examples.
-                    </p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <!-- Article 5 -->
-            <article class="blog-card">
-                <div class="blog-image">🎨</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Design</span>
-                        <span>•</span>
-                        <span>5 min read</span>
-                    </div>
-                    <h2>Color Theory Basics for Web Designers</h2>
-                    <p class="blog-excerpt">
-                        Master color selection for web design. Learn about color harmony, contrast, accessibility, and how to create professional color palettes that enhance user experience.
-                    </p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <!-- Article 6 -->
-            <article class="blog-card">
-                <div class="blog-image">📊</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Productivity</span>
-                        <span>•</span>
-                        <span>4 min read</span>
-                    </div>
-                    <h2>10 Online Tools Every Professional Needs</h2>
-                    <p class="blog-excerpt">
-                        Discover essential online tools that boost productivity for professionals, developers, designers, and content creators. Streamline your workflow with these must-have utilities.
-                    </p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <!-- Article 7 -->
-            <article class="blog-card">
-                <div class="blog-image">🔤</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Tutorial</span>
-                        <span>•</span>
-                        <span>6 min read</span>
-                    </div>
-                    <h2>Understanding Base64 Encoding</h2>
-                    <p class="blog-excerpt">
-                        Demystify Base64 encoding and decoding. Learn when and why to use Base64, common applications, and practical examples for web development and data transmission.
-                    </p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <!-- Article 8 -->
-            <article class="blog-card">
-                <div class="blog-image">📐</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Guide</span>
-                        <span>•</span>
-                        <span>5 min read</span>
-                    </div>
-                    <h2>Image Resizing: Best Practices</h2>
-                    <p class="blog-excerpt">
-                        Learn professional techniques for resizing images. Understand aspect ratios, resolution requirements for different platforms, and how to maintain image quality during resizing.
-                    </p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <!-- Article 9 -->
-            <article class="blog-card">
-                <div class="blog-image">🔒</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Security</span>
-                        <span>•</span>
-                        <span>7 min read</span>
-                    </div>
-                    <h2>Cryptographic Hash Functions Explained</h2>
-                    <p class="blog-excerpt">
-                        Understand MD5, SHA-256, and other hash functions. Learn about their uses in security, data integrity, and when to use each type of hashing algorithm.
-                    </p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <!-- Article 10 -->
-            <article class="blog-card">
-                <div class="blog-image">📝</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Writing</span>
-                        <span>•</span>
-                        <span>4 min read</span>
-                    </div>
-                    <h2>Markdown: The Writer's Best Friend</h2>
-                    <p class="blog-excerpt">
-                        Master Markdown syntax for efficient content creation. Learn shortcuts, formatting tricks, and how Markdown improves your writing workflow across different platforms.
-                    </p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <!-- Article 11 -->
-            <article class="blog-card">
-                <div class="blog-image">⏱️</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Productivity</span>
-                        <span>•</span>
-                        <span>5 min read</span>
-                    </div>
-                    <h2>Time Management with Digital Timers</h2>
-                    <p class="blog-excerpt">
-                        Boost productivity using countdown timers and the Pomodoro Technique. Learn how time-boxing tasks can improve focus and help you accomplish more in less time.
-                    </p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </article>
-
-            <!-- Article 12 -->
-            <article class="blog-card">
-                <div class="blog-image">📋</div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-category">Development</span>
-                        <span>•</span>
-                        <span>6 min read</span>
-                    </div>
-                    <h2>Working with JSON: Tips and Tricks</h2>
-                    <p class="blog-excerpt">
-                        Master JSON formatting, validation, and manipulation. Learn best practices for working with JSON data in web development and API integration projects.
-                    </p>
-                    <a href="#" class="read-more">Read More →</a>
-                </div>
-            </article>
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li><a href="index.html">Home</a></li>
+                <li class="separator">/</li>
+                <li class="active">Blog</li>
+            </ul>
         </div>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Online ToolStack</h3>
-                <p>Your complete collection of free professional online tools for productivity and development.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="tools.html">All Tools</a>
-                <a href="about.html">About Us</a>
-                <a href="blog.html">Blog</a>
-            </div>
-            <div class="footer-section">
-                <h3>Legal</h3>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="contact.html">Contact Us</a>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <p>Stay updated with latest tools and features</p>
+    <section class="section">
+        <div class="container">
+            <h1 class="section-title">Online ToolStack <span class="highlight-yellow">Blog</span></h1>
+            <p class="section-subtitle">Tips, tutorials, and best practices</p>
+            
+            <div class="blog-grid">
+                <article class="blog-card fade-in-up">
+                    <div class="blog-image">
+                        <i class="fas fa-compress"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> December 15, 2024</span>
+                            <span><i class="fas fa-user"></i> Admin</span>
+                        </div>
+                        <h3>How to Compress Images Without Losing Quality</h3>
+                        <p class="blog-excerpt">Learn the best techniques for compressing images while maintaining visual quality. Discover optimal compression settings for different use cases.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card fade-in-up">
+                    <div class="blog-image">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> December 12, 2024</span>
+                            <span><i class="fas fa-user"></i> Admin</span>
+                        </div>
+                        <h3>The Ultimate Guide to QR Codes in 2024</h3>
+                        <p class="blog-excerpt">Everything you need to know about QR codes, from creation to best practices. Learn how businesses use QR codes effectively.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card fade-in-up">
+                    <div class="blog-image">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> December 10, 2024</span>
+                            <span><i class="fas fa-user"></i> Admin</span>
+                        </div>
+                        <h3>Creating Strong Passwords: A Complete Guide</h3>
+                        <p class="blog-excerpt">Protect your online accounts with strong, unique passwords. Learn password best practices and common mistakes to avoid.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card fade-in-up">
+                    <div class="blog-image">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> December 8, 2024</span>
+                            <span><i class="fas fa-user"></i> Admin</span>
+                        </div>
+                        <h3>Color Theory for Designers: Choosing Perfect Palettes</h3>
+                        <p class="blog-excerpt">Master color theory and create stunning color palettes for your designs. Tips from professional designers.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card fade-in-up">
+                    <div class="blog-image">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> December 5, 2024</span>
+                            <span><i class="fas fa-user"></i> Admin</span>
+                        </div>
+                        <h3>JSON Formatting: Best Practices for Developers</h3>
+                        <p class="blog-excerpt">Learn how to properly format, validate, and work with JSON data. Essential tips for modern web development.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card fade-in-up">
+                    <div class="blog-image">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> December 1, 2024</span>
+                            <span><i class="fas fa-user"></i> Admin</span>
+                        </div>
+                        <h3>Understanding BMI: More Than Just a Number</h3>
+                        <p class="blog-excerpt">Learn what BMI really means, its limitations, and how to use it effectively for health monitoring.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Online ToolStack. All rights reserved. Made with ❤️ for the community.</p>
+    </section>
+
+    <div class="adsense-placeholder">
+        <div class="container">
+            <div class="ad-container">
+                <p class="ad-label">Advertisement</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Online ToolStack</h3>
+                    <p>Professional online tools for everyone. Free, fast, and secure.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tools-all-compact.html">All Tools</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="tools-all-compact.html#image-compressor">Image Compressor</a></li>
+                        <li><a href="tools-all-compact.html#pdf-converter">PDF Converter</a></li>
+                        <li><a href="tools-all-compact.html#qr-generator">QR Code Generator</a></li>
+                        <li><a href="tools-all-compact.html#password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Online ToolStack. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+
+    <div id="toast" class="toast"></div>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -8,6 +8,9 @@
     <meta name="author" content="Online WebTool">
     <title>Colorful QR Code Generator - Free Online Tool | Online WebTool</title>
     
+    <!-- Include QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    
     <style>
         /* COPY ALL YOUR HOMEPAGE CSS HERE */
         * {
@@ -126,30 +129,42 @@
             cursor: pointer;
         }
 
-        .color-presets {
+        .color-schemes {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 0.5rem;
-            margin-top: 0.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
-        .color-preset {
-            padding: 0.5rem;
-            border: 2px solid transparent;
-            border-radius: 8px;
+        .color-scheme {
+            padding: 1rem;
+            border: 2px solid #2a2a2a;
+            border-radius: 10px;
             cursor: pointer;
-            text-align: center;
-            font-weight: 500;
             transition: var(--transition);
         }
 
-        .color-preset:hover {
-            transform: scale(1.05);
+        .color-scheme:hover {
+            border-color: var(--color-blue);
+            transform: translateY(-2px);
         }
 
-        .color-preset.active {
+        .color-scheme.active {
             border-color: var(--color-yellow);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .scheme-preview {
+            width: 100%;
+            height: 60px;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .scheme-name {
+            text-align: center;
+            font-weight: 600;
+            color: var(--color-white);
         }
 
         .btn-generate {
@@ -182,6 +197,10 @@
             background: white;
             border-radius: 10px;
             display: inline-block;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .action-buttons {
@@ -224,42 +243,17 @@
             color: var(--bg-primary);
         }
 
-        .color-schemes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+        .loading {
+            color: var(--color-gray);
+            font-style: italic;
         }
 
-        .color-scheme {
+        .error {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
             padding: 1rem;
-            border: 2px solid #2a2a2a;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .color-scheme:hover {
-            border-color: var(--color-blue);
-            transform: translateY(-2px);
-        }
-
-        .color-scheme.active {
-            border-color: var(--color-yellow);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .scheme-preview {
-            width: 100%;
-            height: 60px;
-            border-radius: 5px;
-            margin-bottom: 0.5rem;
-        }
-
-        .scheme-name {
-            text-align: center;
-            font-weight: 600;
-            color: var(--color-white);
+            border-radius: 8px;
+            border: 1px solid #ff6b6b;
         }
 
         /* Add all responsive styles from homepage */
@@ -337,7 +331,7 @@
                     <label>Custom Colors:</label>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div>
-                            <label style="font-size: 0.9rem;">Foreground Color:</label>
+                            <label style="font-size: 0.9rem;">QR Color:</label>
                             <input type="color" id="foreground-color" value="#00d4ff">
                         </div>
                         <div>
@@ -352,7 +346,7 @@
 
             <div class="output-container">
                 <div id="qr-code-output">
-                    <p style="color: var(--color-gray);">Your colorful QR code will appear here</p>
+                    <p class="loading">Enter text above and click generate to create your QR code</p>
                 </div>
                 <div class="action-buttons">
                     <button class="btn-action btn-download" onclick="downloadQRCode()" style="display: none;" id="downloadBtn">Download QR Code</button>
@@ -373,6 +367,7 @@
                 <li>High-resolution download</li>
                 <li>Instant generation</li>
                 <li>100% free and secure</li>
+                <li>Real QR codes that actually work!</li>
             </ul>
         </div>
     </div>
@@ -409,7 +404,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Colorful QR Code Generator -->
+    <!-- JavaScript for REAL QR Code Generator -->
     <script>
         let currentColorScheme = 'blue';
         let currentColors = {
@@ -446,6 +441,11 @@
                 customColors.style.display = 'none';
                 currentColors = { ...colorSchemes[scheme] };
             }
+            
+            // Regenerate QR code if one exists
+            if (document.querySelector('#qr-code-output canvas')) {
+                generateQRCode();
+            }
         }
 
         function generateQRCode() {
@@ -455,19 +455,12 @@
             const shareBtn = document.getElementById('shareBtn');
             
             if (!content) {
-                alert('Please enter some text or URL');
+                output.innerHTML = '<p class="error">Please enter some text or URL to generate QR code</p>';
                 return;
             }
             
-            // Clear previous QR code
-            output.innerHTML = '';
-            
-            // Create canvas for QR code
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            const size = 300;
-            canvas.width = size;
-            canvas.height = size;
+            // Show loading
+            output.innerHTML = '<p class="loading">Generating QR code...</p>';
             
             // Get current colors
             let fgColor, bgColor;
@@ -479,61 +472,68 @@
                 bgColor = currentColors.background;
             }
             
-            // Draw background
-            ctx.fillStyle = bgColor;
-            ctx.fillRect(0, 0, size, size);
-            
-            // Draw QR code pattern (simplified for demo)
-            ctx.fillStyle = fgColor;
-            const cellSize = size / 15;
-            
-            // Create QR-like pattern
-            for (let row = 0; row < 15; row++) {
-                for (let col = 0; col < 15; col++) {
-                    // More complex pattern for better appearance
-                    if ((row + col) % 3 === 0 || 
-                        (row * col) % 7 === 0 ||
-                        (row + col * 2) % 5 === 0) {
-                        ctx.fillRect(col * cellSize, row * cellSize, cellSize - 2, cellSize - 2);
+            try {
+                // Clear previous QR code
+                output.innerHTML = '';
+                
+                // Create canvas for QR code
+                const canvas = document.createElement('canvas');
+                canvas.width = 300;
+                canvas.height = 300;
+                
+                // Generate REAL QR code using the library
+                QRCode.toCanvas(canvas, content, {
+                    width: 300,
+                    height: 300,
+                    color: {
+                        dark: fgColor,    // QR code color
+                        light: bgColor    // Background color
+                    },
+                    margin: 1
+                }, function(error) {
+                    if (error) {
+                        console.error(error);
+                        output.innerHTML = '<p class="error">Error generating QR code. Please try again.</p>';
+                        return;
                     }
-                }
-            }
-            
-            // Add corner markers (like real QR codes)
-            ctx.fillStyle = fgColor;
-            // Top-left
-            ctx.fillRect(1, 1, cellSize * 3 - 2, cellSize * 3 - 2);
-            ctx.fillStyle = bgColor;
-            ctx.fillRect(cellSize, cellSize, cellSize - 2, cellSize - 2);
-            
-            // Add style based on color scheme
-            if (currentColorScheme === 'sunset') {
-                // Add gradient effect
-                const gradient = ctx.createRadialGradient(size/2, size/2, 10, size/2, size/2, size/2);
-                gradient.addColorStop(0, fgColor);
-                gradient.addColorStop(1, '#ffd93d');
-                ctx.fillStyle = gradient;
-                ctx.fillRect(size/2 - 20, size/2 - 20, 40, 40);
-            }
-            
-            output.appendChild(canvas);
-            downloadBtn.style.display = 'inline-block';
-            shareBtn.style.display = 'inline-block';
-            
-            // Update color pickers if custom
-            if (currentColorScheme === 'custom') {
-                document.getElementById('foreground-color').value = fgColor;
-                document.getElementById('background-color').value = bgColor;
+                    
+                    // Success - add canvas to output
+                    output.appendChild(canvas);
+                    downloadBtn.style.display = 'inline-block';
+                    shareBtn.style.display = 'inline-block';
+                    
+                    // Update color pickers if custom
+                    if (currentColorScheme === 'custom') {
+                        document.getElementById('foreground-color').value = fgColor;
+                        document.getElementById('background-color').value = bgColor;
+                    }
+                });
+                
+            } catch (error) {
+                console.error('QR Code generation error:', error);
+                output.innerHTML = '<p class="error">Error: Could not generate QR code. Please check your input.</p>';
             }
         }
 
         function downloadQRCode() {
             const canvas = document.querySelector('#qr-code-output canvas');
             if (canvas) {
-                const link = document.createElement('a');
-                link.download = `qr-code-${currentColorScheme}.png`;
-                link.href = canvas.toDataURL();
-                link.click();
+                try {
+                    const link = document.createElement('a');
+                    link.download = `qr-code-${currentColorScheme}-${Date.now()}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                    
+                    // Show success message
+                    const originalText = downloadBtn.textContent;
+                    downloadBtn.textContent = '✓ Downloaded!';
+                    setTimeout(() => {
+                        downloadBtn.textContent = originalText;
+                    }, 2000);
+                    
+                } catch (error) {
+                    alert('Error downloading QR code. Please try again.');
+                }
             }
         }
 
@@ -541,14 +541,29 @@
             const canvas = document.querySelector('#qr-code-output canvas');
             if (canvas) {
                 canvas.toBlob(function(blob) {
-                    if (navigator.share) {
+                    if (navigator.share && navigator.canShare) {
                         navigator.share({
                             title: 'My Colorful QR Code',
-                            text: 'Check out this QR code I created!',
+                            text: 'Check out this QR code I created with Online WebTool!',
                             files: [new File([blob], `qr-code-${currentColorScheme}.png`, { type: 'image/png' })]
+                        }).catch(error => {
+                            console.log('Sharing failed:', error);
+                            downloadQRCode(); // Fallback to download
                         });
                     } else {
-                        alert('Web Share API not supported in your browser. Use download instead.');
+                        // Fallback: copy to clipboard or download
+                        if (navigator.clipboard) {
+                            canvas.toBlob(blob => {
+                                const item = new ClipboardItem({ 'image/png': blob });
+                                navigator.clipboard.write([item]).then(() => {
+                                    alert('QR code copied to clipboard!');
+                                }).catch(() => {
+                                    downloadQRCode();
+                                });
+                            });
+                        } else {
+                            downloadQRCode();
+                        }
                     }
                 });
             }
@@ -558,13 +573,24 @@
         document.getElementById('foreground-color').addEventListener('input', function() {
             if (currentColorScheme === 'custom') {
                 currentColors.foreground = this.value;
-                generateQRCode();
+                if (document.querySelector('#qr-code-output canvas')) {
+                    generateQRCode();
+                }
             }
         });
 
         document.getElementById('background-color').addEventListener('input', function() {
             if (currentColorScheme === 'custom') {
                 currentColors.background = this.value;
+                if (document.querySelector('#qr-code-output canvas')) {
+                    generateQRCode();
+                }
+            }
+        });
+
+        // Auto-generate when content changes
+        document.getElementById('qr-content').addEventListener('input', function() {
+            if (this.value.trim().length > 5 && document.querySelector('#qr-code-output canvas')) {
                 generateQRCode();
             }
         });
@@ -604,8 +630,13 @@
 
         // Initialize
         createSnow();
-        // Generate initial QR code
-        setTimeout(generateQRCode, 1000);
+        
+        // Generate initial QR code on page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                generateQRCode();
+            }, 1000);
+        });
     </script>
 </body>
 </html>

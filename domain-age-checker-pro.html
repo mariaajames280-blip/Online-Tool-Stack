@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Age Checker Pro - Online Tool Stack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background stars */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                radial-gradient(2px 2px at 60px 70px, #fff, transparent),
+                radial-gradient(1px 1px at 50px 50px, #ddd, transparent),
+                radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+                radial-gradient(2px 2px at 90px 10px, #eee, transparent);
+            background-size: 200px 200px;
+            animation: stars 3s linear infinite;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        @keyframes stars {
+            from { transform: translateY(0); }
+            to { transform: translateY(-200px); }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            border-bottom: 2px solid #00bcd4;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #00bcd4;
+        }
+
+        .logo-icon {
+            font-size: 30px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00bcd4;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tool-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 42px;
+            color: #00bcd4;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #b0b0b0;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: rgba(20, 20, 40, 0.9);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 188, 212, 0.2);
+            border: 1px solid rgba(0, 188, 212, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #00bcd4;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(0, 188, 212, 0.3);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #00bcd4;
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.3);
+        }
+
+        input::placeholder {
+            color: #666;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 188, 212, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 2px solid rgba(0, 188, 212, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #00bcd4;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+            color: #ffffff;
+            display: none;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Results Section */
+        .results-section {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            border-left: 4px solid #00bcd4;
+            display: none;
+        }
+
+        .results-section.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: #00bcd4;
+            font-weight: 600;
+        }
+
+        .result-value {
+            color: #ffffff;
+            text-align: right;
+        }
+
+        .error-message {
+            background: rgba(244, 67, 54, 0.2);
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            border-radius: 5px;
+            color: #ff8a80;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #00bcd4;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid rgba(0, 188, 212, 0.3);
+            border-top: 3px solid #00bcd4;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .tool-card {
+                padding: 25px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span>Online Tool Stack</span>
+            </div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">All Tools</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="tool-header">
+            <div class="tool-icon">🌐</div>
+            <h1>Domain Age Checker Pro</h1>
+            <p class="subtitle">Check domain age, registration date, and WHOIS information instantly</p>
+        </div>
+
+        <div class="tool-card">
+            <form id="domainForm">
+                <div class="form-group">
+                    <label for="domainInput">Domain Name</label>
+                    <input 
+                        type="text" 
+                        id="domainInput" 
+                        placeholder="e.g., example.com or https://www.example.com"
+                        required
+                    >
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">Check Domain Age</button>
+                    <button type="button" class="btn-secondary" id="resetBtn">Reset</button>
+                    <button type="button" class="btn-download" id="downloadBtn">Download Results</button>
+                </div>
+            </form>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Fetching domain information...</p>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <div class="results-section" id="resultsSection">
+                <h3 style="color: #00bcd4; margin-bottom: 20px;">Domain Information</h3>
+                <div class="result-item">
+                    <span class="result-label">Domain Name:</span>
+                    <span class="result-value" id="domainName">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Registration Date:</span>
+                    <span class="result-value" id="registrationDate">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Domain Age:</span>
+                    <span class="result-value" id="domainAge">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Expiration Date:</span>
+                    <span class="result-value" id="expirationDate">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Days Until Expiration:</span>
+                    <span class="result-value" id="daysToExpire">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Registrar:</span>
+                    <span class="result-value" id="registrar">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Status:</span>
+                    <span class="result-value" id="status">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const domainForm = document.getElementById('domainForm');
+        const domainInput = document.getElementById('domainInput');
+        const resetBtn = document.getElementById('resetBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const loading = document.getElementById('loading');
+        const errorMessage = document.getElementById('errorMessage');
+        const resultsSection = document.getElementById('resultsSection');
+
+        // Extract domain from URL or input
+        function extractDomain(input) {
+            let domain = input.trim().toLowerCase();
+            domain = domain.replace(/^(https?:\/\/)?(www\.)?/, '');
+            domain = domain.replace(/\/.*$/, '');
+            return domain;
+        }
+
+        // Calculate age difference
+        function calculateAge(startDate) {
+            const now = new Date();
+            const start = new Date(startDate);
+            const diff = now - start;
+            
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            
+            return `${years} years, ${months} months, ${days} days`;
+        }
+
+        // Calculate days until expiration
+        function daysUntilExpiration(expDate) {
+            const now = new Date();
+            const exp = new Date(expDate);
+            const diff = exp - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            return days > 0 ? days : 0;
+        }
+
+        // Simulate domain check (In real implementation, you would call a WHOIS API)
+        async function checkDomain(domain) {
+            // This is a simulation. In production, use a WHOIS API service
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // Simulated data
+                    const registrationDate = new Date(2015, 3, 15); // April 15, 2015
+                    const expirationDate = new Date(2026, 3, 15); // April 15, 2026
+                    
+                    resolve({
+                        domain: domain,
+                        registrationDate: registrationDate.toLocaleDateString('en-US', { 
+                            year: 'numeric', month: 'long', day: 'numeric' 
+                        }),
+                        age: calculateAge(registrationDate),
+                        expirationDate: expirationDate.toLocaleDateString('en-US', { 
+                            year: 'numeric', month: 'long', day: 'numeric' 
+                        }),
+                        daysToExpire: daysUntilExpiration(expirationDate),
+                        registrar: 'Example Registrar Inc.',
+                        status: 'Active'
+                    });
+                }, 2000);
+            });
+        }
+
+        // Form submission
+        domainForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const inputValue = domainInput.value;
+            if (!inputValue) return;
+
+            const domain = extractDomain(inputValue);
+            
+            // Validate domain format
+            const domainRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/;
+            if (!domainRegex.test(domain)) {
+                showError('Please enter a valid domain name (e.g., example.com)');
+                return;
+            }
+
+            // Show loading
+            loading.classList.add('show');
+            resultsSection.classList.remove('show');
+            errorMessage.classList.remove('show');
+            downloadBtn.style.display = 'none';
+
+            try {
+                const data = await checkDomain(domain);
+                
+                // Hide loading
+                loading.classList.remove('show');
+                
+                // Display results
+                document.getElementById('domainName').textContent = data.domain;
+                document.getElementById('registrationDate').textContent = data.registrationDate;
+                document.getElementById('domainAge').textContent = data.age;
+                document.getElementById('expirationDate').textContent = data.expirationDate;
+                document.getElementById('daysToExpire').textContent = data.daysToExpire + ' days';
+                document.getElementById('registrar').textContent = data.registrar;
+                document.getElementById('status').textContent = data.status;
+                
+                resultsSection.classList.add('show');
+                downloadBtn.style.display = 'block';
+                
+            } catch (error) {
+                loading.classList.remove('show');
+                showError('Failed to fetch domain information. Please try again.');
+            }
+        });
+
+        // Reset button
+        resetBtn.addEventListener('click', () => {
+            domainForm.reset();
+            resultsSection.classList.remove('show');
+            errorMessage.classList.remove('show');
+            downloadBtn.style.display = 'none';
+        });
+
+        // Download button
+        downloadBtn.addEventListener('click', () => {
+            const domain = document.getElementById('domainName').textContent;
+            const regDate = document.getElementById('registrationDate').textContent;
+            const age = document.getElementById('domainAge').textContent;
+            const expDate = document.getElementById('expirationDate').textContent;
+            const daysExpire = document.getElementById('daysToExpire').textContent;
+            const registrar = document.getElementById('registrar').textContent;
+            const status = document.getElementById('status').textContent;
+            
+            const content = `DOMAIN AGE CHECKER REPORT
+================================
+
+Domain Name: ${domain}
+Registration Date: ${regDate}
+Domain Age: ${age}
+Expiration Date: ${expDate}
+Days Until Expiration: ${daysExpire}
+Registrar: ${registrar}
+Status: ${status}
+
+Generated on: ${new Date().toLocaleString()}
+Tool: Domain Age Checker Pro - Online Tool Stack
+`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `domain-age-${domain}-${Date.now()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        });
+
+        // Show error message
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+        }
+    </script>
+</body>
+</html>

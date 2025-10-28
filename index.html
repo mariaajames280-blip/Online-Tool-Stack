@@ -9,6 +9,22 @@
     <title>Online Tool stack - 40+ Free Online Tools</title>
     
     <style>
+        /* --- Fix tool card alignment --- */
+.tools-grid {
+    align-items: stretch;
+}
+
+.tool-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* ensures button stays at bottom */
+    height: 100%; /* makes all cards equal height in each row */
+}
+
+.tool-card p {
+    flex-grow: 1; /* makes description fill the middle space evenly */
+}
+
         * {
             margin: 0;
             padding: 0;

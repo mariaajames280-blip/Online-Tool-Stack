@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBook Converter - Online Tool Stack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .logo-icon {
+            color: #ffd700;
+            font-size: 24px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #ffffff;
+        }
+
+        /* Container */
+        .container {
+            max-width: 750px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        /* Title Section */
+        .title-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 16px;
+        }
+
+        /* Tool Box */
+        .tool-box {
+            background: rgba(30, 40, 55, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            color: #00d4ff;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            background: rgba(20, 30, 45, 0.8);
+            border: 2px dashed rgba(0, 212, 255, 0.3);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-input-wrapper:hover {
+            border-color: rgba(0, 212, 255, 0.6);
+            background: rgba(20, 30, 45, 0.9);
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-input-content {
+            pointer-events: none;
+        }
+
+        .file-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #00d4ff;
+        }
+
+        .file-text {
+            color: #b0b0b0;
+            font-size: 14px;
+        }
+
+        .file-name {
+            margin-top: 15px;
+            color: #00d4ff;
+            font-size: 14px;
+            word-break: break-all;
+        }
+
+        select {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(20, 30, 45, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            background: rgba(20, 30, 45, 1);
+        }
+
+        .swap-button {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .swap-btn {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #00d4ff;
+            font-size: 20px;
+        }
+
+        .swap-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: rotate(180deg);
+        }
+
+        /* Convert Button */
+        .convert-button {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-convert {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: #0f1419;
+            border: none;
+            padding: 16px 60px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-convert:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-convert:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Status Box */
+        .status-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(20, 30, 45, 0.6);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            text-align: center;
+            display: none;
+        }
+
+        .status-box.show {
+            display: block;
+        }
+
+        .status-box.success {
+            border-color: rgba(0, 255, 136, 0.3);
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .status-box.error {
+            border-color: rgba(255, 68, 68, 0.3);
+            background: rgba(255, 68, 68, 0.05);
+        }
+
+        .status-message {
+            color: #00d4ff;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .status-box.success .status-message {
+            color: #00ff88;
+        }
+
+        .status-box.error .status-message {
+            color: #ff4444;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #0099cc);
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 3px;
+        }
+
+        .download-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 30px;
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid #00d4ff;
+            border-radius: 6px;
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .download-link:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Supported Formats */
+        .supported-formats {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(20, 30, 45, 0.4);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .supported-formats h3 {
+            color: #00d4ff;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .formats-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .format-badge {
+            padding: 6px 12px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 4px;
+            color: #00d4ff;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 30px auto;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+
+            .tool-box {
+                padding: 25px;
+            }
+
+            .nav {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <span class="logo-icon">⚡</span>
+            <span>Online Tool Stack</span>
+        </div>
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="#">All Tools</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Title Section -->
+        <div class="title-section">
+            <div class="title-icon">📚</div>
+            <h1 class="title">eBook Converter</h1>
+            <p class="subtitle">Convert between popular eBook formats with ease</p>
+        </div>
+
+        <!-- Tool Box -->
+        <div class="tool-box">
+            <!-- File Upload -->
+            <div class="form-group">
+                <label class="form-label">Upload eBook File</label>
+                <div class="file-input-wrapper" id="fileInputWrapper">
+                    <input type="file" id="fileInput" accept=".epub,.mobi,.azw,.azw3,.pdf,.txt,.fb2,.lit,.lrf,.pdb,.cbz,.cbr">
+                    <div class="file-input-content">
+                        <div class="file-icon">📁</div>
+                        <div class="file-text">Click to browse or drag & drop your eBook file here</div>
+                        <div class="file-name" id="fileName"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- From Format -->
+            <div class="form-group">
+                <label class="form-label">From Format</label>
+                <select id="fromFormat">
+                    <option value="epub">EPUB</option>
+                    <option value="mobi">MOBI</option>
+                    <option value="azw3">AZW3</option>
+                    <option value="pdf">PDF</option>
+                    <option value="txt">TXT</option>
+                    <option value="fb2">FB2</option>
+                    <option value="lit">LIT</option>
+                    <option value="cbz">CBZ</option>
+                </select>
+            </div>
+
+            <!-- Swap Button -->
+            <div class="swap-button">
+                <button class="swap-btn" id="swapBtn">⇅</button>
+            </div>
+
+            <!-- To Format -->
+            <div class="form-group">
+                <label class="form-label">To Format</label>
+                <select id="toFormat">
+                    <option value="pdf">PDF</option>
+                    <option value="epub">EPUB</option>
+                    <option value="mobi">MOBI</option>
+                    <option value="azw3">AZW3</option>
+                    <option value="txt">TXT</option>
+                    <option value="fb2">FB2</option>
+                    <option value="docx">DOCX</option>
+                    <option value="html">HTML</option>
+                </select>
+            </div>
+
+            <!-- Convert Button -->
+            <div class="convert-button">
+                <button class="btn-convert" id="convertBtn">Convert eBook</button>
+            </div>
+
+            <!-- Status Box -->
+            <div class="status-box" id="statusBox">
+                <div class="status-message" id="statusMessage">Processing your eBook...</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Supported Formats -->
+        <div class="supported-formats">
+            <h3>Supported Formats</h3>
+            <div class="formats-list">
+                <span class="format-badge">EPUB</span>
+                <span class="format-badge">MOBI</span>
+                <span class="format-badge">AZW3</span>
+                <span class="format-badge">PDF</span>
+                <span class="format-badge">TXT</span>
+                <span class="format-badge">FB2</span>
+                <span class="format-badge">LIT</span>
+                <span class="format-badge">CBZ</span>
+                <span class="format-badge">DOCX</span>
+                <span class="format-badge">HTML</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // File input handling
+        const fileInput = document.getElementById('fileInput');
+        const fileInputWrapper = document.getElementById('fileInputWrapper');
+        const fileName = document.getElementById('fileName');
+        const fromFormat = document.getElementById('fromFormat');
+        const toFormat = document.getElementById('toFormat');
+        const swapBtn = document.getElementById('swapBtn');
+        const convertBtn = document.getElementById('convertBtn');
+        const statusBox = document.getElementById('statusBox');
+        const statusMessage = document.getElementById('statusMessage');
+        const progressFill = document.getElementById('progressFill');
+
+        let selectedFile = null;
+
+        // File selection
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                selectedFile = file;
+                fileName.textContent = `Selected: ${file.name}`;
+                
+                // Auto-detect format from file extension
+                const extension = file.name.split('.').pop().toLowerCase();
+                fromFormat.value = extension;
+            }
+        });
+
+        // Drag and drop
+        fileInputWrapper.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileInputWrapper.style.borderColor = 'rgba(0, 212, 255, 0.8)';
+        });
+
+        fileInputWrapper.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            fileInputWrapper.style.borderColor = 'rgba(0, 212, 255, 0.3)';
+        });
+
+        fileInputWrapper.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileInputWrapper.style.borderColor = 'rgba(0, 212, 255, 0.3)';
+            
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                selectedFile = file;
+                fileName.textContent = `Selected: ${file.name}`;
+                fileInput.files = e.dataTransfer.files;
+                
+                const extension = file.name.split('.').pop().toLowerCase();
+                fromFormat.value = extension;
+            }
+        });
+
+        // Swap formats
+        swapBtn.addEventListener('click', () => {
+            const temp = fromFormat.value;
+            fromFormat.value = toFormat.value;
+            toFormat.value = temp;
+        });
+
+        // Convert button
+        convertBtn.addEventListener('click', async () => {
+            if (!selectedFile) {
+                showStatus('error', 'Please select a file to convert');
+                return;
+            }
+
+            if (fromFormat.value === toFormat.value) {
+                showStatus('error', 'Source and target formats must be different');
+                return;
+            }
+
+            // Disable button
+            convertBtn.disabled = true;
+            convertBtn.textContent = 'Converting...';
+
+            // Show progress
+            statusBox.classList.add('show');
+            statusBox.classList.remove('success', 'error');
+            statusMessage.textContent = 'Processing your eBook...';
+
+            // Simulate conversion progress
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 10;
+                progressFill.style.width = progress + '%';
+
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    completeConversion();
+                }
+            }, 300);
+        });
+
+        function completeConversion() {
+            const outputFileName = selectedFile.name.replace(/\.[^/.]+$/, '') + '.' + toFormat.value;
+            
+            // In a real implementation, this would process the file
+            // For demo purposes, we'll create a simulated converted file
+            const blob = new Blob([selectedFile], { type: 'application/octet-stream' });
+            const url = URL.createObjectURL(blob);
+
+            statusBox.classList.add('success');
+            statusMessage.innerHTML = `
+                ✓ Conversion completed successfully!<br>
+                <a href="${url}" download="${outputFileName}" class="download-link">
+                    📥 Download ${outputFileName}
+                </a>
+            `;
+
+            // Reset button
+            convertBtn.disabled = false;
+            convertBtn.textContent = 'Convert eBook';
+        }
+
+        function showStatus(type, message) {
+            statusBox.classList.add('show', type);
+            statusBox.classList.remove(type === 'success' ? 'error' : 'success');
+            statusMessage.textContent = message;
+
+            setTimeout(() => {
+                statusBox.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

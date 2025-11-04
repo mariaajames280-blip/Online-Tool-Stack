@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Graph & Meta Tag Previewer Pro</title>
+    <style>
+        :root {
+            --primary-bg: #1a1a1a;
+            --secondary-bg: #2d2d2d;
+            --accent: #ffeb3b;
+            --text-primary: #f5f5f5;
+            --text-secondary: #cccccc;
+            --border-color: #444444;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .panel {
+            background-color: var(--secondary-bg);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: var(--accent);
+            text-align: center;
+            grid-column: 1 / -1;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: var(--accent);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            background-color: #3d3d3d;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: monospace;
+        }
+        button {
+            background-color: var(--accent);
+            color: #1a1a1a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #fbc02d;
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        #previewContainer {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 300px;
+            color: #333;
+        }
+        .og-preview {
+            max-width: 500px;
+            border: 1px solid #dddfe2;
+            border-radius: 8px;
+            background-color: #fff;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        .og-image {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .og-content {
+            padding: 10px 12px;
+        }
+        .og-url {
+            color: #606770;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .og-title {
+            color: #1d2129;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 20px;
+            margin-bottom: 6px;
+        }
+        .og-description {
+            color: #606770;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        .tag-list {
+            font-family: monospace;
+            background-color: #2d2d2d;
+            padding: 15px;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .tag-item {
+            margin-bottom: 8px;
+            padding: 5px;
+            border-left: 3px solid var(--accent);
+            background-color: #3d3d3d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Open Graph & Meta Tag Previewer Pro</h1>
+        
+        <div class="panel">
+            <h2>Input Meta Tags</h2>
+            <div class="input-group">
+                <label for="pageUrl">Page URL (og:url)</label>
+                <input type="text" id="pageUrl" placeholder="https://example.com/my-article">
+            </div>
+            <div class="input-group">
+                <label for="ogTitle">Title (og:title)</label>
+                <input type="text" id="ogTitle" placeholder="My Amazing Article">
+            </div>
+            <div class="input-group">
+                <label for="ogDescription">Description (og:description)</label>
+                <textarea id="ogDescription" placeholder="A brief description of my amazing content..."></textarea>
+            </div>
+            <div class="input-group">
+                <label for="ogImage">Image URL (og:image)</label>
+                <input type="text" id="ogImage" placeholder="https://example.com/image.jpg">
+            </div>
+            <div class="input-group">
+                <label for="ogType">Content Type (og:type)</label>
+                <input type="text" id="ogType" placeholder="article, website, video, etc.">
+            </div>
+            <div class="input-group">
+                <label for="siteName">Site Name (og:site_name)</label>
+                <input type="text" id="siteName" placeholder="My Website">
+            </div>
+            
+            <div class="button-group">
+                <button onclick="updatePreview()">Update Preview</button>
+                <button onclick="resetForm()">Reset Form</button>
+                <button onclick="downloadTags()">Download Tags</button>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>Social Media Preview</h2>
+            <div id="previewContainer">
+                <div class="og-preview">
+                    <img id="previewImage" class="og-image" src="" alt="Preview image">
+                    <div class="og-content">
+                        <div id="previewUrl" class="og-url">example.com</div>
+                        <div id="previewTitle" class="og-title">Your preview title will appear here</div>
+                        <div id="previewDescription" class="og-description">Your preview description will appear here.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Generated Meta Tags</h2>
+            <div id="tagOutput" class="tag-list">
+                <!-- Generated meta tags will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updatePreview() {
+            // Get input values
+            const url = document.getElementById('pageUrl').value || 'https://example.com';
+            const title = document.getElementById('ogTitle').value || 'Default Page Title';
+            const description = document.getElementById('ogDescription').value || 'Default description for the page.';
+            const image = document.getElementById('ogImage').value || '';
+            const type = document.getElementById('ogType').value || 'website';
+            const siteName = document.getElementById('siteName').value || 'My Site';
+            
+            // Extract domain from URL for display
+            const domain = url.replace(/^https?:\/\//, '').split('/')[0];
+            
+            // Update preview elements
+            document.getElementById('previewUrl').textContent = domain;
+            document.getElementById('previewTitle').textContent = title;
+            document.getElementById('previewDescription').textContent = description;
+            
+            // Handle image preview
+            const previewImage = document.getElementById('previewImage');
+            if (image) {
+                previewImage.src = image;
+                previewImage.style.display = 'block';
+            } else {
+                previewImage.style.display = 'none';
+            }
+            
+            // Generate meta tags code
+            generateMetaTags(url, title, description, image, type, siteName);
+        }
+        
+        function generateMetaTags(url, title, description, image, type, siteName) {
+            let tags = '';
+            
+            // Basic Open Graph tags [citation:1]
+            tags += `<div class="tag-item">&lt;meta property="og:title" content="${title}" /&gt;</div>`;
+            tags += `<div class="tag-item">&lt;meta property="og:type" content="${type}" /&gt;</div>`;
+            tags += `<div class="tag-item">&lt;meta property="og:url" content="${url}" /&gt;</div>`;
+            
+            if (image) {
+                tags += `<div class="tag-item">&lt;meta property="og:image" content="${image}" /&gt;</div>`;
+            }
+            
+            tags += `<div class="tag-item">&lt;meta property="og:description" content="${description}" /&gt;</div>`;
+            
+            if (siteName) {
+                tags += `<div class="tag-item">&lt;meta property="og:site_name" content="${siteName}" /&gt;</div>`;
+            }
+            
+            // Additional recommended tags [citation:1]
+            tags += `<div class="tag-item">&lt;meta property="og:locale" content="en_US" /&gt;</div>`;
+            
+            document.getElementById('tagOutput').innerHTML = tags;
+        }
+        
+        function resetForm() {
+            document.getElementById('pageUrl').value = '';
+            document.getElementById('ogTitle').value = '';
+            document.getElementById('ogDescription').value = '';
+            document.getElementById('ogImage').value = '';
+            document.getElementById('ogType').value = '';
+            document.getElementById('siteName').value = '';
+            
+            document.getElementById('previewUrl').textContent = 'example.com';
+            document.getElementById('previewTitle').textContent = 'Your preview title will appear here';
+            document.getElementById('previewDescription').textContent = 'Your preview description will appear here.';
+            document.getElementById('previewImage').style.display = 'none';
+            document.getElementById('tagOutput').innerHTML = '';
+        }
+        
+        function downloadTags() {
+            const tags = document.getElementById('tagOutput').innerText;
+            if (!tags) {
+                alert('Please generate meta tags first by clicking "Update Preview"');
+                return;
+            }
+            
+            const element = document.createElement('a');
+            const file = new Blob([tags], {type: 'text/plain'});
+            element.href = URL.createObjectURL(file);
+            element.download = 'meta-tags.txt';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            resetForm();
+        });
+    </script>
+</body>
+</html>

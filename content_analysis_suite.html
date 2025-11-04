@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Analysis Suite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f0f0f0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 3px solid #ffd700;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #cccccc;
+            font-size: 1.1em;
+        }
+
+        .input-section {
+            background: #2d2d2d;
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(255, 215, 0, 0.1);
+        }
+
+        .input-section h2 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            background: #1a1a1a;
+            border: 2px solid #555;
+            border-radius: 8px;
+            color: #f0f0f0;
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+
+        textarea::placeholder {
+            color: #888;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-analyze {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a1a;
+        }
+
+        .btn-analyze:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-reset {
+            background: #555;
+            color: #f0f0f0;
+        }
+
+        .btn-reset:hover {
+            background: #666;
+            transform: translateY(-2px);
+        }
+
+        .btn-download {
+            background: #1a1a1a;
+            color: #ffd700;
+            border: 2px solid #ffd700;
+        }
+
+        .btn-download:hover {
+            background: #ffd700;
+            color: #1a1a1a;
+            transform: translateY(-2px);
+        }
+
+        .results-section {
+            display: none;
+            background: #2d2d2d;
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(255, 215, 0, 0.1);
+        }
+
+        .results-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .results-section h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: #1a1a1a;
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: scale(1.05);
+        }
+
+        .metric-label {
+            color: #cccccc;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metric-value {
+            color: #ffd700;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .analysis-details {
+            background: #1a1a1a;
+            border: 2px solid #555;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .analysis-details h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 10px;
+        }
+
+        .detail-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #2d2d2d;
+            border-radius: 5px;
+        }
+
+        .detail-label {
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            color: #f0f0f0;
+            margin-left: 10px;
+        }
+
+        .word-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .word-tag {
+            background: #ffd700;
+            color: #1a1a1a;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #1a1a1a;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
+            transition: width 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            margin-top: 30px;
+            border-top: 2px solid #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Content Analysis Suite</h1>
+            <p class="subtitle">Advanced Text Analytics & Insights</p>
+        </header>
+
+        <div class="input-section">
+            <h2>📝 Input Your Content</h2>
+            <textarea id="contentInput" placeholder="Paste or type your content here for comprehensive analysis..."></textarea>
+            
+            <div class="button-group">
+                <button class="btn-analyze" onclick="analyzeContent()">🔍 Analyze Content</button>
+                <button class="btn-reset" onclick="resetAll()">🔄 Reset</button>
+                <button class="btn-download" onclick="downloadResults()">⬇️ Download Report</button>
+            </div>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <h2>📈 Analysis Results</h2>
+            
+            <div class="metrics-grid" id="metricsGrid">
+                <!-- Metrics will be dynamically inserted here -->
+            </div>
+
+            <div class="analysis-details" id="detailsSection">
+                <!-- Detailed analysis will be inserted here -->
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Content Analysis Suite | Powered by Advanced Analytics</p>
+        </footer>
+    </div>
+
+    <script>
+        function analyzeContent() {
+            const content = document.getElementById('contentInput').value.trim();
+            
+            if (!content) {
+                alert('⚠️ Please enter some content to analyze!');
+                return;
+            }
+
+            // Perform analysis
+            const analysis = performAnalysis(content);
+            
+            // Display results
+            displayResults(analysis);
+            
+            // Show results section
+            document.getElementById('resultsSection').classList.add('active');
+            
+            // Smooth scroll to results
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function performAnalysis(text) {
+            // Basic metrics
+            const words = text.match(/\b\w+\b/g) || [];
+            const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
+            const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0);
+            const characters = text.length;
+            const charactersNoSpaces = text.replace(/\s/g, '').length;
+
+            // Word frequency analysis
+            const wordFreq = {};
+            words.forEach(word => {
+                const lowerWord = word.toLowerCase();
+                wordFreq[lowerWord] = (wordFreq[lowerWord] || 0) + 1;
+            });
+
+            // Get top 10 words
+            const topWords = Object.entries(wordFreq)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            // Average calculations
+            const avgWordLength = words.reduce((sum, word) => sum + word.length, 0) / words.length || 0;
+            const avgSentenceLength = words.length / sentences.length || 0;
+            const avgParagraphLength = words.length / paragraphs.length || 0;
+
+            // Reading time (assuming 200 words per minute)
+            const readingTime = Math.ceil(words.length / 200);
+
+            // Complexity score (based on average word and sentence length)
+            const complexityScore = ((avgWordLength * 10) + (avgSentenceLength * 2)) / 2;
+            let complexityLevel = 'Easy';
+            if (complexityScore > 50) complexityLevel = 'Complex';
+            else if (complexityScore > 30) complexityLevel = 'Medium';
+
+            // Count unique words
+            const uniqueWords = new Set(words.map(w => w.toLowerCase())).size;
+
+            // Lexical diversity (unique words / total words)
+            const lexicalDiversity = (uniqueWords / words.length * 100) || 0;
+
+            return {
+                words: words.length,
+                sentences: sentences.length,
+                paragraphs: paragraphs.length,
+                characters: characters,
+                charactersNoSpaces: charactersNoSpaces,
+                avgWordLength: avgWordLength.toFixed(2),
+                avgSentenceLength: avgSentenceLength.toFixed(2),
+                avgParagraphLength: avgParagraphLength.toFixed(2),
+                readingTime: readingTime,
+                topWords: topWords,
+                uniqueWords: uniqueWords,
+                lexicalDiversity: lexicalDiversity.toFixed(2),
+                complexityScore: complexityScore.toFixed(2),
+                complexityLevel: complexityLevel
+            };
+        }
+
+        function displayResults(analysis) {
+            // Display metrics cards
+            const metricsHTML = `
+                <div class="metric-card">
+                    <div class="metric-label">Total Words</div>
+                    <div class="metric-value">${analysis.words.toLocaleString()}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Sentences</div>
+                    <div class="metric-value">${analysis.sentences.toLocaleString()}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Paragraphs</div>
+                    <div class="metric-value">${analysis.paragraphs.toLocaleString()}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Reading Time</div>
+                    <div class="metric-value">${analysis.readingTime} min</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Characters</div>
+                    <div class="metric-value">${analysis.characters.toLocaleString()}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Unique Words</div>
+                    <div class="metric-value">${analysis.uniqueWords.toLocaleString()}</div>
+                </div>
+            `;
+            document.getElementById('metricsGrid').innerHTML = metricsHTML;
+
+            // Display detailed analysis
+            const detailsHTML = `
+                <h3>📊 Detailed Statistics</h3>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Characters (with spaces):</div>
+                    <div class="detail-value">${analysis.characters.toLocaleString()}</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Characters (without spaces):</div>
+                    <div class="detail-value">${analysis.charactersNoSpaces.toLocaleString()}</div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Average Word Length:</div>
+                    <div class="detail-value">${analysis.avgWordLength} characters</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${Math.min(analysis.avgWordLength * 10, 100)}%"></div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Average Sentence Length:</div>
+                    <div class="detail-value">${analysis.avgSentenceLength} words</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${Math.min(analysis.avgSentenceLength * 3, 100)}%"></div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Average Paragraph Length:</div>
+                    <div class="detail-value">${analysis.avgParagraphLength} words</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${Math.min(analysis.avgParagraphLength / 2, 100)}%"></div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Lexical Diversity:</div>
+                    <div class="detail-value">${analysis.lexicalDiversity}%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${analysis.lexicalDiversity}%"></div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-label">Complexity Level:</div>
+                    <div class="detail-value">${analysis.complexityLevel} (Score: ${analysis.complexityScore})</div>
+                </div>
+                
+                <h3 style="margin-top: 30px;">🔤 Top 10 Most Frequent Words</h3>
+                <div class="word-list">
+                    ${analysis.topWords.map(([word, count]) => 
+                        `<div class="word-tag">${word} (${count})</div>`
+                    ).join('')}
+                </div>
+            `;
+            document.getElementById('detailsSection').innerHTML = detailsHTML;
+        }
+
+        function resetAll() {
+            // Clear input
+            document.getElementById('contentInput').value = '';
+            
+            // Hide results
+            document.getElementById('resultsSection').classList.remove('active');
+            
+            // Clear results
+            document.getElementById('metricsGrid').innerHTML = '';
+            document.getElementById('detailsSection').innerHTML = '';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function downloadResults() {
+            const content = document.getElementById('contentInput').value.trim();
+            
+            if (!content) {
+                alert('⚠️ Please analyze some content first!');
+                return;
+            }
+
+            const analysis = performAnalysis(content);
+            
+            // Create report content
+            const reportContent = `
+CONTENT ANALYSIS REPORT
+Generated: ${new Date().toLocaleString()}
+========================================
+
+BASIC METRICS
+-------------
+Total Words: ${analysis.words.toLocaleString()}
+Sentences: ${analysis.sentences.toLocaleString()}
+Paragraphs: ${analysis.paragraphs.toLocaleString()}
+Characters (with spaces): ${analysis.characters.toLocaleString()}
+Characters (without spaces): ${analysis.charactersNoSpaces.toLocaleString()}
+Unique Words: ${analysis.uniqueWords.toLocaleString()}
+Reading Time: ${analysis.readingTime} minutes
+
+ADVANCED METRICS
+----------------
+Average Word Length: ${analysis.avgWordLength} characters
+Average Sentence Length: ${analysis.avgSentenceLength} words
+Average Paragraph Length: ${analysis.avgParagraphLength} words
+Lexical Diversity: ${analysis.lexicalDiversity}%
+Complexity Level: ${analysis.complexityLevel} (Score: ${analysis.complexityScore})
+
+TOP 10 MOST FREQUENT WORDS
+---------------------------
+${analysis.topWords.map(([word, count], index) => 
+    `${index + 1}. ${word}: ${count} occurrences`
+).join('\n')}
+
+========================================
+ORIGINAL CONTENT
+========================================
+${content}
+`;
+
+            // Create and download file
+            const blob = new Blob([reportContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `content_analysis_${Date.now()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            alert('✅ Analysis report downloaded successfully!');
+        }
+
+        // Test functionality with sample content on load
+        window.addEventListener('load', function() {
+            const sampleText = `Welcome to the Content Analysis Suite! This powerful tool provides comprehensive text analytics and insights. 
+
+Analyze word count, sentence structure, reading time, and much more. The tool calculates lexical diversity, complexity scores, and identifies the most frequently used words in your content.
+
+Perfect for writers, editors, content creators, and anyone who wants to understand their text better. Try it now with your own content!`;
+            
+            document.getElementById('contentInput').value = sampleText;
+            
+            // Auto-analyze after a short delay to demonstrate functionality
+            setTimeout(function() {
+                analyzeContent();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

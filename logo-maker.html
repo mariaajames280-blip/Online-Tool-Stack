@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Logo Maker - Black & Yellow Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #FFD700;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 3px solid #FFD700;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(255, 215, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #FFA500;
+            font-size: 1.2em;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+        }
+
+        .controls {
+            background: #1a1a1a;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #FFD700;
+            height: fit-content;
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #FFD700;
+            font-size: 0.95em;
+        }
+
+        input[type="text"],
+        input[type="color"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #FFD700;
+            background: #2d2d2d;
+            color: #FFD700;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        input[type="color"] {
+            height: 50px;
+            cursor: pointer;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #2d2d2d;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #FFD700;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #FFD700;
+            cursor: pointer;
+            border: none;
+        }
+
+        .value-display {
+            display: inline-block;
+            margin-left: 10px;
+            color: #FFA500;
+            font-weight: bold;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .canvas-container {
+            background: #2d2d2d;
+            border-radius: 15px;
+            border: 2px solid #FFD700;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 600px;
+        }
+
+        canvas {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 100%;
+            height: auto;
+        }
+
+        .shape-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .shape-btn {
+            padding: 10px;
+            background: #2d2d2d;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .shape-btn:hover {
+            background: #FFD700;
+            color: #000;
+        }
+
+        .shape-btn.active {
+            background: #FFD700;
+            color: #000;
+        }
+
+        .preset-logos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .preset-btn {
+            padding: 8px;
+            background: #2d2d2d;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85em;
+        }
+
+        .preset-btn:hover {
+            background: #FFD700;
+            color: #000;
+        }
+
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 AI Logo Maker</h1>
+            <p class="subtitle">Create stunning logos with black & yellow theme</p>
+        </header>
+
+        <div class="main-content">
+            <div class="controls">
+                <div class="control-group">
+                    <label>Company Name</label>
+                    <input type="text" id="companyName" placeholder="Enter your company name" value="AI TECH">
+                </div>
+
+                <div class="control-group">
+                    <label>Tagline</label>
+                    <input type="text" id="tagline" placeholder="Optional tagline" value="Innovation Powered">
+                </div>
+
+                <div class="control-group">
+                    <label>Logo Style</label>
+                    <select id="logoStyle">
+                        <option value="modern">Modern AI</option>
+                        <option value="circuit">Circuit Tech</option>
+                        <option value="geometric">Geometric</option>
+                        <option value="neural">Neural Network</option>
+                        <option value="minimalist">Minimalist</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Icon Shape</label>
+                    <div class="shape-options">
+                        <button class="shape-btn active" data-shape="circle">Circle</button>
+                        <button class="shape-btn" data-shape="hexagon">Hexagon</button>
+                        <button class="shape-btn" data-shape="square">Square</button>
+                        <button class="shape-btn" data-shape="triangle">Triangle</button>
+                        <button class="shape-btn" data-shape="diamond">Diamond</button>
+                        <button class="shape-btn" data-shape="custom">Custom</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Primary Color (Yellow)</label>
+                    <input type="color" id="primaryColor" value="#FFD700">
+                </div>
+
+                <div class="control-group">
+                    <label>Secondary Color (Black)</label>
+                    <input type="color" id="secondaryColor" value="#000000">
+                </div>
+
+                <div class="control-group">
+                    <label>Icon Size <span class="value-display" id="iconSizeValue">100</span></label>
+                    <input type="range" id="iconSize" min="50" max="200" value="100">
+                </div>
+
+                <div class="control-group">
+                    <label>Font Size <span class="value-display" id="fontSizeValue">40</span></label>
+                    <input type="range" id="fontSize" min="20" max="80" value="40">
+                </div>
+
+                <div class="control-group">
+                    <label>AI Presets</label>
+                    <div class="preset-logos">
+                        <button class="preset-btn" data-preset="neural">Neural</button>
+                        <button class="preset-btn" data-preset="quantum">Quantum</button>
+                        <button class="preset-btn" data-preset="cyber">Cyber</button>
+                        <button class="preset-btn" data-preset="digital">Digital</button>
+                        <button class="preset-btn" data-preset="future">Future</button>
+                        <button class="preset-btn" data-preset="matrix">Matrix</button>
+                    </div>
+                </div>
+
+                <button onclick="generateLogo()">🎨 Generate Logo</button>
+                <button onclick="downloadLogo()">💾 Download Logo</button>
+                <button onclick="randomizeLogo()">🎲 Randomize</button>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="logoCanvas" width="800" height="800"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('logoCanvas');
+        const ctx = canvas.getContext('2d');
+        let currentShape = 'circle';
+
+        // Shape buttons
+        document.querySelectorAll('.shape-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.shape-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentShape = this.dataset.shape;
+                generateLogo();
+            });
+        });
+
+        // Preset buttons
+        document.querySelectorAll('.preset-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                applyPreset(this.dataset.preset);
+            });
+        });
+
+        // Range inputs
+        document.getElementById('iconSize').addEventListener('input', function() {
+            document.getElementById('iconSizeValue').textContent = this.value;
+            generateLogo();
+        });
+
+        document.getElementById('fontSize').addEventListener('input', function() {
+            document.getElementById('fontSizeValue').textContent = this.value;
+            generateLogo();
+        });
+
+        // Input listeners
+        ['companyName', 'tagline', 'logoStyle', 'primaryColor', 'secondaryColor'].forEach(id => {
+            document.getElementById(id).addEventListener('input', generateLogo);
+        });
+
+        function generateLogo() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const companyName = document.getElementById('companyName').value || 'AI TECH';
+            const tagline = document.getElementById('tagline').value || '';
+            const logoStyle = document.getElementById('logoStyle').value;
+            const primaryColor = document.getElementById('primaryColor').value;
+            const secondaryColor = document.getElementById('secondaryColor').value;
+            const iconSize = parseInt(document.getElementById('iconSize').value);
+            const fontSize = parseInt(document.getElementById('fontSize').value);
+
+            // Background
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw icon based on style
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2 - 100);
+
+            switch(logoStyle) {
+                case 'modern':
+                    drawModernAI(iconSize, primaryColor, secondaryColor);
+                    break;
+                case 'circuit':
+                    drawCircuitTech(iconSize, primaryColor, secondaryColor);
+                    break;
+                case 'geometric':
+                    drawGeometric(iconSize, primaryColor, secondaryColor);
+                    break;
+                case 'neural':
+                    drawNeuralNetwork(iconSize, primaryColor, secondaryColor);
+                    break;
+                case 'minimalist':
+                    drawMinimalist(iconSize, primaryColor, secondaryColor);
+                    break;
+            }
+
+            ctx.restore();
+
+            // Draw text
+            ctx.textAlign = 'center';
+            ctx.fillStyle = secondaryColor;
+            ctx.font = `bold ${fontSize}px Arial, sans-serif`;
+            ctx.fillText(companyName, canvas.width / 2, canvas.height / 2 + 150);
+
+            if (tagline) {
+                ctx.font = `${fontSize * 0.4}px Arial, sans-serif`;
+                ctx.fillStyle = primaryColor;
+                ctx.fillText(tagline, canvas.width / 2, canvas.height / 2 + 150 + fontSize);
+            }
+        }
+
+        function drawModernAI(size, primary, secondary) {
+            drawShape(size, primary, secondary);
+            
+            // AI symbol
+            ctx.strokeStyle = secondary;
+            ctx.lineWidth = 4;
+            ctx.lineCap = 'round';
+            
+            // Brain-like structure
+            ctx.beginPath();
+            ctx.arc(-size/4, -size/6, size/8, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.arc(size/4, -size/6, size/8, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Connecting lines
+            ctx.beginPath();
+            ctx.moveTo(-size/4, size/8);
+            ctx.lineTo(0, size/4);
+            ctx.lineTo(size/4, size/8);
+            ctx.stroke();
+        }
+
+        function drawCircuitTech(size, primary, secondary) {
+            drawShape(size, primary, secondary);
+            
+            ctx.strokeStyle = secondary;
+            ctx.lineWidth = 3;
+            
+            // Circuit pattern
+            const points = [
+                [-size/3, -size/3], [0, -size/3], [size/3, -size/3],
+                [-size/3, 0], [0, 0], [size/3, 0],
+                [-size/3, size/3], [0, size/3], [size/3, size/3]
+            ];
+            
+            points.forEach(([x, y]) => {
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            // Connect points
+            ctx.beginPath();
+            ctx.moveTo(-size/3, -size/3);
+            ctx.lineTo(size/3, -size/3);
+            ctx.lineTo(size/3, size/3);
+            ctx.lineTo(-size/3, size/3);
+            ctx.lineTo(-size/3, -size/3);
+            ctx.moveTo(0, -size/3);
+            ctx.lineTo(0, size/3);
+            ctx.moveTo(-size/3, 0);
+            ctx.lineTo(size/3, 0);
+            ctx.stroke();
+        }
+
+        function drawGeometric(size, primary, secondary) {
+            drawShape(size, primary, secondary);
+            
+            // Nested shapes
+            ctx.strokeStyle = secondary;
+            ctx.lineWidth = 3;
+            
+            for (let i = 0; i < 3; i++) {
+                const s = size * (0.7 - i * 0.2);
+                ctx.strokeRect(-s/2, -s/2, s, s);
+                ctx.save();
+                ctx.rotate(Math.PI / 4);
+                ctx.strokeRect(-s/2, -s/2, s, s);
+                ctx.restore();
+            }
+        }
+
+        function drawNeuralNetwork(size, primary, secondary) {
+            drawShape(size, primary, secondary);
+            
+            ctx.strokeStyle = secondary;
+            ctx.fillStyle = secondary;
+            ctx.lineWidth = 2;
+            
+            // Neural network nodes
+            const layers = [
+                [[-size/3, 0]],
+                [[0, -size/4], [0, size/4]],
+                [[size/3, -size/4], [size/3, 0], [size/3, size/4]]
+            ];
+            
+            // Draw connections
+            layers.forEach((layer, i) => {
+                if (i < layers.length - 1) {
+                    layer.forEach(node1 => {
+                        layers[i + 1].forEach(node2 => {
+                            ctx.beginPath();
+                            ctx.moveTo(node1[0], node1[1]);
+                            ctx.lineTo(node2[0], node2[1]);
+                            ctx.stroke();
+                        });
+                    });
+                }
+            });
+            
+            // Draw nodes
+            layers.flat().forEach(([x, y]) => {
+                ctx.beginPath();
+                ctx.arc(x, y, 8, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        function drawMinimalist(size, primary, secondary) {
+            drawShape(size, primary, secondary);
+            
+            // Simple AI letters
+            ctx.fillStyle = secondary;
+            ctx.font = `bold ${size}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('AI', 0, 0);
+        }
+
+        function drawShape(size, primary, secondary) {
+            ctx.fillStyle = primary;
+            ctx.strokeStyle = secondary;
+            ctx.lineWidth = 4;
+            
+            switch(currentShape) {
+                case 'circle':
+                    ctx.beginPath();
+                    ctx.arc(0, 0, size, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.stroke();
+                    break;
+                case 'hexagon':
+                    drawPolygon(0, 0, size, 6);
+                    break;
+                case 'square':
+                    ctx.fillRect(-size, -size, size * 2, size * 2);
+                    ctx.strokeRect(-size, -size, size * 2, size * 2);
+                    break;
+                case 'triangle':
+                    drawPolygon(0, 0, size, 3);
+                    break;
+                case 'diamond':
+                    ctx.save();
+                    ctx.rotate(Math.PI / 4);
+                    ctx.fillRect(-size, -size, size * 2, size * 2);
+                    ctx.strokeRect(-size, -size, size * 2, size * 2);
+                    ctx.restore();
+                    break;
+                case 'custom':
+                    // Star shape
+                    drawStar(0, 0, 5, size, size * 0.5);
+                    break;
+            }
+        }
+
+        function drawPolygon(x, y, radius, sides) {
+            ctx.beginPath();
+            for (let i = 0; i < sides; i++) {
+                const angle = (i * 2 * Math.PI / sides) - Math.PI / 2;
+                const px = x + radius * Math.cos(angle);
+                const py = y + radius * Math.sin(angle);
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        function drawStar(cx, cy, spikes, outerRadius, innerRadius) {
+            let rot = Math.PI / 2 * 3;
+            let x = cx;
+            let y = cy;
+            const step = Math.PI / spikes;
+
+            ctx.beginPath();
+            ctx.moveTo(cx, cy - outerRadius);
+            
+            for (let i = 0; i < spikes; i++) {
+                x = cx + Math.cos(rot) * outerRadius;
+                y = cy + Math.sin(rot) * outerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+
+                x = cx + Math.cos(rot) * innerRadius;
+                y = cy + Math.sin(rot) * innerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+            }
+            
+            ctx.lineTo(cx, cy - outerRadius);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        function applyPreset(preset) {
+            const presets = {
+                neural: { style: 'neural', shape: 'hexagon', name: 'NEURAL AI', tagline: 'Deep Learning' },
+                quantum: { style: 'geometric', shape: 'diamond', name: 'QUANTUM', tagline: 'Next Gen Computing' },
+                cyber: { style: 'circuit', shape: 'square', name: 'CYBER TECH', tagline: 'Digital Solutions' },
+                digital: { style: 'modern', shape: 'circle', name: 'DIGITAL AI', tagline: 'Smart Technology' },
+                future: { style: 'minimalist', shape: 'triangle', name: 'FUTURE', tagline: 'Tomorrow Today' },
+                matrix: { style: 'circuit', shape: 'hexagon', name: 'MATRIX', tagline: 'Code Reality' }
+            };
+
+            const p = presets[preset];
+            document.getElementById('companyName').value = p.name;
+            document.getElementById('tagline').value = p.tagline;
+            document.getElementById('logoStyle').value = p.style;
+            
+            document.querySelectorAll('.shape-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.shape === p.shape) {
+                    btn.classList.add('active');
+                    currentShape = p.shape;
+                }
+            });
+            
+            generateLogo();
+        }
+
+        function randomizeLogo() {
+            const styles = ['modern', 'circuit', 'geometric', 'neural', 'minimalist'];
+            const shapes = ['circle', 'hexagon', 'square', 'triangle', 'diamond', 'custom'];
+            const names = ['AI TECH', 'NEURAL NET', 'QUANTUM AI', 'CYBER CORE', 'SMART AI', 'TECH MIND'];
+            const taglines = ['Innovation Powered', 'Future Ready', 'Smart Solutions', 'Next Generation', 'Digital Excellence'];
+            
+            document.getElementById('logoStyle').value = styles[Math.floor(Math.random() * styles.length)];
+            document.getElementById('companyName').value = names[Math.floor(Math.random() * names.length)];
+            document.getElementById('tagline').value = taglines[Math.floor(Math.random() * taglines.length)];
+            document.getElementById('iconSize').value = 80 + Math.random() * 60;
+            document.getElementById('iconSizeValue').textContent = document.getElementById('iconSize').value;
+            
+            currentShape = shapes[Math.floor(Math.random() * shapes.length)];
+            document.querySelectorAll('.shape-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.shape === currentShape) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            generateLogo();
+        }
+
+        function downloadLogo() {
+            const link = document.createElement('a');
+            link.download = 'ai-logo.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        // Initial logo generation
+        generateLogo();
+    </script>
+</body>
+</html>

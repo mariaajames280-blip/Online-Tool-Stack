@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Text Transformer Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #ffdd00;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            border-bottom: 3px solid #ffdd00;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(255, 221, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #ffd700;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-section {
+            background: #1a1a1a;
+            border: 2px solid #ffdd00;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(255, 221, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ffd700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .text-area-container {
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            background: #000000;
+            border: 2px solid #ffdd00;
+            border-radius: 8px;
+            color: #ffdd00;
+            font-size: 1em;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 221, 0, 0.4);
+        }
+
+        textarea::placeholder {
+            color: #666600;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background: #ffdd00;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 221, 0, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #333333;
+            color: #ffdd00;
+            border: 2px solid #ffdd00;
+        }
+
+        .btn-secondary:hover {
+            background: #444444;
+        }
+
+        .btn-danger {
+            background: #cc0000;
+            color: #ffffff;
+        }
+
+        .btn-danger:hover {
+            background: #dd0000;
+        }
+
+        .btn-success {
+            background: #00aa00;
+            color: #ffffff;
+        }
+
+        .btn-success:hover {
+            background: #00cc00;
+        }
+
+        .transformation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .transform-btn {
+            padding: 15px;
+            background: #2a2a00;
+            border: 2px solid #ffdd00;
+            color: #ffdd00;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .transform-btn:hover {
+            background: #3a3a00;
+            border-color: #ffd700;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            padding: 20px;
+            background: #000000;
+            border: 2px solid #ffdd00;
+            border-radius: 8px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffdd00;
+        }
+
+        .history-section {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #000000;
+            border: 2px solid #ffdd00;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .history-item {
+            background: #1a1a1a;
+            border: 1px solid #666600;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            border-color: #ffdd00;
+            box-shadow: 0 3px 10px rgba(255, 221, 0, 0.2);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .history-type {
+            background: #ffdd00;
+            color: #000000;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .history-time {
+            color: #999999;
+            font-size: 0.85em;
+        }
+
+        .history-text {
+            color: #ffd700;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            word-wrap: break-word;
+            margin-top: 10px;
+            padding: 10px;
+            background: #000000;
+            border-radius: 4px;
+        }
+
+        .history-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .small-btn {
+            padding: 6px 12px;
+            font-size: 0.8em;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.3s ease;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .message.success {
+            background: #004400;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+        }
+
+        .message.error {
+            background: #440000;
+            border: 2px solid #ff0000;
+            color: #ff0000;
+        }
+
+        .message.info {
+            background: #003366;
+            border: 2px solid #0099ff;
+            color: #0099ff;
+        }
+
+        .message.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .test-section {
+            background: #2a2a00;
+            border: 2px dashed #ffdd00;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .test-section h3 {
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .test-samples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .sample-btn {
+            padding: 10px;
+            background: #1a1a00;
+            border: 1px solid #ffdd00;
+            color: #ffd700;
+            font-size: 0.9em;
+            text-align: left;
+        }
+
+        .sample-btn:hover {
+            background: #2a2a00;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #ffd700;
+            border-top: 2px solid #ffdd00;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ffdd00;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .transformation-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ffdd00;
+            color: #000000;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ Smart Text Transformer Pro</h1>
+            <p class="subtitle">Transform, Analyze, and Manipulate Text with Ease</p>
+        </header>
+
+        <div id="message" class="message"></div>
+
+        <div class="main-section">
+            <h2 class="section-title">📝 Input Text</h2>
+            
+            <div class="text-area-container">
+                <textarea id="inputText" placeholder="Enter or paste your text here to transform..."></textarea>
+            </div>
+
+            <div class="quick-actions">
+                <button class="btn-secondary small-btn" onclick="pasteFromClipboard()">📋 Paste</button>
+                <button class="btn-secondary small-btn" onclick="clearInput()">🗑️ Clear</button>
+                <button class="btn-success small-btn" onclick="loadSampleText()">📄 Load Sample</button>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-label">Characters</div>
+                    <div class="stat-value" id="charCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Words</div>
+                    <div class="stat-value" id="wordCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Lines</div>
+                    <div class="stat-value" id="lineCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Sentences</div>
+                    <div class="stat-value" id="sentenceCount">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-section">
+            <h2 class="section-title">🔄 Text Transformations <span class="badge">20+ Options</span></h2>
+            
+            <h3 style="color: #ffd700; margin-bottom: 15px; font-size: 1.1em;">Case Transformations</h3>
+            <div class="transformation-grid">
+                <button class="transform-btn" onclick="transform('uppercase')">🔤 UPPERCASE</button>
+                <button class="transform-btn" onclick="transform('lowercase')">🔡 lowercase</button>
+                <button class="transform-btn" onclick="transform('titlecase')">🔠 Title Case</button>
+                <button class="transform-btn" onclick="transform('sentencecase')">📝 Sentence case</button>
+                <button class="transform-btn" onclick="transform('togglecase')">🔄 tOGGLE cASE</button>
+                <button class="transform-btn" onclick="transform('camelcase')">🐫 camelCase</button>
+                <button class="transform-btn" onclick="transform('snakecase')">🐍 snake_case</button>
+                <button class="transform-btn" onclick="transform('kebabcase')">�串 kebab-case</button>
+            </div>
+
+            <h3 style="color: #ffd700; margin: 25px 0 15px 0; font-size: 1.1em;">Text Manipulations</h3>
+            <div class="transformation-grid">
+                <button class="transform-btn" onclick="transform('reverse')">↩️ Reverse Text</button>
+                <button class="transform-btn" onclick="transform('reversewords')">🔁 Reverse Words</button>
+                <button class="transform-btn" onclick="transform('shuffle')">🎲 Shuffle Words</button>
+                <button class="transform-btn" onclick="transform('sort')">📊 Sort A-Z</button>
+                <button class="transform-btn" onclick="transform('removespaces')">❌ Remove Spaces</button>
+                <button class="transform-btn" onclick="transform('removelinebreaks')">➡️ Remove Line Breaks</button>
+                <button class="transform-btn" onclick="transform('removepunctuation')">🚫 Remove Punctuation</button>
+                <button class="transform-btn" onclick="transform('removenumbers')">🔢 Remove Numbers</button>
+            </div>
+
+            <h3 style="color: #ffd700; margin: 25px 0 15px 0; font-size: 1.1em;">Advanced Transformations</h3>
+            <div class="transformation-grid">
+                <button class="transform-btn" onclick="transform('encode64')">🔐 Base64 Encode</button>
+                <button class="transform-btn" onclick="transform('decode64')">🔓 Base64 Decode</button>
+                <button class="transform-btn" onclick="transform('urlencode')">🌐 URL Encode</button>
+                <button class="transform-btn" onclick="transform('urldecode')">🔗 URL Decode</button>
+                <button class="transform-btn" onclick="transform('rot13')">🔄 ROT13</button>
+                <button class="transform-btn" onclick="transform('extractemails')">📧 Extract Emails</button>
+                <button class="transform-btn" onclick="transform('extracturls')">🔗 Extract URLs</button>
+                <button class="transform-btn" onclick="transform('extractnumbers')">🔢 Extract Numbers</button>
+            </div>
+        </div>
+
+        <div class="main-section">
+            <h2 class="section-title">📤 Output & Actions</h2>
+            
+            <div class="text-area-container">
+                <textarea id="outputText" placeholder="Transformed text will appear here..." readonly></textarea>
+            </div>
+
+            <div class="button-group">
+                <button onclick="copyOutput()">📋 Copy Output</button>
+                <button class="btn-success" onclick="swapTexts()">🔄 Swap Input ↔ Output</button>
+                <button class="btn-secondary" onclick="downloadOutput()">💾 Download Output</button>
+                <button class="btn-danger" onclick="clearOutput()">🗑️ Clear Output</button>
+            </div>
+        </div>
+
+        <div class="main-section">
+            <h2 class="section-title">📜 Transformation History</h2>
+            
+            <div class="button-group">
+                <button class="btn-secondary" onclick="downloadHistory()">📥 Download History</button>
+                <button class="btn-danger" onclick="clearHistory()">🗑️ Clear History</button>
+            </div>
+
+            <div id="historySection" class="history-section">
+                <p style="text-align: center; color: #999999;">No transformations yet. Start transforming text above!</p>
+            </div>
+        </div>
+
+        <div class="main-section test-section">
+            <h3>🧪 Quick Test Samples</h3>
+            <p style="color: #ffd700; margin-bottom: 15px;">Click any sample to load it into the input field:</p>
+            <div class="test-samples">
+                <button class="sample-btn" onclick="loadSample('quote')">📜 Famous Quote</button>
+                <button class="sample-btn" onclick="loadSample('paragraph')">📄 Paragraph</button>
+                <button class="sample-btn" onclick="loadSample('code')">💻 Code Snippet</button>
+                <button class="sample-btn" onclick="loadSample('list')">📋 List Items</button>
+                <button class="sample-btn" onclick="loadSample('email')">📧 Email Text</button>
+                <button class="sample-btn" onclick="loadSample('mixed')">🎨 Mixed Content</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Smart Text Transformer Pro | Built with ❤️ and ☕</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">All transformations happen locally in your browser</p>
+        </footer>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'textTransformerHistory';
+        let history = loadHistory();
+
+        // Update stats on input
+        document.getElementById('inputText').addEventListener('input', updateStats);
+
+        // Load history from localStorage
+        function loadHistory() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : [];
+        }
+
+        // Save history to localStorage
+        function saveHistory() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+        }
+
+        // Show message
+        function showMessage(text, type = 'success') {
+            const messageEl = document.getElementById('message');
+            messageEl.textContent = text;
+            messageEl.className = `message ${type} active`;
+            setTimeout(() => {
+                messageEl.classList.remove('active');
+            }, 3000);
+        }
+
+        // Update statistics
+        function updateStats() {
+            const text = document.getElementById('inputText').value;
+            const charCount = text.length;
+            const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            const lineCount = text === '' ? 0 : text.split('\n').length;
+            const sentenceCount = text.trim() === '' ? 0 : text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+
+            document.getElementById('charCount').textContent = charCount;
+            document.getElementById('wordCount').textContent = wordCount;
+            document.getElementById('lineCount').textContent = lineCount;
+            document.getElementById('sentenceCount').textContent = sentenceCount;
+        }
+
+        // Transform text
+        function transform(type) {
+            const input = document.getElementById('inputText').value;
+            
+            if (!input.trim()) {
+                showMessage('Please enter some text first!', 'error');
+                return;
+            }
+
+            let output = '';
+            let transformName = '';
+
+            switch(type) {
+                case 'uppercase':
+                    output = input.toUpperCase();
+                    transformName = 'UPPERCASE';
+                    break;
+                case 'lowercase':
+                    output = input.toLowerCase();
+                    transformName = 'lowercase';
+                    break;
+                case 'titlecase':
+                    output = input.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+                    transformName = 'Title Case';
+                    break;
+                case 'sentencecase':
+                    output = input.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+                    transformName = 'Sentence case';
+                    break;
+                case 'togglecase':
+                    output = input.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
+                    transformName = 'tOGGLE cASE';
+                    break;
+                case 'camelcase':
+                    output = input.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+                    transformName = 'camelCase';
+                    break;
+                case 'snakecase':
+                    output = input.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+                    transformName = 'snake_case';
+                    break;
+                case 'kebabcase':
+                    output = input.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+                    transformName = 'kebab-case';
+                    break;
+                case 'reverse':
+                    output = input.split('').reverse().join('');
+                    transformName = 'Reverse Text';
+                    break;
+                case 'reversewords':
+                    output = input.split(' ').reverse().join(' ');
+                    transformName = 'Reverse Words';
+                    break;
+                case 'shuffle':
+                    const words = input.split(' ');
+                    for (let i = words.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [words[i], words[j]] = [words[j], words[i]];
+                    }
+                    output = words.join(' ');
+                    transformName = 'Shuffle Words';
+                    break;
+                case 'sort':
+                    output = input.split(' ').sort().join(' ');
+                    transformName = 'Sort A-Z';
+                    break;
+                case 'removespaces':
+                    output = input.replace(/\s+/g, '');
+                    transformName = 'Remove Spaces';
+                    break;
+                case 'removelinebreaks':
+                    output = input.replace(/\n/g, ' ').replace(/\s+/g, ' ');
+                    transformName = 'Remove Line Breaks';
+                    break;
+                case 'removepunctuation':
+                    output = input.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+                    transformName = 'Remove Punctuation';
+                    break;
+                case 'removenumbers':
+                    output = input.replace(/[0-9]/g, '');
+                    transformName = 'Remove Numbers';
+                    break;
+                case 'encode64':
+                    try {
+                        output = btoa(unescape(encodeURIComponent(input)));
+                        transformName = 'Base64 Encode';
+                    } catch (e) {
+                        showMessage('Error encoding to Base64', 'error');
+                        return;
+                    }
+                    break;
+                case 'decode64':
+                    try {
+                        output = decodeURIComponent(escape(atob(input)));
+                        transformName = 'Base64 Decode';
+                    } catch (e) {
+                        showMessage('Invalid Base64 string', 'error');
+                        return;
+                    }
+                    break;
+                case 'urlencode':
+                    output = encodeURIComponent(input);
+                    transformName = 'URL Encode';
+                    break;
+                case 'urldecode':
+                    try {
+                        output = decodeURIComponent(input);
+                        transformName = 'URL Decode';
+                    } catch (e) {
+                        showMessage('Invalid URL encoded string', 'error');
+                        return;
+                    }
+                    break;
+                case 'rot13':
+                    output = input.replace(/[a-zA-Z]/g, c => 
+                        String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26)
+                    );
+                    transformName = 'ROT13';
+                    break;
+                case 'extractemails':
+                    const emails = input.match(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g);
+                    output = emails ? emails.join('\n') : 'No emails found';
+                    transformName = 'Extract Emails';
+                    break;
+                case 'extracturls':
+                    const urls = input.match(/https?:\/\/[^\s]+/g);
+                    output = urls ? urls.join('\n') : 'No URLs found';
+                    transformName = 'Extract URLs';
+                    break;
+                case 'extractnumbers':
+                    const numbers = input.match(/\d+/g);
+                    output = numbers ? numbers.join(', ') : 'No numbers found';
+                    transformName = 'Extract Numbers';
+                    break;
+                default:
+                    output = input;
+            }
+
+            document.getElementById('outputText').value = output;
+            
+            // Add to history
+            addToHistory(transformName, input, output);
+            
+            showMessage(`✓ Applied ${transformName} transformation!`, 'success');
+        }
+
+        // Add to history
+        function addToHistory(type, input, output) {
+            const entry = {
+                id: Date.now(),
+                type: type,
+                input: input.substring(0, 100) + (input.length > 100 ? '...' : ''),
+                output: output.substring(0, 100) + (output.length > 100 ? '...' : ''),
+                fullOutput: output,
+                timestamp: new Date().toISOString()
+            };
+
+            history.unshift(entry);
+            if (history.length > 50) history.pop(); // Keep only last 50
+            
+            saveHistory();
+            updateHistoryDisplay();
+        }
+
+        // Update history display
+        function updateHistoryDisplay() {
+            const container = document.getElementById('historySection');
+            
+            if (history.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #999999;">No transformations yet. Start transforming text above!</p>';
+                return;
+            }
+
+            container.innerHTML = history.map(entry => `
+                <div class="history-item">
+                    <div class="history-header">
+                        <span class="history-type">${entry.type}</span>
+                        <span class="history-time">${new Date(entry.timestamp).toLocaleString()}</span>
+                    </div>
+                    <div class="history-text">
+                        <strong style="color: #ffdd00;">Input:</strong> ${escapeHtml(entry.input)}<br>
+                        <strong style="color: #ffdd00;">Output:</strong> ${escapeHtml(entry.output)}
+                    </div>
+                    <div class="history-actions">
+                        <button class="small-btn" onclick="loadFromHistory(${entry.id})">📥 Load</button>
+                        <button class="small-btn btn-secondary" onclick="copyHistoryItem(${entry.id})">📋 Copy</button>
+                        <button class="small-btn btn-danger" onclick="deleteHistoryItem(${entry.id})">🗑️ Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Copy output
+        function copyOutput() {
+            const output = document.getElementById('outputText').value;
+            if (!output) {
+                showMessage('Nothing to copy!', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(output).then(() => {
+                showMessage('✓ Copied to clipboard!', 'success');
+            });
+        }
+
+        // Swap texts
+        function swapTexts() {
+            const input = document.getElementById('inputText').value;
+            const output = document.getElementById('outputText').value;
+            
+            if (!output) {
+                showMessage('Output is empty!', 'error');
+                return;
+            }
+            
+            document.getElementById('inputText').value = output;
+            document.getElementById('outputText').value = input;
+            updateStats();
+            showMessage('✓ Swapped input and output!', 'info');
+        }
+
+        // Download output
+        function downloadOutput() {
+            const output = document.getElementById('outputText').value;
+            if (!output) {
+                showMessage('Nothing to download!', 'error');
+                return;
+            }
+
+            const blob = new Blob([output], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `transformed-text-${Date.now()}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            showMessage('✓ Downloaded successfully!', 'success');
+        }
+
+        // Clear functions
+        function clearInput() {
+            document.getElementById('inputText').value = '';
+            updateStats();
+            showMessage('✓ Input cleared!', 'info');
+        }
+
+        function clearOutput() {
+            document.getElementById('outputText').value = '';
+            showMessage('✓ Output cleared!', 'info');
+        }
+
+        // Paste from clipboard
+        async function pasteFromClipboard() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById('inputText').value = text;
+                updateStats();
+                showMessage('✓ Pasted from clipboard!', 'success');
+            } catch (err) {
+                showMessage('Failed to paste from clipboard', 'error');
+            }
+        }
+
+        // Load sample text
+        function loadSampleText() {
+            const sample = "The quick brown fox jumps over the lazy dog. This pangram contains every letter of the English alphabet at least once!";
+            document.getElementById('inputText').value = sample;
+            updateStats();
+            showMessage('✓ Sample text loaded!', 'info');
+        }
+
+        // Load specific sample
+        function loadSample(type) {
+            let sample = '';
+            switch(type) {
+                case 'quote':
+                    sample = "The only way to do great work is to love what you do. - Steve Jobs\nInnovation distinguishes between a leader and a follower.";
+                    break;
+                case 'paragraph':
+                    sample = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+                    break;
+                case 'code':
+                    sample = "function helloWorld() {\n    console.log('Hello, World!');\n    return true;\n}";
+                    break;
+                case 'list':
+                    sample = "apple\nbanana\ncherry\ndate\nelderberry\nfig\ngrape";
+                    break;
+                case 'email':
+                    sample = "Contact us at support@example.com or sales@company.org for more information. You can also reach admin@website.net";
+                    break;
+                case 'mixed':
+                    sample = "Check out https://example.com for more info! Call 555-1234 or email test@demo.com. Price: $99.99";
+                    break;
+            }
+            document.getElementById('inputText').value = sample;
+            updateStats();
+            showMessage(`✓ ${type.charAt(0).toUpperCase() + type.slice(1)} sample loaded!`, 'info');
+        }
+
+        // History functions
+        function loadFromHistory(id) {
+            const entry = history.find(h => h.id === id);
+            if (entry) {
+                document.getElementById('outputText').value = entry.fullOutput;
+                showMessage('✓ Loaded from history!', 'success');
+            }
+        }
+
+        function copyHistoryItem(id) {
+            const entry = history.find(h => h.id === id);
+            if (entry) {
+                navigator.clipboard.writeText(entry.fullOutput).then(() => {
+                    showMessage('✓ Copied to clipboard!', 'success');
+                });
+            }
+        }
+
+        function deleteHistoryItem(id) {
+            history = history.filter(h => h.id !== id);
+            saveHistory();
+            updateHistoryDisplay();
+            showMessage('✓ Deleted from history!', 'info');
+        }
+
+        function clearHistory() {
+            if (history.length === 0) {
+                showMessage('History is already empty!', 'info');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to clear all history? This cannot be undone!')) {
+                history = [];
+                saveHistory();
+                updateHistoryDisplay();
+                showMessage('✓ History cleared!', 'success');
+            }
+        }
+
+        function downloadHistory() {
+            if (history.length === 0) {
+                showMessage('No history to download!', 'error');
+                return;
+            }
+
+            const csvContent = [
+                ['Timestamp', 'Transformation Type', 'Input', 'Output'].join(','),
+                ...history.map(entry => [
+                    new Date(entry.timestamp).toLocaleString(),
+                    `"${entry.type}"`,
+                    `"${entry.input.replace(/"/g, '""')}"`,
+                    `"${entry.output.replace(/"/g, '""')}"`
+                ].join(','))
+            ].join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `transformation-history-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+
+            showMessage('✓ History downloaded!', 'success');
+        }
+
+        // Initialize
+        updateStats();
+        updateHistoryDisplay();
+    </script>
+</body>
+</html>

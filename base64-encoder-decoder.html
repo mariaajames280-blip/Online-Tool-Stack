@@ -3,108 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base64 Encoder/Decoder - Encode and Decode Base64 Instantly</title>
+    <title>Base64 Encoder/Decoder - Encode and Decode Base64 Online</title>
     <link rel="stylesheet" href="base64-styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header class="header">
             <div class="logo">
-                <i class="fas fa-code"></i>
+                <div class="tool-icon">🔐</div>
                 <h1>Base64 Encoder/Decoder</h1>
-                <span class="tagline">Encode and Decode Base64 Text Instantly</span>
+                <span class="tagline">Encode and decode Base64 strings instantly</span>
             </div>
         </header>
 
-        <!-- Main Tool Content -->
+        <!-- Main Tool -->
         <main class="main-content">
             <!-- Input Section -->
             <div class="tool-card">
                 <div class="tool-header">
-                    <h3><i class="fas fa-edit"></i> Base64 Conversion</h3>
-                    <button type="button" class="reset-btn" onclick="resetForm()">
-                        <i class="fas fa-redo"></i> Reset All
+                    <h3>🔧 Base64 Conversion</h3>
+                    <button type="button" class="reset-btn" onclick="resetAll()">
+                        🔄 Reset All
                     </button>
                 </div>
-                <form id="base64Form" class="tool-form">
-                    <div class="form-group">
-                        <label for="inputText"><i class="fas fa-font"></i> Input Text</label>
-                        <textarea id="inputText" placeholder="Enter text to encode or Base64 string to decode..." rows="5"></textarea>
-                        <div class="char-count">
-                            <span id="charCount">0</span> characters | 
-                            <span id="byteCount">0</span> bytes
-                        </div>
+                
+                <div class="conversion-controls">
+                    <div class="mode-selector">
+                        <label class="mode-option">
+                            <input type="radio" name="mode" value="encode" checked onchange="updateMode()">
+                            <span class="mode-label">🔒 Encode to Base64</span>
+                        </label>
+                        <label class="mode-option">
+                            <input type="radio" name="mode" value="decode" onchange="updateMode()">
+                            <span class="mode-label">🔓 Decode from Base64</span>
+                        </label>
                     </div>
-                    
-                    <div class="conversion-controls">
-                        <div class="mode-selector">
-                            <label class="mode-option">
-                                <input type="radio" name="conversionMode" value="encode" checked>
-                                <div class="mode-content">
-                                    <i class="fas fa-lock"></i>
-                                    <span>Encode to Base64</span>
-                                </div>
-                            </label>
-                            
-                            <label class="mode-option">
-                                <input type="radio" name="conversionMode" value="decode">
-                                <div class="mode-content">
-                                    <i class="fas fa-lock-open"></i>
-                                    <span>Decode from Base64</span>
-                                </div>
-                            </label>
-                        </div>
-                        
-                        <div class="options-section">
-                            <h4><i class="fas fa-cog"></i> Options</h4>
-                            <div class="options-grid">
-                                <label class="checkbox-option">
-                                    <input type="checkbox" id="urlSafe" checked>
-                                    <span class="checkmark"></span>
-                                    URL Safe Encoding
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" id="autoDetect">
-                                    <span class="checkmark"></span>
-                                    Auto-detect Mode
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" id="validateBase64">
-                                    <span class="checkmark"></span>
-                                    Validate Base64
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                </div>
 
-                    <button type="button" class="primary-btn" onclick="convertBase64()">
-                        <i class="fas fa-sync-alt"></i> Convert Now
-                    </button>
-                </form>
+                <div class="input-section">
+                    <label for="inputText">📝 Input Text:</label>
+                    <textarea id="inputText" placeholder="Enter text to encode or Base64 to decode..." rows="5"></textarea>
+                    <div class="char-count">
+                        <span id="charCount">0 characters</span>
+                        <span id="byteCount">0 bytes</span>
+                    </div>
+                </div>
+
+                <button type="button" class="primary-btn" onclick="convert()">
+                    ⚡ Convert Now
+                </button>
             </div>
 
             <!-- Output Section -->
             <div class="tool-card">
                 <div class="tool-header">
-                    <h3><i class="fas fa-file-code"></i> Conversion Result</h3>
+                    <h3>📄 Conversion Result</h3>
                     <div class="tool-actions">
                         <button type="button" class="download-btn" onclick="downloadResult()">
-                            <i class="fas fa-download"></i> Download
+                            📥 Download
                         </button>
-                        <button type="button" class="copy-btn" onclick="copyToClipboard()">
-                            <i class="fas fa-copy"></i> Copy
+                        <button type="button" class="copy-btn" onclick="copyResult()">
+                            📋 Copy
                         </button>
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="outputText"><i class="fas fa-check-circle"></i> Output Text</label>
-                    <textarea id="outputText" placeholder="Encoded or decoded result will appear here..." rows="5" readonly></textarea>
+
+                <div class="output-section">
+                    <label for="outputText">✅ Output:</label>
+                    <textarea id="outputText" placeholder="Result will appear here..." rows="5" readonly></textarea>
                     <div class="output-info">
-                        <span id="conversionStatus">Ready for conversion</span>
-                        <span class="copy-status" id="copyStatus"></span>
+                        <span id="status">Ready for conversion</span>
+                        <span id="copyStatus"></span>
                     </div>
                 </div>
             </div>
@@ -112,90 +82,41 @@
             <!-- Quick Actions -->
             <div class="tool-card">
                 <div class="tool-header">
-                    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                    <h3>🚀 Quick Actions</h3>
                 </div>
                 <div class="quick-actions">
-                    <button type="button" class="action-btn" onclick="encodeSample()">
-                        <i class="fas fa-play"></i>
-                        <span>Encode Sample</span>
+                    <button class="action-btn" onclick="loadEncodeSample()">
+                        🔒 Encode Sample
                     </button>
-                    <button type="button" class="action-btn" onclick="decodeSample()">
-                        <i class="fas fa-play"></i>
-                        <span>Decode Sample</span>
+                    <button class="action-btn" onclick="loadDecodeSample()">
+                        🔓 Decode Sample
                     </button>
-                    <button type="button" class="action-btn" onclick="clearInput()">
-                        <i class="fas fa-broom"></i>
-                        <span>Clear Input</span>
+                    <button class="action-btn" onclick="clearInput()">
+                        🗑️ Clear Input
                     </button>
-                    <button type="button" class="action-btn" onclick="swapText()">
-                        <i class="fas fa-exchange-alt"></i>
-                        <span>Swap Text</span>
+                    <button class="action-btn" onclick="swapText()">
+                        🔄 Swap Text
                     </button>
                 </div>
             </div>
 
-            <!-- Base64 Information -->
+            <!-- Info Section -->
             <div class="tool-card">
                 <div class="tool-header">
-                    <h3><i class="fas fa-info-circle"></i> About Base64</h3>
+                    <h3>ℹ️ About Base64</h3>
                 </div>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <div class="info-content">
-                            <h4>What is Base64?</h4>
-                            <p>Base64 is a binary-to-text encoding scheme that represents binary data in ASCII string format.</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-code"></i>
-                        <div class="info-content">
-                            <h4>Common Uses</h4>
-                            <p>Email attachments, data URIs, storing binary in JSON/XML, and encoding credentials.</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div class="info-content">
-                            <h4>Important Notes</h4>
-                            <p>Base64 is not encryption! It's encoding that can be easily decoded by anyone.</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-chart-line"></i>
-                        <div class="info-content">
-                            <h4>Size Increase</h4>
-                            <p>Base64 increases data size by approximately 33% due to 6-bit character representation.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Examples -->
-            <div class="tool-card">
-                <div class="tool-header">
-                    <h3><i class="fas fa-lightbulb"></i> Base64 Examples</h3>
-                </div>
-                <div class="examples-grid">
-                    <div class="example-item">
-                        <span class="example-label">Text:</span>
-                        <span class="example-text">Hello World!</span>
-                    </div>
-                    <div class="example-item">
-                        <span class="example-label">Base64:</span>
-                        <span class="example-text">SGVsbG8gV29ybGQh</span>
-                    </div>
-                    <div class="example-item">
-                        <span class="example-label">Text:</span>
-                        <span class="example-text">Base64 encoding</span>
-                    </div>
-                    <div class="example-item">
-                        <span class="example-label">Base64:</span>
-                        <span class="example-text">QmFzZTY0IGVuY29kaW5n</span>
-                    </div>
+                <div class="info-content">
+                    <p><strong>Base64</strong> is a binary-to-text encoding scheme that represents binary data in ASCII string format.</p>
+                    <p><strong>Common uses:</strong> Email attachments, data URIs, storing binary in JSON/XML.</p>
+                    <p><strong>Note:</strong> Base64 increases data size by ~33% and is not encryption!</p>
                 </div>
             </div>
         </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="index.html" class="back-link">← Back to All Tools</a>
+        </footer>
     </div>
 
     <script src="base64-script.js"></script>

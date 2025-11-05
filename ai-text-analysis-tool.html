@@ -8,13 +8,13 @@
         :root {
             --primary-bg: #1a1a1a;
             --secondary-bg: #2d2d2d;
-            --accent: #ffeb3b;
-            --accent-dark: #fbc02d;
+            --accent: #00d5ff;
+            --accent-dark: #0099cc;
             --text-primary: #f5f5f5;
             --text-secondary: #cccccc;
             --border-color: #444444;
             --positive: #4caf50;
-            --negative: #f44336;
+            --negative: #ff6b6b;
             --neutral: #9e9e9e;
         }
         * {
@@ -41,11 +41,13 @@
             background: var(--secondary-bg);
             border-radius: 10px;
             border: 2px solid var(--accent);
+            box-shadow: 0 5px 20px rgba(0, 213, 255, 0.1);
         }
         h1 {
             color: var(--accent);
             font-size: 2.5em;
             margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 213, 255, 0.3);
         }
         .subtitle {
             color: var(--text-secondary);
@@ -67,6 +69,7 @@
             padding: 25px;
             border-radius: 10px;
             border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
         h2 {
             color: var(--accent);
@@ -94,11 +97,12 @@
             font-size: 14px;
             resize: vertical;
             font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
         }
         textarea:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(255, 235, 59, 0.1);
+            box-shadow: 0 0 0 2px rgba(0, 213, 255, 0.2);
         }
         .button-group {
             display: flex;
@@ -113,14 +117,19 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .btn-primary {
             background: var(--accent);
             color: #1a1a1a;
+            box-shadow: 0 4px 10px rgba(0, 213, 255, 0.3);
         }
         .btn-primary:hover {
             background: var(--accent-dark);
             transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 213, 255, 0.4);
         }
         .btn-secondary {
             background: #555;
@@ -135,6 +144,7 @@
             padding: 20px;
             border-radius: 8px;
             margin-top: 20px;
+            border: 1px solid var(--border-color);
         }
         .metric {
             margin-bottom: 15px;
@@ -142,11 +152,19 @@
             background: #3d3d3d;
             border-radius: 6px;
             border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        .metric:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         .metric-title {
             font-weight: 600;
             margin-bottom: 8px;
             color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .sentiment-score {
             display: flex;
@@ -165,6 +183,7 @@
             height: 100%;
             border-radius: 4px;
             transition: width 0.5s ease;
+            box-shadow: 0 0 5px rgba(0, 213, 255, 0.3);
         }
         .positive { background: var(--positive); }
         .negative { background: var(--negative); }
@@ -182,6 +201,11 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .keyword:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(0, 213, 255, 0.4);
         }
         .emotion-grid {
             display: grid;
@@ -194,6 +218,12 @@
             padding: 10px;
             background: #3d3d3d;
             border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        .emotion-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
         }
         .emotion-name {
             font-size: 12px;
@@ -209,8 +239,25 @@
             padding: 20px;
             color: var(--accent);
         }
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         .hidden {
             display: none;
+        }
+        .icon {
+            width: 16px;
+            height: 16px;
         }
     </style>
 </head>
@@ -229,9 +276,24 @@
                     <textarea id="textInput" placeholder="Enter or paste your text here for analysis..."></textarea>
                 </div>
                 <div class="button-group">
-                    <button class="btn btn-primary" onclick="analyzeText()">Analyze Text</button>
-                    <button class="btn btn-secondary" onclick="resetAnalysis()">Reset</button>
-                    <button class="btn btn-secondary" onclick="downloadResults()">Download Report</button>
+                    <button class="btn btn-primary" onclick="analyzeText()">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                        Analyze Text
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetAnalysis()">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                        </svg>
+                        Reset
+                    </button>
+                    <button class="btn btn-secondary" onclick="downloadResults()">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Download Report
+                    </button>
                 </div>
             </div>
 
@@ -239,7 +301,8 @@
                 <h2>Analysis Results</h2>
                 <div id="resultsContainer">
                     <div id="loadingIndicator" class="loading hidden">
-                        <p>Analyzing text content...</p>
+                        <div class="loading-spinner"></div>
+                        <p>Analyzing text content with AI...</p>
                     </div>
                     <div id="analysisResults" class="analysis-result">
                         <p>Enter text and click "Analyze Text" to see results here.</p>

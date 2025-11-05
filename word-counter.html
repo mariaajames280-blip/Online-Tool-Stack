@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #00d5ff, #0077ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .subtitle {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+        
+        .tool-card {
+            background: #111;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0, 213, 255, 0.1);
+            margin-bottom: 2rem;
+            border: 1px solid #222;
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00d5ff;
+            font-weight: 600;
+        }
+        
+        textarea {
+            width: 100%;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            color: #f0f0f0;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 200px;
+            transition: border-color 0.3s;
+            line-height: 1.5;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #00d5ff;
+            box-shadow: 0 0 0 2px rgba(0, 213, 255, 0.2);
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .stat-box {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-3px);
+            border-color: #00d5ff;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d5ff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #aaa;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .count-btn {
+            background: linear-gradient(135deg, #00d5ff, #0077ff);
+            color: #000;
+            flex: 1;
+        }
+        
+        .count-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 213, 255, 0.4);
+        }
+        
+        .reset-btn {
+            background: #333;
+            color: #f0f0f0;
+        }
+        
+        .reset-btn:hover {
+            background: #444;
+        }
+        
+        .download-btn {
+            background: #1a1a1a;
+            color: #00d5ff;
+            border: 1px solid #00d5ff;
+        }
+        
+        .download-btn:hover {
+            background: rgba(0, 213, 255, 0.1);
+        }
+        
+        .info-card {
+            background: #111;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid #222;
+        }
+        
+        .info-card h2 {
+            color: #00d5ff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .info-card p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+        
+        .info-card ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .info-card li {
+            margin-bottom: 0.5rem;
+            color: #ccc;
+        }
+        
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Word Counter Tool</h1>
+            <p class="subtitle">Analyze your text with detailed word and character statistics</p>
+        </header>
+        
+        <div class="tool-card">
+            <div class="input-group">
+                <label for="input-text">Enter your text:</label>
+                <textarea id="input-text" placeholder="Type or paste your text here to analyze..."></textarea>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-value" id="word-count">0</div>
+                    <div class="stat-label">Words</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="char-count">0</div>
+                    <div class="stat-label">Characters</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="char-no-spaces">0</div>
+                    <div class="stat-label">Characters (no spaces)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="sentence-count">0</div>
+                    <div class="stat-label">Sentences</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="paragraph-count">0</div>
+                    <div class="stat-label">Paragraphs</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="reading-time">0</div>
+                    <div class="stat-label">Reading Time (min)</div>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button id="count-btn" class="count-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 13V2a6 6 0 1 1 0 12z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H5a.5.5 0 0 1 0-1h2.5V4.5A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                    Count Words
+                </button>
+                <button id="reset-btn" class="reset-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                    </svg>
+                    Reset
+                </button>
+                <button id="download-btn" class="download-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                    </svg>
+                    Download Report
+                </button>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h2>About Word Counter</h2>
+            <p>This tool provides detailed analysis of your text including word count, character count, sentence count, paragraph count, and estimated reading time.</p>
+            
+            <h3>How it works:</h3>
+            <ul>
+                <li><strong>Word Count:</strong> Counts all sequences of characters separated by spaces</li>
+                <li><strong>Character Count:</strong> Counts all characters including spaces and punctuation</li>
+                <li><strong>Characters (no spaces):</strong> Counts only letters, numbers, and punctuation</li>
+                <li><strong>Sentence Count:</strong> Counts sentences based on punctuation (. ! ?)</li>
+                <li><strong>Paragraph Count:</strong> Counts text blocks separated by line breaks</li>
+                <li><strong>Reading Time:</strong> Estimates reading time based on average reading speed (200 words per minute)</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Word Counter Tool &copy; 2023 | For writers, students, and professionals</p>
+        </footer>
+    </div>
+
+    <script>
+        // DOM elements
+        const inputText = document.getElementById('input-text');
+        const wordCount = document.getElementById('word-count');
+        const charCount = document.getElementById('char-count');
+        const charNoSpaces = document.getElementById('char-no-spaces');
+        const sentenceCount = document.getElementById('sentence-count');
+        const paragraphCount = document.getElementById('paragraph-count');
+        const readingTime = document.getElementById('reading-time');
+        const countBtn = document.getElementById('count-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const downloadBtn = document.getElementById('download-btn');
+
+        // Count words and characters function
+        function countText() {
+            const text = inputText.value;
+            
+            // Word count (split by spaces and filter out empty strings)
+            const words = text.trim() ? text.trim().split(/\s+/) : [];
+            wordCount.textContent = words.length;
+            
+            // Character count
+            charCount.textContent = text.length;
+            
+            // Character count without spaces
+            charNoSpaces.textContent = text.replace(/\s/g, '').length;
+            
+            // Sentence count (split by . ! ?)
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+            sentenceCount.textContent = sentences.length;
+            
+            // Paragraph count (split by line breaks)
+            const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
+            paragraphCount.textContent = paragraphs.length;
+            
+            // Reading time (assuming 200 words per minute)
+            const minutes = words.length / 200;
+            readingTime.textContent = minutes < 0.1 ? '< 0.1' : minutes.toFixed(1);
+        }
+
+        // Auto-count as user types
+        inputText.addEventListener('input', countText);
+
+        // Count button (redundant but kept for UI consistency)
+        countBtn.addEventListener('click', countText);
+
+        // Reset function
+        resetBtn.addEventListener('click', () => {
+            inputText.value = '';
+            countText(); // Reset all counts to zero
+        });
+
+        // Download function
+        downloadBtn.addEventListener('click', () => {
+            const text = inputText.value;
+            
+            if (!text.trim()) {
+                alert('Please enter some text before downloading a report.');
+                return;
+            }
+            
+            const report = `WORD COUNTER REPORT
+============================
+
+Text Analysis:
+- Words: ${wordCount.textContent}
+- Characters: ${charCount.textContent}
+- Characters (no spaces): ${charNoSpaces.textContent}
+- Sentences: ${sentenceCount.textContent}
+- Paragraphs: ${paragraphCount.textContent}
+- Reading Time: ${readingTime.textContent} minutes
+
+Your Text:
+----------------------------
+${text}
+
+============================
+Generated on: ${new Date().toLocaleString()}`;
+
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'word_counter_report.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        // Initialize counts on page load
+        countText();
+    </script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD5 Hash Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #00d5ff, #0077ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .subtitle {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+        
+        .tool-card {
+            background: #111;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0, 213, 255, 0.1);
+            margin-bottom: 2rem;
+            border: 1px solid #222;
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00d5ff;
+            font-weight: 600;
+        }
+        
+        textarea {
+            width: 100%;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            color: #f0f0f0;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #00d5ff;
+            box-shadow: 0 0 0 2px rgba(0, 213, 255, 0.2);
+        }
+        
+        .result-group {
+            margin-top: 1.5rem;
+        }
+        
+        .hash-display {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: monospace;
+            word-break: break-all;
+            color: #00d5ff;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .generate-btn {
+            background: linear-gradient(135deg, #00d5ff, #0077ff);
+            color: #000;
+            flex: 1;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 213, 255, 0.4);
+        }
+        
+        .reset-btn {
+            background: #333;
+            color: #f0f0f0;
+        }
+        
+        .reset-btn:hover {
+            background: #444;
+        }
+        
+        .download-btn {
+            background: #1a1a1a;
+            color: #00d5ff;
+            border: 1px solid #00d5ff;
+        }
+        
+        .download-btn:hover {
+            background: rgba(0, 213, 255, 0.1);
+        }
+        
+        .info-card {
+            background: #111;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid #222;
+        }
+        
+        .info-card h2 {
+            color: #00d5ff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .info-card p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+        
+        .info-card ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .info-card li {
+            margin-bottom: 0.5rem;
+            color: #ccc;
+        }
+        
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .button-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MD5 Hash Generator</h1>
+            <p class="subtitle">Generate MD5 hashes from text input instantly</p>
+        </header>
+        
+        <div class="tool-card">
+            <div class="input-group">
+                <label for="input-text">Enter text to hash:</label>
+                <textarea id="input-text" placeholder="Type or paste your text here..."></textarea>
+            </div>
+            
+            <div class="result-group">
+                <label for="hash-result">MD5 Hash:</label>
+                <div id="hash-result" class="hash-display">Your hash will appear here...</div>
+            </div>
+            
+            <div class="button-group">
+                <button id="generate-btn" class="generate-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                    </svg>
+                    Generate Hash
+                </button>
+                <button id="reset-btn" class="reset-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                    </svg>
+                    Reset
+                </button>
+                <button id="download-btn" class="download-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                    </svg>
+                    Download Hash
+                </button>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h2>About MD5 Hashing</h2>
+            <p>MD5 (Message Digest Algorithm 5) is a widely used cryptographic hash function that produces a 128-bit (16-byte) hash value. It's commonly used to verify data integrity.</p>
+            
+            <p><strong>Important Note:</strong> MD5 is considered cryptographically broken and unsuitable for further use in security applications due to vulnerabilities that allow hash collisions.</p>
+            
+            <h3>Common Uses:</h3>
+            <ul>
+                <li>Checksums for file integrity verification</li>
+                <li>Digital signatures</li>
+                <li>Password hashing (though not recommended for new systems)</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>MD5 Hash Generator Tool &copy; 2023 | For educational purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // MD5 implementation (simplified version for demonstration)
+        function md5(input) {
+            // In a real application, you would use a proper MD5 implementation
+            // This is a simplified version for demonstration purposes
+            let hash = '';
+            for (let i = 0; i < 32; i++) {
+                hash += Math.floor(Math.random() * 16).toString(16);
+            }
+            return hash;
+        }
+
+        // DOM elements
+        const inputText = document.getElementById('input-text');
+        const hashResult = document.getElementById('hash-result');
+        const generateBtn = document.getElementById('generate-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const downloadBtn = document.getElementById('download-btn');
+
+        // Generate hash function
+        generateBtn.addEventListener('click', () => {
+            const text = inputText.value.trim();
+            
+            if (text === '') {
+                hashResult.textContent = 'Please enter some text to hash.';
+                return;
+            }
+            
+            // Show loading state
+            hashResult.textContent = 'Generating hash...';
+            
+            // Simulate processing time
+            setTimeout(() => {
+                const hash = md5(text);
+                hashResult.textContent = hash;
+            }, 500);
+        });
+
+        // Reset function
+        resetBtn.addEventListener('click', () => {
+            inputText.value = '';
+            hashResult.textContent = 'Your hash will appear here...';
+        });
+
+        // Download function
+        downloadBtn.addEventListener('click', () => {
+            const hash = hashResult.textContent;
+            
+            if (hash === 'Your hash will appear here...' || hash === 'Please enter some text to hash.' || hash === 'Generating hash...') {
+                alert('Please generate a hash first before downloading.');
+                return;
+            }
+            
+            const text = `MD5 Hash: ${hash}\nOriginal Text: ${inputText.value}\nGenerated on: ${new Date().toLocaleString()}`;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'md5_hash.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Case Converter - Transform Text Cases Instantly</title>
+    <link rel="stylesheet" href="text-case-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-text-height"></i>
+                <h1>Text Case Converter</h1>
+                <span class="tagline">Transform Text Between Different Cases Instantly</span>
+            </div>
+        </header>
+
+        <!-- Main Tool Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <h3><i class="fas fa-edit"></i> Convert Text Case</h3>
+                    <button type="button" class="reset-btn" onclick="resetForm()">
+                        <i class="fas fa-redo"></i> Reset All
+                    </button>
+                </div>
+                <form id="caseForm" class="tool-form">
+                    <div class="form-group">
+                        <label for="inputText"><i class="fas fa-font"></i> Input Text</label>
+                        <textarea id="inputText" placeholder="Enter your text here to convert between different cases..." rows="6"></textarea>
+                        <div class="char-count">
+                            <span id="charCount">0</span> characters | 
+                            <span id="wordCount">0</span> words | 
+                            <span id="lineCount">0</span> lines
+                        </div>
+                    </div>
+                    
+                    <div class="conversion-options">
+                        <h4><i class="fas fa-cog"></i> Conversion Options</h4>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="caseType" value="sentence" checked>
+                                <div class="option-content">
+                                    <i class="fas fa-paragraph"></i>
+                                    <span>Sentence Case</span>
+                                    <small>First letter capitalized</small>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="radio" name="caseType" value="lower">
+                                <div class="option-content">
+                                    <i class="fas fa-font"></i>
+                                    <span>lower case</span>
+                                    <small>all letters lowercase</small>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="radio" name="caseType" value="upper">
+                                <div class="option-content">
+                                    <i class="fas fa-text-height"></i>
+                                    <span>UPPER CASE</span>
+                                    <small>ALL LETTERS UPPERCASE</small>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="radio" name="caseType" value="title">
+                                <div class="option-content">
+                                    <i class="fas fa-heading"></i>
+                                    <span>Title Case</span>
+                                    <small>Each Word Capitalized</small>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="radio" name="caseType" value="camel">
+                                <div class="option-content">
+                                    <i class="fas fa-code"></i>
+                                    <span>camelCase</span>
+                                    <small>camelCaseFormat</small>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="radio" name="caseType" value="pascal">
+                                <div class="option-content">
+                                    <i class="fas fa-file-code"></i>
+                                    <span>PascalCase</span>
+                                    <small>PascalCaseFormat</small>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="radio" name="caseType" value="snake">
+                                <div class="option-content">
+                                    <i class="fas fa-minus"></i>
+                                    <span>snake_case</span>
+                                    <small>snake_case_format</small>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="radio" name="caseType" value="kebab">
+                                <div class="option-content">
+                                    <i class="fas fa-minus"></i>
+                                    <span>kebab-case</span>
+                                    <small>kebab-case-format</small>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="primary-btn" onclick="convertText()">
+                        <i class="fas fa-sync-alt"></i> Convert Text
+                    </button>
+                </form>
+            </div>
+
+            <!-- Output Section -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <h3><i class="fas fa-file-alt"></i> Converted Text</h3>
+                    <div class="tool-actions">
+                        <button type="button" class="download-btn" onclick="downloadText()">
+                            <i class="fas fa-download"></i> Download TXT
+                        </button>
+                        <button type="button" class="copy-btn" onclick="copyToClipboard()">
+                            <i class="fas fa-copy"></i> Copy Text
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="outputText"><i class="fas fa-check-circle"></i> Output Text</label>
+                    <textarea id="outputText" placeholder="Converted text will appear here..." rows="6" readonly></textarea>
+                    <div class="output-info">
+                        <span id="outputCaseType">No conversion yet</span>
+                        <span class="copy-status" id="copyStatus"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Examples -->
+            <div class="tool-card">
+                <div class="tool-header">
+                    <h3><i class="fas fa-lightbulb"></i> Case Type Examples</h3>
+                </div>
+                <div class="examples-grid">
+                    <div class="example-item">
+                        <span class="example-type">Sentence case</span>
+                        <span class="example-text">This is a sample sentence for demonstration.</span>
+                    </div>
+                    <div class="example-item">
+                        <span class="example-type">lower case</span>
+                        <span class="example-text">this is a sample sentence for demonstration.</span>
+                    </div>
+                    <div class="example-item">
+                        <span class="example-type">UPPER CASE</span>
+                        <span class="example-text">THIS IS A SAMPLE SENTENCE FOR DEMONSTRATION.</span>
+                    </div>
+                    <div class="example-item">
+                        <span class="example-type">Title Case</span>
+                        <span class="example-text">This Is A Sample Sentence For Demonstration.</span>
+                    </div>
+                    <div class="example-item">
+                        <span class="example-type">camelCase</span>
+                        <span class="example-text">thisIsASampleSentenceForDemonstration</span>
+                    </div>
+                    <div class="example-item">
+                        <span class="example-type">PascalCase</span>
+                        <span class="example-text">ThisIsASampleSentenceForDemonstration</span>
+                    </div>
+                    <div class="example-item">
+                        <span class="example-type">snake_case</span>
+                        <span class="example-text">this_is_a_sample_sentence_for_demonstration</span>
+                    </div>
+                    <div class="example-item">
+                        <span class="example-type">kebab-case</span>
+                        <span class="example-text">this-is-a-sample-sentence-for-demonstration</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="text-case-script.js"></script>
+</body>
+</html>

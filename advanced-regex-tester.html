@@ -8,8 +8,8 @@
         :root {
             --primary-bg: #1a1a1a;
             --secondary-bg: #2d2d2d;
-            --accent: #ffeb3b;
-            --accent-dark: #fbc02d;
+            --accent: #00d5ff;
+            --accent-dark: #0099cc;
             --text-primary: #f5f5f5;
             --text-secondary: #cccccc;
             --border-color: #444444;
@@ -40,11 +40,13 @@
             background: var(--secondary-bg);
             border-radius: 10px;
             border: 2px solid var(--accent);
+            box-shadow: 0 5px 20px rgba(0, 213, 255, 0.2);
         }
         h1 {
             color: var(--accent);
             font-size: 2.5em;
             margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 213, 255, 0.3);
         }
         .subtitle {
             color: var(--text-secondary);
@@ -66,6 +68,7 @@
             padding: 25px;
             border-radius: 10px;
             border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
         h2 {
             color: var(--accent);
@@ -96,11 +99,12 @@
             color: var(--text-primary);
             font-family: 'Courier New', monospace;
             font-size: 14px;
+            transition: all 0.3s ease;
         }
         input[type="text"]:focus, textarea:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(255, 235, 59, 0.1);
+            box-shadow: 0 0 0 2px rgba(0, 213, 255, 0.2);
         }
         .flags {
             display: flex;
@@ -112,9 +116,21 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            padding: 8px 12px;
+            background: #3d3d3d;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .flag-option:hover {
+            border-color: var(--accent);
         }
         .flag-option input {
             margin: 0;
+        }
+        .flag-option label {
+            margin-bottom: 0;
+            color: var(--text-secondary);
         }
         .button-group {
             display: flex;
@@ -130,14 +146,19 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .btn-primary {
             background: var(--accent);
             color: #1a1a1a;
+            box-shadow: 0 4px 10px rgba(0, 213, 255, 0.3);
         }
         .btn-primary:hover {
             background: var(--accent-dark);
             transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 213, 255, 0.4);
         }
         .btn-secondary {
             background: #555;
@@ -175,6 +196,7 @@
             margin-top: 15px;
             max-height: 300px;
             overflow-y: auto;
+            border: 1px solid var(--border-color);
         }
         .match-item {
             padding: 8px;
@@ -203,6 +225,7 @@
             padding: 15px;
             border-radius: 6px;
             margin-top: 20px;
+            border: 1px solid var(--border-color);
         }
         .cheatsheet-grid {
             display: grid;
@@ -216,18 +239,23 @@
             border-radius: 4px;
             font-family: 'Courier New', monospace;
             font-size: 12px;
+            transition: all 0.3s ease;
+        }
+        .cheat-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
         }
         .cheat-symbol {
             color: var(--accent);
             font-weight: bold;
         }
         .error {
-            color: #f44336;
+            color: #ff6b6b;
             background: #3d2d2d;
             padding: 10px;
             border-radius: 4px;
             margin-top: 10px;
-            border-left: 4px solid #f44336;
+            border-left: 4px solid #ff6b6b;
         }
         .success {
             color: var(--match-color);
@@ -236,6 +264,13 @@
             border-radius: 4px;
             margin-top: 10px;
             border-left: 4px solid var(--match-color);
+        }
+        .hidden {
+            display: none;
+        }
+        .icon {
+            width: 16px;
+            height: 16px;
         }
     </style>
 </head>
@@ -281,9 +316,24 @@
                 </div>
 
                 <div class="button-group">
-                    <button class="btn btn-primary" onclick="testRegex()">Test Regex</button>
-                    <button class="btn btn-secondary" onclick="resetTester()">Reset</button>
-                    <button class="btn btn-secondary" onclick="savePattern()">Save Pattern</button>
+                    <button class="btn btn-primary" onclick="testRegex()">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        Test Regex
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetTester()">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                        </svg>
+                        Reset
+                    </button>
+                    <button class="btn btn-secondary" onclick="savePattern()">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
+                        </svg>
+                        Save Pattern
+                    </button>
                 </div>
 
                 <div id="regexError" class="error hidden"></div>

@@ -8,22 +8,25 @@
     <meta name="author" content="Online Tool Stack">
     <title>Online Tool stack - 40+ Free Online Tools</title>
     
+    <!-- Added favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    
     <style>
         /* --- Fix tool card alignment --- */
-.tools-grid {
-    align-items: stretch;
-}
+        .tools-grid {
+            align-items: stretch;
+        }
 
-.tool-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* ensures button stays at bottom */
-    height: 100%; /* makes all cards equal height in each row */
-}
+        .tool-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* ensures button stays at bottom */
+            height: 100%; /* makes all cards equal height in each row */
+        }
 
-.tool-card p {
-    flex-grow: 1; /* makes description fill the middle space evenly */
-}
+        .tool-card p {
+            flex-grow: 1; /* makes description fill the middle space evenly */
+        }
 
         * {
             margin: 0;
@@ -38,7 +41,7 @@
             --color-blue: #00d4ff;
             --color-yellow: #ffd700;
             --color-white: #ffffff;
-            --color-gray: #a0a0a0;
+            --color-gray: #cccccc; /* Improved contrast */
             --transition: all 0.3s ease;
         }
 
@@ -422,6 +425,33 @@
             }
         }
 
+        /* Accessibility Improvements */
+        .btn:focus,
+        .btn-tool:focus,
+        .nav-links a:focus,
+        .mobile-menu-btn:focus {
+            outline: 2px solid var(--color-yellow);
+            outline-offset: 3px;
+        }
+
+        /* Skip to main content for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--color-blue);
+            color: var(--bg-primary);
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .mobile-menu-btn {
@@ -490,6 +520,9 @@
     </style>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Snow Animation -->
     <div class="snow-container" id="snowContainer"></div>
 
@@ -499,7 +532,7 @@
             <a href="/" class="logo">
                 ⚡ Online<span>Tool Stack</span>
             </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="/">Home</a></li>
                 <li><a href="/tools.html">All Tools</a></li>
@@ -509,274 +542,313 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Welcome to <span>ONLINE TOOL STACK</span></h1>
-        <p>Your Complete Solution for 40+ Free Online Tools</p>
-        <div class="cta-buttons">
-            <a href="/tools.html" class="btn btn-primary">Explore Tools</a>
-            <a href="/about.html" class="btn btn-secondary">Learn More</a>
-        </div>
-    </section>
-
-    <!-- Tools Section -->
-    <section class="tools-section">
-        <h2 class="section-title">Our Tools</h2>
-        <p class="section-subtitle">Professional tools for all your needs</p>
-        
-        <div class="tools-grid">
-    <!-- QR Code Generator -->
-    <div class="tool-card">
-        <div class="tool-icon">📱</div>
-        <h3>QR Code Generator</h3>
-        <p>Generate QR codes instantly for URLs, text, and contact information</p>
-        <a href="/qr-generator.html" class="btn-tool">Open Tool</a>
-    </div>
-
-    <!-- URL Shortener -->
-    <div class="tool-card">
-        <div class="tool-icon">🔗</div>
-        <h3>URL Shortener</h3>
-        <p>Shorten long URLs easily and create memorable links</p>
-        <a href="shortener-pro.html" class="btn-tool">Open Tool</a>
-    </div>
-
-    <!-- Text Case Converter -->
-    <div class="tool-card">
-        <div class="tool-icon">🔤</div>
-        <h3>Text Case Converter</h3>
-        <p>Convert text case formats between uppercase, lowercase, and more</p>
-        <a href="/text-case-converter.html" class="btn-tool">Open Tool</a>
-    </div>
-
-           <div class="tool-card">
-           <div class="tool-icon">🔐</div>
-           <h3>Base64 Encoder/Decoder</h3>
-           <p>Encode and decode Base64 strings for data transmission</p>
-           <a href="base64-encoder-decoder.html" class="btn-tool">Open Tool</a>
-           </div>
-
-            <!-- MD5 Hash Generator -->
-            <div class="tool-card">
-            <div class="tool-icon">🔐</div>
-            <h3>MD5 Hash Generator</h3>
-            <p>Generate MD5 hashes for text and file verification</p>
-            <a href="md5-generator-tool.html" class="btn-tool">Open Tool</a>
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Welcome to <span>ONLINE TOOL STACK</span></h1>
+            <p>Your Complete Solution for 40+ Free Online Tools</p>
+            <div class="cta-buttons">
+                <a href="/tools.html" class="btn btn-primary">Explore Tools</a>
+                <a href="/about.html" class="btn btn-secondary">Learn More</a>
             </div>
+        </section>
 
-             <!-- Word Counter -->
-             <div class="tool-card">
-             <div class="tool-icon">📝</div>
-             <h3>Word Counter</h3>
-             <p>Analyze text with detailed word, character, and sentence statistics</p>
-             <a href="word-counter.html" class="btn-tool">Open Tool</a>
-           </div>
-
-    <!-- AI Content Generator -->
-    <div class="tool-card">
-        <div class="tool-icon">🤖</div>
-        <h3>AI Content Generator</h3>
-        <p>Generate high-quality content, articles, and creative text using AI</p>
-        <a href="/ai-content-generator.html" class="btn-tool">Open Tool</a>
-    </div>
-
-    <!-- AI Background Remover -->
-    <div class="tool-card">
-        <div class="tool-icon">🖼️</div>
-        <h3>AI Background Remover</h3>
-        <p>Remove image backgrounds instantly with AI-powered precision</p>
-        <a href="/ai-background-remover.html" class="btn-tool">Open Tool</a>
-    </div>
-
-    <!-- Expense Tracker & Calculator -->
-    <div class="tool-card">
-        <div class="tool-icon">💰</div>
-        <h3>Expense Tracker & Calculator</h3>
-        <p>Track expenses, manage budgets, and calculate finances with easy-to-use tools</p>
-        <a href="/expense-tracker-calculator.html" class="btn-tool">Open Tool</a>
-    </div>
-
-    <!-- Email Signature Generator -->
-    <div class="tool-card">
-        <div class="tool-icon">📧</div>
-        <h3>Email Signature Generator</h3>
-        <p>Create professional email signatures with templates and custom designs</p>
-        <a href="/email-signature-generator.html" class="btn-tool">Open Tool</a>
-    </div>
-
-    <!-- Currency Converter -->
-    <div class="tool-card">
-        <div class="tool-icon">💱</div>
-        <h3>Currency Converter</h3>
-        <p>Convert between 150+ currencies with live exchange rates</p>
-        <a href="/currency-converter.html" class="btn-tool">Open Tool</a>
-    </div>
-
-    <!-- Social Media Banner Maker Pro -->
-    <div class="tool-card">
-        <div class="tool-icon">🖼️</div>
-        <h3>Social Media Banner Maker Pro</h3>
-        <p>Create stunning banners for Facebook, Twitter, YouTube, and all social platforms</p>
-        <a href="/social-media-banner-maker-pro.html" class="btn-tool">Open Tool</a>
-    </div>
-
-    <!-- Text to Speech Converter Pro -->
-    <div class="tool-card">
-        <div class="tool-icon">🔊</div>
-        <h3>Text to Speech Converter Pro</h3>
-        <p>Convert any text to natural sounding audio with multiple voices and languages</p>
-        <a href="text-to-speech-converter-pro.html" class="btn-tool">Open Tool</a>
-    </div>
-
-    <!-- Cover Letter Generator Pro -->
-    <div class="tool-card">
-        <div class="tool-icon">📄</div>
-        <h3>Cover Letter Generator Pro</h3>
-        <p>Create professional cover letters with customizable templates and AI-powered content suggestions</p>
-        <a href="cover-letter-generator-pro.html" class="btn-tool">Open Tool</a>
-    </div>
-
-    <!-- Domain Age Checker Pro -->
-    <div class="tool-card">
-        <div class="tool-icon">🌐</div>
-        <h3>Domain Age Checker Pro</h3>
-        <p>Check domain registration date, expiration, and history for SEO and website analysis</p>
-        <a href="domain-age-checker-pro.html" class="btn-tool">Open Tool</a>
-    </div>
-            <!-- eBook Format Converter -->
-         <div class="tool-card">
-         <div class="tool-icon">🔄</div>
-         <h3>eBook Converter Pro</h3>
-         <p>Convert eBooks between EPUB, MOBI, PDF, AZW3, TXT, FB2 and more formats instantly</p>
-         <a href="ebook-converter.html" class="btn-tool">Convert Now</a>
-      </div>
-            <!-- PDF Merger -->
-          <div class="tool-card">
-          <div class="tool-icon">📄</div>
-          <h3>PDF Merger</h3>
-          <p>Combine multiple PDF files into one document quickly and easily</p>
-          <a href="pdf-merger.html" class="btn-tool">Merge PDFs</a>
-       </div>
-            <div class="tool-card">
-                <div class="tool-icon">🔍</div>
-                <h3>Advanced Regex Tester</h3>
-                <p>Test, debug, and master regular expressions with real-time feedback</p>
-                <a href="/advanced-regex-tester.html" class="btn-tool">Open Tool</a>
-               </div>
-                <div class="tool-card">
-                <div class="tool-icon">🤖</div>
-                <h3>AI Content Placeholder Pro</h3>
-                <p>Generate realistic placeholder content using AI for your designs and prototypes</p>
-                <a href="/ai-content-placeholder-pro.html" class="btn-tool">Open Tool</a>
-              </div>
-               <div class="tool-card">
-               <div class="tool-icon">📊</div>
-               <h3>AI Text Analysis Tool</h3>
-               <p>Analyze and extract insights from text using advanced AI algorithms</p>
-               <a href="/ai-text-analysis-tool.html" class="btn-tool">Open Tool</a>
-              </div>
-               <div class="tool-card">
-               <div class="tool-icon">💼</div>
-               <h3>Business Card Designer</h3>
-               <p>Create professional business cards with customizable templates and designs</p>
-               <a href="/business-card-designer.html" class="btn-tool">Open Tool</a>
-              </div>
-              <div class="tool-card">
-              <div class="tool-icon">🎨</div>
-              <h3>Color Palette Generator Pro</h3>
-              <p>Generate beautiful color schemes and palettes with advanced customization options</p>
-              <a href="/color-palette-generator-pro.html" class="btn-tool">Open Tool</a>
-              </div>
-              <div class="tool-card">
-              <div class="tool-icon">📈</div>
-              <h3>Content Analysis Suite</h3>
-              <p>Comprehensive content analysis with readability scores, SEO insights, and performance metrics</p>
-              <a href="/content_analysis_suite.html" class="btn-tool">Open Tool</a>
-              </div>
-              <div class="tool-card">
-             <div class="tool-icon">📅</div>
-             <h3>Date Time Toolkit Pro</h3>
-             <p>Advanced date and time utilities with formatting, conversion, and calculation features</p>
-             <a href="/date-time-toolkit-pro.html" class="btn-tool">Open Tool</a>
-             </div>
-             <div class="tool-card">
-             <div class="tool-icon">📧</div>
-             <h3>Email Marketing Toolkit Pro</h3>
-             <p>Create, analyze, and optimize email campaigns with professional templates and analytics</p>
-             <a href="/email-marketing-toolkit-pro.html" class="btn-tool">Open Tool</a>
-             </div>
-             <div class="tool-card">
-             <div class="tool-icon">💰</div>
-             <h3>Financial Calculator Suite Pro</h3>
-             <p>Comprehensive financial calculations including loans, investments, and retirement planning</p>
-             <a href="/financial-calculator-suite-pro.html" class="btn-tool">Open Tool</a>
-             </div>
-            <div class="tool-card">
-            <div class="tool-icon">🌈</div>
-            <h3>Gradient Generator Pro</h3>
-            <p>Create beautiful CSS gradients with advanced controls and real-time preview</p>
-            <a href="/gradient-generator-pro.html" class="btn-tool">Open Tool</a>
-            </div>
-            <div class="tool-card">
-            <div class="tool-icon">🖼️</div>
-            <h3>Image Optimizer Pro</h3>
-            <p>Compress and optimize images for web with advanced compression algorithms</p>
-            <a href="/image-optimizer-pro.html" class="btn-tool">Open Tool</a>
-            </div>
-            <div class="tool-card">
-            <div class="tool-icon">✨</div>
-            <h3>Logo Maker</h3>
-            <p>Design professional logos with customizable templates and design tools</p>
-            <a href="/logo-maker.html" class="btn-tool">Open Tool</a>
-             </div>
-            <div class="tool-card">
-            <div class="tool-icon">🔗</div>
-            <h3>Open Graph Meta Tag Previewer Pro</h3>
-            <p>Preview and optimize Open Graph meta tags for social media sharing</p>
-            <a href="/open-graph-meta-tag-previewer-pro.html" class="btn-tool">Open Tool</a>
-            </div>
-            <div class="tool-card">
-            <div class="tool-icon">📖</div>
-            <h3>Readability Score Checker Pro</h3>
-            <p>Analyze text readability with multiple scoring systems and improvement suggestions</p>
-            <a href="/readability-score-checker-pro.html" class="btn-tool">Open Tool</a>
-            </div>
-            <div class="tool-card">
-            <div class="tool-icon">🔄</div>
-            <h3>Smart Text Transformer Pro</h3>
-            <p>Transform and manipulate text with advanced formatting, conversion, and processing tools</p>
-            <a href="/smart-text-transformer-pro.html" class="btn-tool">Open Tool</a>
-             </div>
-            <div class="tool-card">
-            <div class="tool-icon">📱</div>
-            <h3>Social Media Analytics Suite</h3>
-            <p>Track and analyze social media performance across multiple platforms with detailed insights</p>
-            <a href="/social_media_analytics_suite.html" class="btn-tool">Open Tool</a>
-           </div>
+        <!-- Tools Section -->
+        <section class="tools-section">
+            <h2 class="section-title">Our Tools</h2>
+            <p class="section-subtitle">Professional tools for all your needs</p>
             
-              </section>
-              <!-- Stats Section -->
-              <section class="stats">
-             <h2 class="section-title">Why Choose Online WebTool?</h2>
+            <div class="tools-grid">
+                <!-- QR Code Generator -->
+                <div class="tool-card">
+                    <div class="tool-icon">📱</div>
+                    <h3>QR Code Generator</h3>
+                    <p>Generate QR codes instantly for URLs, text, and contact information</p>
+                    <a href="/qr-generator.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- URL Shortener -->
+                <div class="tool-card">
+                    <div class="tool-icon">🔗</div>
+                    <h3>URL Shortener</h3>
+                    <p>Shorten long URLs easily and create memorable links</p>
+                    <a href="/shortener-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Text Case Converter -->
+                <div class="tool-card">
+                    <div class="tool-icon">🔤</div>
+                    <h3>Text Case Converter</h3>
+                    <p>Convert text case formats between uppercase, lowercase, and more</p>
+                    <a href="/text-case-converter.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Base64 Encoder/Decoder -->
+                <div class="tool-card">
+                    <div class="tool-icon">🔐</div>
+                    <h3>Base64 Encoder/Decoder</h3>
+                    <p>Encode and decode Base64 strings for data transmission</p>
+                    <a href="/base64-encoder-decoder.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- MD5 Hash Generator -->
+                <div class="tool-card">
+                    <div class="tool-icon">🔐</div>
+                    <h3>MD5 Hash Generator</h3>
+                    <p>Generate MD5 hashes for text and file verification</p>
+                    <a href="/md5-generator-tool.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Word Counter -->
+                <div class="tool-card">
+                    <div class="tool-icon">📝</div>
+                    <h3>Word Counter</h3>
+                    <p>Analyze text with detailed word, character, and sentence statistics</p>
+                    <a href="/word-counter.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- AI Content Generator -->
+                <div class="tool-card">
+                    <div class="tool-icon">🤖</div>
+                    <h3>AI Content Generator</h3>
+                    <p>Generate high-quality content, articles, and creative text using AI</p>
+                    <a href="/ai-content-generator.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- AI Background Remover -->
+                <div class="tool-card">
+                    <div class="tool-icon">🖼️</div>
+                    <h3>AI Background Remover</h3>
+                    <p>Remove image backgrounds instantly with AI-powered precision</p>
+                    <a href="/ai-background-remover.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Expense Tracker & Calculator -->
+                <div class="tool-card">
+                    <div class="tool-icon">💰</div>
+                    <h3>Expense Tracker & Calculator</h3>
+                    <p>Track expenses, manage budgets, and calculate finances with easy-to-use tools</p>
+                    <a href="/expense-tracker-calculator.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Email Signature Generator -->
+                <div class="tool-card">
+                    <div class="tool-icon">📧</div>
+                    <h3>Email Signature Generator</h3>
+                    <p>Create professional email signatures with templates and custom designs</p>
+                    <a href="/email-signature-generator.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Currency Converter -->
+                <div class="tool-card">
+                    <div class="tool-icon">💱</div>
+                    <h3>Currency Converter</h3>
+                    <p>Convert between 150+ currencies with live exchange rates</p>
+                    <a href="/currency-converter.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Social Media Banner Maker Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">🖼️</div>
+                    <h3>Social Media Banner Maker Pro</h3>
+                    <p>Create stunning banners for Facebook, Twitter, YouTube, and all social platforms</p>
+                    <a href="/social-media-banner-maker-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Text to Speech Converter Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">🔊</div>
+                    <h3>Text to Speech Converter Pro</h3>
+                    <p>Convert any text to natural sounding audio with multiple voices and languages</p>
+                    <a href="/text-to-speech-converter-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Cover Letter Generator Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">📄</div>
+                    <h3>Cover Letter Generator Pro</h3>
+                    <p>Create professional cover letters with customizable templates and AI-powered content suggestions</p>
+                    <a href="/cover-letter-generator-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Domain Age Checker Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">🌐</div>
+                    <h3>Domain Age Checker Pro</h3>
+                    <p>Check domain registration date, expiration, and history for SEO and website analysis</p>
+                    <a href="/domain-age-checker-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- eBook Format Converter -->
+                <div class="tool-card">
+                    <div class="tool-icon">🔄</div>
+                    <h3>eBook Converter Pro</h3>
+                    <p>Convert eBooks between EPUB, MOBI, PDF, AZW3, TXT, FB2 and more formats instantly</p>
+                    <a href="/ebook-converter.html" class="btn-tool">Convert Now</a>
+                </div>
+
+                <!-- PDF Merger -->
+                <div class="tool-card">
+                    <div class="tool-icon">📄</div>
+                    <h3>PDF Merger</h3>
+                    <p>Combine multiple PDF files into one document quickly and easily</p>
+                    <a href="/pdf-merger.html" class="btn-tool">Merge PDFs</a>
+                </div>
+
+                <!-- Advanced Regex Tester -->
+                <div class="tool-card">
+                    <div class="tool-icon">🔍</div>
+                    <h3>Advanced Regex Tester</h3>
+                    <p>Test, debug, and master regular expressions with real-time feedback</p>
+                    <a href="/advanced-regex-tester.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- AI Content Placeholder Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">🤖</div>
+                    <h3>AI Content Placeholder Pro</h3>
+                    <p>Generate realistic placeholder content using AI for your designs and prototypes</p>
+                    <a href="/ai-content-placeholder-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- AI Text Analysis Tool -->
+                <div class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <h3>AI Text Analysis Tool</h3>
+                    <p>Analyze and extract insights from text using advanced AI algorithms</p>
+                    <a href="/ai-text-analysis-tool.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Business Card Designer -->
+                <div class="tool-card">
+                    <div class="tool-icon">💼</div>
+                    <h3>Business Card Designer</h3>
+                    <p>Create professional business cards with customizable templates and designs</p>
+                    <a href="/business-card-designer.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Color Palette Generator Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">🎨</div>
+                    <h3>Color Palette Generator Pro</h3>
+                    <p>Generate beautiful color schemes and palettes with advanced customization options</p>
+                    <a href="/color-palette-generator-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Content Analysis Suite -->
+                <div class="tool-card">
+                    <div class="tool-icon">📈</div>
+                    <h3>Content Analysis Suite</h3>
+                    <p>Comprehensive content analysis with readability scores, SEO insights, and performance metrics</p>
+                    <a href="/content_analysis_suite.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Date Time Toolkit Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">📅</div>
+                    <h3>Date Time Toolkit Pro</h3>
+                    <p>Advanced date and time utilities with formatting, conversion, and calculation features</p>
+                    <a href="/date-time-toolkit-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Email Marketing Toolkit Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">📧</div>
+                    <h3>Email Marketing Toolkit Pro</h3>
+                    <p>Create, analyze, and optimize email campaigns with professional templates and analytics</p>
+                    <a href="/email-marketing-toolkit-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Financial Calculator Suite Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">💰</div>
+                    <h3>Financial Calculator Suite Pro</h3>
+                    <p>Comprehensive financial calculations including loans, investments, and retirement planning</p>
+                    <a href="/financial-calculator-suite-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Gradient Generator Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">🌈</div>
+                    <h3>Gradient Generator Pro</h3>
+                    <p>Create beautiful CSS gradients with advanced controls and real-time preview</p>
+                    <a href="/gradient-generator-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Image Optimizer Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">🖼️</div>
+                    <h3>Image Optimizer Pro</h3>
+                    <p>Compress and optimize images for web with advanced compression algorithms</p>
+                    <a href="/image-optimizer-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Logo Maker -->
+                <div class="tool-card">
+                    <div class="tool-icon">✨</div>
+                    <h3>Logo Maker</h3>
+                    <p>Design professional logos with customizable templates and design tools</p>
+                    <a href="/logo-maker.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Open Graph Meta Tag Previewer Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">🔗</div>
+                    <h3>Open Graph Meta Tag Previewer Pro</h3>
+                    <p>Preview and optimize Open Graph meta tags for social media sharing</p>
+                    <a href="/open-graph-meta-tag-previewer-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Readability Score Checker Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">📖</div>
+                    <h3>Readability Score Checker Pro</h3>
+                    <p>Analyze text readability with multiple scoring systems and improvement suggestions</p>
+                    <a href="/readability-score-checker-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Smart Text Transformer Pro -->
+                <div class="tool-card">
+                    <div class="tool-icon">🔄</div>
+                    <h3>Smart Text Transformer Pro</h3>
+                    <p>Transform and manipulate text with advanced formatting, conversion, and processing tools</p>
+                    <a href="/smart-text-transformer-pro.html" class="btn-tool">Open Tool</a>
+                </div>
+
+                <!-- Social Media Analytics Suite -->
+                <div class="tool-card">
+                    <div class="tool-icon">📱</div>
+                    <h3>Social Media Analytics Suite</h3>
+                    <p>Track and analyze social media performance across multiple platforms with detailed insights</p>
+                    <a href="/social_media_analytics_suite.html" class="btn-tool">Open Tool</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <h2 class="section-title">Why Choose Online WebTool?</h2>
             <div class="stats-grid">
-            <div class="stat-item">
-                <h3>40+</h3>
-                <p>Professional Tools</p>
+                <div class="stat-item">
+                    <h3>40+</h3>
+                    <p>Professional Tools</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Free Forever</p>
+                </div>
+                <div class="stat-item">
+                    <h3>0s</h3>
+                    <p>Processing Time</p>
+                </div>
+                <div class="stat-item">
+                    <h3>∞</h3>
+                    <p>Unlimited Usage</p>
+                </div>
             </div>
-            <div class="stat-item">
-                <h3>100%</h3>
-                <p>Free Forever</p>
-            </div>
-            <div class="stat-item">
-                <h3>0s</h3>
-                <p>Processing Time</p>
-            </div>
-            <div class="stat-item">
-                <h3>∞</h3>
-                <p>Unlimited Usage</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -811,15 +883,17 @@
     </footer>
 
     <script>
-        // Create snowflakes
+        // Create snowflakes with mobile optimization
         function createSnow() {
             const snowContainer = document.getElementById('snowContainer');
             const snowflakes = ['❄', '✦', '❅', '•', '⋅'];
-            const numberOfFlakes = 50;
+            const isMobile = window.innerWidth < 768;
+            const numberOfFlakes = isMobile ? 20 : 50; // Reduced on mobile
 
             for (let i = 0; i < numberOfFlakes; i++) {
                 const snow = document.createElement('div');
                 snow.className = 'snow';
+                snow.setAttribute('aria-hidden', 'true'); // Hide from screen readers
                 snow.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
                 
                 // Random properties
@@ -844,9 +918,11 @@
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
 
-        mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
             mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+            mobileMenuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active'));
         });
 
         // Close mobile menu when clicking outside
@@ -854,6 +930,17 @@
             if (!e.target.closest('nav')) {
                 navLinks.classList.remove('active');
                 mobileMenuBtn.textContent = '☰';
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.focus();
             }
         });
 
@@ -886,6 +973,24 @@
                 mainTitle.style.animation = '';
             }, 2000);
         }, 8000);
+
+        // Performance optimization: Reduce snow on resize to mobile
+        window.addEventListener('resize', () => {
+            const snowContainer = document.getElementById('snowContainer');
+            const isMobile = window.innerWidth < 768;
+            const currentFlakes = snowContainer.children.length;
+            const targetFlakes = isMobile ? 20 : 50;
+            
+            if (currentFlakes > targetFlakes) {
+                // Remove excess flakes
+                while (snowContainer.children.length > targetFlakes) {
+                    snowContainer.removeChild(snowContainer.lastChild);
+                }
+            } else if (currentFlakes < targetFlakes) {
+                // Add missing flakes
+                createSnow();
+            }
+        });
     </script>
 </body>
 </html>

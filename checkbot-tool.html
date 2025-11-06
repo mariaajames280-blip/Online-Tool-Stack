@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbot Tool - Text Analysis & Validation | Online Tool Stack</title>
+    <meta name="description" content="Free Checkbot tool for text analysis, validation, and content checking. Analyze text for errors, count characters, and validate content instantly.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #161616;
+            --color-blue: rgb(0, 213, 255);
+            --color-white: #ffffff;
+            --color-gray: #cccccc;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--color-white);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 8px 30px rgba(0, 213, 255, 0.1);
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 2px 5px rgba(0, 213, 255, 0.3));
+        }
+
+        .tool-title {
+            color: var(--color-blue);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-subtitle {
+            color: var(--color-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Input Area */
+        .input-section {
+            margin-bottom: 2rem;
+        }
+
+        .input-label {
+            display: block;
+            color: var(--color-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .text-input {
+            width: 100%;
+            min-height: 200px;
+            background: var(--bg-secondary);
+            border: 2px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--color-white);
+            font-size: 1rem;
+            resize: vertical;
+            transition: var(--transition);
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 3px rgba(0, 213, 255, 0.1);
+        }
+
+        /* Analysis Results */
+        .results-section {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--color-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            color: var(--color-gray);
+            font-size: 0.9rem;
+        }
+
+        .analysis-details {
+            border-top: 1px solid #2a2a2a;
+            padding-top: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .detail-label {
+            color: var(--color-gray);
+        }
+
+        .detail-value {
+            color: var(--color-white);
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-blue), #00a8cc);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 213, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-blue);
+            border: 2px solid var(--color-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-blue);
+            color: var(--bg-primary);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Features Grid */
+        .features-section {
+            margin-top: 3rem;
+        }
+
+        .section-title {
+            color: var(--color-blue);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #2a2a2a;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-blue);
+        }
+
+        .feature-title {
+            color: var(--color-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            color: var(--color-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .tool-card {
+                padding: 1.5rem;
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Tool Card -->
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-icon">🤖</div>
+                <h1 class="tool-title">Checkbot Tool</h1>
+                <p class="tool-subtitle">Advanced text analysis and validation tool</p>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <label for="textInput" class="input-label">Enter text to analyze:</label>
+                <textarea 
+                    id="textInput" 
+                    class="text-input" 
+                    placeholder="Paste or type your text here for comprehensive analysis..."
+                    rows="8"
+                ></textarea>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <div class="results-grid">
+                    <div class="result-item">
+                        <div class="result-value" id="charCount">0</div>
+                        <div class="result-label">Characters</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="wordCount">0</div>
+                        <div class="result-label">Words</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="lineCount">0</div>
+                        <div class="result-label">Lines</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="sentenceCount">0</div>
+                        <div class="result-label">Sentences</div>
+                    </div>
+                </div>
+
+                <div class="analysis-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Reading Time:</span>
+                        <span class="detail-value" id="readingTime">0 min</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Speaking Time:</span>
+                        <span class="detail-value" id="speakingTime">0 min</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Character Density:</span>
+                        <span class="detail-value" id="charDensity">0%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Word Density:</span>
+                        <span class="detail-value" id="wordDensity">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <button id="analyzeBtn" class="btn btn-primary">
+                    🔍 Analyze Text
+                </button>
+                <button id="resetBtn" class="btn btn-secondary">
+                    🗑️ Reset
+                </button>
+                <button id="downloadBtn" class="btn btn-secondary">
+                    📥 Download Report
+                </button>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <h2 class="section-title">What Checkbot Can Analyze</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Text Statistics</h3>
+                    <p class="feature-desc">Character count, word count, line count, and sentence analysis</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3 class="feature-title">Time Analysis</h3>
+                    <p class="feature-desc">Reading and speaking time estimates based on text length</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Density Metrics</h3>
+                    <p class="feature-desc">Character and word density analysis for content optimization</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3 class="feature-title">Export Reports</h3>
+                    <p class="feature-desc">Download comprehensive analysis reports in text format</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const textInput = document.getElementById('textInput');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        
+        // Result Elements
+        const charCount = document.getElementById('charCount');
+        const wordCount = document.getElementById('wordCount');
+        const lineCount = document.getElementById('lineCount');
+        const sentenceCount = document.getElementById('sentenceCount');
+        const readingTime = document.getElementById('readingTime');
+        const speakingTime = document.getElementById('speakingTime');
+        const charDensity = document.getElementById('charDensity');
+        const wordDensity = document.getElementById('wordDensity');
+
+        // Analysis Functions
+        function analyzeText() {
+            const text = textInput.value.trim();
+            
+            if (!text) {
+                alert('Please enter some text to analyze.');
+                return;
+            }
+
+            // Basic counts
+            const characters = text.length;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const lines = text ? text.split('\n').length : 0;
+            const sentences = text ? text.split(/[.!?]+/).filter(s => s.trim().length > 0).length : 0;
+
+            // Time calculations (average reading: 200 words/min, speaking: 150 words/min)
+            const readTime = words / 200;
+            const speakTime = words / 150;
+
+            // Density calculations
+            const charDensityValue = ((characters / (characters + words)) * 100).toFixed(1);
+            const wordDensityValue = ((words / (characters + words)) * 100).toFixed(1);
+
+            // Update UI
+            charCount.textContent = characters.toLocaleString();
+            wordCount.textContent = words.toLocaleString();
+            lineCount.textContent = lines.toLocaleString();
+            sentenceCount.textContent = sentences.toLocaleString();
+            readingTime.textContent = `${readTime.toFixed(1)} min`;
+            speakingTime.textContent = `${speakTime.toFixed(1)} min`;
+            charDensity.textContent = `${charDensityValue}%`;
+            wordDensity.textContent = `${wordDensityValue}%`;
+
+            // Enable download button
+            downloadBtn.disabled = false;
+        }
+
+        function resetAnalysis() {
+            textInput.value = '';
+            
+            // Reset all counters
+            charCount.textContent = '0';
+            wordCount.textContent = '0';
+            lineCount.textContent = '0';
+            sentenceCount.textContent = '0';
+            readingTime.textContent = '0 min';
+            speakingTime.textContent = '0 min';
+            charDensity.textContent = '0%';
+            wordDensity.textContent = '0%';
+
+            // Disable download button
+            downloadBtn.disabled = true;
+            
+            // Focus back on input
+            textInput.focus();
+        }
+
+        function downloadReport() {
+            const text = textInput.value.trim();
+            
+            if (!text) {
+                alert('No text to download. Please analyze some text first.');
+                return;
+            }
+
+            // Create report content
+            const report = `CHECKBOT ANALYSIS REPORT
+Generated on: ${new Date().toLocaleString()}
+
+TEXT ANALYSIS RESULTS:
+======================
+Characters: ${charCount.textContent}
+Words: ${wordCount.textContent}
+Lines: ${lineCount.textContent}
+Sentences: ${sentenceCount.textContent}
+
+TIME ANALYSIS:
+==============
+Reading Time: ${readingTime.textContent}
+Speaking Time: ${speakingTime.textContent}
+
+DENSITY METRICS:
+================
+Character Density: ${charDensity.textContent}
+Word Density: ${wordDensity.textContent}
+
+ORIGINAL TEXT:
+==============
+${text}
+
+---
+Report generated by Checkbot Tool - Online Tool Stack
+`;
+
+            // Create and trigger download
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `checkbot-analysis-${new Date().getTime()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Real-time analysis on input
+        textInput.addEventListener('input', function() {
+            const text = this.value.trim();
+            analyzeBtn.disabled = !text;
+        });
+
+        // Event Listeners
+        analyzeBtn.addEventListener('click', analyzeText);
+        resetBtn.addEventListener('click', resetAnalysis);
+        downloadBtn.addEventListener('click', downloadReport);
+
+        // Initialize button states
+        analyzeBtn.disabled = true;
+        downloadBtn.disabled = true;
+
+        // Auto-focus on input
+        textInput.focus();
+    </script>
+</body>
+</html>

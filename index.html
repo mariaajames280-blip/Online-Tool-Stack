@@ -8,26 +8,29 @@
     <meta name="author" content="Online Tool Stack">
     <title>Online Tool stack - 40+ Free Online Tools</title>
     
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB14XD7KT4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FB14XD7KT4');
+    </script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    
     <!-- Added favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Online Tool Stack - 40+ Free Online Tools">
+    <meta property="og:description" content="Your Complete Solution for 40+ Free Online Tools. QR Generator, URL Shortener, Text Tools and more!">
+    <meta property="og:image" content="https://www.onlinetoolstack.site/og-image.jpg">
+    <meta property="og:url" content="https://www.onlinetoolstack.site/">
+    <meta name="twitter:card" content="summary_large_image">
+    
     <style>
-        /* --- Fix tool card alignment --- */
-        .tools-grid {
-            align-items: stretch;
-        }
-
-        .tool-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* ensures button stays at bottom */
-            height: 100%; /* makes all cards equal height in each row */
-        }
-
-        .tool-card p {
-            flex-grow: 1; /* makes description fill the middle space evenly */
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -266,14 +269,19 @@
             font-size: 1.1rem;
         }
 
+        /* Fixed Tool Card Alignment */
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-top: 3rem;
+            align-items: stretch;
         }
 
         .tool-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
             background: var(--bg-card);
             padding: 2rem;
             border-radius: 12px;
@@ -283,6 +291,7 @@
             position: relative;
             z-index: 2;
             backdrop-filter: blur(10px);
+            justify-content: space-between;
         }
 
         .tool-card:hover {
@@ -308,6 +317,7 @@
             color: var(--color-gray);
             margin-bottom: 1.5rem;
             line-height: 1.5;
+            flex-grow: 1;
         }
 
         .btn-tool {

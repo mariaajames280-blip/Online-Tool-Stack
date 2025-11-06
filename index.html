@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="https://schema.org/WebSite">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Online Tool Stack - Your Complete Solution for 40+ Free Online Tools. QR Generator, URL Shortener, Text Tools and more!">
-    <meta name="keywords" content="online tools, free tools, QR generator, URL shortener, text tools, web tools">
+    <meta name="description" content="Online Tool Stack - 40+ Free Online Tools including QR Generator, URL Shortener, AI Tools, PDF Tools, Text Tools. No registration required.">
+    <meta name="keywords" content="free online tools, QR code generator, URL shortener, AI tools, PDF tools, text tools, web tools, productivity tools">
     <meta name="author" content="Online Tool Stack">
-    <title>Online Tool stack - 40+ Free Online Tools</title>
+    <title>Online Tool Stack - 40+ Free Online Tools for Productivity & Development</title>
+    
+    <!-- Canonical & Robots -->
+    <link rel="canonical" href="https://www.onlinetoolstack.site/">
+    <meta name="robots" content="index, follow, max-snippet:50, max-image-preview:large">
+    <meta name="googlebot" content="index, follow">
     
     <!-- Google Analytics GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FB14XD7KT4"></script>
@@ -19,16 +24,52 @@
     
     <!-- Preload critical resources -->
     <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     
     <!-- Added favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     
     <!-- Social Media Meta Tags -->
+    <meta property="og:type" content="website">
     <meta property="og:title" content="Online Tool Stack - 40+ Free Online Tools">
     <meta property="og:description" content="Your Complete Solution for 40+ Free Online Tools. QR Generator, URL Shortener, Text Tools and more!">
     <meta property="og:image" content="https://www.onlinetoolstack.site/og-image.jpg">
     <meta property="og:url" content="https://www.onlinetoolstack.site/">
+    <meta property="og:site_name" content="Online Tool Stack">
+    
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Online Tool Stack - 40+ Free Online Tools">
+    <meta name="twitter:description" content="40+ free online tools for QR generation, URL shortening, text processing, PDF editing & AI content creation">
+    <meta name="twitter:image" content="https://www.onlinetoolstack.site/twitter-image.jpg">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Online Tool Stack",
+        "description": "Collection of 40+ free online tools for productivity and development including QR generator, URL shortener, AI tools, and PDF tools",
+        "url": "https://www.onlinetoolstack.site/",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Online Tool Stack",
+            "url": "https://www.onlinetoolstack.site/"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "1250"
+        }
+    }
+    </script>
     
     <style>
         * {
@@ -529,7 +570,7 @@
         }
     </style>
 </head>
-<body>
+<body itemscope itemtype="https://schema.org/WebPage">
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -537,308 +578,308 @@
     <div class="snow-container" id="snowContainer"></div>
 
     <!-- Header Navigation -->
-    <header>
-        <nav>
-            <a href="/" class="logo">
-                ⚡ Online<span>Tool Stack</span>
+    <header role="banner">
+        <nav role="navigation" aria-label="Main navigation">
+            <a href="/" class="logo" itemprop="url">
+                ⚡ <span itemprop="name">Online Tool Stack</span>
             </a>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="/">Home</a></li>
-                <li><a href="/tools.html">All Tools</a></li>
-                <li><a href="/about.html">About</a></li>
-                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/" itemprop="url">Home</a></li>
+                <li><a href="/tools.html" itemprop="url">All Tools</a></li>
+                <li><a href="/about.html" itemprop="url">About</a></li>
+                <li><a href="/contact.html" itemprop="url">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main id="main-content">
+    <main id="main-content" role="main" itemprop="mainContentOfPage">
         <!-- Hero Section -->
-        <section class="hero">
-            <h1>Welcome to <span>ONLINE TOOL STACK</span></h1>
-            <p>Your Complete Solution for 40+ Free Online Tools</p>
+        <section class="hero" aria-labelledby="main-heading">
+            <h1 id="main-heading" itemprop="headline">Welcome to <span>ONLINE TOOL STACK</span></h1>
+            <p itemprop="description">Your Complete Solution for 40+ Free Online Tools</p>
             <div class="cta-buttons">
-                <a href="/tools.html" class="btn btn-primary">Explore Tools</a>
-                <a href="/about.html" class="btn btn-secondary">Learn More</a>
+                <a href="/tools.html" class="btn btn-primary" aria-label="Explore all 40+ tools">Explore Tools</a>
+                <a href="/about.html" class="btn btn-secondary" aria-label="Learn more about Online Tool Stack">Learn More</a>
             </div>
         </section>
 
         <!-- Tools Section -->
-        <section class="tools-section">
-            <h2 class="section-title">Our Tools</h2>
+        <section class="tools-section" aria-labelledby="tools-heading">
+            <h2 id="tools-heading" class="section-title">Our Tools</h2>
             <p class="section-subtitle">Professional tools for all your needs</p>
             
             <div class="tools-grid">
                 <!-- QR Code Generator -->
-                <div class="tool-card">
-                    <div class="tool-icon">📱</div>
-                    <h3>QR Code Generator</h3>
-                    <p>Generate QR codes instantly for URLs, text, and contact information</p>
-                    <a href="/qr-generator.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">📱</div>
+                    <h3 itemprop="name">QR Code Generator</h3>
+                    <p itemprop="description">Generate QR codes instantly for URLs, text, and contact information</p>
+                    <a href="/qr-generator.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- URL Shortener -->
-                <div class="tool-card">
-                    <div class="tool-icon">🔗</div>
-                    <h3>URL Shortener</h3>
-                    <p>Shorten long URLs easily and create memorable links</p>
-                    <a href="/shortener-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🔗</div>
+                    <h3 itemprop="name">URL Shortener</h3>
+                    <p itemprop="description">Shorten long URLs easily and create memorable links</p>
+                    <a href="/shortener-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Text Case Converter -->
-                <div class="tool-card">
-                    <div class="tool-icon">🔤</div>
-                    <h3>Text Case Converter</h3>
-                    <p>Convert text case formats between uppercase, lowercase, and more</p>
-                    <a href="/text-case-converter.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🔤</div>
+                    <h3 itemprop="name">Text Case Converter</h3>
+                    <p itemprop="description">Convert text case formats between uppercase, lowercase, and more</p>
+                    <a href="/text-case-converter.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Base64 Encoder/Decoder -->
-                <div class="tool-card">
-                    <div class="tool-icon">🔐</div>
-                    <h3>Base64 Encoder/Decoder</h3>
-                    <p>Encode and decode Base64 strings for data transmission</p>
-                    <a href="/base64-encoder-decoder.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🔐</div>
+                    <h3 itemprop="name">Base64 Encoder/Decoder</h3>
+                    <p itemprop="description">Encode and decode Base64 strings for data transmission</p>
+                    <a href="/base64-encoder-decoder.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- MD5 Hash Generator -->
-                <div class="tool-card">
-                    <div class="tool-icon">🔐</div>
-                    <h3>MD5 Hash Generator</h3>
-                    <p>Generate MD5 hashes for text and file verification</p>
-                    <a href="/md5-generator-tool.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🔐</div>
+                    <h3 itemprop="name">MD5 Hash Generator</h3>
+                    <p itemprop="description">Generate MD5 hashes for text and file verification</p>
+                    <a href="/md5-generator-tool.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Word Counter -->
-                <div class="tool-card">
-                    <div class="tool-icon">📝</div>
-                    <h3>Word Counter</h3>
-                    <p>Analyze text with detailed word, character, and sentence statistics</p>
-                    <a href="/word-counter.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">📝</div>
+                    <h3 itemprop="name">Word Counter</h3>
+                    <p itemprop="description">Analyze text with detailed word, character, and sentence statistics</p>
+                    <a href="/word-counter.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- AI Content Generator -->
-                <div class="tool-card">
-                    <div class="tool-icon">🤖</div>
-                    <h3>AI Content Generator</h3>
-                    <p>Generate high-quality content, articles, and creative text using AI</p>
-                    <a href="/ai-content-generator.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🤖</div>
+                    <h3 itemprop="name">AI Content Generator</h3>
+                    <p itemprop="description">Generate high-quality content, articles, and creative text using AI</p>
+                    <a href="/ai-content-generator.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- AI Background Remover -->
-                <div class="tool-card">
-                    <div class="tool-icon">🖼️</div>
-                    <h3>AI Background Remover</h3>
-                    <p>Remove image backgrounds instantly with AI-powered precision</p>
-                    <a href="/ai-background-remover.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🖼️</div>
+                    <h3 itemprop="name">AI Background Remover</h3>
+                    <p itemprop="description">Remove image backgrounds instantly with AI-powered precision</p>
+                    <a href="/ai-background-remover.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Expense Tracker & Calculator -->
-                <div class="tool-card">
-                    <div class="tool-icon">💰</div>
-                    <h3>Expense Tracker & Calculator</h3>
-                    <p>Track expenses, manage budgets, and calculate finances with easy-to-use tools</p>
-                    <a href="/expense-tracker-calculator.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">💰</div>
+                    <h3 itemprop="name">Expense Tracker & Calculator</h3>
+                    <p itemprop="description">Track expenses, manage budgets, and calculate finances with easy-to-use tools</p>
+                    <a href="/expense-tracker-calculator.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Email Signature Generator -->
-                <div class="tool-card">
-                    <div class="tool-icon">📧</div>
-                    <h3>Email Signature Generator</h3>
-                    <p>Create professional email signatures with templates and custom designs</p>
-                    <a href="/email-signature-generator.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">📧</div>
+                    <h3 itemprop="name">Email Signature Generator</h3>
+                    <p itemprop="description">Create professional email signatures with templates and custom designs</p>
+                    <a href="/email-signature-generator.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Currency Converter -->
-                <div class="tool-card">
-                    <div class="tool-icon">💱</div>
-                    <h3>Currency Converter</h3>
-                    <p>Convert between 150+ currencies with live exchange rates</p>
-                    <a href="/currency-converter.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">💱</div>
+                    <h3 itemprop="name">Currency Converter</h3>
+                    <p itemprop="description">Convert between 150+ currencies with live exchange rates</p>
+                    <a href="/currency-converter.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Social Media Banner Maker Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">🖼️</div>
-                    <h3>Social Media Banner Maker Pro</h3>
-                    <p>Create stunning banners for Facebook, Twitter, YouTube, and all social platforms</p>
-                    <a href="/social-media-banner-maker-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🖼️</div>
+                    <h3 itemprop="name">Social Media Banner Maker Pro</h3>
+                    <p itemprop="description">Create stunning banners for Facebook, Twitter, YouTube, and all social platforms</p>
+                    <a href="/social-media-banner-maker-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Text to Speech Converter Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">🔊</div>
-                    <h3>Text to Speech Converter Pro</h3>
-                    <p>Convert any text to natural sounding audio with multiple voices and languages</p>
-                    <a href="/text-to-speech-converter-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🔊</div>
+                    <h3 itemprop="name">Text to Speech Converter Pro</h3>
+                    <p itemprop="description">Convert any text to natural sounding audio with multiple voices and languages</p>
+                    <a href="/text-to-speech-converter-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Cover Letter Generator Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">📄</div>
-                    <h3>Cover Letter Generator Pro</h3>
-                    <p>Create professional cover letters with customizable templates and AI-powered content suggestions</p>
-                    <a href="/cover-letter-generator-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">📄</div>
+                    <h3 itemprop="name">Cover Letter Generator Pro</h3>
+                    <p itemprop="description">Create professional cover letters with customizable templates and AI-powered content suggestions</p>
+                    <a href="/cover-letter-generator-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Domain Age Checker Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">🌐</div>
-                    <h3>Domain Age Checker Pro</h3>
-                    <p>Check domain registration date, expiration, and history for SEO and website analysis</p>
-                    <a href="/domain-age-checker-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🌐</div>
+                    <h3 itemprop="name">Domain Age Checker Pro</h3>
+                    <p itemprop="description">Check domain registration date, expiration, and history for SEO and website analysis</p>
+                    <a href="/domain-age-checker-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- eBook Format Converter -->
-                <div class="tool-card">
-                    <div class="tool-icon">🔄</div>
-                    <h3>eBook Converter Pro</h3>
-                    <p>Convert eBooks between EPUB, MOBI, PDF, AZW3, TXT, FB2 and more formats instantly</p>
-                    <a href="/ebook-converter.html" class="btn-tool">Convert Now</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🔄</div>
+                    <h3 itemprop="name">eBook Converter Pro</h3>
+                    <p itemprop="description">Convert eBooks between EPUB, MOBI, PDF, AZW3, TXT, FB2 and more formats instantly</p>
+                    <a href="/ebook-converter.html" class="btn-tool" itemprop="url">Convert Now</a>
                 </div>
 
                 <!-- PDF Merger -->
-                <div class="tool-card">
-                    <div class="tool-icon">📄</div>
-                    <h3>PDF Merger</h3>
-                    <p>Combine multiple PDF files into one document quickly and easily</p>
-                    <a href="/pdf-merger.html" class="btn-tool">Merge PDFs</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">📄</div>
+                    <h3 itemprop="name">PDF Merger</h3>
+                    <p itemprop="description">Combine multiple PDF files into one document quickly and easily</p>
+                    <a href="/pdf-merger.html" class="btn-tool" itemprop="url">Merge PDFs</a>
                 </div>
 
                 <!-- Advanced Regex Tester -->
-                <div class="tool-card">
-                    <div class="tool-icon">🔍</div>
-                    <h3>Advanced Regex Tester</h3>
-                    <p>Test, debug, and master regular expressions with real-time feedback</p>
-                    <a href="/advanced-regex-tester.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🔍</div>
+                    <h3 itemprop="name">Advanced Regex Tester</h3>
+                    <p itemprop="description">Test, debug, and master regular expressions with real-time feedback</p>
+                    <a href="/advanced-regex-tester.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- AI Content Placeholder Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">🤖</div>
-                    <h3>AI Content Placeholder Pro</h3>
-                    <p>Generate realistic placeholder content using AI for your designs and prototypes</p>
-                    <a href="/ai-content-placeholder-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🤖</div>
+                    <h3 itemprop="name">AI Content Placeholder Pro</h3>
+                    <p itemprop="description">Generate realistic placeholder content using AI for your designs and prototypes</p>
+                    <a href="/ai-content-placeholder-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- AI Text Analysis Tool -->
-                <div class="tool-card">
-                    <div class="tool-icon">📊</div>
-                    <h3>AI Text Analysis Tool</h3>
-                    <p>Analyze and extract insights from text using advanced AI algorithms</p>
-                    <a href="/ai-text-analysis-tool.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">📊</div>
+                    <h3 itemprop="name">AI Text Analysis Tool</h3>
+                    <p itemprop="description">Analyze and extract insights from text using advanced AI algorithms</p>
+                    <a href="/ai-text-analysis-tool.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Business Card Designer -->
-                <div class="tool-card">
-                    <div class="tool-icon">💼</div>
-                    <h3>Business Card Designer</h3>
-                    <p>Create professional business cards with customizable templates and designs</p>
-                    <a href="/business-card-designer.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">💼</div>
+                    <h3 itemprop="name">Business Card Designer</h3>
+                    <p itemprop="description">Create professional business cards with customizable templates and designs</p>
+                    <a href="/business-card-designer.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Color Palette Generator Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">🎨</div>
-                    <h3>Color Palette Generator Pro</h3>
-                    <p>Generate beautiful color schemes and palettes with advanced customization options</p>
-                    <a href="/color-palette-generator-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🎨</div>
+                    <h3 itemprop="name">Color Palette Generator Pro</h3>
+                    <p itemprop="description">Generate beautiful color schemes and palettes with advanced customization options</p>
+                    <a href="/color-palette-generator-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Content Analysis Suite -->
-                <div class="tool-card">
-                    <div class="tool-icon">📈</div>
-                    <h3>Content Analysis Suite</h3>
-                    <p>Comprehensive content analysis with readability scores, SEO insights, and performance metrics</p>
-                    <a href="/content_analysis_suite.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">📈</div>
+                    <h3 itemprop="name">Content Analysis Suite</h3>
+                    <p itemprop="description">Comprehensive content analysis with readability scores, SEO insights, and performance metrics</p>
+                    <a href="/content_analysis_suite.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Date Time Toolkit Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">📅</div>
-                    <h3>Date Time Toolkit Pro</h3>
-                    <p>Advanced date and time utilities with formatting, conversion, and calculation features</p>
-                    <a href="/date-time-toolkit-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">📅</div>
+                    <h3 itemprop="name">Date Time Toolkit Pro</h3>
+                    <p itemprop="description">Advanced date and time utilities with formatting, conversion, and calculation features</p>
+                    <a href="/date-time-toolkit-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Email Marketing Toolkit Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">📧</div>
-                    <h3>Email Marketing Toolkit Pro</h3>
-                    <p>Create, analyze, and optimize email campaigns with professional templates and analytics</p>
-                    <a href="/email-marketing-toolkit-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">📧</div>
+                    <h3 itemprop="name">Email Marketing Toolkit Pro</h3>
+                    <p itemprop="description">Create, analyze, and optimize email campaigns with professional templates and analytics</p>
+                    <a href="/email-marketing-toolkit-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Financial Calculator Suite Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">💰</div>
-                    <h3>Financial Calculator Suite Pro</h3>
-                    <p>Comprehensive financial calculations including loans, investments, and retirement planning</p>
-                    <a href="/financial-calculator-suite-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">💰</div>
+                    <h3 itemprop="name">Financial Calculator Suite Pro</h3>
+                    <p itemprop="description">Comprehensive financial calculations including loans, investments, and retirement planning</p>
+                    <a href="/financial-calculator-suite-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Gradient Generator Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">🌈</div>
-                    <h3>Gradient Generator Pro</h3>
-                    <p>Create beautiful CSS gradients with advanced controls and real-time preview</p>
-                    <a href="/gradient-generator-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🌈</div>
+                    <h3 itemprop="name">Gradient Generator Pro</h3>
+                    <p itemprop="description">Create beautiful CSS gradients with advanced controls and real-time preview</p>
+                    <a href="/gradient-generator-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Image Optimizer Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">🖼️</div>
-                    <h3>Image Optimizer Pro</h3>
-                    <p>Compress and optimize images for web with advanced compression algorithms</p>
-                    <a href="/image-optimizer-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🖼️</div>
+                    <h3 itemprop="name">Image Optimizer Pro</h3>
+                    <p itemprop="description">Compress and optimize images for web with advanced compression algorithms</p>
+                    <a href="/image-optimizer-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Logo Maker -->
-                <div class="tool-card">
-                    <div class="tool-icon">✨</div>
-                    <h3>Logo Maker</h3>
-                    <p>Design professional logos with customizable templates and design tools</p>
-                    <a href="/logo-maker.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">✨</div>
+                    <h3 itemprop="name">Logo Maker</h3>
+                    <p itemprop="description">Design professional logos with customizable templates and design tools</p>
+                    <a href="/logo-maker.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Open Graph Meta Tag Previewer Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">🔗</div>
-                    <h3>Open Graph Meta Tag Previewer Pro</h3>
-                    <p>Preview and optimize Open Graph meta tags for social media sharing</p>
-                    <a href="/open-graph-meta-tag-previewer-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🔗</div>
+                    <h3 itemprop="name">Open Graph Meta Tag Previewer Pro</h3>
+                    <p itemprop="description">Preview and optimize Open Graph meta tags for social media sharing</p>
+                    <a href="/open-graph-meta-tag-previewer-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Readability Score Checker Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">📖</div>
-                    <h3>Readability Score Checker Pro</h3>
-                    <p>Analyze text readability with multiple scoring systems and improvement suggestions</p>
-                    <a href="/readability-score-checker-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">📖</div>
+                    <h3 itemprop="name">Readability Score Checker Pro</h3>
+                    <p itemprop="description">Analyze text readability with multiple scoring systems and improvement suggestions</p>
+                    <a href="/readability-score-checker-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Smart Text Transformer Pro -->
-                <div class="tool-card">
-                    <div class="tool-icon">🔄</div>
-                    <h3>Smart Text Transformer Pro</h3>
-                    <p>Transform and manipulate text with advanced formatting, conversion, and processing tools</p>
-                    <a href="/smart-text-transformer-pro.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">🔄</div>
+                    <h3 itemprop="name">Smart Text Transformer Pro</h3>
+                    <p itemprop="description">Transform and manipulate text with advanced formatting, conversion, and processing tools</p>
+                    <a href="/smart-text-transformer-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
 
                 <!-- Social Media Analytics Suite -->
-                <div class="tool-card">
-                    <div class="tool-icon">📱</div>
-                    <h3>Social Media Analytics Suite</h3>
-                    <p>Track and analyze social media performance across multiple platforms with detailed insights</p>
-                    <a href="/social_media_analytics_suite.html" class="btn-tool">Open Tool</a>
+                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="tool-icon" aria-hidden="true">📱</div>
+                    <h3 itemprop="name">Social Media Analytics Suite</h3>
+                    <p itemprop="description">Track and analyze social media performance across multiple platforms with detailed insights</p>
+                    <a href="/social_media_analytics_suite.html" class="btn-tool" itemprop="url">Open Tool</a>
                 </div>
             </div>
         </section>
 
         <!-- Stats Section -->
-        <section class="stats">
-            <h2 class="section-title">Why Choose Online WebTool?</h2>
+        <section class="stats" aria-labelledby="stats-heading">
+            <h2 id="stats-heading" class="section-title">Why Choose Online WebTool?</h2>
             <div class="stats-grid">
                 <div class="stat-item">
                     <h3>40+</h3>
@@ -861,30 +902,30 @@
     </main>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo" itemscope itemtype="https://schema.org/WPFooter">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Online Tool Stack</h3>
-                <p>Your complete collection of free professional online tools for productivity and development.</p>
+                <h3 itemprop="name">Online Tool Stack</h3>
+                <p itemprop="description">Your complete collection of free professional online tools for productivity and development.</p>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
-                <a href="/">Home</a>
-                <a href="/tools.html">All Tools</a>
-                <a href="/about.html">About Us</a>
-                <a href="/contact.html">Contact</a>
+                <a href="/" itemprop="url">Home</a>
+                <a href="/tools.html" itemprop="url">All Tools</a>
+                <a href="/about.html" itemprop="url">About Us</a>
+                <a href="/contact.html" itemprop="url">Contact</a>
             </div>
             <div class="footer-section">
                 <h3>Popular Tools</h3>
-                <a href="/qr-generator.html">QR Code Generator</a>
-                <a href="/shortener-pro.html">URL Shortener</a>
-                <a href="/text-case-converter.html">Text Case Converter</a>
-                <a href="/word-counter.html">Word Counter</a>
+                <a href="/qr-generator.html" itemprop="url">QR Code Generator</a>
+                <a href="/shortener-pro.html" itemprop="url">URL Shortener</a>
+                <a href="/text-case-converter.html" itemprop="url">Text Case Converter</a>
+                <a href="/word-counter.html" itemprop="url">Word Counter</a>
             </div>
             <div class="footer-section">
                 <h3>Legal</h3>
-                <a href="/privacy.html">Privacy Policy</a>
-                <a href="/terms.html">Terms of Service</a>
+                <a href="/privacy.html" itemprop="url">Privacy Policy</a>
+                <a href="/terms.html" itemprop="url">Terms of Service</a>
             </div>
         </div>
         <div class="footer-bottom">

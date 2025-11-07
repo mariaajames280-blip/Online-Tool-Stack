@@ -3,132 +3,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Privacy Policy - Online ToolStack. Learn how we protect your privacy and handle your data.">
-    <link rel="canonical" href="https://yourdomain.com/privacy.html">
+    <meta name="description" content="Privacy Policy for Online ToolStack - Learn how we protect your data and privacy. We process everything locally in your browser.">
+    <meta name="keywords" content="privacy policy, data protection, online tools privacy">
     <title>Privacy Policy - Online ToolStack</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #161616;
+            --color-primary: #00d5ff;
+            --color-primary-rgb: 0, 213, 255;
+            --color-white: #ffffff;
+            --color-gray: #a0a0a0;
+            --color-light-gray: #666666;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--color-white);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(var(--color-primary-rgb), 0.1);
+            border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--color-white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.3);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--color-gray);
+        }
+
+        .privacy-banner {
+            background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(var(--color-primary-rgb), 0.3);
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .privacy-banner h2 {
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .privacy-banner p {
+            color: var(--color-white);
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.3);
+        }
+
+        .content-section p {
+            color: var(--color-gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(var(--color-primary-rgb), 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), transparent);
+        }
+
+        .feature-card:hover {
+            border-color: rgba(var(--color-primary-rgb), 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(var(--color-primary-rgb), 0.2);
+        }
+
+        .feature-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+        }
+
+        .feature-card h3 {
+            color: var(--color-white);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .feature-card p {
+            color: var(--color-gray);
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .privacy-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .privacy-list li {
+            padding: 1rem 0;
+            color: var(--color-gray);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.1);
+        }
+
+        .privacy-list li::before {
+            content: '✓';
+            color: var(--color-primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.05) 0%, transparent 100%);
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 3rem;
+            border: 1px solid rgba(var(--color-primary-rgb), 0.2);
+        }
+
+        .contact-section h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-section p {
+            color: var(--color-white);
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(var(--color-primary-rgb), 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--color-gray);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--color-primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(var(--color-primary-rgb), 0.1);
+            color: var(--color-gray);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .privacy-banner {
+                padding: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-tools"></i>
-                    <span>Online ToolStack</span>
-                </a>
-                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="tools-all-compact.html">Tools</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">⚡ Online<span>ToolStack</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <section class="section">
-        <div class="container">
-            <h1 class="section-title">Privacy <span class="highlight-blue">Policy</span></h1>
-            <p class="section-subtitle">Last updated: December 16, 2024</p>
+    <div class="container">
+        <div class="page-header">
+            <h1>Privacy Policy</h1>
+            <p>Your privacy is our fundamental principle. Learn how we protect your data.</p>
+        </div>
+
+        <div class="privacy-banner">
+            <h2>🔒 Zero Data Collection</h2>
+            <p>All processing happens locally in your browser. Your data never leaves your device - we don't collect, store, or share any personal information.</p>
+        </div>
+
+        <section class="content-section">
+            <h2>Our Privacy Commitment</h2>
+            <p>At Online ToolStack, we believe privacy is a fundamental right. We've built our platform with privacy-by-design principles, ensuring that you can use our tools with complete confidence that your data remains yours alone.</p>
             
-            <div style="max-width: 900px; margin: 3rem auto; line-height: 1.8;">
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">1. Introduction</h2>
-                <p>Welcome to Online ToolStack. We respect your privacy and are committed to protecting your personal data. This privacy policy explains how we handle your information when you use our website and tools.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">🌐</div>
+                    <h3>Local Processing</h3>
+                    <p>All tools run entirely in your browser using JavaScript. No server processing means your data stays on your device.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🚫</div>
+                    <h3>No Tracking</h3>
+                    <p>We don't use cookies, analytics, or any tracking technologies that monitor your behavior across our site.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📁</div>
+                    <h3>File Privacy</h3>
+                    <p>Your files are processed locally and never uploaded to our servers. They remain 100% private to you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔐</div>
+                    <h3>No Registration</h3>
+                    <p>Use all tools immediately without creating an account. We don't collect emails, names, or personal details.</p>
+                </div>
+            </div>
+        </section>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">2. Data We Collect</h2>
-                <p>Online ToolStack is designed with privacy in mind. Most of our tools process data locally in your browser, which means:</p>
-                <ul>
-                    <li>Files you upload are processed in your browser and are never sent to our servers</li>
-                    <li>Text you enter in our tools is processed locally</li>
-                    <li>Generated outputs remain on your device</li>
-                </ul>
-                <p>We may collect the following minimal data:</p>
-                <ul>
-                    <li><strong>Analytics Data:</strong> We use Google Analytics to understand how visitors use our site (page views, session duration, device type)</li>
-                    <li><strong>Cookies:</strong> We use cookies for analytics and Google AdSense</li>
-                    <li><strong>Contact Information:</strong> If you contact us, we collect your name and email address</li>
-                </ul>
+        <section class="content-section">
+            <h2>What We Don't Collect</h2>
+            <p>To be perfectly clear, here's what we explicitly DO NOT collect when you use Online ToolStack:</p>
+            
+            <ul class="privacy-list">
+                <li><strong>Personal Information:</strong> No names, email addresses, or contact details</li>
+                <li><strong>Usage Data:</strong> No tracking of which tools you use or how often</li>
+                <li><strong>File Content:</strong> Your files and data never leave your browser</li>
+                <li><strong>Location Data:</strong> No IP address tracking or geolocation</li>
+                <li><strong>Browser History:</strong> No monitoring of your browsing behavior</li>
+                <li><strong>Device Information:</strong> No collection of device specs or identifiers</li>
+            </ul>
+        </section>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">3. How We Use Your Data</h2>
-                <p>We use the collected data to:</p>
-                <ul>
-                    <li>Improve our website and tools</li>
-                    <li>Understand user behavior and preferences</li>
-                    <li>Respond to your inquiries</li>
-                    <li>Display relevant advertisements through Google AdSense</li>
-                </ul>
+        <section class="content-section">
+            <h2>Technical Implementation</h2>
+            <p>Our privacy-first approach is built into our technical architecture:</p>
+            <p>All tools are implemented using client-side JavaScript, HTML5 APIs, and Web Workers. Processing happens entirely within your browser's sandboxed environment. We use modern web technologies that ensure your data is processed locally without ever being transmitted over the network.</p>
+        </section>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">4. Third-Party Services</h2>
-                <p>We use the following third-party services:</p>
-                <ul>
-                    <li><strong>Google Analytics:</strong> For website analytics</li>
-                    <li><strong>Google AdSense:</strong> For displaying advertisements</li>
-                </ul>
-                <p>These services have their own privacy policies and may collect data as described in their respective policies.</p>
+        <section class="content-section">
+            <h2>Third-Party Services</h2>
+            <p>We maintain a strict no-third-party policy. Unlike many websites, we don't integrate with:</p>
+            <ul class="privacy-list">
+                <li>Advertising networks or tracking scripts</li>
+                <li>Analytics platforms that collect user data</li>
+                <li>Social media widgets or share buttons</li>
+                <li>External CDNs that might track users</li>
+                <li>Any services that could compromise your privacy</li>
+            </ul>
+        </section>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">5. Cookies</h2>
-                <p>We use cookies to:</p>
-                <ul>
-                    <li>Remember your preferences</li>
-                    <li>Analyze site traffic</li>
-                    <li>Serve personalized advertisements</li>
-                </ul>
-                <p>You can disable cookies in your browser settings, though this may affect website functionality.</p>
+        <section class="content-section">
+            <h2>Policy Updates</h2>
+            <p>Should we ever need to update this privacy policy, we will prominently display changes on our website and maintain our core commitment to user privacy. We believe in being transparent about how we handle your data, even when that means telling you we don't handle it at all.</p>
+        </section>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">6. Your Rights</h2>
-                <p>You have the right to:</p>
-                <ul>
-                    <li>Access your personal data</li>
-                    <li>Request correction of your data</li>
-                    <li>Request deletion of your data</li>
-                    <li>Opt-out of analytics tracking</li>
-                    <li>Disable cookies</li>
-                </ul>
+        <div class="contact-section">
+            <h3>Questions About Privacy?</h3>
+            <p>If you have any questions about our privacy practices or want to verify our technical implementation, please <a href="contact.html" style="color: var(--color-primary); text-decoration: underline;">contact us</a>. We're happy to provide technical details.</p>
+        </div>
+    </div>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">7. Data Security</h2>
-                <p>We implement appropriate security measures to protect your data. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
-
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">8. Children's Privacy</h2>
-                <p>Our services are not directed to children under 13. We do not knowingly collect personal information from children under 13.</p>
-
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">9. Changes to This Policy</h2>
-                <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page with an updated date.</p>
-
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">10. Contact Us</h2>
-                <p>If you have any questions about this privacy policy, please contact us at <a href="contact.html" style="color: var(--color-blue);">support@toolstack.com</a></p>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Online ToolStack</h3>
+                <p>Your complete collection of free professional online tools for productivity and development.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="about.html">About Us</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay updated with latest tools and features</p>
             </div>
         </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Online ToolStack</h3>
-                    <p>Professional online tools for everyone. Free, fast, and secure.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Online ToolStack. All rights reserved.</p>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Online ToolStack. All rights reserved. Made with ❤️ for the community.</p>
         </div>
     </footer>
-
-    <div id="toast" class="toast"></div>
-    <script src="js/main.js"></script>
 </body>
 </html>

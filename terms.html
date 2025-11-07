@@ -3,119 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Terms of Service - Online ToolStack. Read our terms and conditions.">
-    <link rel="canonical" href="https://yourdomain.com/terms.html">
+    <meta name="description" content="Terms of Service for Online ToolStack - Understand our terms and conditions for using our free online tools.">
+    <meta name="keywords" content="terms of service, terms and conditions, online tools terms">
     <title>Terms of Service - Online ToolStack</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #161616;
+            --color-primary: #00d5ff;
+            --color-primary-rgb: 0, 213, 255;
+            --color-white: #ffffff;
+            --color-gray: #a0a0a0;
+            --color-light-gray: #666666;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--color-white);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(var(--color-primary-rgb), 0.1);
+            border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--color-white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.3);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--color-gray);
+        }
+
+        .terms-banner {
+            background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.1) 0%, transparent 100%);
+            border: 1px solid rgba(var(--color-primary-rgb), 0.3);
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .terms-banner h2 {
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .terms-banner p {
+            color: var(--color-white);
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.3);
+        }
+
+        .content-section p {
+            color: var(--color-gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .term-card {
+            background: var(--bg-card);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(var(--color-primary-rgb), 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .term-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), transparent);
+        }
+
+        .term-card:hover {
+            border-color: rgba(var(--color-primary-rgb), 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(var(--color-primary-rgb), 0.2);
+        }
+
+        .term-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+        }
+
+        .term-card h3 {
+            color: var(--color-white);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .term-card p {
+            color: var(--color-gray);
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .rules-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .rules-list li {
+            padding: 1rem 0;
+            color: var(--color-gray);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.1);
+        }
+
+        .rules-list li.allowed::before {
+            content: '✓';
+            color: var(--color-primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .rules-list li.prohibited::before {
+            content: '✗';
+            color: #ff4757;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .disclaimer-box {
+            background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.05) 0%, transparent 100%);
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 3rem;
+            border: 1px solid rgba(var(--color-primary-rgb), 0.2);
+        }
+
+        .disclaimer-box h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .disclaimer-box p {
+            color: var(--color-white);
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(var(--color-primary-rgb), 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--color-gray);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--color-primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(var(--color-primary-rgb), 0.1);
+            color: var(--color-gray);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .terms-banner {
+                padding: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-tools"></i>
-                    <span>Online ToolStack</span>
-                </a>
-                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="tools-all-compact.html">Tools</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">⚡ Online<span>ToolStack</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <section class="section">
-        <div class="container">
-            <h1 class="section-title">Terms of <span class="highlight-yellow">Service</span></h1>
-            <p class="section-subtitle">Last updated: December 16, 2024</p>
+    <div class="container">
+        <div class="page-header">
+            <h1>Terms of Service</h1>
+            <p>Please read these terms carefully before using our services</p>
+        </div>
+
+        <div class="terms-banner">
+            <h2>⚖️ Terms of Use Agreement</h2>
+            <p>By accessing and using Online ToolStack, you agree to be bound by these Terms of Service and our Privacy Policy.</p>
+        </div>
+
+        <section class="content-section">
+            <h2>Acceptance of Terms</h2>
+            <p>By accessing and using Online ToolStack ("the Service"), you accept and agree to be bound by the terms and provisions of this agreement. These Terms of Service apply to all users of the Service, including visitors and users who access the Service through any means.</p>
             
-            <div style="max-width: 900px; margin: 3rem auto; line-height: 1.8;">
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">1. Acceptance of Terms</h2>
-                <p>By accessing and using Online ToolStack, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+            <div class="terms-grid">
+                <div class="term-card">
+                    <div class="icon">🔧</div>
+                    <h3>Service Description</h3>
+                    <p>Online ToolStack provides free online tools for file conversion, text processing, coding utilities, and productivity tasks.</p>
+                </div>
+                <div class="term-card">
+                    <div class="icon">🎯</div>
+                    <h3>Free Access</h3>
+                    <p>All tools are completely free to use without registration, subscription, or hidden costs.</p>
+                </div>
+                <div class="term-card">
+                    <div class="icon">⚡</div>
+                    <h3>Service Availability</h3>
+                    <p>We strive for 24/7 availability but cannot guarantee uninterrupted service due to maintenance or technical issues.</p>
+                </div>
+                <div class="term-card">
+                    <div class="icon">🔄</div>
+                    <h3>Continuous Updates</h3>
+                    <p>We regularly update and improve our tools. Features may be added, modified, or removed without prior notice.</p>
+                </div>
+            </div>
+        </section>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">2. Description of Service</h2>
-                <p>Online ToolStack provides free online tools for various purposes including but not limited to image processing, file conversion, text manipulation, and calculations. All tools are provided "as is" without warranties of any kind.</p>
+        <section class="content-section">
+            <h2>User Responsibilities</h2>
+            <p>As a user of our Service, you agree to use the tools responsibly and in accordance with all applicable laws and regulations.</p>
+            
+            <ul class="rules-list">
+                <li class="allowed">Use tools for legal and legitimate purposes only</li>
+                <li class="allowed">Respect our infrastructure and avoid excessive requests</li>
+                <li class="allowed">Understand that tools are provided "as is" without guarantees</li>
+                <li class="allowed">Ensure compliance with local laws and regulations</li>
+                <li class="allowed">Report any security vulnerabilities responsibly</li>
+            </ul>
+        </section>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">3. User Responsibilities</h2>
-                <p>You agree to:</p>
-                <ul>
-                    <li>Use our tools for lawful purposes only</li>
-                    <li>Not upload or process any illegal, harmful, or malicious content</li>
-                    <li>Not attempt to hack, disrupt, or damage our services</li>
-                    <li>Not use automated tools to scrape or download content excessively</li>
-                    <li>Respect intellectual property rights</li>
-                </ul>
+        <section class="content-section">
+            <h2>Prohibited Activities</h2>
+            <p>You may not use our Service for any illegal, harmful, or malicious activities, including but not limited to:</p>
+            
+            <ul class="rules-list">
+                <li class="prohibited">Illegal activities or promoting illegal content</li>
+                <li class="prohibited">Attempting to breach security or disrupt service</li>
+                <li class="prohibited">Automated scraping, crawling, or excessive requests</li>
+                <li class="prohibited">Spamming, phishing, or social engineering attacks</li>
+                <li class="prohibited">Commercial exploitation without permission</li>
+                <li class="prohibited">Uploading malicious files, viruses, or malware</li>
+                <li class="prohibited">Reverse engineering or copying our service</li>
+            </ul>
+        </section>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">4. Intellectual Property</h2>
-                <p>The design, layout, and functionality of Online ToolStack are protected by copyright and other intellectual property laws. You may not copy, modify, or distribute our website content without permission.</p>
+        <section class="content-section">
+            <h2>Intellectual Property</h2>
+            <p>All tools, website design, code, content, logos, and graphics are the intellectual property of Online ToolStack. You may use our tools for personal and commercial purposes, but may not:</p>
+            <ul class="rules-list">
+                <li class="prohibited">Redistribute, copy, or replicate our service</li>
+                <li class="prohibited">Use our branding without permission</li>
+                <li class="prohibited">Claim ownership of our tools or code</li>
+                <li class="prohibited">Create derivative works without authorization</li>
+            </ul>
+        </section>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">5. User Content</h2>
-                <p>You retain all rights to any content you upload or process using our tools. Since our tools process data locally in your browser, we do not store or claim ownership of your content.</p>
+        <section class="content-section">
+            <h2>Limitation of Liability</h2>
+            <p>Online ToolStack shall not be held liable for any direct, indirect, incidental, special, or consequential damages resulting from:</p>
+            <ul class="rules-list">
+                <li class="prohibited">Data loss or corruption from tool usage</li>
+                <li class="prohibited">Business interruptions or financial losses</li>
+                <li class="prohibited">Accuracy or reliability of tool outputs</li>
+                <li class="prohibited">Service downtime or technical issues</li>
+                <li class="prohibited">Third-party actions resulting from tool usage</li>
+                <li class="prohibited">Security breaches beyond our control</li>
+            </ul>
+        </section>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">6. Disclaimer of Warranties</h2>
-                <p>Online ToolStack is provided "as is" without warranties of any kind, either express or implied. We do not guarantee that:</p>
-                <ul>
-                    <li>Our services will be uninterrupted or error-free</li>
-                    <li>The tools will produce accurate results</li>
-                    <li>Any errors will be corrected</li>
-                    <li>The website will be free from viruses or harmful components</li>
-                </ul>
+        <section class="content-section">
+            <h2>Service Modifications</h2>
+            <p>We reserve the right to modify or discontinue our Service at any time, including:</p>
+            <ul class="rules-list">
+                <li class="allowed">Adding, modifying, or removing tools and features</li>
+                <li class="allowed">Changing pricing if premium features are introduced</li>
+                <li class="allowed">Updating these terms with reasonable notice</li>
+                <li class="allowed">Restricting access for terms violation</li>
+                <li class="allowed">Discontinuing service with prior announcement</li>
+            </ul>
+        </section>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">7. Limitation of Liability</h2>
-                <p>To the fullest extent permitted by law, Online ToolStack shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services.</p>
+        <div class="disclaimer-box">
+            <h3>📝 Agreement Acceptance</h3>
+            <p>By continuing to use Online ToolStack, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. These terms constitute the entire agreement between you and Online ToolStack.</p>
+            <p style="margin-top: 1.5rem; color: var(--color-primary);">Last updated: December 2024</p>
+        </div>
+    </div>
 
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">8. Third-Party Links and Services</h2>
-                <p>Our website may contain links to third-party websites or services. We are not responsible for the content, privacy policies, or practices of these external sites.</p>
-
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">9. Google AdSense</h2>
-                <p>We use Google AdSense to display advertisements. By using our website, you agree to Google's use of cookies for personalized advertising. You can opt out of personalized ads at <a href="https://www.google.com/settings/ads" style="color: var(--color-blue);" target="_blank" rel="noopener">Google Ad Settings</a>.</p>
-
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">10. Modifications to Service</h2>
-                <p>We reserve the right to modify, suspend, or discontinue any part of our services at any time without notice.</p>
-
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">11. Changes to Terms</h2>
-                <p>We may update these Terms of Service at any time. Changes will be effective immediately upon posting. Your continued use of our services constitutes acceptance of the updated terms.</p>
-
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">12. Governing Law</h2>
-                <p>These terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law provisions.</p>
-
-                <h2 style="color: var(--color-yellow); margin: 2rem 0 1rem;">13. Contact Information</h2>
-                <p>For questions about these Terms of Service, please contact us at <a href="contact.html" style="color: var(--color-blue);">support@toolstack.com</a></p>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Online ToolStack</h3>
+                <p>Your complete collection of free professional online tools for productivity and development.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="tools.html">All Tools</a>
+                <a href="about.html">About Us</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay updated with latest tools and features</p>
             </div>
         </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Online ToolStack</h3>
-                    <p>Professional online tools for everyone. Free, fast, and secure.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Online ToolStack. All rights reserved.</p>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Online ToolStack. All rights reserved. Made with ❤️ for the community.</p>
         </div>
     </footer>
-
-    <div id="toast" class="toast"></div>
-    <script src="js/main.js"></script>
 </body>
 </html>

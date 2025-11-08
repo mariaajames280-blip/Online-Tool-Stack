@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro Niche Finder Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid rgb(0, 213, 255);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: rgb(0, 213, 255);
+            text-shadow: 0 0 20px rgba(0, 213, 255, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 1.1em;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 1px solid rgb(0, 213, 255);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 213, 255, 0.2);
+        }
+
+        .card h2 {
+            color: rgb(0, 213, 255);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 2px solid rgba(0, 213, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: rgb(0, 213, 255);
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 213, 255, 0.5);
+            border-color: rgb(0, 213, 255);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            background: linear-gradient(135deg, rgb(0, 213, 255), rgb(0, 150, 200));
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 213, 255, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .results-section {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 1px solid rgb(0, 213, 255);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 213, 255, 0.2);
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0, 213, 255, 0.3);
+        }
+
+        .results-header h2 {
+            color: rgb(0, 213, 255);
+            margin: 0;
+        }
+
+        .results-count {
+            background: rgb(0, 213, 255);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .niche-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .niche-item {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            border: 2px solid rgba(0, 213, 255, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .niche-item:hover {
+            border-color: rgb(0, 213, 255);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 213, 255, 0.3);
+        }
+
+        .niche-title {
+            color: rgb(0, 213, 255);
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .niche-category {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            background: rgba(0, 213, 255, 0.1);
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .niche-description {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .niche-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .metric {
+            background: rgba(0, 213, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-label {
+            color: #888;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+        }
+
+        .metric-value {
+            color: rgb(0, 213, 255);
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .keywords-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 213, 255, 0.2);
+        }
+
+        .keyword-tag {
+            display: inline-block;
+            background: rgba(0, 213, 255, 0.2);
+            color: rgb(0, 213, 255);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin: 5px 5px 5px 0;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .export-btn {
+            flex: 1;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border: 2px solid rgb(0, 213, 255);
+            color: rgb(0, 213, 255);
+        }
+
+        .export-btn:hover {
+            background: rgba(0, 213, 255, 0.1);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: rgb(0, 213, 255);
+            font-size: 1.2em;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 213, 255, 0.1);
+            border-top: 4px solid rgb(0, 213, 255);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+            border: 1px solid rgb(0, 213, 255);
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            color: rgb(0, 213, 255);
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #888;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .niche-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .competition-bar {
+            width: 100%;
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .competition-fill {
+            height: 100%;
+            background: linear-gradient(90deg, rgb(0, 213, 255), rgb(0, 150, 200));
+            transition: width 0.3s;
+        }
+
+        .profitability-stars {
+            color: rgb(0, 213, 255);
+            font-size: 1.2em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Micro Niche Finder Pro</h1>
+            <p class="subtitle">Discover Profitable Micro Niches with AI-Powered Analysis</p>
+        </header>
+
+        <div class="main-content">
+            <div class="card">
+                <h2>🔍 Niche Discovery</h2>
+                <div class="input-group">
+                    <label for="mainTopic">Main Topic/Industry</label>
+                    <input type="text" id="mainTopic" placeholder="e.g., fitness, technology, cooking">
+                </div>
+                <div class="input-group">
+                    <label for="interests">Your Interests (comma separated)</label>
+                    <textarea id="interests" placeholder="e.g., yoga, healthy eating, weight loss"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="targetAudience">Target Audience</label>
+                    <select id="targetAudience">
+                        <option value="all">All Demographics</option>
+                        <option value="young-adults">Young Adults (18-25)</option>
+                        <option value="adults">Adults (26-40)</option>
+                        <option value="middle-aged">Middle-aged (41-60)</option>
+                        <option value="seniors">Seniors (60+)</option>
+                        <option value="students">Students</option>
+                        <option value="professionals">Professionals</option>
+                        <option value="parents">Parents</option>
+                    </select>
+                </div>
+                <button onclick="findNiches()">🚀 Find Micro Niches</button>
+            </div>
+
+            <div class="card">
+                <h2>⚙️ Advanced Filters</h2>
+                <div class="filters">
+                    <div class="input-group">
+                        <label for="competition">Competition Level</label>
+                        <select id="competition">
+                            <option value="all">All Levels</option>
+                            <option value="low">Low Competition</option>
+                            <option value="medium">Medium Competition</option>
+                            <option value="high">High Competition</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="profitability">Min. Profitability</label>
+                        <select id="profitability">
+                            <option value="1">⭐ Any</option>
+                            <option value="2">⭐⭐ Good</option>
+                            <option value="3">⭐⭐⭐ Very Good</option>
+                            <option value="4">⭐⭐⭐⭐ Excellent</option>
+                            <option value="5">⭐⭐⭐⭐⭐ Outstanding</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="trend">Trend Status</label>
+                        <select id="trend">
+                            <option value="all">All Trends</option>
+                            <option value="rising">📈 Rising</option>
+                            <option value="stable">📊 Stable</option>
+                            <option value="seasonal">🔄 Seasonal</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="monetization">Monetization Type</label>
+                        <select id="monetization">
+                            <option value="all">All Types</option>
+                            <option value="affiliate">Affiliate Marketing</option>
+                            <option value="products">Physical Products</option>
+                            <option value="digital">Digital Products</option>
+                            <option value="services">Services</option>
+                            <option value="ads">Ad Revenue</option>
+                        </select>
+                    </div>
+                    <div class="input-group full-width">
+                        <label for="resultsCount">Number of Results</label>
+                        <input type="number" id="resultsCount" min="5" max="50" value="12">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-bar" id="statsBar" style="display: none;">
+            <div class="stat-item">
+                <div class="stat-value" id="totalNiches">0</div>
+                <div class="stat-label">Niches Found</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="avgCompetition">0%</div>
+                <div class="stat-label">Avg Competition</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="avgProfitability">0</div>
+                <div class="stat-label">Avg Profitability</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="risingTrends">0</div>
+                <div class="stat-label">Rising Trends</div>
+            </div>
+        </div>
+
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-header">
+                <h2>💎 Discovered Micro Niches</h2>
+                <span class="results-count" id="resultsCount">0 niches</span>
+            </div>
+            
+            <div class="export-buttons">
+                <button class="export-btn" onclick="exportToCSV()">📊 Export to CSV</button>
+                <button class="export-btn" onclick="exportToJSON()">📄 Export to JSON</button>
+                <button class="export-btn" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
+            </div>
+
+            <div class="niche-grid" id="nicheGrid"></div>
+        </div>
+    </div>
+
+    <script>
+        // Comprehensive niche database
+        const nicheDatabase = {
+            fitness: [
+                {
+                    title: "Desk Yoga for Remote Workers",
+                    category: "Fitness",
+                    description: "Specialized yoga routines for people working from home, focusing on posture correction and stress relief during work hours.",
+                    competition: 25,
+                    profitability: 4,
+                    trend: "rising",
+                    monetization: "digital",
+                    keywords: ["desk yoga", "work from home fitness", "office stretches", "remote worker wellness"],
+                    audience: ["professionals", "adults"]
+                },
+                {
+                    title: "Post-Pregnancy Core Rehabilitation",
+                    category: "Fitness",
+                    description: "Targeted fitness programs for new mothers focusing on safe core strengthening and diastasis recti recovery.",
+                    competition: 35,
+                    profitability: 5,
+                    trend: "stable",
+                    monetization: "services",
+                    keywords: ["postpartum fitness", "diastasis recti", "mommy workout", "core recovery"],
+                    audience: ["parents", "adults"]
+                },
+                {
+                    title: "Senior Balance Training",
+                    category: "Fitness",
+                    description: "Fall prevention and balance improvement exercises specifically designed for older adults to maintain independence.",
+                    competition: 20,
+                    profitability: 4,
+                    trend: "rising",
+                    monetization: "services",
+                    keywords: ["senior fitness", "fall prevention", "balance exercises", "elderly workout"],
+                    audience: ["seniors"]
+                }
+            ],
+            technology: [
+                {
+                    title: "AI Tools for Small Business",
+                    category: "Technology",
+                    description: "Curated reviews and tutorials on affordable AI tools specifically for small business automation and growth.",
+                    competition: 45,
+                    profitability: 5,
+                    trend: "rising",
+                    monetization: "affiliate",
+                    keywords: ["AI for business", "automation tools", "small business tech", "AI productivity"],
+                    audience: ["professionals", "adults"]
+                },
+                {
+                    title: "Vintage Computer Restoration",
+                    category: "Technology",
+                    description: "Guide enthusiasts through restoring and maintaining classic computers from the 80s and 90s.",
+                    competition: 15,
+                    profitability: 3,
+                    trend: "stable",
+                    monetization: "products",
+                    keywords: ["retro computing", "vintage computers", "computer restoration", "classic tech"],
+                    audience: ["adults", "middle-aged"]
+                },
+                {
+                    title: "Cybersecurity for Parents",
+                    category: "Technology",
+                    description: "Simple, actionable cybersecurity advice for parents to protect their children's online presence.",
+                    competition: 30,
+                    profitability: 4,
+                    trend: "rising",
+                    monetization: "affiliate",
+                    keywords: ["parental controls", "child online safety", "internet security", "family cybersecurity"],
+                    audience: ["parents"]
+                }
+            ],
+            cooking: [
+                {
+                    title: "One-Pot Meals for Students",
+                    category: "Cooking",
+                    description: "Budget-friendly, nutritious recipes that require minimal cleanup, perfect for dorm rooms and small kitchens.",
+                    competition: 40,
+                    profitability: 3,
+                    trend: "stable",
+                    monetization: "ads",
+                    keywords: ["student recipes", "budget cooking", "one pot meals", "dorm room cooking"],
+                    audience: ["students", "young-adults"]
+                },
+                {
+                    title: "Fermentation for Gut Health",
+                    category: "Cooking",
+                    description: "Complete guides on fermenting foods at home specifically for improving digestive health and immunity.",
+                    competition: 28,
+                    profitability: 4,
+                    trend: "rising",
+                    monetization: "digital",
+                    keywords: ["fermentation", "gut health", "probiotics", "fermented foods"],
+                    audience: ["adults", "middle-aged"]
+                },
+                {
+                    title: "Meal Prep for Shift Workers",
+                    category: "Cooking",
+                    description: "Specialized meal planning strategies for people working night shifts or irregular schedules.",
+                    competition: 22,
+                    profitability: 4,
+                    trend: "rising",
+                    monetization: "digital",
+                    keywords: ["shift work meals", "night shift nutrition", "irregular schedule cooking", "meal prep"],
+                    audience: ["professionals", "adults"]
+                }
+            ],
+            pets: [
+                {
+                    title: "Indoor Cat Enrichment",
+                    category: "Pets",
+                    description: "Creative solutions for keeping indoor cats mentally stimulated and physically active in apartment settings.",
+                    competition: 32,
+                    profitability: 4,
+                    trend: "stable",
+                    monetization: "affiliate",
+                    keywords: ["indoor cat activities", "cat enrichment", "apartment cats", "cat toys"],
+                    audience: ["adults", "young-adults"]
+                },
+                {
+                    title: "Senior Dog Care",
+                    category: "Pets",
+                    description: "Comprehensive care guides for aging dogs, including pain management, nutrition, and quality of life improvements.",
+                    competition: 25,
+                    profitability: 5,
+                    trend: "rising",
+                    monetization: "affiliate",
+                    keywords: ["senior dog care", "elderly dog health", "aging pets", "dog arthritis"],
+                    audience: ["adults", "middle-aged", "seniors"]
+                }
+            ],
+            gardening: [
+                {
+                    title: "Balcony Vegetable Gardens",
+                    category: "Gardening",
+                    description: "Space-efficient techniques for growing vegetables in small balcony spaces for urban dwellers.",
+                    competition: 30,
+                    profitability: 3,
+                    trend: "rising",
+                    monetization: "affiliate",
+                    keywords: ["balcony garden", "urban gardening", "container vegetables", "small space gardening"],
+                    audience: ["adults", "young-adults"]
+                },
+                {
+                    title: "Native Plant Landscaping",
+                    category: "Gardening",
+                    description: "Region-specific guides for creating low-maintenance, eco-friendly landscapes using native plants.",
+                    competition: 28,
+                    profitability: 4,
+                    trend: "rising",
+                    monetization: "services",
+                    keywords: ["native plants", "sustainable landscaping", "eco-friendly garden", "indigenous plants"],
+                    audience: ["adults", "middle-aged"]
+                }
+            ],
+            finance: [
+                {
+                    title: "Debt Snowball for Millennials",
+                    category: "Finance",
+                    description: "Tailored debt payoff strategies for millennials dealing with student loans and credit card debt.",
+                    competition: 38,
+                    profitability: 5,
+                    trend: "stable",
+                    monetization: "affiliate",
+                    keywords: ["debt payoff", "student loan strategy", "millennial finance", "debt snowball"],
+                    audience: ["young-adults", "adults"]
+                },
+                {
+                    title: "Side Hustles for Teachers",
+                    category: "Finance",
+                    description: "Income diversification ideas specifically designed for teachers' schedules and skills.",
+                    competition: 35,
+                    profitability: 4,
+                    trend: "rising",
+                    monetization: "digital",
+                    keywords: ["teacher side hustle", "extra income teachers", "educator business", "teaching skills"],
+                    audience: ["professionals", "adults"]
+                }
+            ],
+            travel: [
+                {
+                    title: "Accessible Travel for Wheelchair Users",
+                    category: "Travel",
+                    description: "Detailed guides on wheelchair-accessible destinations, accommodations, and travel tips.",
+                    competition: 20,
+                    profitability: 4,
+                    trend: "rising",
+                    monetization: "affiliate",
+                    keywords: ["accessible travel", "wheelchair travel", "disability tourism", "accessible destinations"],
+                    audience: ["all"]
+                },
+                {
+                    title: "Solo Female Travel Over 50",
+                    category: "Travel",
+                    description: "Empowering travel guides and safety tips for women over 50 traveling independently.",
+                    competition: 25,
+                    profitability: 4,
+                    trend: "rising",
+                    monetization: "affiliate",
+                    keywords: ["solo female travel", "women travel over 50", "mature solo travel", "independent travel"],
+                    audience: ["middle-aged", "seniors"]
+                }
+            ],
+            education: [
+                {
+                    title: "Homeschool Science Experiments",
+                    category: "Education",
+                    description: "Safe, engaging science experiments for homeschooling parents with minimal equipment needed.",
+                    competition: 32,
+                    profitability: 3,
+                    trend: "stable",
+                    monetization: "digital",
+                    keywords: ["homeschool science", "science experiments", "home education", "STEM activities"],
+                    audience: ["parents"]
+                },
+                {
+                    title: "Adult Dyslexia Learning Strategies",
+                    category: "Education",
+                    description: "Specialized learning techniques and tools for adults managing dyslexia in professional settings.",
+                    competition: 18,
+                    profitability: 4,
+                    trend: "rising",
+                    monetization: "digital",
+                    keywords: ["adult dyslexia", "learning disability", "dyslexia workplace", "reading strategies"],
+                    audience: ["adults", "professionals"]
+                }
+            ]
+        };
+
+        let currentResults = [];
+
+        function findNiches() {
+            const mainTopic = document.getElementById('mainTopic').value.toLowerCase().trim();
+            const interests = document.getElementById('interests').value.toLowerCase().split(',').map(i => i.trim());
+            const targetAudience = document.getElementById('targetAudience').value;
+            const competition = document.getElementById('competition').value;
+            const profitability = parseInt(document.getElementById('profitability').value);
+            const trend = document.getElementById('trend').value;
+            const monetization = document.getElementById('monetization').value;
+            const resultsCount = parseInt(document.getElementById('resultsCount').value);
+
+            // Show loading
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('nicheGrid').innerHTML = '<div class="loading"><div class="spinner"></div>Analyzing micro niches...</div>';
+
+            // Simulate processing time
+            setTimeout(() => {
+                let results = [];
+
+                // Gather niches from database
+                Object.keys(nicheDatabase).forEach(category => {
+                    nicheDatabase[category].forEach(niche => {
+                        let score = 0;
+
+                        // Match main topic
+                        if (mainTopic && (category.includes(mainTopic) || niche.title.toLowerCase().includes(mainTopic))) {
+                            score += 10;
+                        }
+
+                        // Match interests
+                        interests.forEach(interest => {
+                            if (interest && (niche.keywords.some(k => k.includes(interest)) || 
+                                niche.description.toLowerCase().includes(interest))) {
+                                score += 5;
+                            }
+                        });
+
+                        // Match audience
+                        if (targetAudience !== 'all' && niche.audience.includes(targetAudience)) {
+                            score += 8;
+                        } else if (targetAudience === 'all') {
+                            score += 3;
+                        }
+
+                        // Apply filters
+                        if (competition !== 'all') {
+                            if (competition === 'low' && niche.competition > 30) return;
+                            if (competition === 'medium' && (niche.competition < 25 || niche.competition > 40)) return;
+                            if (competition === 'high' && niche.competition < 40) return;
+                        }
+
+                        if (niche.profitability < profitability) return;
+
+                        if (trend !== 'all' && niche.trend !== trend) return;
+
+                        if (monetization !== 'all' && niche.monetization !== monetization) return;
+
+                        results.push({ ...niche, score });
+                    });
+                });
+
+                // Generate additional niches based on input
+                if (mainTopic || interests.length > 0) {
+                    const generatedNiches = generateNiches(mainTopic, interests, targetAudience, competition, profitability);
+                    results = results.concat(generatedNiches);
+                }
+
+                // Sort by score and limit results
+                results.sort((a, b) => b.score - a.score);
+                results = results.slice(0, resultsCount);
+
+                currentResults = results;
+                displayResults(results);
+            }, 1500);
+        }
+
+        function generateNiches(topic, interests, audience, competition, profitability) {
+            const generatedNiches = [];
+            const topics = [topic, ...interests].filter(t => t);
+
+            const templates = [
+                { title: "{topic} for {audience}", desc: "Specialized {topic} content tailored specifically for {audience} needs and preferences." },
+                { title: "Beginner's Guide to {topic}", desc: "Comprehensive beginner-friendly resources for people starting their {topic} journey." },
+                { title: "{topic} on a Budget", desc: "Cost-effective strategies and tips for enjoying {topic} without breaking the bank." },
+                { title: "Advanced {topic} Techniques", desc: "Expert-level strategies and methods for experienced {topic} enthusiasts." },
+                { title: "{topic} for Busy Professionals", desc: "Time-efficient {topic} solutions designed for people with demanding work schedules." }
+            ];
+
+            const audienceMap = {
+                'young-adults': 'Young Adults',
+                'adults': 'Adults',
+                'middle-aged': 'Middle-Aged Adults',
+                'seniors': 'Seniors',
+                'students': 'Students',
+                'professionals': 'Professionals',
+                'parents': 'Parents',
+                'all': 'Everyone'
+            };
+
+            topics.forEach((t, index) => {
+                if (t && index < 3) {
+                    const template = templates[index % templates.length];
+                    const audienceName = audienceMap[audience] || 'Everyone';
+                    
+                    generatedNiches.push({
+                        title: template.title.replace('{topic}', t.charAt(0).toUpperCase() + t.slice(1))
+                                          .replace('{audience}', audienceName),
+                        category: topic.charAt(0).toUpperCase() + topic.slice(1),
+                        description: template.desc.replace('{topic}', t).replace('{audience}', audienceName.toLowerCase()),
+                        competition: Math.floor(Math.random() * 40) + 15,
+                        profitability: Math.floor(Math.random() * 3) + 3,
+                        trend: ['rising', 'stable', 'seasonal'][Math.floor(Math.random() * 3)],
+                        monetization: ['affiliate', 'digital', 'services', 'products'][Math.floor(Math.random() * 4)],
+                        keywords: [t, `${t} tips`, `${t} guide`, `best ${t}`],
+                        audience: [audience],
+                        score: 5
+                    });
+                }
+            });
+
+            return generatedNiches;
+        }
+
+        function displayResults(results) {
+            const nicheGrid = document.getElementById('nicheGrid');
+            const resultsCount = document.getElementById('resultsCount');
+            const statsBar = document.getElementById('statsBar');
+
+            if (results.length === 0) {
+                nicheGrid.innerHTML = '<div class="loading">No niches found. Try adjusting your filters.</div>';
+                statsBar.style.display = 'none';
+                return;
+            }
+
+            resultsCount.textContent = `${results.length} niches`;
+            statsBar.style.display = 'flex';
+
+            // Calculate statistics
+            const totalComp = results.reduce((sum, n) => sum + n.competition, 0);
+            const totalProfit = results.reduce((sum, n) => sum + n.profitability, 0);
+            const risingCount = results.filter(n => n.trend === 'rising').length;
+
+            document.getElementById('totalNiches').textContent = results.length;
+            document.getElementById('avgCompetition').textContent = Math.round(totalComp / results.length) + '%';
+            document.getElementById('avgProfitability').textContent = '⭐'.repeat(Math.round(totalProfit / results.length));
+            document.getElementById('risingTrends').textContent = risingCount;
+
+            // Display niches
+            nicheGrid.innerHTML = results.map(niche => `
+                <div class="niche-item">
+                    <div class="niche-title">${niche.title}</div>
+                    <div class="niche-category">📁 ${niche.category}</div>
+                    <div class="niche-description">${niche.description}</div>
+                    
+                    <div class="niche-metrics">
+                        <div class="metric">
+                            <div class="metric-label">Competition</div>
+                            <div class="metric-value">${niche.competition}%</div>
+                            <div class="competition-bar">
+                                <div class="competition-fill" style="width: ${niche.competition}%"></div>
+                            </div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Profitability</div>
+                            <div class="profitability-stars">${'⭐'.repeat(niche.profitability)}</div>
+                        </div>
+                    </div>
+
+                    <div class="niche-metrics" style="margin-top: 10px;">
+                        <div class="metric">
+                            <div class="metric-label">Trend</div>
+                            <div class="metric-value">${getTrendEmoji(niche.trend)} ${niche.trend}</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Monetization</div>
+                            <div class="metric-value" style="font-size: 0.9em;">${niche.monetization}</div>
+                        </div>
+                    </div>
+
+                    <div class="keywords-section">
+                        ${niche.keywords.map(kw => `<span class="keyword-tag">${kw}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getTrendEmoji(trend) {
+            const emojis = { rising: '📈', stable: '📊', seasonal: '🔄' };
+            return emojis[trend] || '📊';
+        }
+
+        function exportToCSV() {
+            if (currentResults.length === 0) return;
+
+            const headers = ['Title', 'Category', 'Description', 'Competition %', 'Profitability', 'Trend', 'Monetization', 'Keywords'];
+            const rows = currentResults.map(niche => [
+                niche.title,
+                niche.category,
+                niche.description,
+                niche.competition,
+                niche.profitability,
+                niche.trend,
+                niche.monetization,
+                niche.keywords.join('; ')
+            ]);
+
+            let csv = headers.join(',') + '\n';
+            rows.forEach(row => {
+                csv += row.map(cell => `"${cell}"`).join(',') + '\n';
+            });
+
+            downloadFile('micro-niches.csv', csv, 'text/csv');
+        }
+
+        function exportToJSON() {
+            if (currentResults.length === 0) return;
+
+            const json = JSON.stringify(currentResults, null, 2);
+            downloadFile('micro-niches.json', json, 'application/json');
+        }
+
+        function downloadFile(filename, content, type) {
+            const blob = new Blob([content], { type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function copyToClipboard() {
+            if (currentResults.length === 0) return;
+
+            let text = '🎯 MICRO NICHES REPORT\n\n';
+            currentResults.forEach((niche, index) => {
+                text += `${index + 1}. ${niche.title}\n`;
+                text += `   Category: ${niche.category}\n`;
+                text += `   Competition: ${niche.competition}% | Profitability: ${'⭐'.repeat(niche.profitability)} | Trend: ${niche.trend}\n`;
+                text += `   Description: ${niche.description}\n`;
+                text += `   Keywords: ${niche.keywords.join(', ')}\n\n`;
+            });
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Results copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

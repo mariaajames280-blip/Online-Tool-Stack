@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Embed Code Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: rgb(0, 213, 255);
+            text-shadow: 0 0 20px rgba(0, 213, 255, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #aaaaaa;
+            font-size: 1.1em;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .panel {
+            background: rgba(0, 213, 255, 0.05);
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 213, 255, 0.2);
+        }
+
+        .panel h2 {
+            color: rgb(0, 213, 255);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 2px solid rgb(0, 213, 255);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: rgb(0, 213, 255);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 213, 255, 0.5);
+            background: #2a2a2a;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: rgb(0, 213, 255);
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .size-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, rgb(0, 213, 255) 0%, rgb(0, 170, 204) 100%);
+            color: #000000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 213, 255, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .code-output {
+            background: #0a0a0a;
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            position: relative;
+            min-height: 100px;
+        }
+
+        .code-output pre {
+            color: rgb(0, 213, 255);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgb(0, 213, 255);
+            color: #000000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgb(0, 180, 216);
+            transform: scale(1.05);
+        }
+
+        .preview-section {
+            grid-column: 1 / -1;
+        }
+
+        .preview-container {
+            background: #000000;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .preview-container iframe {
+            max-width: 100%;
+        }
+
+        .info-box {
+            background: rgba(0, 213, 255, 0.1);
+            border-left: 4px solid rgb(0, 213, 255);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .info-box p {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 5px;
+        }
+
+        .alert {
+            background: rgba(255, 0, 0, 0.1);
+            border-left: 4px solid #ff0000;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert p {
+            color: #ff6b6b;
+        }
+
+        .success {
+            background: rgba(0, 255, 0, 0.1);
+            border-left: 4px solid #00ff00;
+        }
+
+        .success p {
+            color: #6bff6b;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666666;
+            border-top: 1px solid rgb(0, 213, 255);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 YouTube Embed Code Generator</h1>
+            <p class="subtitle">Create customized YouTube embed codes with advanced options</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Input Panel -->
+            <div class="panel">
+                <h2>📹 Video Settings</h2>
+                
+                <div class="form-group">
+                    <label for="videoUrl">YouTube Video URL or ID:</label>
+                    <input type="text" id="videoUrl" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ or dQw4w9WgXcQ">
+                </div>
+
+                <div class="form-group">
+                    <label>Video Dimensions:</label>
+                    <div class="size-inputs">
+                        <div>
+                            <input type="number" id="videoWidth" placeholder="Width" value="560">
+                        </div>
+                        <div>
+                            <input type="number" id="videoHeight" placeholder="Height" value="315">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="startTime">Start Time (seconds):</label>
+                    <input type="number" id="startTime" placeholder="0" value="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="endTime">End Time (seconds - optional):</label>
+                    <input type="number" id="endTime" placeholder="Leave empty for full video">
+                </div>
+
+                <div class="info-box">
+                    <p><strong>💡 Tip:</strong> You can paste either the full YouTube URL or just the video ID!</p>
+                </div>
+            </div>
+
+            <!-- Options Panel -->
+            <div class="panel">
+                <h2>⚙️ Embed Options</h2>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="autoplay">
+                    <label for="autoplay">Autoplay video</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="loop">
+                    <label for="loop">Loop video</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="controls" checked>
+                    <label for="controls">Show controls</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modestbranding">
+                    <label for="modestbranding">Hide YouTube logo</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="showinfo">
+                    <label for="showinfo">Show video info</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="rel">
+                    <label for="rel">Show related videos</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="mute">
+                    <label for="mute">Mute audio</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="fullscreen" checked>
+                    <label for="fullscreen">Allow fullscreen</label>
+                </div>
+
+                <button class="btn" onclick="generateEmbed()">🚀 Generate Embed Code</button>
+
+                <div id="alertBox" class="alert">
+                    <p id="alertMessage"></p>
+                </div>
+            </div>
+
+            <!-- Output Panel -->
+            <div class="panel" style="grid-column: 1 / -1;">
+                <h2>📋 Generated Embed Code</h2>
+                <div class="code-output" id="codeOutput">
+                    <button class="copy-btn" onclick="copyCode()" id="copyBtn">Copy Code</button>
+                    <pre id="embedCode">Your generated embed code will appear here...</pre>
+                </div>
+            </div>
+
+            <!-- Preview Panel -->
+            <div class="panel preview-section">
+                <h2>👁️ Live Preview</h2>
+                <div class="preview-container" id="previewContainer">
+                    <p style="color: #666;">Preview will appear here after generating the embed code</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built with ❤️ for developers | YouTube Embed Code Generator © 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        function extractVideoId(input) {
+            if (!input) return null;
+            
+            // Remove whitespace
+            input = input.trim();
+            
+            // If it's already just an ID (11 characters)
+            if (/^[a-zA-Z0-9_-]{11}$/.test(input)) {
+                return input;
+            }
+            
+            // Try to extract from various YouTube URL formats
+            const patterns = [
+                /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+                /youtube\.com\/watch\?.*v=([a-zA-Z0-9_-]{11})/
+            ];
+            
+            for (let pattern of patterns) {
+                const match = input.match(pattern);
+                if (match) return match[1];
+            }
+            
+            return null;
+        }
+
+        function showAlert(message, isSuccess = false) {
+            const alertBox = document.getElementById('alertBox');
+            const alertMessage = document.getElementById('alertMessage');
+            
+            alertMessage.textContent = message;
+            alertBox.className = 'alert show';
+            
+            if (isSuccess) {
+                alertBox.classList.add('success');
+            } else {
+                alertBox.classList.remove('success');
+            }
+            
+            setTimeout(() => {
+                alertBox.classList.remove('show');
+            }, 3000);
+        }
+
+        function generateEmbed() {
+            const videoUrl = document.getElementById('videoUrl').value;
+            const videoId = extractVideoId(videoUrl);
+            
+            if (!videoId) {
+                showAlert('⚠️ Please enter a valid YouTube URL or video ID!');
+                return;
+            }
+            
+            // Get dimensions
+            const width = document.getElementById('videoWidth').value || 560;
+            const height = document.getElementById('videoHeight').value || 315;
+            
+            // Get time settings
+            const startTime = document.getElementById('startTime').value || 0;
+            const endTime = document.getElementById('endTime').value;
+            
+            // Get options
+            const autoplay = document.getElementById('autoplay').checked ? 1 : 0;
+            const loop = document.getElementById('loop').checked ? 1 : 0;
+            const controls = document.getElementById('controls').checked ? 1 : 0;
+            const modestbranding = document.getElementById('modestbranding').checked ? 1 : 0;
+            const showinfo = document.getElementById('showinfo').checked ? 1 : 0;
+            const rel = document.getElementById('rel').checked ? 1 : 0;
+            const mute = document.getElementById('mute').checked ? 1 : 0;
+            const fullscreen = document.getElementById('fullscreen').checked;
+            
+            // Build URL parameters
+            let params = [];
+            params.push(`autoplay=${autoplay}`);
+            params.push(`controls=${controls}`);
+            params.push(`modestbranding=${modestbranding}`);
+            params.push(`rel=${rel}`);
+            params.push(`showinfo=${showinfo}`);
+            
+            if (loop) {
+                params.push(`loop=1`);
+                params.push(`playlist=${videoId}`); // Required for loop to work
+            }
+            
+            if (mute) {
+                params.push(`mute=1`);
+            }
+            
+            if (startTime > 0) {
+                params.push(`start=${startTime}`);
+            }
+            
+            if (endTime) {
+                params.push(`end=${endTime}`);
+            }
+            
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?${params.join('&')}`;
+            
+            // Generate embed code
+            const allowFullscreen = fullscreen ? ' allowfullscreen' : '';
+            const embedCode = `<iframe width="${width}" height="${height}" src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"${allowFullscreen}></iframe>`;
+            
+            // Display embed code
+            document.getElementById('embedCode').textContent = embedCode;
+            
+            // Update preview
+            document.getElementById('previewContainer').innerHTML = embedCode;
+            
+            showAlert('✅ Embed code generated successfully!', true);
+        }
+
+        function copyCode() {
+            const embedCode = document.getElementById('embedCode').textContent;
+            
+            if (embedCode === 'Your generated embed code will appear here...') {
+                showAlert('⚠️ Please generate an embed code first!');
+                return;
+            }
+            
+            navigator.clipboard.writeText(embedCode).then(() => {
+                const copyBtn = document.getElementById('copyBtn');
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✓ Copied!';
+                
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                }, 2000);
+                
+                showAlert('✅ Code copied to clipboard!', true);
+            }).catch(() => {
+                showAlert('⚠️ Failed to copy. Please copy manually.');
+            });
+        }
+
+        // Allow Enter key to generate
+        document.getElementById('videoUrl').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generateEmbed();
+            }
+        });
+
+        // Test with a sample video on page load
+        window.addEventListener('load', function() {
+            // You can uncomment this to load a test video automatically
+            // document.getElementById('videoUrl').value = 'dQw4w9WgXcQ';
+            // generateEmbed();
+        });
+    </script>
+</body>
+</html>

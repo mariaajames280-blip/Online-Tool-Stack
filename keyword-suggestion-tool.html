@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyword Suggestion Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            border-bottom: 2px solid rgb(0, 213, 255);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: rgb(0, 213, 255);
+            text-shadow: 0 0 20px rgba(0, 213, 255, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #cccccc;
+            font-size: 1.1em;
+        }
+
+        .search-section {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(0, 213, 255, 0.3);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 0 20px rgba(0, 213, 255, 0.6);
+            border-color: rgb(0, 213, 255);
+        }
+
+        input[type="text"]::placeholder {
+            color: #666666;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            background: linear-gradient(135deg, rgb(0, 213, 255) 0%, rgb(0, 150, 200) 100%);
+            border: none;
+            border-radius: 10px;
+            color: #000000;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 25px rgba(0, 213, 255, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
+            color: rgb(0, 213, 255);
+            border: 2px solid rgb(0, 213, 255);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 213, 255, 0.3);
+        }
+
+        .option-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: rgb(0, 213, 255);
+            cursor: pointer;
+        }
+
+        .option-item label {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .results-section {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 213, 255, 0.3);
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0, 213, 255, 0.3);
+        }
+
+        .results-count {
+            color: rgb(0, 213, 255);
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .filter-sort {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        select {
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 8px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 213, 255, 0.5);
+        }
+
+        .keywords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .keyword-card {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.8) 100%);
+            border: 2px solid rgba(0, 213, 255, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .keyword-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 213, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .keyword-card:hover {
+            border-color: rgb(0, 213, 255);
+            box-shadow: 0 5px 25px rgba(0, 213, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .keyword-card:hover::before {
+            left: 100%;
+        }
+
+        .keyword-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: rgb(0, 213, 255);
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .keyword-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .keyword-type {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(0, 213, 255, 0.2);
+            border: 1px solid rgb(0, 213, 255);
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: rgb(0, 213, 255);
+        }
+
+        .keyword-score {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9em;
+            color: #cccccc;
+        }
+
+        .score-bar {
+            width: 50px;
+            height: 6px;
+            background: rgba(0, 213, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, rgb(0, 213, 255), rgb(0, 150, 200));
+            transition: width 0.5s ease;
+        }
+
+        .copy-btn {
+            background: rgba(0, 213, 255, 0.1);
+            border: 1px solid rgb(0, 213, 255);
+            color: rgb(0, 213, 255);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgb(0, 213, 255);
+            color: #000000;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666666;
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: rgba(0, 213, 255, 0.3);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 213, 255, 0.1);
+            border-top: 4px solid rgb(0, 213, 255);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.8) 100%);
+            border: 2px solid rgba(0, 213, 255, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            color: rgb(0, 213, 255);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #cccccc;
+            margin-top: 5px;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgb(0, 213, 255);
+            color: #000000;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 213, 255, 0.5);
+            font-weight: bold;
+            animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(400px); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            input[type="text"] {
+                width: 100%;
+            }
+
+            .keywords-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-sort {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Keyword Suggestion Tool</h1>
+            <p class="subtitle">Generate powerful keyword ideas with AI-powered suggestions</p>
+        </header>
+
+        <div class="search-section">
+            <div class="input-group">
+                <input type="text" id="seedKeyword" placeholder="Enter your seed keyword (e.g., digital marketing)">
+                <button class="btn" onclick="generateKeywords()">Generate Keywords</button>
+                <button class="btn btn-secondary" onclick="clearResults()">Clear</button>
+            </div>
+
+            <div class="options-grid">
+                <div class="option-item">
+                    <input type="checkbox" id="longTail" checked>
+                    <label for="longTail">Long-tail Keywords</label>
+                </div>
+                <div class="option-item">
+                    <input type="checkbox" id="questions" checked>
+                    <label for="questions">Question Keywords</label>
+                </div>
+                <div class="option-item">
+                    <input type="checkbox" id="related" checked>
+                    <label for="related">Related Keywords</label>
+                </div>
+                <div class="option-item">
+                    <input type="checkbox" id="commercial" checked>
+                    <label for="commercial">Commercial Intent</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-section" id="statsSection" style="display: none;">
+            <div class="stat-card">
+                <div class="stat-value" id="totalKeywords">0</div>
+                <div class="stat-label">Total Keywords</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgScore">0</div>
+                <div class="stat-label">Avg Score</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="topCategory">-</div>
+                <div class="stat-label">Top Category</div>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <div class="results-header">
+                <div class="results-count" id="resultsCount">0 Keywords Found</div>
+                <div class="filter-sort">
+                    <select id="sortBy" onchange="sortKeywords()">
+                        <option value="score">Sort by Score</option>
+                        <option value="alpha">Sort Alphabetically</option>
+                        <option value="type">Sort by Type</option>
+                    </select>
+                    <select id="filterType" onchange="filterKeywords()">
+                        <option value="all">All Types</option>
+                        <option value="long-tail">Long-tail</option>
+                        <option value="question">Question</option>
+                        <option value="related">Related</option>
+                        <option value="commercial">Commercial</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="export-buttons" id="exportButtons" style="display: none;">
+                <button class="btn btn-secondary" onclick="exportKeywords('csv')">Export CSV</button>
+                <button class="btn btn-secondary" onclick="exportKeywords('txt')">Export TXT</button>
+                <button class="btn btn-secondary" onclick="copyAllKeywords()">Copy All</button>
+            </div>
+
+            <div id="resultsContainer">
+                <div class="empty-state">
+                    <div class="empty-state-icon">💡</div>
+                    <h3>Start Your Keyword Research</h3>
+                    <p>Enter a seed keyword above to generate suggestions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allKeywords = [];
+
+        function generateKeywords() {
+            const seedKeyword = document.getElementById('seedKeyword').value.trim();
+            
+            if (!seedKeyword) {
+                showToast('Please enter a seed keyword');
+                return;
+            }
+
+            // Show loading state
+            document.getElementById('resultsContainer').innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Generating keyword suggestions...</p>
+                </div>
+            `;
+
+            // Simulate API call with timeout
+            setTimeout(() => {
+                allKeywords = generateKeywordSuggestions(seedKeyword);
+                displayKeywords(allKeywords);
+                updateStats();
+                document.getElementById('statsSection').style.display = 'grid';
+                document.getElementById('exportButtons').style.display = 'flex';
+                showToast('Keywords generated successfully!');
+            }, 1500);
+        }
+
+        function generateKeywordSuggestions(seed) {
+            const keywords = [];
+            const options = {
+                longTail: document.getElementById('longTail').checked,
+                questions: document.getElementById('questions').checked,
+                related: document.getElementById('related').checked,
+                commercial: document.getElementById('commercial').checked
+            };
+
+            // Long-tail keywords
+            if (options.longTail) {
+                const longTailPrefixes = ['best', 'top', 'how to', 'guide to', 'tips for', 'ways to'];
+                const longTailSuffixes = ['tutorial', 'guide', 'tips', 'strategies', 'techniques', 'methods'];
+                
+                longTailPrefixes.forEach(prefix => {
+                    keywords.push({
+                        text: `${prefix} ${seed}`,
+                        type: 'long-tail',
+                        score: Math.floor(Math.random() * 30) + 70
+                    });
+                });
+
+                longTailSuffixes.forEach(suffix => {
+                    keywords.push({
+                        text: `${seed} ${suffix}`,
+                        type: 'long-tail',
+                        score: Math.floor(Math.random() * 30) + 70
+                    });
+                });
+            }
+
+            // Question keywords
+            if (options.questions) {
+                const questionWords = ['what is', 'how to', 'why', 'when', 'where', 'who'];
+                questionWords.forEach(q => {
+                    keywords.push({
+                        text: `${q} ${seed}`,
+                        type: 'question',
+                        score: Math.floor(Math.random() * 25) + 65
+                    });
+                });
+
+                keywords.push(
+                    { text: `what are the benefits of ${seed}`, type: 'question', score: Math.floor(Math.random() * 25) + 70 },
+                    { text: `how does ${seed} work`, type: 'question', score: Math.floor(Math.random() * 25) + 65 },
+                    { text: `why use ${seed}`, type: 'question', score: Math.floor(Math.random() * 25) + 60 }
+                );
+            }
+
+            // Related keywords
+            if (options.related) {
+                const relatedTerms = ['online', 'services', 'tools', 'software', 'platform', 'agency', 'course', 'training'];
+                relatedTerms.forEach(term => {
+                    keywords.push({
+                        text: `${seed} ${term}`,
+                        type: 'related',
+                        score: Math.floor(Math.random() * 35) + 60
+                    });
+                });
+            }
+
+            // Commercial intent keywords
+            if (options.commercial) {
+                const commercialTerms = ['buy', 'price', 'cost', 'affordable', 'cheap', 'discount', 'review', 'comparison', 'vs'];
+                commercialTerms.forEach(term => {
+                    keywords.push({
+                        text: `${seed} ${term}`,
+                        type: 'commercial',
+                        score: Math.floor(Math.random() * 20) + 80
+                    });
+                });
+            }
+
+            return keywords;
+        }
+
+        function displayKeywords(keywords) {
+            const container = document.getElementById('resultsContainer');
+            document.getElementById('resultsCount').textContent = `${keywords.length} Keywords Found`;
+
+            if (keywords.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <h3>No Keywords Found</h3>
+                        <p>Try selecting different options</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="keywords-grid">
+                    ${keywords.map(keyword => `
+                        <div class="keyword-card" data-type="${keyword.type}">
+                            <div class="keyword-text">${keyword.text}</div>
+                            <div class="keyword-meta">
+                                <span class="keyword-type">${keyword.type}</span>
+                                <button class="copy-btn" onclick="copyKeyword('${keyword.text.replace(/'/g, "\\'")}')">Copy</button>
+                            </div>
+                            <div class="keyword-score">
+                                <span>Score: ${keyword.score}</span>
+                                <div class="score-bar">
+                                    <div class="score-fill" style="width: ${keyword.score}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function updateStats() {
+            const total = allKeywords.length;
+            const avgScore = Math.round(allKeywords.reduce((sum, k) => sum + k.score, 0) / total);
+            
+            const typeCounts = {};
+            allKeywords.forEach(k => {
+                typeCounts[k.type] = (typeCounts[k.type] || 0) + 1;
+            });
+            const topCategory = Object.keys(typeCounts).reduce((a, b) => 
+                typeCounts[a] > typeCounts[b] ? a : b
+            );
+
+            document.getElementById('totalKeywords').textContent = total;
+            document.getElementById('avgScore').textContent = avgScore;
+            document.getElementById('topCategory').textContent = topCategory;
+        }
+
+        function sortKeywords() {
+            const sortBy = document.getElementById('sortBy').value;
+            let sorted = [...allKeywords];
+
+            if (sortBy === 'score') {
+                sorted.sort((a, b) => b.score - a.score);
+            } else if (sortBy === 'alpha') {
+                sorted.sort((a, b) => a.text.localeCompare(b.text));
+            } else if (sortBy === 'type') {
+                sorted.sort((a, b) => a.type.localeCompare(b.type));
+            }
+
+            displayKeywords(sorted);
+        }
+
+        function filterKeywords() {
+            const filterType = document.getElementById('filterType').value;
+            let filtered = allKeywords;
+
+            if (filterType !== 'all') {
+                filtered = allKeywords.filter(k => k.type === filterType);
+            }
+
+            displayKeywords(filtered);
+        }
+
+        function copyKeyword(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Keyword copied!');
+            });
+        }
+
+        function copyAllKeywords() {
+            const allText = allKeywords.map(k => k.text).join('\n');
+            navigator.clipboard.writeText(allText).then(() => {
+                showToast('All keywords copied!');
+            });
+        }
+
+        function exportKeywords(format) {
+            if (format === 'csv') {
+                const csv = 'Keyword,Type,Score\n' + 
+                    allKeywords.map(k => `"${k.text}",${k.type},${k.score}`).join('\n');
+                downloadFile(csv, 'keywords.csv', 'text/csv');
+            } else if (format === 'txt') {
+                const txt = allKeywords.map(k => k.text).join('\n');
+                downloadFile(txt, 'keywords.txt', 'text/plain');
+            }
+            showToast(`Exported as ${format.toUpperCase()}!`);
+        }
+
+        function downloadFile(content, filename, type) {
+            const blob = new Blob([content], { type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function clearResults() {
+            document.getElementById('seedKeyword').value = '';
+            allKeywords = [];
+            document.getElementById('resultsContainer').innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">💡</div>
+                    <h3>Start Your Keyword Research</h3>
+                    <p>Enter a seed keyword above to generate suggestions</p>
+                </div>
+            `;
+            document.getElementById('resultsCount').textContent = '0 Keywords Found';
+            document.getElementById('statsSection').style.display = 'none';
+            document.getElementById('exportButtons').style.display = 'none';
+            showToast('Results cleared');
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Allow Enter key to trigger search
+        document.getElementById('seedKeyword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generateKeywords();
+            }
+        });
+    </script>
+</body>
+</html>

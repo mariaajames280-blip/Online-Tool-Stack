@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comma Separator Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 213, 255, 0.3);
+            border: 2px solid rgb(0, 213, 255);
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(0, 213, 255);
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(0, 213, 255, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaaaaa;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .input-section, .output-section {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: rgb(0, 213, 255);
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            background: #1a1a1a;
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 213, 255, 0.5);
+            background: #0a0a0a;
+        }
+
+        textarea::placeholder {
+            color: #666666;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 213, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 213, 255, 0.2);
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-item input[type="checkbox"],
+        .option-item input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: rgb(0, 213, 255);
+        }
+
+        .option-item label {
+            margin: 0;
+            font-size: 0.95em;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .custom-separator {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .custom-separator input {
+            width: 100%;
+            padding: 10px;
+            background: #1a1a1a;
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 25px 0;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: rgb(0, 213, 255);
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            background: rgb(0, 180, 216);
+            box-shadow: 0 0 20px rgba(0, 213, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #333333;
+            color: rgb(0, 213, 255);
+            border: 2px solid rgb(0, 213, 255);
+        }
+
+        .btn-secondary:hover {
+            background: rgb(0, 213, 255);
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .btn-copy {
+            background: #1a1a1a;
+            color: rgb(0, 213, 255);
+            border: 2px solid rgb(0, 213, 255);
+        }
+
+        .btn-copy:hover {
+            background: rgb(0, 213, 255);
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 213, 255, 0.1);
+            border-radius: 8px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            color: rgb(0, 213, 255);
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 213, 255, 0.5);
+        }
+
+        .stat-label {
+            color: #aaaaaa;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: rgb(0, 213, 255);
+            color: #000000;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 213, 255, 0.5);
+            opacity: 0;
+            transform: translateX(400px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .separator-options {
+            margin-top: 15px;
+        }
+
+        .separator-option {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔷 Comma Separator Tool</h1>
+        <p class="subtitle">Transform your text with custom separators</p>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <label for="inputText">📝 Input Text:</label>
+            <textarea id="inputText" placeholder="Enter your text here... (each line will be separated by commas or your chosen separator)
+Example:
+Apple
+Banana
+Orange
+Cherry"></textarea>
+        </div>
+
+        <!-- Options Section -->
+        <div class="options">
+            <div class="option-item">
+                <input type="checkbox" id="removeDuplicates">
+                <label for="removeDuplicates">Remove Duplicates</label>
+            </div>
+            <div class="option-item">
+                <input type="checkbox" id="removeEmpty">
+                <label for="removeEmpty">Remove Empty Lines</label>
+            </div>
+            <div class="option-item">
+                <input type="checkbox" id="trimSpaces">
+                <label for="trimSpaces">Trim Spaces</label>
+            </div>
+            <div class="option-item">
+                <input type="checkbox" id="sortAlpha">
+                <label for="sortAlpha">Sort Alphabetically</label>
+            </div>
+            <div class="option-item">
+                <input type="checkbox" id="addQuotes">
+                <label for="addQuotes">Add Quotes</label>
+            </div>
+            <div class="option-item">
+                <input type="checkbox" id="lowercase">
+                <label for="lowercase">Convert to Lowercase</label>
+            </div>
+        </div>
+
+        <!-- Separator Options -->
+        <div class="separator-options">
+            <label>🔹 Separator Type:</label>
+            <div class="option-item separator-option">
+                <input type="radio" name="separator" id="sepComma" value="," checked>
+                <label for="sepComma">Comma (,)</label>
+            </div>
+            <div class="option-item separator-option">
+                <input type="radio" name="separator" id="sepSemicolon" value=";">
+                <label for="sepSemicolon">Semicolon (;)</label>
+            </div>
+            <div class="option-item separator-option">
+                <input type="radio" name="separator" id="sepPipe" value="|">
+                <label for="sepPipe">Pipe (|)</label>
+            </div>
+            <div class="option-item separator-option">
+                <input type="radio" name="separator" id="sepSpace" value=" ">
+                <label for="sepSpace">Space</label>
+            </div>
+            <div class="option-item separator-option">
+                <input type="radio" name="separator" id="sepCustom" value="custom">
+                <label for="sepCustom">Custom Separator</label>
+            </div>
+            <div class="custom-separator" id="customSeparatorDiv">
+                <input type="text" id="customSeparator" placeholder="Enter custom separator...">
+            </div>
+        </div>
+
+        <!-- Button Group -->
+        <div class="button-group">
+            <button class="btn-primary" onclick="processText()">✨ Convert</button>
+            <button class="btn-secondary" onclick="clearAll()">🗑️ Clear All</button>
+            <button class="btn-copy" onclick="copyToClipboard()">📋 Copy Result</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="itemCount">0</div>
+                <div class="stat-label">Items</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="charCount">0</div>
+                <div class="stat-label">Characters</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="wordCount">0</div>
+                <div class="stat-label">Words</div>
+            </div>
+        </div>
+
+        <!-- Output Section -->
+        <div class="output-section">
+            <label for="outputText">✅ Output Result:</label>
+            <textarea id="outputText" placeholder="Your converted result will appear here..." readonly></textarea>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">Copied to clipboard!</div>
+
+    <script>
+        // Show/hide custom separator input
+        document.querySelectorAll('input[name="separator"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const customDiv = document.getElementById('customSeparatorDiv');
+                if (this.value === 'custom') {
+                    customDiv.style.display = 'block';
+                } else {
+                    customDiv.style.display = 'none';
+                }
+            });
+        });
+
+        // Update stats on input
+        document.getElementById('inputText').addEventListener('input', function() {
+            updateStats(this.value);
+        });
+
+        function updateStats(text) {
+            const lines = text.split('\n').filter(line => line.trim() !== '');
+            const chars = text.length;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+
+            document.getElementById('itemCount').textContent = lines.length;
+            document.getElementById('charCount').textContent = chars;
+            document.getElementById('wordCount').textContent = words;
+        }
+
+        function getSeparator() {
+            const selectedRadio = document.querySelector('input[name="separator"]:checked');
+            if (selectedRadio.value === 'custom') {
+                return document.getElementById('customSeparator').value || ',';
+            }
+            return selectedRadio.value;
+        }
+
+        function processText() {
+            let input = document.getElementById('inputText').value;
+            
+            if (!input.trim()) {
+                showNotification('Please enter some text first!');
+                return;
+            }
+
+            // Split by lines
+            let items = input.split('\n');
+
+            // Remove empty lines if checked
+            if (document.getElementById('removeEmpty').checked) {
+                items = items.filter(item => item.trim() !== '');
+            }
+
+            // Trim spaces if checked
+            if (document.getElementById('trimSpaces').checked) {
+                items = items.map(item => item.trim());
+            }
+
+            // Convert to lowercase if checked
+            if (document.getElementById('lowercase').checked) {
+                items = items.map(item => item.toLowerCase());
+            }
+
+            // Remove duplicates if checked
+            if (document.getElementById('removeDuplicates').checked) {
+                items = [...new Set(items)];
+            }
+
+            // Sort alphabetically if checked
+            if (document.getElementById('sortAlpha').checked) {
+                items.sort((a, b) => a.localeCompare(b));
+            }
+
+            // Add quotes if checked
+            if (document.getElementById('addQuotes').checked) {
+                items = items.map(item => `"${item}"`);
+            }
+
+            // Get separator
+            const separator = getSeparator();
+
+            // Join with separator
+            const output = items.join(separator + ' ');
+
+            // Display output
+            document.getElementById('outputText').value = output;
+
+            // Update stats
+            updateStats(output);
+
+            showNotification('Text converted successfully!');
+        }
+
+        function clearAll() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputText').value = '';
+            document.getElementById('customSeparator').value = '';
+            
+            // Reset checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            
+            // Reset radio to comma
+            document.getElementById('sepComma').checked = true;
+            document.getElementById('customSeparatorDiv').style.display = 'none';
+            
+            // Reset stats
+            updateStats('');
+            
+            showNotification('All fields cleared!');
+        }
+
+        function copyToClipboard() {
+            const outputText = document.getElementById('outputText');
+            
+            if (!outputText.value.trim()) {
+                showNotification('Nothing to copy! Convert text first.');
+                return;
+            }
+
+            outputText.select();
+            document.execCommand('copy');
+            
+            showNotification('Copied to clipboard! ✓');
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
+        // Initialize stats
+        updateStats('');
+    </script>
+</body>
+</html>

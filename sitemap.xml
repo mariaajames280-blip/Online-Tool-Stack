@@ -33,8 +33,106 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
+
+    <!-- NEW TOOLS ADDED -->
     
-    <!-- Individual Tools - High Priority -->
+    <!-- Keyword Suggestion Tool -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/keyword-suggestion-tool.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Google Cache Checker -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/google-cache-checker.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- YouTube Embed Generator -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/youtube-embed-generator.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- YouTube Thumbnail Downloader -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/youtube-thumbnail-downloader.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- YouTube Banner Generator -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/youtube_banner_generator.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- AdSense Calculator -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/adsense_calculator.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Light Shot Pro -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/lightshot-pro.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Checkbot Tool -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/checkbot-tool.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Niche Finder -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/niche-finder.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Professional Bio Creator -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/professional-bio-creator.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Comma Separator Tool -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/comma-separator-tool.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Disclaimer Generator Tool -->
+    <url>
+        <loc>https://www.onlinetoolstack.site/disclaimer-generator-tool.html</loc>
+        <lastmod>2025-01-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- EXISTING TOOLS (KEPT FROM ORIGINAL) -->
     
     <!-- QR Code Generator -->
     <url>

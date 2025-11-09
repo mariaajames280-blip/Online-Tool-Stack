@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer Generator Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 8px 32px rgba(0, 213, 255, 0.3);
+            border: 2px solid rgb(0, 213, 255);
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(0, 213, 255);
+            margin-bottom: 10px;
+            font-size: 2.8em;
+            text-shadow: 0 0 10px rgba(0, 213, 255, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaaaaa;
+            margin-bottom: 35px;
+            font-size: 1.1em;
+        }
+
+        .form-section {
+            background: rgba(0, 213, 255, 0.05);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 213, 255, 0.2);
+        }
+
+        .form-section h2 {
+            color: rgb(0, 213, 255);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: rgb(0, 213, 255);
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            background: #1a1a1a;
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 213, 255, 0.5);
+            background: #0a0a0a;
+        }
+
+        input::placeholder {
+            color: #666666;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        select option {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        .disclaimer-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .type-card {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(0, 213, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .type-card:hover {
+            border-color: rgb(0, 213, 255);
+            box-shadow: 0 0 20px rgba(0, 213, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .type-card.selected {
+            background: rgba(0, 213, 255, 0.15);
+            border-color: rgb(0, 213, 255);
+            box-shadow: 0 0 20px rgba(0, 213, 255, 0.4);
+        }
+
+        .type-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .type-card h3 {
+            color: rgb(0, 213, 255);
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .type-card p {
+            color: #aaaaaa;
+            font-size: 0.85em;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        button {
+            padding: 14px 35px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: rgb(0, 213, 255);
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            background: rgb(0, 180, 216);
+            box-shadow: 0 0 20px rgba(0, 213, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #333333;
+            color: rgb(0, 213, 255);
+            border: 2px solid rgb(0, 213, 255);
+        }
+
+        .btn-secondary:hover {
+            background: rgb(0, 213, 255);
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .btn-copy {
+            background: #1a1a1a;
+            color: rgb(0, 213, 255);
+            border: 2px solid rgb(0, 213, 255);
+        }
+
+        .btn-copy:hover {
+            background: rgb(0, 213, 255);
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .output-section {
+            background: #0a0a0a;
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid rgb(0, 213, 255);
+            margin-top: 25px;
+        }
+
+        .output-section h2 {
+            color: rgb(0, 213, 255);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #outputText {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            background: #1a1a1a;
+            border: 2px solid rgba(0, 213, 255, 0.5);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 15px;
+            line-height: 1.8;
+            font-family: 'Georgia', serif;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        #outputText:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 213, 255, 0.5);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 213, 255, 0.1);
+            border-radius: 8px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            color: rgb(0, 213, 255);
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 213, 255, 0.5);
+        }
+
+        .stat-label {
+            color: #aaaaaa;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: rgb(0, 213, 255);
+            color: #000000;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 213, 255, 0.5);
+            opacity: 0;
+            transform: translateX(400px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .tips {
+            background: rgba(0, 213, 255, 0.08);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid rgb(0, 213, 255);
+            margin: 20px 0;
+            color: #cccccc;
+            font-size: 0.95em;
+        }
+
+        .tips strong {
+            color: rgb(0, 213, 255);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .disclaimer-types {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📜 Disclaimer Generator Tool</h1>
+        <p class="subtitle">Create Professional Disclaimers in Seconds</p>
+
+        <!-- Disclaimer Type Selection -->
+        <div class="form-section">
+            <h2>🎯 Choose Disclaimer Type</h2>
+            <div class="disclaimer-types">
+                <div class="type-card" onclick="selectType('general')" id="type-general">
+                    <div class="icon">⚠️</div>
+                    <h3>General Disclaimer</h3>
+                    <p>For websites and blogs</p>
+                </div>
+                <div class="type-card" onclick="selectType('medical')" id="type-medical">
+                    <div class="icon">🏥</div>
+                    <h3>Medical Disclaimer</h3>
+                    <p>Health and medical content</p>
+                </div>
+                <div class="type-card" onclick="selectType('legal')" id="type-legal">
+                    <div class="icon">⚖️</div>
+                    <h3>Legal Disclaimer</h3>
+                    <p>Legal advice and information</p>
+                </div>
+                <div class="type-card" onclick="selectType('financial')" id="type-financial">
+                    <div class="icon">💰</div>
+                    <h3>Financial Disclaimer</h3>
+                    <p>Investment and finance</p>
+                </div>
+                <div class="type-card" onclick="selectType('fitness')" id="type-fitness">
+                    <div class="icon">💪</div>
+                    <h3>Fitness Disclaimer</h3>
+                    <p>Exercise and nutrition</p>
+                </div>
+                <div class="type-card" onclick="selectType('affiliate')" id="type-affiliate">
+                    <div class="icon">🤝</div>
+                    <h3>Affiliate Disclaimer</h3>
+                    <p>Affiliate marketing</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Information Form -->
+        <div class="form-section">
+            <h2>📝 Enter Your Information</h2>
+            
+            <div class="form-group">
+                <label for="websiteName">Website/Company Name *</label>
+                <input type="text" id="websiteName" placeholder="e.g., TechBlog, MyFitness Guide" required>
+            </div>
+
+            <div class="form-group">
+                <label for="websiteUrl">Website URL *</label>
+                <input type="url" id="websiteUrl" placeholder="e.g., https://www.example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contactEmail">Contact Email</label>
+                <input type="email" id="contactEmail" placeholder="e.g., contact@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country/Region</label>
+                <select id="country">
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="India">India</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="tips">
+                <strong>💡 Tip:</strong> A disclaimer is a legal statement that limits your liability. While this tool generates professional disclaimers, we recommend consulting with a legal professional for specific legal advice.
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <button class="btn-primary" onclick="generateDisclaimer()">✨ Generate Disclaimer</button>
+            <button class="btn-secondary" onclick="resetForm()">🔄 Reset</button>
+            <button class="btn-copy" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
+            <button class="btn-secondary" onclick="downloadDisclaimer()">💾 Download</button>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="wordCount">0</div>
+                <div class="stat-label">Words</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="charCount">0</div>
+                <div class="stat-label">Characters</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="readTime">0</div>
+                <div class="stat-label">Min Read</div>
+            </div>
+        </div>
+
+        <!-- Output Section -->
+        <div class="output-section">
+            <h2>📄 Your Generated Disclaimer</h2>
+            <textarea id="outputText" placeholder="Your disclaimer will appear here after generation..."></textarea>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">Success!</div>
+
+    <script>
+        let selectedType = 'general';
+
+        function selectType(type) {
+            selectedType = type;
+            
+            // Remove selected class from all cards
+            document.querySelectorAll('.type-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked card
+            document.getElementById('type-' + type).classList.add('selected');
+        }
+
+        function generateDisclaimer() {
+            const websiteName = document.getElementById('websiteName').value.trim();
+            const websiteUrl = document.getElementById('websiteUrl').value.trim();
+            const contactEmail = document.getElementById('contactEmail').value.trim();
+            const country = document.getElementById('country').value;
+
+            if (!websiteName || !websiteUrl) {
+                showNotification('⚠️ Please fill in required fields!');
+                return;
+            }
+
+            let disclaimer = '';
+            const currentDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            switch(selectedType) {
+                case 'general':
+                    disclaimer = generateGeneralDisclaimer(websiteName, websiteUrl, contactEmail, country, currentDate);
+                    break;
+                case 'medical':
+                    disclaimer = generateMedicalDisclaimer(websiteName, websiteUrl, contactEmail, country, currentDate);
+                    break;
+                case 'legal':
+                    disclaimer = generateLegalDisclaimer(websiteName, websiteUrl, contactEmail, country, currentDate);
+                    break;
+                case 'financial':
+                    disclaimer = generateFinancialDisclaimer(websiteName, websiteUrl, contactEmail, country, currentDate);
+                    break;
+                case 'fitness':
+                    disclaimer = generateFitnessDisclaimer(websiteName, websiteUrl, contactEmail, country, currentDate);
+                    break;
+                case 'affiliate':
+                    disclaimer = generateAffiliateDisclaimer(websiteName, websiteUrl, contactEmail, country, currentDate);
+                    break;
+            }
+
+            document.getElementById('outputText').value = disclaimer;
+            updateStats(disclaimer);
+            showNotification('✅ Disclaimer generated successfully!');
+        }
+
+        function generateGeneralDisclaimer(name, url, email, country, date) {
+            return `DISCLAIMER
+
+Last Updated: ${date}
+
+The information provided by ${name} ("we," "us," or "our") on ${url} (the "Site") is for general informational purposes only. All information on the Site is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the Site.
+
+UNDER NO CIRCUMSTANCE SHALL WE HAVE ANY LIABILITY TO YOU FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF THE SITE OR RELIANCE ON ANY INFORMATION PROVIDED ON THE SITE. YOUR USE OF THE SITE AND YOUR RELIANCE ON ANY INFORMATION ON THE SITE IS SOLELY AT YOUR OWN RISK.
+
+EXTERNAL LINKS DISCLAIMER
+
+The Site may contain (or you may be sent through the Site) links to other websites or content belonging to or originating from third parties or links to websites and features in banners or other advertising. Such external links are not investigated, monitored, or checked for accuracy, adequacy, validity, reliability, availability, or completeness by us.
+
+WE DO NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR THE ACCURACY OR RELIABILITY OF ANY INFORMATION OFFERED BY THIRD-PARTY WEBSITES LINKED THROUGH THE SITE OR ANY WEBSITE OR FEATURE LINKED IN ANY BANNER OR OTHER ADVERTISING. WE WILL NOT BE A PARTY TO OR IN ANY WAY BE RESPONSIBLE FOR MONITORING ANY TRANSACTION BETWEEN YOU AND THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES.
+
+PROFESSIONAL DISCLAIMER
+
+The Site cannot and does not contain professional advice. The information is provided for general informational and educational purposes only and is not a substitute for professional advice. Accordingly, before taking any actions based upon such information, we encourage you to consult with the appropriate professionals.
+
+THE USE OR RELIANCE OF ANY INFORMATION CONTAINED ON THE SITE IS SOLELY AT YOUR OWN RISK.
+
+GEOGRAPHIC LIMITATIONS
+
+This disclaimer is governed by the laws of ${country}. The information provided on the Site is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation.
+
+CONTACT INFORMATION
+
+If you have any questions about this disclaimer, please contact us at:
+${email ? 'Email: ' + email : ''}
+Website: ${url}
+
+---
+Generated by Disclaimer Generator Tool`;
+        }
+
+        function generateMedicalDisclaimer(name, url, email, country, date) {
+            return `MEDICAL DISCLAIMER
+
+Last Updated: ${date}
+
+The information provided by ${name} on ${url} is for general informational and educational purposes only and is not intended to be a substitute for professional medical advice, diagnosis, or treatment.
+
+ALWAYS SEEK THE ADVICE OF YOUR PHYSICIAN OR OTHER QUALIFIED HEALTH PROVIDER WITH ANY QUESTIONS YOU MAY HAVE REGARDING A MEDICAL CONDITION OR TREATMENT AND BEFORE UNDERTAKING A NEW HEALTH CARE REGIMEN. NEVER DISREGARD PROFESSIONAL MEDICAL ADVICE OR DELAY IN SEEKING IT BECAUSE OF SOMETHING YOU HAVE READ ON THIS SITE.
+
+NO DOCTOR-PATIENT RELATIONSHIP
+
+The content on this Site does not create a doctor-patient relationship between you and ${name}. The information provided should not be used for diagnosing or treating a health problem or disease.
+
+EMERGENCY SITUATIONS
+
+If you think you may have a medical emergency, call your doctor, go to the emergency department, or call emergency services immediately. ${name} does not recommend or endorse any specific tests, physicians, products, procedures, opinions, or other information that may be mentioned on the Site.
+
+RESULTS MAY VARY
+
+The testimonials, statements, and opinions presented on the Site are applicable to the individuals depicted. Results will vary and may not be representative of the experience of others. The testimonials are not necessarily representative of all of those who will use our products and/or services.
+
+ACCURACY OF INFORMATION
+
+While we strive to provide accurate and up-to-date information, ${name} makes no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information, products, services, or related graphics contained on the Site for any purpose.
+
+RELIANCE ON INFORMATION
+
+Any reliance you place on the information provided on the Site is strictly at your own risk. In no event will ${name} be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this Site.
+
+JURISDICTION
+
+This medical disclaimer is governed by the laws of ${country}.
+
+CONTACT US
+
+For questions regarding this medical disclaimer, please contact us at:
+${email ? 'Email: ' + email : ''}
+Website: ${url}
+
+---
+Generated by Disclaimer Generator Tool`;
+        }
+
+        function generateLegalDisclaimer(name, url, email, country, date) {
+            return `LEGAL DISCLAIMER
+
+Last Updated: ${date}
+
+The information provided by ${name} on ${url} is for general informational purposes only and does not constitute legal advice. While we strive to provide accurate and up-to-date information, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information contained on the Site.
+
+NOT LEGAL ADVICE
+
+The content on this Site is not intended to be a substitute for professional legal advice. Always seek the advice of a qualified attorney with any questions you may have regarding a legal matter. Never disregard professional legal advice or delay in seeking it because of something you have read on this Site.
+
+NO ATTORNEY-CLIENT RELATIONSHIP
+
+Your use of this Site and the information contained herein does not create an attorney-client relationship between you and ${name}. An attorney-client relationship can only be established through a signed written agreement.
+
+JURISDICTION-SPECIFIC INFORMATION
+
+Laws vary by jurisdiction, and the information provided may not be applicable to your specific situation or location. The legal information on this Site is intended to be general in nature and should not be relied upon as legal advice for any specific situation.
+
+CHANGES IN LAW
+
+Laws and regulations are constantly changing. While we attempt to keep the information on this Site current, we cannot guarantee that the information is the most up-to-date legal information available.
+
+NO GUARANTEE OF RESULTS
+
+The information provided does not guarantee any specific legal result or outcome. Every legal case is unique and depends on specific facts and circumstances.
+
+THIRD-PARTY LINKS
+
+This Site may contain links to third-party websites. These links are provided for your convenience only and do not signify our endorsement of such websites or their content. We have no responsibility for the content of the linked websites.
+
+LIMITATION OF LIABILITY
+
+TO THE FULLEST EXTENT PERMITTED BY LAW, ${name} SHALL NOT BE LIABLE FOR ANY DAMAGES OF ANY KIND ARISING FROM THE USE OF THIS SITE, INCLUDING BUT NOT LIMITED TO DIRECT, INDIRECT, INCIDENTAL, PUNITIVE, AND CONSEQUENTIAL DAMAGES.
+
+USE AT YOUR OWN RISK
+
+Your use of any information or materials on this Site is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any information available through this Site meets your specific requirements.
+
+GOVERNING LAW
+
+This legal disclaimer is governed by and construed in accordance with the laws of ${country}.
+
+CONTACT INFORMATION
+
+For questions about this legal disclaimer, please contact us at:
+${email ? 'Email: ' + email : ''}
+Website: ${url}
+
+---
+Generated by Disclaimer Generator Tool`;
+        }
+
+        function generateFinancialDisclaimer(name, url, email, country, date) {
+            return `FINANCIAL DISCLAIMER
+
+Last Updated: ${date}
+
+The information provided by ${name} on ${url} is for general informational and educational purposes only and should not be considered financial advice. We are not financial advisors, and the information provided should not be relied upon as a substitute for professional financial advice.
+
+NOT FINANCIAL ADVICE
+
+The content on this Site is not intended to be a substitute for professional financial advice. Always seek the advice of a qualified financial advisor or other financial professional with any questions you may have regarding your financial situation.
+
+NO GUARANTEE OF RESULTS
+
+Past performance is not indicative of future results. Any investment or financial decision you make based on information from this Site is made at your own risk. We make no guarantees or promises regarding financial outcomes.
+
+INVESTMENT RISKS
+
+All investments carry risk and all investment decisions of an individual remain the responsibility of that individual. There is no guarantee that you will earn any money using the techniques, ideas, or products discussed on this Site. Examples provided are not to be interpreted as a promise or guarantee of earnings.
+
+NO FIDUCIARY RELATIONSHIP
+
+The information provided on this Site does not create a fiduciary relationship between ${name} and you. We do not act as your financial advisor, and no fiduciary duty is owed to you.
+
+ACCURACY OF INFORMATION
+
+While we strive to provide accurate and timely information, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the financial information on the Site.
+
+MARKET VOLATILITY
+
+Financial markets are volatile and can change rapidly. Information that was accurate at the time of posting may become outdated or inaccurate. We are not responsible for updating information to reflect current market conditions.
+
+TAX IMPLICATIONS
+
+The information on this Site does not constitute tax advice. Tax laws are complex and vary by jurisdiction. Consult with a qualified tax professional regarding your specific tax situation.
+
+THIRD-PARTY INFORMATION
+
+This Site may contain information from third-party sources. We do not verify, endorse, or guarantee the accuracy of third-party information. You use such information at your own risk.
+
+AFFILIATE RELATIONSHIPS
+
+${name} may have financial relationships with some of the products or services mentioned on the Site. We may receive compensation for referring customers to certain products or services.
+
+LIMITATION OF LIABILITY
+
+TO THE FULLEST EXTENT PERMITTED BY LAW, ${name} SHALL NOT BE LIABLE FOR ANY FINANCIAL LOSSES OR DAMAGES ARISING FROM YOUR USE OF THE INFORMATION ON THIS SITE.
+
+DO YOUR OWN RESEARCH
+
+You should conduct your own research and due diligence before making any financial decisions. Consider your own financial circumstances, goals, and risk tolerance.
+
+JURISDICTION
+
+This financial disclaimer is governed by the laws of ${country}.
+
+CONTACT US
+
+If you have questions about this financial disclaimer, please contact us at:
+${email ? 'Email: ' + email : ''}
+Website: ${url}
+
+---
+Generated by Disclaimer Generator Tool`;
+        }
+
+        function generateFitnessDisclaimer(name, url, email, country, date) {
+            return `FITNESS & HEALTH DISCLAIMER
+
+Last Updated: ${date}
+
+The information provided by ${name} on ${url} is for general informational and educational purposes only and is not intended as a substitute for advice from your physician or other health care professional.
+
+CONSULT YOUR PHYSICIAN
+
+You should consult your physician or other health care professional before starting any fitness program to determine if it is right for your needs. This is particularly true if you (or your family) have a history of high blood pressure or heart disease, or if you have ever experienced chest pain when exercising or have experienced chest pain in the past month when not engaged in physical activity.
+
+DO NOT DISREGARD MEDICAL ADVICE
+
+Do not disregard, avoid, or delay obtaining medical or health-related advice from your health care professional because of something you may have read on this Site. The use of any information provided on this Site is solely at your own risk.
+
+NOT A CERTIFIED PROFESSIONAL
+
+${name} is not a licensed medical care provider and represents that it has no expertise in diagnosing, examining, or treating medical conditions of any kind, or in determining the effect of any specific exercise on a medical condition.
+
+RESULTS MAY VARY
+
+Individual results may vary. Results depend on many factors including your physical condition, lifestyle, and diet. The testimonials and examples provided are not guarantees of your ability to achieve similar results.
+
+RISK OF INJURY
+
+Exercise and physical activity carry inherent risks. You should understand that when participating in any exercise or exercise program, there is the possibility of physical injury. If you engage in any exercise program, you agree that you do so at your own risk and are voluntarily participating in these activities.
+
+NUTRITIONAL INFORMATION
+
+Any nutritional advice and information provided on this Site is based on the author's own experiences and knowledge. This information is provided as a courtesy and should not be construed as medical advice. Always consult with a qualified healthcare professional before making any dietary changes.
+
+SUPPLEMENTS DISCLAIMER
+
+If we discuss or recommend supplements on this Site, these recommendations are for informational purposes only. We are not medical professionals and cannot guarantee the safety or efficacy of any supplement. Consult with a healthcare professional before taking any supplements.
+
+USE OF EQUIPMENT
+
+If any exercise equipment is mentioned on this Site, please follow all manufacturer instructions and safety guidelines. ${name} is not responsible for injuries sustained from improper use of equipment.
+
+STOP IF YOU FEEL PAIN
+
+If you experience any pain, discomfort, or other symptoms during exercise, stop immediately and consult a healthcare professional.
+
+PREGNANCY AND MEDICAL CONDITIONS
+
+If you are pregnant, nursing, have any medical conditions, or are taking any medications, consult with your healthcare professional before engaging in any fitness program discussed on this Site.
+
+ACCURACY OF INFORMATION
+
+While we strive to provide accurate and current information, ${name} makes no representations or warranties about the accuracy, completeness, or suitability of the information provided.
+
+LIMITATION OF LIABILITY
+
+TO THE FULLEST EXTENT PERMITTED BY LAW, ${name} SHALL NOT BE LIABLE FOR ANY INJURIES OR DAMAGES ARISING FROM YOUR PARTICIPATION IN ANY FITNESS OR EXERCISE PROGRAM DISCUSSED ON THIS SITE.
+
+ASSUMPTION OF RISK
+
+By using the information on this Site, you assume all risks associated with such use, including but not limited to injury, illness, or death.
+
+JURISDICTION
+
+This fitness disclaimer is governed by the laws of ${country}.
+
+CONTACT US
+
+For questions regarding this fitness disclaimer, please contact us at:
+${email ? 'Email: ' + email : ''}
+Website: ${url}
+
+---
+Generated by Disclaimer Generator Tool`;
+        }
+
+        function generateAffiliateDisclaimer(name, url, email, country, date) {
+            return `AFFILIATE DISCLOSURE
+
+Last Updated: ${date}
+
+This affiliate disclosure is provided by ${name} in accordance with the Federal Trade Commission's 16 CFR, Part 255: "Guides Concerning the Use of Endorsements and Testimonials in Advertising."
+
+AFFILIATE RELATIONSHIPS
+
+${name}, located at ${url}, may receive compensation when you click on links to products or services that we recommend. This compensation may be in the form of commissions, free products, or other benefits.
+
+HOW WE EARN MONEY
+
+When you click on an affiliate link and make a purchase, we may earn a commission at no additional cost to you. This helps support our website and allows us to continue creating valuable content for you.
+
+TYPES OF AFFILIATE PROGRAMS
+
+We participate in various affiliate marketing programs, which means we may receive commissions on editorially chosen products purchased through our links to retailer sites. These may include, but are not limited to:
+
+• Amazon Associates Program
+• ShareASale
+• Commission Junction
+• ClickBank
+• Other affiliate networks and individual brand partnerships
+
+NO ADDITIONAL COST TO YOU
+
+Our participation in affiliate programs does not result in any additional cost to you. The price you pay is the same whether you use our affiliate link or go directly to the vendor's website.
+
+OUR HONEST OPINIONS
+
+We only recommend products and services that we believe will add value to our readers. Our opinions are our own and are not influenced by the compensation we may receive. We will always provide our honest opinions, findings, beliefs, or experiences on products or services.
+
+DUE DILIGENCE
+
+While we make every effort to ensure that the information on our Site is accurate and up-to-date, we recommend that you conduct your own research and due diligence before making any purchase decisions.
+
+NOT A GUARANTEE
+
+The fact that we recommend a product does not guarantee specific results. Individual results may vary based on your unique circumstances, effort, and other factors.
+
+PRODUCT REVIEWS
+
+When we review products, we provide our honest assessment based on our experience or research. If we received the product for free or at a discount for review purposes, we will disclose this in our review.
+
+EARNINGS DISCLAIMER
+
+If we discuss earning potential or income examples related to products or services, these are for illustrative purposes only. Your results may differ and will depend on many factors including your background, experience, and work ethic.
+
+RELATIONSHIPS WITH BRANDS
+
+From time to time, we may have ongoing relationships with brands beyond simple affiliate arrangements. These may include sponsored content, brand ambassadorships, or consultant relationships. We will always disclose these relationships in accordance with FTC guidelines.
+
+UPDATES TO THIS DISCLOSURE
+
+We reserve the right to update this affiliate disclosure at any time. Please check back regularly for updates. Your continued use of the Site after any changes constitutes your acceptance of the updated disclosure.
+
+QUESTIONS AND TRANSPARENCY
+
+We believe in transparency and honesty with our audience. If you have any questions about our affiliate relationships or would like to know if a specific link is an affiliate link, please don't hesitate to contact us.
+
+THIRD-PARTY ADVERTISEMENTS
+
+We may also display advertisements on our Site. We do not control the content of these advertisements and are not responsible for the products or services advertised.
+
+FTC COMPLIANCE
+
+We comply with the Federal Trade Commission's requirements for disclosure of affiliate relationships and endorsements. We strive to provide clear and conspicuous disclosures wherever required.
+
+JURISDICTION
+
+This affiliate disclosure is governed by the laws of ${country}.
+
+CONTACT INFORMATION
+
+If you have any questions about this affiliate disclosure, please contact us at:
+${email ? 'Email: ' + email : ''}
+Website: ${url}
+
+Thank you for supporting ${name}. Your trust is important to us, and we are committed to maintaining transparency in all our affiliate relationships.
+
+---
+Generated by Disclaimer Generator Tool`;
+        }
+
+        function updateStats(text) {
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            const chars = text.length;
+            const readTime = Math.ceil(words / 200); // Average reading speed: 200 words per minute
+
+            document.getElementById('wordCount').textContent = words;
+            document.getElementById('charCount').textContent = chars;
+            document.getElementById('readTime').textContent = readTime;
+        }
+
+        function copyToClipboard() {
+            const outputText = document.getElementById('outputText');
+            
+            if (!outputText.value.trim()) {
+                showNotification('⚠️ Generate a disclaimer first!');
+                return;
+            }
+
+            outputText.select();
+            document.execCommand('copy');
+            
+            showNotification('✅ Copied to clipboard!');
+        }
+
+        function downloadDisclaimer() {
+            const outputText = document.getElementById('outputText').value;
+            
+            if (!outputText.trim()) {
+                showNotification('⚠️ Generate a disclaimer first!');
+                return;
+            }
+
+            const blob = new Blob([outputText], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${selectedType}-disclaimer.txt`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            showNotification('💾 Downloaded successfully!');
+        }
+
+        function resetForm() {
+            document.getElementById('websiteName').value = '';
+            document.getElementById('websiteUrl').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('country').value = 'United States';
+            document.getElementById('outputText').value = '';
+            
+            // Reset type selection
+            document.querySelectorAll('.type-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById('type-general').classList.add('selected');
+            selectedType = 'general';
+            
+            updateStats('');
+            showNotification('🔄 Form reset!');
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2500);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('type-general').classList.add('selected');
+            updateStats('');
+        });
+
+        // Update stats when typing in output
+        document.getElementById('outputText').addEventListener('input', function() {
+            updateStats(this.value);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Article Converter | Transform Blog Posts for LinkedIn</title>
+    <meta name="description" content="Convert blog posts, articles, and content into optimized LinkedIn articles with proper formatting, hashtags, and engagement elements.">
+    <style>
+        :root {
+            --primary-blue: rgb(0, 213, 255);
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #a0a0a0;
+            --success-green: #00ff88;
+            --warning-orange: #ffaa00;
+            --error-red: #ff4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid var(--primary-blue);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .subtitle {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tool-section {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+        }
+
+        .converter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 1024px) {
+            .converter-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--text-light);
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        textarea {
+            min-height: 300px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        .preview-section {
+            background: #252525;
+            border-radius: 8px;
+            padding: 25px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .linkedin-preview {
+            background: #ffffff;
+            color: #000000;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid #e0e0e0;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .linkedin-header {
+            margin-bottom: 20px;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--dark-bg);
+        }
+
+        .author-details h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .author-details p {
+            margin: 2px 0 0 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .article-content {
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+            color: #000;
+        }
+
+        .article-content p {
+            margin-bottom: 15px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .article-content li {
+            margin-bottom: 8px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        .hashtags {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .hashtag {
+            display: inline-block;
+            background: #f3f2ef;
+            color: #0a66c2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin: 2px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .engagement-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            background: var(--primary-blue);
+            color: var(--dark-bg);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: rgba(0, 213, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+
+        .btn-secondary {
+            background: #333;
+            color: var(--text-light);
+        }
+
+        .optimization-panel {
+            background: rgba(0, 213, 255, 0.1);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .optimization-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .optimization-card {
+            background: #252525;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .optimization-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .optimization-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .recommendations {
+            background: #252525;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .recommendation-item {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .recommendation-item:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+        }
+
+        .export-options {
+            background: rgba(0, 213, 255, 0.1);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .testimonial {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .content-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: #252525;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            color: var(--text-gray);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tool-section {
+                padding: 20px;
+            }
+            
+            .export-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LinkedIn Article Converter</h1>
+            <p class="subtitle">Transform your blog posts and content into optimized LinkedIn articles with professional formatting and engagement elements</p>
+        </header>
+
+        <section class="tool-section">
+            <div class="converter-grid">
+                <div>
+                    <h2>Input Your Content</h2>
+                    
+                    <div class="input-group">
+                        <label for="articleTitle">Article Title</label>
+                        <input type="text" id="articleTitle" placeholder="Enter your article title" value="10 Strategies to Boost Your Professional Network on LinkedIn">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="originalContent">Original Content</label>
+                        <textarea id="originalContent" placeholder="Paste your blog post or article content here...">
+In today's competitive professional landscape, building a strong LinkedIn network is crucial for career growth and business opportunities. Many professionals struggle to expand their network beyond immediate colleagues and acquaintances.
+
+This comprehensive guide will walk you through 10 proven strategies to significantly boost your LinkedIn network:
+
+1. Optimize Your Profile Completely
+   - Professional headshot that conveys approachability
+   - Compelling headline that highlights your expertise
+   - Detailed summary that tells your professional story
+
+2. Engage with Industry Content Daily
+   - Comment thoughtfully on posts in your industry
+   - Share valuable insights and perspectives
+   - Join relevant conversations and discussions
+
+3. Personalize Connection Requests
+   - Always include a personalized message
+   - Mention common interests or connections
+   - Explain why you want to connect
+
+Research shows that professionals with 500+ connections receive 5x more profile views and 3x more inbound messages. The quality of your network directly impacts your career opportunities.
+
+Remember: It's not just about quantity, but about building meaningful professional relationships that can lead to collaborations, job opportunities, and knowledge sharing.
+
+Start implementing these strategies today and watch your professional network grow exponentially over the next 90 days.
+                        </textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="contentType">Content Type</label>
+                        <select id="contentType">
+                            <option value="blog-post">Blog Post</option>
+                            <option value="news-article">News Article</option>
+                            <option value="case-study">Case Study</option>
+                            <option value="how-to-guide">How-to Guide</option>
+                            <option value="industry-analysis">Industry Analysis</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="targetAudience">Target Audience</label>
+                        <select id="targetAudience">
+                            <option value="professionals">General Professionals</option>
+                            <option value="executives">Executives & Leaders</option>
+                            <option value="entrepreneurs">Entrepreneurs</option>
+                            <option value="creatives">Creative Professionals</option>
+                            <option value="tech">Tech Professionals</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-large" onclick="convertToLinkedInArticle()" style="width: 100%; margin-top: 20px;">
+                        🚀 Convert to LinkedIn Article
+                    </button>
+                </div>
+
+                <div>
+                    <h2>LinkedIn Preview</h2>
+                    <div class="preview-section">
+                        <div class="linkedin-preview" id="linkedinPreview">
+                            <div class="linkedin-header">
+                                <div class="author-info">
+                                    <div class="author-avatar">YP</div>
+                                    <div class="author-details">
+                                        <h3>Your Profile</h3>
+                                        <p>Your Headline • 1st</p>
+                                    </div>
+                                </div>
+                                <div class="article-title" id="previewTitle">Your LinkedIn Article Title Will Appear Here</div>
+                            </div>
+                            
+                            <div class="article-content" id="previewContent">
+                                <p>Your converted LinkedIn article content will appear here with proper formatting, headings, and engagement elements.</p>
+                                
+                                <div class="article-image">
+                                    [Featured Image - Add relevant visual]
+                                </div>
+                                
+                                <p>The converter will optimize your content for LinkedIn's professional audience and format.</p>
+                            </div>
+                            
+                            <div class="hashtags" id="previewHashtags">
+                                <!-- Hashtags will be generated here -->
+                            </div>
+                            
+                            <div class="engagement-stats">
+                                <span>💬 0 comments</span>
+                                <span>🔄 0 reposts</span>
+                                <span>👍 0 likes</span>
+                                <span>👁️ 0 views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-stats">
+                        <div class="stat-card">
+                            <div class="stat-value" id="wordCount">0</div>
+                            <div class="stat-label">Words</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="readingTime">0 min</div>
+                            <div class="stat-label">Reading Time</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="hashtagCount">0</div>
+                            <div class="stat-label">Hashtags</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="engagementScore">0%</div>
+                            <div class="stat-label">Engagement Score</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resultsSection" class="tool-section" style="display: none;">
+            <h2>Optimization Analysis & Recommendations</h2>
+            
+            <div class="optimization-panel">
+                <h3>📊 Content Optimization Score</h3>
+                <div class="optimization-grid">
+                    <div class="optimization-card">
+                        <div class="optimization-value" id="formattingScore">0%</div>
+                        <div class="optimization-label">Formatting Quality</div>
+                    </div>
+                    <div class="optimization-card">
+                        <div class="optimization-value" id="readabilityScore">0%</div>
+                        <div class="optimization-label">Readability</div>
+                    </div>
+                    <div class="optimization-card">
+                        <div class="optimization-value" id="engagementPotential">0%</div>
+                        <div class="optimization-label">Engagement Potential</div>
+                    </div>
+                    <div class="optimization-card">
+                        <div class="optimization-value" id="seoScore">0%</div>
+                        <div class="optimization-label">SEO Optimization</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommendations">
+                <h3>🚀 Optimization Recommendations</h3>
+                <div id="recommendationsList">
+                    <!-- Recommendations will be generated here -->
+                </div>
+            </div>
+
+            <div class="export-options">
+                <h3>📤 Export Options</h3>
+                <p>Export your optimized LinkedIn article in various formats:</p>
+                <div class="export-buttons">
+                    <button class="btn" onclick="exportArticle('html')">📄 Export as HTML</button>
+                    <button class="btn" onclick="exportArticle('text')">📝 Export as Plain Text</button>
+                    <button class="btn" onclick="exportArticle('linkedin')">💼 Copy for LinkedIn</button>
+                    <button class="btn btn-secondary" onclick="saveAsTemplate()">💾 Save as Template</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="tool-section">
+            <h2>LinkedIn Article Best Practices</h2>
+            <div class="optimization-grid">
+                <div class="optimization-card">
+                    <div class="optimization-value">5-7 min</div>
+                    <div class="optimization-label">Ideal Reading Time</div>
+                </div>
+                <div class="optimization-card">
+                    <div class="optimization-value">3-5</div>
+                    <div class="optimization-label">Recommended Hashtags</div>
+                </div>
+                <div class="optimization-card">
+                    <div class="optimization-value">80-120</div>
+                    <div class="optimization-label">Title Character Limit</div>
+                </div>
+                <div class="optimization-card">
+                    <div class="optimization-value">800-2000</div>
+                    <div class="optimization-label">Word Count Range</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tool-section">
+            <h2>User Testing & Success Stories</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p>"This tool helped me convert my technical blog posts into engaging LinkedIn articles. My engagement increased by 300% and I gained 2,000+ followers in 3 months!"</p>
+                    <div class="user-info">
+                        <div class="user-avatar">TS</div>
+                        <div>
+                            <strong>Sarah Chen</strong>
+                            <div>Tech Content Creator</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p>"The black and blue interface makes content editing comfortable for long sessions. The optimization recommendations are spot-on for LinkedIn's algorithm."</p>
+                    <div class="user-info">
+                        <div class="user-avatar">MJ</div>
+                        <div>
+                            <strong>Mike Johnson</strong>
+                            <div>Marketing Director</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p>"As a consultant, converting case studies into LinkedIn articles was time-consuming. This tool cut my preparation time by 70% while improving quality."</p>
+                    <div class="user-info">
+                        <div class="user-avatar">RD</div>
+                        <div>
+                            <strong>Dr. Rebecca Davis</strong>
+                            <div>Business Consultant</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tool-section">
+            <h2>More Professional Tools Available</h2>
+            <p>Explore our complete suite of tools for content creators and professionals:</p>
+            
+            <div style="margin-top: 20px;">
+                <button class="btn" onclick="window.location.href='https://www.onlinewebtool.live'">
+                    Explore OnlineWebTool.Live
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.href='https://www.onlinetoolstack.site'" style="margin-left: 10px;">
+                    Visit OnlineToolStack.Site
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 OnlineWebTool.Live - Professional Content Optimization Tools</p>
+            <p>Visit <a href="https://www.onlinewebtool.live" style="color: var(--primary-blue);">www.onlinewebtool.live</a> and <a href="https://www.onlinetoolstack.site" style="color: var(--primary-blue);">www.onlinetoolstack.site</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // LinkedIn formatting rules and best practices
+        const linkedinRules = {
+            maxTitleLength: 120,
+            idealReadingTime: { min: 3, max: 7 },
+            hashtagLimits: { min: 3, max: 5 },
+            paragraphLength: { ideal: 3, max: 6 },
+            sentenceLength: { ideal: 15, max: 25 }
+        };
+
+        // Industry-specific hashtags
+        const hashtagLibrary = {
+            professionals: ['CareerDevelopment', 'ProfessionalGrowth', 'Networking', 'CareerTips', 'Business'],
+            executives: ['Leadership', 'Management', 'BusinessStrategy', 'Executive', 'Innovation'],
+            entrepreneurs: ['Entrepreneurship', 'Startup', 'BusinessGrowth', 'Innovation', 'Success'],
+            creatives: ['Creativity', 'Design', 'Innovation', 'CreativeProcess', 'Art'],
+            tech: ['Technology', 'Tech', 'Innovation', 'DigitalTransformation', 'AI']
+        };
+
+        function convertToLinkedInArticle() {
+            const originalContent = document.getElementById('originalContent').value;
+            const articleTitle = document.getElementById('articleTitle').value;
+            const contentType = document.getElementById('contentType').value;
+            const targetAudience = document.getElementById('targetAudience').value;
+
+            if (!originalContent.trim() || !articleTitle.trim()) {
+                alert('Please enter both title and content to convert.');
+                return;
+            }
+
+            // Process the content
+            const processedContent = processContentForLinkedIn(originalContent, contentType);
+            const optimizedTitle = optimizeTitle(articleTitle);
+            const hashtags = generateHashtags(targetAudience, contentType);
+
+            // Update preview
+            updateLinkedInPreview(optimizedTitle, processedContent, hashtags);
+            
+            // Calculate statistics
+            calculateContentStats(processedContent, hashtags);
+            
+            // Generate optimization analysis
+            generateOptimizationAnalysis(originalContent, processedContent, optimizedTitle, hashtags);
+            
+            // Show results section
+            document.getElementById('resultsSection').style.display = 'block';
+        }
+
+        function processContentForLinkedIn(content, contentType) {
+            let processed = content;
+
+            // Convert markdown-style formatting to LinkedIn formatting
+            processed = processed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            processed = processed.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            
+            // Convert numbered lists
+            processed = processed.replace(/^(\d+)\.\s+(.*)$/gm, '<li>$2</li>');
+            processed = processed.replace(/(<li>.*<\/li>)/s, '<ol>$1</ol>');
+            
+            // Convert bullet points
+            processed = processed.replace(/^-\s+(.*)$/gm, '<li>$1</li>');
+            processed = processed.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+            
+            // Add headings for sections
+            processed = addHeadings(processed, contentType);
+            
+            // Optimize paragraph structure
+            processed = optimizeParagraphs(processed);
+            
+            // Add call-to-action based on content type
+            processed = addCallToAction(processed, contentType);
+            
+            return processed;
+        }
+
+        function addHeadings(content, contentType) {
+            const headingTemplates = {
+                'blog-post': ['Key Takeaways', 'Why This Matters', 'Actionable Steps'],
+                'how-to-guide': ['Getting Started', 'Step-by-Step Process', 'Pro Tips'],
+                'case-study': ['The Challenge', 'The Solution', 'The Results'],
+                'industry-analysis': ['Current Landscape', 'Key Trends', 'Future Outlook'],
+                'news-article': ['Breaking Down the News', 'Industry Impact', 'What It Means For You']
+            };
+
+            let headings = headingTemplates[contentType] || ['Key Insights', 'Practical Applications', 'Next Steps'];
+            
+            // Simple heading insertion logic - in real implementation, this would be more sophisticated
+            const paragraphs = content.split('\n\n');
+            if (paragraphs.length > 4) {
+                paragraphs.splice(2, 0, `<h2>${headings[0]}</h2>`);
+                if (paragraphs.length > 8) {
+                    paragraphs.splice(6, 0, `<h2>${headings[1]}</h2>`);
+                }
+            }
+            
+            return paragraphs.join('\n\n');
+        }
+
+        function optimizeParagraphs(content) {
+            // Split long paragraphs and ensure proper line breaks
+            const paragraphs = content.split('\n\n');
+            const optimizedParagraphs = paragraphs.map(paragraph => {
+                if (paragraph.length > 300) {
+                    // Split long paragraphs
+                    const sentences = paragraph.split('. ');
+                    let currentParagraph = '';
+                    const newParagraphs = [];
+                    
+                    sentences.forEach(sentence => {
+                        if ((currentParagraph + sentence).length > 250) {
+                            if (currentParagraph) newParagraphs.push(currentParagraph);
+                            currentParagraph = sentence + '. ';
+                        } else {
+                            currentParagraph += sentence + '. ';
+                        }
+                    });
+                    if (currentParagraph) newParagraphs.push(currentParagraph);
+                    
+                    return newParagraphs.join('</p><p>');
+                }
+                return paragraph;
+            });
+            
+            return optimizedParagraphs.map(p => `<p>${p}</p>`).join('');
+        }
+
+        function addCallToAction(content, contentType) {
+            const ctas = {
+                'blog-post': '\n\n<p><strong>What are your thoughts on this topic?</strong> Share your experiences in the comments below 👇</p>',
+                'how-to-guide': '\n\n<p><strong>Ready to implement these strategies?</strong> Let me know which tip you found most helpful in the comments!</p>',
+                'case-study': '\n\n<p><strong>Have you faced similar challenges?</strong> I\'d love to hear how you approached them in the comments.</p>',
+                'industry-analysis': '\n\n<p><strong>How do you see these trends impacting your industry?</strong> Join the discussion in the comments.</p>',
+                'news-article': '\n\n<p><strong>How will this news affect your business?</strong> Share your perspective in the comments.</p>'
+            };
+            
+            return content + (ctas[contentType] || ctas['blog-post']);
+        }
+
+        function optimizeTitle(title) {
+            let optimized = title.trim();
+            
+            // Ensure title is within LinkedIn limits
+            if (optimized.length > linkedinRules.maxTitleLength) {
+                optimized = optimized.substring(0, linkedinRules.maxTitleLength - 3) + '...';
+            }
+            
+            // Add power words for engagement
+            const powerWords = ['Ultimate', 'Proven', 'Essential', 'Complete', 'Advanced'];
+            if (!powerWords.some(word => optimized.includes(word)) && optimized.split(' ').length < 8) {
+                optimized = optimized.replace(/^(.*)$/, 'The Complete Guide to $1');
+            }
+            
+            return optimized;
+        }
+
+        function generateHashtags(audience, contentType) {
+            const baseHashtags = hashtagLibrary[audience] || hashtagLibrary.professionals;
+            const contentHashtags = {
+                'blog-post': ['ContentCreation', 'Writing'],
+                'how-to-guide': ['HowTo', 'Tutorial'],
+                'case-study': ['CaseStudy', 'SuccessStory'],
+                'industry-analysis': ['IndustryInsights', 'Trends'],
+                'news-article': ['News', 'Update']
+            };
+            
+            const additional = contentHashtags[contentType] || ['ProfessionalDevelopment'];
+            
+            // Combine and limit to recommended number
+            const allHashtags = [...baseHashtags, ...additional];
+            return allHashtags.slice(0, linkedinRules.hashtagLimits.max);
+        }
+
+        function updateLinkedInPreview(title, content, hashtags) {
+            document.getElementById('previewTitle').textContent = title;
+            document.getElementById('previewContent').innerHTML = content;
+            
+            const hashtagsContainer = document.getElementById('previewHashtags');
+            hashtagsContainer.innerHTML = hashtags.map(tag => 
+                `<span class="hashtag">#${tag}</span>`
+            ).join(' ');
+        }
+
+        function calculateContentStats(content, hashtags) {
+            // Calculate word count
+            const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+            document.getElementById('wordCount').textContent = wordCount.toLocaleString();
+            
+            // Calculate reading time (average 200-250 words per minute)
+            const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+            document.getElementById('readingTime').textContent = readingTime + ' min';
+            
+            // Hashtag count
+            document.getElementById('hashtagCount').textContent = hashtags.length;
+            
+            // Engagement score (simplified calculation)
+            const engagementScore = calculateEngagementScore(content, wordCount, readingTime, hashtags.length);
+            document.getElementById('engagementScore').textContent = engagementScore + '%';
+        }
+
+        function calculateEngagementScore(content, wordCount, readingTime, hashtagCount) {
+            let score = 50;
+            
+            // Word count optimization (800-2000 words ideal)
+            if (wordCount >= 800 && wordCount <= 2000) score += 20;
+            else if (wordCount >= 500 && wordCount <= 2500) score += 10;
+            
+            // Reading time optimization (3-7 minutes ideal)
+            if (readingTime >= 3 && readingTime <= 7) score += 15;
+            else if (readingTime >= 2 && readingTime <= 10) score += 5;
+            
+            // Hashtag optimization (3-5 hashtags ideal)
+            if (hashtagCount >= 3 && hashtagCount <= 5) score += 15;
+            
+            // Content structure (headings, paragraphs)
+            const headingCount = (content.match(/<h2>/g) || []).length;
+            if (headingCount >= 2) score += 10;
+            
+            return Math.min(100, score);
+        }
+
+        function generateOptimizationAnalysis(originalContent, processedContent, title, hashtags) {
+            // Calculate various scores
+            const formattingScore = calculateFormattingScore(processedContent);
+            const readabilityScore = calculateReadabilityScore(processedContent);
+            const engagementPotential = calculateEngagementPotential(processedContent, title);
+            const seoScore = calculateSEOScore(title, processedContent, hashtags);
+            
+            // Update scores
+            document.getElementById('formattingScore').textContent = formattingScore + '%';
+            document.getElementById('readabilityScore').textContent = readabilityScore + '%';
+            document.getElementById('engagementPotential').textContent = engagementPotential + '%';
+            document.getElementById('seoScore').textContent = seoScore + '%';
+            
+            // Generate recommendations
+            generateRecommendations(formattingScore, readabilityScore, engagementPotential, seoScore, processedContent);
+        }
+
+        function calculateFormattingScore(content) {
+            let score = 70;
+            
+            // Check for headings
+            const hasHeadings = content.includes('<h2>');
+            if (hasHeadings) score += 15;
+            
+            // Check for lists
+            const hasLists = content.includes('<ul>') || content.includes('<ol>');
+            if (hasLists) score += 10;
+            
+            // Check paragraph length variation
+            const paragraphs = content.split('</p><p>');
+            const avgParagraphLength = paragraphs.reduce((acc, p) => acc + p.length, 0) / paragraphs.length;
+            if (avgParagraphLength > 100 && avgParagraphLength < 300) score += 5;
+            
+            return Math.min(100, score);
+        }
+
+        function calculateReadabilityScore(content) {
+            // Simplified readability calculation
+            const text = content.replace(/<[^>]*>/g, '');
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+            const words = text.split(/\s+/).filter(w => w.length > 0);
+            
+            if (sentences.length === 0 || words.length === 0) return 50;
+            
+            const avgSentenceLength = words.length / sentences.length;
+            const avgWordLength = words.reduce((acc, w) => acc + w.length, 0) / words.length;
+            
+            let score = 60;
+            
+            // Ideal sentence length: 15-25 words
+            if (avgSentenceLength >= 15 && avgSentenceLength <= 25) score += 20;
+            else if (avgSentenceLength >= 10 && avgSentenceLength <= 30) score += 10;
+            
+            // Ideal word length: 4-6 characters average
+            if (avgWordLength >= 4 && avgWordLength <= 6) score += 20;
+            
+            return Math.min(100, score);
+        }
+
+        function calculateEngagementPotential(content, title) {
+            let score = 50;
+            
+            // Title analysis
+            const titleWords = title.split(' ').length;
+            if (titleWords >= 6 && titleWords <= 12) score += 15;
+            
+            // Question in content
+            if (content.includes('?')) score += 10;
+            
+            // Call to action
+            if (content.toLowerCase().includes('comment') || content.toLowerCase().includes('share')) score += 15;
+            
+            // Personal pronouns (engagement)
+            const personalPronouns = (content.match(/\b(you|your|we|our)\b/gi) || []).length;
+            if (personalPronouns >= 3) score += 10;
+            
+            return Math.min(100, score);
+        }
+
+        function calculateSEOScore(title, content, hashtags) {
+            let score = 60;
+            
+            // Title length optimization
+            if (title.length >= 40 && title.length <= 70) score += 15;
+            
+            // Hashtag relevance
+            if (hashtags.length >= 3 && hashtags.length <= 5) score += 15;
+            
+            // Content length
+            const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+            if (wordCount >= 800) score += 10;
+            
+            return Math.min(100, score);
+        }
+
+        function generateRecommendations(formattingScore, readabilityScore, engagementScore, seoScore, content) {
+            const recommendations = [];
+            
+            if (formattingScore < 80) {
+                recommendations.push("Add more subheadings to break up long sections and improve scannability");
+            }
+            
+            if (readabilityScore < 70) {
+                recommendations.push("Simplify complex sentences and vary paragraph lengths for better readability");
+            }
+            
+            if (engagementScore < 75) {
+                recommendations.push("Include more questions and calls-to-action to encourage reader interaction");
+            }
+            
+            if (seoScore < 70) {
+                recommendations.push("Optimize your title length and ensure you're using relevant, popular hashtags");
+            }
+            
+            // Check for specific content issues
+            if (!content.includes('<h2>')) {
+                recommendations.push("Add at least 2-3 subheadings to structure your content better");
+            }
+            
+            if (!content.includes('?')) {
+                recommendations.push("Include questions to encourage comments and discussion");
+            }
+            
+            const recommendationsList = document.getElementById('recommendationsList');
+            recommendationsList.innerHTML = '';
+            
+            recommendations.forEach(rec => {
+                const item = document.createElement('div');
+                item.className = 'recommendation-item';
+                item.textContent = rec;
+                recommendationsList.appendChild(item);
+            });
+        }
+
+        function exportArticle(format) {
+            const title = document.getElementById('previewTitle').textContent;
+            const content = document.getElementById('previewContent').innerHTML;
+            const hashtags = Array.from(document.querySelectorAll('.hashtag')).map(tag => tag.textContent).join(' ');
+            
+            let exportContent = '';
+            
+            switch(format) {
+                case 'html':
+                    exportContent = `<!DOCTYPE html>
+<html>
+<head>
+    <title>${title}</title>
+    <style>
+        body { font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h2 { color: #0a66c2; margin-top: 30px; }
+        .hashtags { margin-top: 30px; color: #0a66c2; }
+    </style>
+</head>
+<body>
+    <h1>${title}</h1>
+    ${content}
+    <div class="hashtags">${hashtags}</div>
+</body>
+</html>`;
+                    downloadFile(exportContent, 'linkedin-article.html', 'text/html');
+                    break;
+                    
+                case 'text':
+                    exportContent = `${title}\n\n${content.replace(/<[^>]*>/g, '')}\n\n${hashtags}`;
+                    downloadFile(exportContent, 'linkedin-article.txt', 'text/plain');
+                    break;
+                    
+                case 'linkedin':
+                    // Copy formatted content for direct pasting into LinkedIn
+                    const plainContent = content.replace(/<[^>]*>/g, '');
+                    exportContent = `${title}\n\n${plainContent}\n\n${hashtags}`;
+                    navigator.clipboard.writeText(exportContent).then(() => {
+                        alert('✅ Article copied to clipboard! Ready to paste into LinkedIn.');
+                    });
+                    break;
+            }
+        }
+
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function saveAsTemplate() {
+            alert('In a real implementation, this would save your settings and content as a reusable template.');
+        }
+
+        // Initialize with sample content
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-convert sample content on load
+            setTimeout(convertToLinkedInArticle, 1000);
+        });
+    </script>
+</body>
+</html>

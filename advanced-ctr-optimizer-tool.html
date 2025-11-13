@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced CTR Optimizer | AI-Powered Click-Through Rate Analysis</title>
+    <meta name="description" content="Professional CTR optimization with advanced factors: search intent, competitors, timing, devices, and technical SEO analysis.">
+    <style>
+        :root {
+            --primary-blue: rgb(0, 213, 255);
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #a0a0a0;
+            --success-green: #00ff88;
+            --warning-orange: #ffaa00;
+            --error-red: #ff4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid var(--primary-blue);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .subtitle {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tool-section {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+        }
+
+        .section-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .tab-button {
+            background: #333;
+            color: var(--text-light);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: var(--primary-blue);
+            color: var(--dark-bg);
+            font-weight: bold;
+        }
+
+        .tab-button:hover:not(.active) {
+            background: #444;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        input[type="text"], input[type="number"], input[type="url"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--text-light);
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        textarea {
+            min-height: 80px;
+            font-family: inherit;
+        }
+
+        .competitor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .competitor-card {
+            background: #252525;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid var(--warning-orange);
+        }
+
+        .factor-slider {
+            margin: 15px 0;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .slider-value {
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .preview-section {
+            background: #252525;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .search-preview {
+            background: #f8f9fa;
+            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+        }
+
+        .preview-title {
+            color: #1a0dab;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .preview-url {
+            color: #006621;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .preview-description {
+            color: #545454;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .rich-snippet {
+            background: #f1f3f4;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+
+        .btn {
+            background: var(--primary-blue);
+            color: var(--dark-bg);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: rgba(0, 213, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+
+        .results-section {
+            display: none;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            color: var(--primary-blue);
+            margin: 20px 0;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .analysis-card {
+            background: #252525;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .analysis-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .analysis-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .factor-breakdown {
+            background: rgba(0, 213, 255, 0.1);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .factor-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .factor-score {
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .recommendations {
+            background: #252525;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .recommendation-item {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .recommendation-item:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+        }
+
+        .competitive-analysis {
+            background: rgba(255, 170, 0, 0.1);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            color: var(--text-gray);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tool-section {
+                padding: 20px;
+            }
+            
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Advanced CTR Optimizer Tool</h1>
+            <p class="subtitle">Professional click-through rate analysis with search intent, competitor analysis, timing factors, and technical SEO considerations</p>
+        </header>
+
+        <section class="tool-section">
+            <div class="section-tabs">
+                <button class="tab-button active" data-tab="content">Content & Intent</button>
+                <button class="tab-button" data-tab="competitors">Competitor Analysis</button>
+                <button class="tab-button" data-tab="timing">Timing & Audience</button>
+                <button class="tab-button" data-tab="technical">Technical Factors</button>
+                <button class="tab-button" data-tab="preview">Live Preview</button>
+            </div>
+
+            <!-- Content & Intent Tab -->
+            <div class="tab-content active" id="content-tab">
+                <h2>Content Analysis & Search Intent</h2>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="headline">Headline / Title</label>
+                        <input type="text" id="headline" placeholder="Enter your headline" value="Best SEO Tools for Digital Marketing 2024">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="description">Meta Description</label>
+                        <textarea id="description" placeholder="Enter your description">Discover the top SEO tools that help improve website ranking and drive organic traffic. Compare features, pricing, and user reviews.</textarea>
+                    </div>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="searchIntent">Search Intent Type</label>
+                        <select id="searchIntent">
+                            <option value="informational">Informational (Learn, Research)</option>
+                            <option value="commercial">Commercial Investigation (Compare, Review)</option>
+                            <option value="transactional" selected>Transactional (Buy, Download)</option>
+                            <option value="navigational">Navigational (Specific Website)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="targetKeywords">Target Keywords</label>
+                        <input type="text" id="targetKeywords" placeholder="seo tools, digital marketing software" value="seo tools, digital marketing software, website analytics">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="userQuery">Typical User Search Query</label>
+                    <input type="text" id="userQuery" placeholder="What are users actually searching for?" value="best seo tools for small business 2024">
+                </div>
+            </div>
+
+            <!-- Competitor Analysis Tab -->
+            <div class="tab-content" id="competitors-tab">
+                <h2>Competitor Analysis</h2>
+                <p>Enter up to 3 competitor titles appearing on the same search results page:</p>
+                
+                <div class="competitor-grid">
+                    <div class="competitor-card">
+                        <label>Competitor 1 Title</label>
+                        <input type="text" class="competitor-title" placeholder="Competitor headline" value="Top 10 SEO Tools Compared - 2024 Expert Review">
+                    </div>
+                    <div class="competitor-card">
+                        <label>Competitor 2 Title</label>
+                        <input type="text" class="competitor-title" placeholder="Competitor headline" value="Free vs Paid SEO Tools: Complete Analysis">
+                    </div>
+                    <div class="competitor-card">
+                        <label>Competitor 3 Title</label>
+                        <input type="text" class="competitor-title" placeholder="Competitor headline" value="SEO Software Guide: Boost Your Rankings">
+                    </div>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="competitorStrength">Competitor Strength</label>
+                        <div class="factor-slider">
+                            <div class="slider-label">
+                                <span>Weak Competition</span>
+                                <span class="slider-value" id="competitorStrengthValue">5</span>
+                            </div>
+                            <input type="range" id="competitorStrength" min="1" max="10" value="5">
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="brandRecognition">Your Brand Recognition</label>
+                        <div class="factor-slider">
+                            <div class="slider-label">
+                                <span>Unknown</span>
+                                <span class="slider-value" id="brandRecognitionValue">5</span>
+                            </div>
+                            <input type="range" id="brandRecognition" min="1" max="10" value="5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timing & Audience Tab -->
+            <div class="tab-content" id="timing-tab">
+                <h2>Timing, Audience & Behavioral Factors</h2>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="deviceSplit">Device Distribution</label>
+                        <select id="deviceSplit">
+                            <option value="mobile-dominant">Mobile Dominant (70%+ mobile)</option>
+                            <option value="balanced">Balanced (50/50 mobile/desktop)</option>
+                            <option value="desktop-dominant" selected>Desktop Dominant (70%+ desktop)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="timeOfDay">Peak Traffic Time</label>
+                        <select id="timeOfDay">
+                            <option value="morning">Morning (8 AM - 12 PM)</option>
+                            <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+                            <option value="evening" selected>Evening (5 PM - 9 PM)</option>
+                            <option value="night">Night (9 PM - 8 AM)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="userLocation">Primary User Location</label>
+                        <select id="userLocation">
+                            <option value="north-america" selected>North America</option>
+                            <option value="europe">Europe</option>
+                            <option value="asia">Asia</option>
+                            <option value="south-america">South America</option>
+                            <option value="global">Global/Mixed</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="seasonality">Seasonality Impact</label>
+                        <select id="seasonality">
+                            <option value="low">Low (Consistent year-round)</option>
+                            <option value="medium" selected>Medium (Some seasonal variation)</option>
+                            <option value="high">High (Strong seasonal peaks)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="currentEvents">Relevance to Current Events/Trends</label>
+                    <div class="factor-slider">
+                        <div class="slider-label">
+                            <span>Not Relevant</span>
+                            <span class="slider-value" id="currentEventsValue">5</span>
+                        </div>
+                        <input type="range" id="currentEvents" min="1" max="10" value="5">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Factors Tab -->
+            <div class="tab-content" id="technical-tab">
+                <h2>Technical & SEO Factors</h2>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="searchPosition">Current Search Position</label>
+                        <select id="searchPosition">
+                            <option value="1">Position #1</option>
+                            <option value="2">Position #2</option>
+                            <option value="3" selected>Position #3</option>
+                            <option value="4">Position #4</option>
+                            <option value="5">Position #5</option>
+                            <option value="6-10">Positions 6-10</option>
+                            <option value="11+">Position 11+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="siteAuthority">Domain Authority/Trust</label>
+                        <div class="factor-slider">
+                            <div class="slider-label">
+                                <span>Low Authority</span>
+                                <span class="slider-value" id="siteAuthorityValue">5</span>
+                            </div>
+                            <input type="range" id="siteAuthority" min="1" max="10" value="5">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="pageSpeed">Page Load Speed</label>
+                        <select id="pageSpeed">
+                            <option value="excellent">Excellent (&lt; 2 seconds)</option>
+                            <option value="good" selected>Good (2-3 seconds)</option>
+                            <option value="average">Average (3-4 seconds)</option>
+                            <option value="poor">Poor (&gt; 4 seconds)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="richSnippets">Rich Snippets Features</label>
+                        <select id="richSnippets" multiple>
+                            <option value="stars">Star Ratings</option>
+                            <option value="price">Price Information</option>
+                            <option value="faq">FAQ Schema</option>
+                            <option value="breadcrumbs">Breadcrumbs</option>
+                            <option value="reviews">Review Snippets</option>
+                        </select>
+                        <small>Hold Ctrl to select multiple options</small>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="historicalCTR">Historical CTR Performance</label>
+                    <div class="factor-slider">
+                        <div class="slider-label">
+                            <span>Poor History</span>
+                            <span class="slider-value" id="historicalCTRValue">5</span>
+                        </div>
+                        <input type="range" id="historicalCTR" min="1" max="10" value="5">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Preview Tab -->
+            <div class="tab-content" id="preview-tab">
+                <h2>Search Results Preview</h2>
+                <p>How your result appears in search engines:</p>
+                
+                <div class="preview-section">
+                    <div class="search-preview">
+                        <div class="preview-title" id="livePreviewTitle">Best SEO Tools for Digital Marketing 2024</div>
+                        <div class="preview-url" id="livePreviewUrl">https://www.onlinewebtool.live › seo-tools</div>
+                        <div class="preview-description" id="livePreviewDescription">Discover the top SEO tools that help improve website ranking and drive organic traffic. Compare features, pricing, and user reviews.</div>
+                        
+                        <div class="rich-snippet" id="richSnippetPreview" style="display: none;">
+                            ⭐⭐⭐⭐⭐ 4.8/5 stars · $49/month · 15 tools compared
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="currentCtr">Current Actual CTR (%)</label>
+                    <input type="number" id="currentCtr" value="3.2" step="0.1" min="0" max="100">
+                </div>
+            </div>
+
+            <button class="btn btn-large" id="analyzeBtn" style="width: 100%; margin-top: 20px;">
+                🚀 Analyze CTR with Advanced Factors
+            </button>
+        </section>
+
+        <section id="resultsSection" class="tool-section results-section">
+            <h2>Advanced CTR Analysis Results</h2>
+            
+            <div class="score-display">
+                <span id="overallScore">0</span>/100
+            </div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <div class="analysis-value" id="currentCtrDisplay">0%</div>
+                    <div class="analysis-label">Current CTR</div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-value" id="predictedCtr">0%</div>
+                    <div class="analysis-label">Predicted CTR</div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-value" id="improvementPotential">0%</div>
+                    <div class="analysis-label">Improvement Potential</div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-value" id="confidenceScore">0%</div>
+                    <div class="analysis-label">Analysis Confidence</div>
+                </div>
+            </div>
+
+            <div class="factor-breakdown">
+                <h3>📊 Factor-by-Factor Analysis</h3>
+                <div id="factorBreakdown">
+                    <!-- Factor analysis will be generated here -->
+                </div>
+            </div>
+
+            <div class="competitive-analysis">
+                <h3>🎯 Competitive Position Analysis</h3>
+                <div id="competitiveAnalysis">
+                    <!-- Competitive analysis will be generated here -->
+                </div>
+            </div>
+
+            <div class="recommendations">
+                <h3>🚀 Optimization Recommendations</h3>
+                <div id="recommendationsList">
+                    <!-- Recommendations will be generated here -->
+                </div>
+            </div>
+
+            <button class="btn" id="exportBtn" style="margin-top: 20px;">📈 Export Detailed CTR Report</button>
+        </section>
+
+        <section class="tool-section">
+            <h2>Why Advanced CTR Analysis Matters</h2>
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <div class="analysis-value">2.5x</div>
+                    <div class="analysis-label">CTR difference between position #1 and #3</div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-value">40%</div>
+                    <div class="analysis-label">Higher CTR with rich snippets</div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-value">25%</div>
+                    <div class="analysis-label">CTR variation by device type</div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-value">60%</div>
+                    <div class="analysis-label">Impact of search intent matching</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 OnlineWebTool.Live - Professional SEO & CTR Optimization Tools</p>
+            <p>Visit <a href="https://www.onlinewebtool.live" style="color: var(--primary-blue);">www.onlinewebtool.live</a> and <a href="https://www.onlinetoolstack.site" style="color: var(--primary-blue);">www.onlinetoolstack.site</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab + '-tab';
+                    
+                    // Update active tab button
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Show active tab content
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // Slider value displays
+            const sliders = ['competitorStrength', 'brandRecognition', 'currentEvents', 'siteAuthority', 'historicalCTR'];
+            sliders.forEach(sliderId => {
+                const slider = document.getElementById(sliderId);
+                const valueDisplay = document.getElementById(sliderId + 'Value');
+                
+                slider.addEventListener('input', () => {
+                    valueDisplay.textContent = slider.value;
+                });
+            });
+
+            // Live preview updates
+            const headlineInput = document.getElementById('headline');
+            const descriptionInput = document.getElementById('description');
+            const richSnippetsSelect = document.getElementById('richSnippets');
+            
+            function updateLivePreview() {
+                document.getElementById('livePreviewTitle').textContent = headlineInput.value;
+                document.getElementById('livePreviewDescription').textContent = descriptionInput.value;
+                
+                // Show/hide rich snippets preview
+                const richSnippetPreview = document.getElementById('richSnippetPreview');
+                if (richSnippetsSelect.selectedOptions.length > 0) {
+                    richSnippetPreview.style.display = 'block';
+                } else {
+                    richSnippetPreview.style.display = 'none';
+                }
+            }
+            
+            headlineInput.addEventListener('input', updateLivePreview);
+            descriptionInput.addEventListener('input', updateLivePreview);
+            richSnippetsSelect.addEventListener('change', updateLivePreview);
+
+            // Analysis functionality
+            document.getElementById('analyzeBtn').addEventListener('click', function() {
+                const analysisData = collectAllData();
+                const results = performAdvancedCTRAnalysis(analysisData);
+                displayAdvancedResults(results);
+                document.getElementById('resultsSection').style.display = 'block';
+            });
+
+            function collectAllData() {
+                return {
+                    // Content factors
+                    headline: document.getElementById('headline').value,
+                    description: document.getElementById('description').value,
+                    searchIntent: document.getElementById('searchIntent').value,
+                    targetKeywords: document.getElementById('targetKeywords').value.split(',').map(k => k.trim()),
+                    userQuery: document.getElementById('userQuery').value,
+                    
+                    // Competitor factors
+                    competitorTitles: Array.from(document.querySelectorAll('.competitor-title')).map(input => input.value),
+                    competitorStrength: parseInt(document.getElementById('competitorStrength').value),
+                    brandRecognition: parseInt(document.getElementById('brandRecognition').value),
+                    
+                    // Timing & audience factors
+                    deviceSplit: document.getElementById('deviceSplit').value,
+                    timeOfDay: document.getElementById('timeOfDay').value,
+                    userLocation: document.getElementById('userLocation').value,
+                    seasonality: document.getElementById('seasonality').value,
+                    currentEvents: parseInt(document.getElementById('currentEvents').value),
+                    
+                    // Technical factors
+                    searchPosition: document.getElementById('searchPosition').value,
+                    siteAuthority: parseInt(document.getElementById('siteAuthority').value),
+                    pageSpeed: document.getElementById('pageSpeed').value,
+                    richSnippets: Array.from(document.getElementById('richSnippets').selectedOptions).map(opt => opt.value),
+                    historicalCTR: parseInt(document.getElementById('historicalCTR').value),
+                    
+                    // Current performance
+                    currentCTR: parseFloat(document.getElementById('currentCtr').value)
+                };
+            }
+
+            function performAdvancedCTRAnalysis(data) {
+                // Calculate scores for each factor category
+                const contentScore = calculateContentScore(data);
+                const competitorScore = calculateCompetitorScore(data);
+                const timingScore = calculateTimingScore(data);
+                const technicalScore = calculateTechnicalScore(data);
+                
+                // Weighted overall score
+                const overallScore = Math.round(
+                    (contentScore * 0.35) +
+                    (competitorScore * 0.25) +
+                    (timingScore * 0.15) +
+                    (technicalScore * 0.25)
+                );
+
+                // Calculate predicted CTR based on all factors
+                const baseCTR = getBaseCTRByPosition(data.searchPosition);
+                const adjustmentFactor = overallScore / 100;
+                const predictedCTR = baseCTR * (0.5 + (adjustmentFactor * 0.5));
+
+                // Generate detailed analysis
+                const factorAnalysis = generateFactorAnalysis(data, contentScore, competitorScore, timingScore, technicalScore);
+                const competitiveAnalysis = generateCompetitiveAnalysis(data);
+                const recommendations = generateAdvancedRecommendations(data, factorAnalysis);
+
+                return {
+                    overallScore,
+                    predictedCTR: Math.min(predictedCTR, 40), // Cap at 40% CTR
+                    currentCTR: data.currentCTR,
+                    improvementPotential: Math.round(((predictedCTR - data.currentCTR) / data.currentCTR) * 100),
+                    confidenceScore: calculateConfidenceScore(data),
+                    factorAnalysis,
+                    competitiveAnalysis,
+                    recommendations
+                };
+            }
+
+            function calculateContentScore(data) {
+                let score = 50;
+                
+                // Headline analysis
+                const headlineLength = data.headline.length;
+                if (headlineLength >= 50 && headlineLength <= 60) score += 15;
+                
+                // Search intent matching
+                const intentScores = {
+                    'informational': 70,
+                    'commercial': 80,
+                    'transactional': 90,
+                    'navigational': 60
+                };
+                score += (intentScores[data.searchIntent] - 50);
+                
+                // Keyword relevance
+                score += Math.min(data.targetKeywords.length * 5, 20);
+                
+                return Math.min(100, Math.max(0, score));
+            }
+
+            function calculateCompetitorScore(data) {
+                let score = 50;
+                
+                // Competitor strength adjustment
+                score -= (data.competitorStrength - 5) * 3;
+                
+                // Brand recognition boost
+                score += (data.brandRecognition - 5) * 4;
+                
+                // Title uniqueness analysis
+                const uniqueWords = analyzeTitleUniqueness(data.headline, data.competitorTitles);
+                score += uniqueWords * 2;
+                
+                return Math.min(100, Math.max(0, score));
+            }
+
+            function calculateTimingScore(data) {
+                let score = 50;
+                
+                // Device optimization
+                if (data.deviceSplit === 'mobile-dominant') score += 10;
+                else if (data.deviceSplit === 'balanced') score += 5;
+                
+                // Time of day relevance
+                if (data.timeOfDay === 'evening') score += 5;
+                
+                // Current events relevance
+                score += (data.currentEvents - 5) * 2;
+                
+                return Math.min(100, Math.max(0, score));
+            }
+
+            function calculateTechnicalScore(data) {
+                let score = 50;
+                
+                // Search position impact (lower positions have less potential)
+                const positionScores = {
+                    '1': 30, '2': 25, '3': 20, '4': 15, '5': 10,
+                    '6-10': 5, '11+': 0
+                };
+                score += positionScores[data.searchPosition];
+                
+                // Site authority
+                score += (data.siteAuthority - 5) * 3;
+                
+                // Page speed impact
+                const speedScores = {
+                    'excellent': 15, 'good': 10, 'average': 5, 'poor': 0
+                };
+                score += speedScores[data.pageSpeed];
+                
+                // Rich snippets boost
+                score += data.richSnippets.length * 5;
+                
+                // Historical performance
+                score += (data.historicalCTR - 5) * 2;
+                
+                return Math.min(100, Math.max(0, score));
+            }
+
+            function getBaseCTRByPosition(position) {
+                const positionCTR = {
+                    '1': 28.5, '2': 15.7, '3': 11.0, '4': 7.9, '5': 6.1,
+                    '6-10': 3.7, '11+': 2.1
+                };
+                return positionCTR[position] || 3.0;
+            }
+
+            function analyzeTitleUniqueness(mainTitle, competitorTitles) {
+                const mainWords = new Set(mainTitle.toLowerCase().split(/\W+/));
+                let uniqueWordCount = 0;
+                
+                competitorTitles.forEach(compTitle => {
+                    const compWords = new Set(compTitle.toLowerCase().split(/\W+/));
+                    const uniqueWords = [...mainWords].filter(word => !compWords.has(word));
+                    uniqueWordCount += uniqueWords.length;
+                });
+                
+                return Math.min(uniqueWordCount, 10);
+            }
+
+            function calculateConfidenceScore(data) {
+                let confidence = 70; // Base confidence
+                
+                // Increase confidence with more data
+                if (data.competitorTitles.filter(t => t.trim()).length >= 2) confidence += 10;
+                if (data.targetKeywords.length >= 2) confidence += 10;
+                if (data.historicalCTR >= 7) confidence += 10;
+                
+                return Math.min(95, confidence);
+            }
+
+            function generateFactorAnalysis(data, contentScore, competitorScore, timingScore, technicalScore) {
+                return [
+                    { factor: 'Content Quality & Intent Matching', score: contentScore, weight: 35 },
+                    { factor: 'Competitive Positioning', score: competitorScore, weight: 25 },
+                    { factor: 'Timing & Audience Alignment', score: timingScore, weight: 15 },
+                    { factor: 'Technical SEO Factors', score: technicalScore, weight: 25 }
+                ];
+            }
+
+            function generateCompetitiveAnalysis(data) {
+                const analysis = [];
+                
+                if (data.competitorStrength >= 7) {
+                    analysis.push("High competition detected - focus on unique value propositions");
+                }
+                
+                if (data.brandRecognition <= 3) {
+                    analysis.push("Low brand recognition - consider including trust signals");
+                }
+                
+                const uniqueWords = analyzeTitleUniqueness(data.headline, data.competitorTitles);
+                if (uniqueWords < 3) {
+                    analysis.push("Title lacks differentiation from competitors");
+                }
+                
+                return analysis.length > 0 ? analysis : ["Good competitive positioning - maintain current strategy"];
+            }
+
+            function generateAdvancedRecommendations(data, factorAnalysis) {
+                const recommendations = [];
+                
+                // Content recommendations
+                if (factorAnalysis[0].score < 70) {
+                    recommendations.push("Better match search intent by analyzing user query: \"" + data.userQuery + "\"");
+                    recommendations.push("Include numbers and power words in headline for better CTR");
+                }
+                
+                // Competitor recommendations
+                if (factorAnalysis[1].score < 60) {
+                    recommendations.push("Differentiate from competitors by highlighting unique features");
+                    recommendations.push("Consider A/B testing against top competitor titles");
+                }
+                
+                // Technical recommendations
+                if (data.richSnippets.length === 0) {
+                    recommendations.push("Implement rich snippets (reviews, FAQs) to increase visibility");
+                }
+                
+                if (data.pageSpeed === 'poor') {
+                    recommendations.push("Improve page load speed - aim for under 3 seconds");
+                }
+                
+                // General recommendations
+                recommendations.push("Monitor CTR by device type and optimize accordingly");
+                recommendations.push("Test different publishing times based on your audience's peak activity");
+                
+                return recommendations;
+            }
+
+            function displayAdvancedResults(results) {
+                document.getElementById('overallScore').textContent = results.overallScore;
+                document.getElementById('currentCtrDisplay').textContent = results.currentCTR.toFixed(1) + '%';
+                document.getElementById('predictedCtr').textContent = results.predictedCTR.toFixed(1) + '%';
+                document.getElementById('improvementPotential').textContent = '+' + results.improvementPotential + '%';
+                document.getElementById('confidenceScore').textContent = results.confidenceScore + '%';
+
+                // Display factor breakdown
+                const factorBreakdown = document.getElementById('factorBreakdown');
+                factorBreakdown.innerHTML = '';
+                
+                results.factorAnalysis.forEach(factor => {
+                    const factorItem = document.createElement('div');
+                    factorItem.className = 'factor-item';
+                    factorItem.innerHTML = `
+                        <span>${factor.factor}</span>
+                        <span class="factor-score">${factor.score}/100 (${factor.weight}%)</span>
+                    `;
+                    factorBreakdown.appendChild(factorItem);
+                });
+
+                // Display competitive analysis
+                const competitiveAnalysis = document.getElementById('competitiveAnalysis');
+                competitiveAnalysis.innerHTML = '';
+                
+                results.competitiveAnalysis.forEach(analysis => {
+                    const item = document.createElement('div');
+                    item.className = 'recommendation-item';
+                    item.textContent = analysis;
+                    competitiveAnalysis.appendChild(item);
+                });
+
+                // Display recommendations
+                const recommendationsList = document.getElementById('recommendationsList');
+                recommendationsList.innerHTML = '';
+                
+                results.recommendations.forEach(rec => {
+                    const item = document.createElement('div');
+                    item.className = 'recommendation-item';
+                    item.textContent = rec;
+                    recommendationsList.appendChild(item);
+                });
+            }
+
+            // Initialize live preview
+            updateLivePreview();
+        });
+    </script>
+</body>
+</html>

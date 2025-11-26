@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Post Builder Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: rgb(0, 213, 255);
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --border-color: rgb(0, 213, 255);
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --shadow-blue: rgba(0, 213, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 213, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 213, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            border-radius: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 50px var(--shadow-blue);
+            border: 3px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 213, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0099ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            color: var(--primary-blue);
+            font-size: 1.3em;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, #252525 100%);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            border: 2px solid var(--border-color);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), #0099ff, var(--primary-blue));
+            border-radius: 20px 20px 0 0;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px var(--shadow-blue);
+        }
+
+        .card-title {
+            color: var(--primary-blue);
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon {
+            font-size: 1.4em;
+            filter: drop-shadow(0 0 10px var(--primary-blue));
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            background: #0d0d0d;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 20px var(--shadow-blue);
+            background: #151515;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .emoji-picker {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 8px;
+            padding: 15px;
+            background: #0d0d0d;
+            border-radius: 12px;
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .emoji-btn {
+            font-size: 1.8em;
+            padding: 8px;
+            background: transparent;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .emoji-btn:hover {
+            background: var(--border-color);
+            transform: scale(1.2);
+            border-color: var(--primary-blue);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0099ff 100%);
+            color: #000000;
+            border: none;
+            padding: 16px 45px;
+            font-size: 1.15em;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 8px 25px var(--shadow-blue);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px var(--shadow-blue);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--primary-blue);
+            padding: 12px 35px;
+            font-size: 1em;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: #000000;
+        }
+
+        .preview-area {
+            background: #0d0d0d;
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 30px;
+            min-height: 300px;
+            position: relative;
+            box-shadow: inset 0 0 30px rgba(0, 213, 255, 0.1);
+        }
+
+        .linkedin-post {
+            background: #ffffff;
+            color: #000000;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), #0099ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .post-author {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 3px;
+        }
+
+        .author-title {
+            color: #666666;
+            font-size: 0.9em;
+        }
+
+        .post-time {
+            color: #999999;
+            font-size: 0.85em;
+        }
+
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.05em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+        }
+
+        .post-hashtags {
+            color: #0a66c2;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .post-stats {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+            color: #666666;
+            font-size: 0.95em;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .template-btn {
+            background: #0d0d0d;
+            border: 2px solid var(--border-color);
+            color: var(--primary-blue);
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .template-btn:hover {
+            background: var(--primary-blue);
+            color: #000000;
+            transform: translateX(5px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .stat-box {
+            background: #0d0d0d;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow-blue);
+        }
+
+        .stat-number {
+            font-size: 2.2em;
+            color: var(--primary-blue);
+            font-weight: 800;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .tips-section {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(0, 213, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .tip-icon {
+            font-size: 1.5em;
+            color: var(--primary-blue);
+        }
+
+        .tip-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: 0.4s;
+            border-radius: 30px;
+            border: 2px solid var(--border-color);
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-blue);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(28px);
+        }
+
+        .option-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #0d0d0d;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .template-grid,
+            .action-buttons,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .emoji-picker {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        .placeholder-text {
+            color: #666666;
+            font-style: italic;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0d0d0d;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0099ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 LinkedIn Post Builder Pro 🚀</h1>
+            <p class="subtitle">Create Engaging LinkedIn Content in Minutes</p>
+        </header>
+
+        <div class="main-grid">
+            <!-- Left Panel - Input -->
+            <div>
+                <div class="card">
+                    <h2 class="card-title"><span class="icon">✍️</span> Post Creator</h2>
+                    
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="authorName" placeholder="Enter your name" value="John Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Title</label>
+                        <input type="text" id="authorTitle" placeholder="e.g., Software Engineer at Tech Corp" value="Web Developer">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Post Type</label>
+                        <select id="postType">
+                            <option value="standard">Standard Post</option>
+                            <option value="announcement">Announcement</option>
+                            <option value="achievement">Achievement</option>
+                            <option value="question">Question</option>
+                            <option value="tips">Tips & Advice</option>
+                            <option value="story">Story</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Post Content</label>
+                        <textarea id="postContent" placeholder="Write your LinkedIn post here... Be authentic, add value, and engage your network!"></textarea>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                            <span style="color: var(--text-secondary); font-size: 0.9em;" id="charCounter">0 / 3000 characters</span>
+                            <button class="btn-secondary" onclick="toggleEmojiPicker()" style="padding: 8px 20px; width: auto;">😊 Add Emoji</button>
+                        </div>
+                        <div id="emojiPicker" class="emoji-picker" style="display: none;">
+                            <!-- Emojis will be populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hashtags (comma separated)</label>
+                        <input type="text" id="hashtags" placeholder="e.g., webdev, javascript, coding" value="linkedin, networking, professional">
+                    </div>
+
+                    <div class="option-row">
+                        <span style="color: var(--primary-blue); font-weight: 600;">Add Hook Line</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="addHook" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="option-row">
+                        <span style="color: var(--primary-blue); font-weight: 600;">Add Call-to-Action</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="addCTA" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <button class="btn" onclick="generatePost()">🚀 Generate Post</button>
+                </div>
+
+                <div class="card" style="margin-top: 30px;">
+                    <h2 class="card-title"><span class="icon">📋</span> Quick Templates</h2>
+                    <div class="template-grid">
+                        <button class="template-btn" onclick="loadTemplate('achievement')">🏆 Achievement</button>
+                        <button class="template-btn" onclick="loadTemplate('learning')">📚 Learning</button>
+                        <button class="template-btn" onclick="loadTemplate('milestone')">🎯 Milestone</button>
+                        <button class="template-btn" onclick="loadTemplate('hiring')">💼 Hiring</button>
+                        <button class="template-btn" onclick="loadTemplate('insight')">💡 Insight</button>
+                        <button class="template-btn" onclick="loadTemplate('event')">📅 Event</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Preview -->
+            <div>
+                <div class="card">
+                    <h2 class="card-title"><span class="icon">👁️</span> Live Preview</h2>
+                    
+                    <div class="preview-area">
+                        <div class="linkedin-post" id="linkedinPost">
+                            <div class="post-header">
+                                <div class="avatar" id="avatarIcon">JD</div>
+                                <div class="post-author">
+                                    <div class="author-name" id="previewName">John Doe</div>
+                                    <div class="author-title" id="previewTitle">Web Developer</div>
+                                    <div class="post-time">Just now • 🌐</div>
+                                </div>
+                            </div>
+                            <div class="post-content" id="previewContent">
+                                <span class="placeholder-text">Your post preview will appear here... Start typing to see the magic! ✨</span>
+                            </div>
+                            <div class="post-hashtags" id="previewHashtags"></div>
+                            <div class="post-stats">
+                                <div class="stat-item">👍 Like</div>
+                                <div class="stat-item">💬 Comment</div>
+                                <div class="stat-item">🔄 Repost</div>
+                                <div class="stat-item">📤 Send</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn-secondary" onclick="copyPost()">📋 Copy Post</button>
+                        <button class="btn-secondary" onclick="downloadPost()">💾 Save Draft</button>
+                        <button class="btn" onclick="shareToLinkedIn()" style="grid-column: 1 / -1;">🔗 Open LinkedIn</button>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <span class="stat-number" id="wordCount">0</span>
+                            <span class="stat-label">Words</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number" id="lineCount">0</span>
+                            <span class="stat-label">Lines</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number" id="hashtagCount">0</span>
+                            <span class="stat-label">Hashtags</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number" id="engagementScore">-</span>
+                            <span class="stat-label">Score</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card full-width" style="margin-top: 30px;">
+                    <h2 class="card-title"><span class="icon">💡</span> Pro Tips</h2>
+                    <div class="tips-section">
+                        <div class="tip-item">
+                            <div class="tip-icon">🎯</div>
+                            <div class="tip-text">
+                                <strong>Start with a Hook:</strong> The first 2-3 lines are crucial. Ask a question, share a surprising fact, or create curiosity to stop the scroll.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">📏</div>
+                            <div class="tip-text">
+                                <strong>Optimal Length:</strong> Posts between 150-300 words get the most engagement. Keep it concise but valuable.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">📊</div>
+                            <div class="tip-text">
+                                <strong>Use Line Breaks:</strong> Break your content into short paragraphs (1-2 sentences each) for better readability on mobile.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">🔗</div>
+                            <div class="tip-text">
+                                <strong>3-5 Hashtags:</strong> Use relevant hashtags to increase discoverability. Mix popular and niche tags for best results.
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">💬</div>
+                            <div class="tip-text">
+                                <strong>End with CTA:</strong> Ask a question, request opinions, or encourage action to boost engagement and comments.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Emoji data
+        const emojis = ['😊', '🚀', '💡', '🎯', '✨', '🔥', '💪', '👍', '🎉', '📈', '💼', '🌟', '🏆', '📊', '💯', '👏', '🤝', '💬', '📱', '💻', '🎨', '📚', '🌍', '⚡', '🔔', '👀', '❤️', '🙌', '✅', '📢', '🎓', '🤔'];
+
+        // Populate emoji picker
+        const emojiPicker = document.getElementById('emojiPicker');
+        emojis.forEach(emoji => {
+            const btn = document.createElement('button');
+            btn.className = 'emoji-btn';
+            btn.textContent = emoji;
+            btn.onclick = () => insertEmoji(emoji);
+            emojiPicker.appendChild(btn);
+        });
+
+        // Real-time preview updates
+        document.getElementById('authorName').addEventListener('input', updatePreview);
+        document.getElementById('authorTitle').addEventListener('input', updatePreview);
+        document.getElementById('postContent').addEventListener('input', updatePreview);
+        document.getElementById('hashtags').addEventListener('input', updatePreview);
+
+        function updatePreview() {
+            const name = document.getElementById('authorName').value || 'Your Name';
+            const title = document.getElementById('authorTitle').value || 'Your Title';
+            const content = document.getElementById('postContent').value;
+            const hashtags = document.getElementById('hashtags').value;
+
+            // Update name and title
+            document.getElementById('previewName').textContent = name;
+            document.getElementById('previewTitle').textContent = title;
+            
+            // Update avatar
+            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+            document.getElementById('avatarIcon').textContent = initials;
+
+            // Update content
+            const contentDiv = document.getElementById('previewContent');
+            if (content.trim()) {
+                contentDiv.innerHTML = content;
+                contentDiv.className = 'post-content';
+            } else {
+                contentDiv.innerHTML = '<span class="placeholder-text">Your post preview will appear here... Start typing to see the magic! ✨</span>';
+            }
+
+            // Update hashtags
+            if (hashtags.trim()) {
+                const hashtagArray = hashtags.split(',').map(tag => '#' + tag.trim()).join(' ');
+                document.getElementById('previewHashtags').textContent = hashtagArray;
+            } else {
+                document.getElementById('previewHashtags').textContent = '';
+            }
+
+            // Update statistics
+            updateStats(content, hashtags);
+        }
+
+        function updateStats(content, hashtags) {
+            const words = content.trim().split(/\s+/).filter(w => w.length > 0).length;
+            const lines = content.split('\n').filter(l => l.trim().length > 0).length;
+            const hashtagCount = hashtags.split(',').filter(h => h.trim().length > 0).length;
+            const chars = content.length;
+
+            document.getElementById('wordCount').textContent = words;
+            document.getElementById('lineCount').textContent = lines;
+            document.getElementById('hashtagCount').textContent = hashtagCount;
+            document.getElementById('charCounter').textContent = `${chars} / 3000 characters`;
+
+            // Calculate engagement score
+            let score = 0;
+            if (words >= 150 && words <= 300) score += 30;
+            else if (words > 0) score += 15;
+            
+            if (lines >= 5 && lines <= 15) score += 25;
+            else if (lines > 0) score += 10;
+            
+            if (hashtagCount >= 3 && hashtagCount <= 5) score += 20;
+            else if (hashtagCount > 0) score += 10;
+            
+            if (content.includes('?')) score += 15;
+            if (content.length > 100) score += 10;
+
+            document.getElementById('engagementScore').textContent = score;
+            
+            const scoreElement = document.getElementById('engagementScore');
+            if (score >= 80) scoreElement.style.color = '#00ff00';
+            else if (score >= 60) scoreElement.style.color = 'var(--primary-blue)';
+            else scoreElement.style.color = '#ff6b6b';
+        }
+
+        function toggleEmojiPicker() {
+            const picker = document.getElementById('emojiPicker');
+            picker.style.display = picker.style.display === 'none' ? 'grid' : 'none';
+        }
+
+        function insertEmoji(emoji) {
+            const textarea = document.getElementById('postContent');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const text = textarea.value;
+            textarea.value = text.substring(0, start) + emoji + text.substring(end);
+            textarea.selectionStart = textarea.selectionEnd = start + emoji.length;
+            textarea.focus();
+            updatePreview();
+        }
+
+        function generatePost() {
+            const type = document.getElementById('postType').value;
+            const content = document.getElementById('postContent').value;
+            const addHook = document.getElementById('addHook').checked;
+            const addCTA = document.getElementById('addCTA').checked;
+
+            let enhancedContent = content;
+
+            // Add hook if enabled
+            if (addHook && content.trim()) {
+                const hooks = {
+                    standard: "Here's something interesting I wanted to share:\n\n",
+                    announcement: "🎉 Exciting news!\n\n",
+                    achievement: "🏆 Proud moment!\n\n",
+                    question: "🤔 I've been thinking about this:\n\n",
+                    tips: "💡 Here's what I've learned:\n\n",
+                    story: "📖 Let me share a story:\n\n"
+                };
+                if (!content.startsWith(hooks[type])) {
+                    enhancedContent = hooks[type] + content;
+                }
+            }
+
+            // Add CTA if enabled
+            if (addCTA && content.trim()) {
+                const ctas = {
+                    standard: "\n\nWhat are your thoughts on this? 💬",
+                    announcement: "\n\nExcited to hear your thoughts! What do you think? 🚀",
+                    achievement: "\n\nWhat's your recent win? Share below! 👇",
+                    question: "\n\nI'd love to hear your perspective! 💭",
+                    tips: "\n\nWhat's your experience with this? Let me know! 🙌",
+                    story: "\n\nHave you experienced something similar? Share your story! ✨"
+                };
+                if (!content.includes('?') && !content.includes('thoughts') && !content.includes('share')) {
+                    enhancedContent += ctas[type];
+                }
+            }
+
+            document.getElementById('postContent').value = enhancedContent;
+            updatePreview();
+
+            // Show success animation
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Post Enhanced!';
+            btn.style.background = 'linear-gradient(135deg, #00ff00 0%, #00cc00 100%)';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+            }, 2000);
+        }
+
+        function loadTemplate(type) {
+            const templates = {
+                achievement: {
+                    content: "🎉 Excited to share that I've just completed a major milestone!\n\nAfter months of hard work and dedication, I'm proud to announce [YOUR ACHIEVEMENT].\n\nKey learnings:\n✅ Point 1\n✅ Point 2\n✅ Point 3\n\nThank you to everyone who supported me along the way!\n\nWhat's a recent achievement you're proud of?",
+                    hashtags: "achievement, milestone, success, growth"
+                },
+                learning: {
+                    content: "📚 Today I learned something valuable that I want to share:\n\n[YOUR KEY LEARNING]\n\nHere's why it matters:\n• Reason 1\n• Reason 2\n• Reason 3\n\nHave you experienced this? What's your take?",
+                    hashtags: "learning, growth, development, tips"
+                },
+                milestone: {
+                    content: "🎯 We did it! Our team just hit an incredible milestone:\n\n[DESCRIBE MILESTONE]\n\nWhat made this possible:\n→ Factor 1\n→ Factor 2\n→ Factor 3\n\nGrateful for this amazing journey!\n\nWhat milestones are you celebrating?",
+                    hashtags: "milestone, teamwork, success, celebration"
+                },
+                hiring: {
+                    content: "💼 We're hiring!\n\nLooking for talented [JOB TITLE] to join our growing team.\n\nWhat you'll do:\n• Responsibility 1\n• Responsibility 2\n• Responsibility 3\n\nWhat we offer:\n✨ Benefit 1\n✨ Benefit 2\n✨ Benefit 3\n\nInterested? Drop a comment or DM me!",
+                    hashtags: "hiring, jobs, careers, opportunity"
+                },
+                insight: {
+                    content: "💡 Quick insight from my experience:\n\n[YOUR INSIGHT]\n\nWhy this matters:\n\n[EXPLANATION]\n\n3 ways to apply this:\n1. Action 1\n2. Action 2\n3. Action 3\n\nWhat's your experience with this?",
+                    hashtags: "insight, tips, advice, learning"
+                },
+                event: {
+                    content: "📅 Mark your calendars!\n\nI'm excited to announce [EVENT NAME]!\n\n📍 Where: [LOCATION]\n🗓️ When: [DATE & TIME]\n🎯 What: [DESCRIPTION]\n\nWhy attend:\n✓ Reason 1\n✓ Reason 2\n✓ Reason 3\n\nSee you there! Register here: [LINK]",
+                    hashtags: "event, networking, community, announcement"
+                }
+            };
+
+            const template = templates[type];
+            document.getElementById('postContent').value = template.content;
+            document.getElementById('hashtags').value = template.hashtags;
+            document.getElementById('postType').value = type === 'learning' ? 'tips' : type === 'hiring' ? 'announcement' : type;
+            updatePreview();
+
+            // Scroll to content area
+            document.getElementById('postContent').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function copyPost() {
+            const content = document.getElementById('postContent').value;
+            const hashtags = document.getElementById('hashtags').value;
+            const fullPost = content + '\n\n' + hashtags.split(',').map(h => '#' + h.trim()).join(' ');
+
+            navigator.clipboard.writeText(fullPost).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                btn.style.background = 'var(--primary-blue)';
+                btn.style.color = '#000000';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            });
+        }
+
+        function downloadPost() {
+            const content = document.getElementById('postContent').value;
+            const hashtags = document.getElementById('hashtags').value;
+            const name = document.getElementById('authorName').value;
+            const fullPost = `LinkedIn Post Draft - ${new Date().toLocaleDateString()}\n\nAuthor: ${name}\n\n${content}\n\n${hashtags.split(',').map(h => '#' + h.trim()).join(' ')}`;
+
+            const blob = new Blob([fullPost], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `linkedin-post-${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Saved!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        }
+
+        function shareToLinkedIn() {
+            window.open('https://www.linkedin.com/feed/', '_blank');
+        }
+
+        // Initialize preview
+        updatePreview();
+    </script>
+</body>
+</html>

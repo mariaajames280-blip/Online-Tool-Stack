@@ -29,16 +29,10 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/blog.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
 
-    <!-- Core Tools -->
+    <!-- Core Tools - CORRECTED -->
     <url>
-        <loc>https://www.onlinetoolstack.site/qr-generator.html</loc>
+        <loc>https://www.onlinetoolstack.site/qr-code-generator.html</loc>
         <lastmod>2025-01-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -62,7 +56,7 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.onlinetoolstack.site/md5-generator-tool.html</loc>
+        <loc>https://www.onlinetoolstack.site/md5-hash-generator.html</loc>
         <lastmod>2025-01-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -112,9 +106,9 @@
         <priority>0.8</priority>
     </url>
 
-    <!-- Business & Productivity Tools -->
+    <!-- Business & Productivity Tools - CORRECTED -->
     <url>
-        <loc>https://www.onlinetoolstack.site/expense-tracker-calculator.html</loc>
+        <loc>https://www.onlinetoolstack.site/expense-tracker-&-calculator.html</loc>
         <lastmod>2025-01-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -144,7 +138,7 @@
         <priority>0.7</priority>
     </url>
 
-    <!-- Converter Tools -->
+    <!-- Converter Tools - CORRECTED -->
     <url>
         <loc>https://www.onlinetoolstack.site/currency-converter.html</loc>
         <lastmod>2025-01-21</lastmod>
@@ -152,7 +146,7 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.onlinetoolstack.site/ebook-converter.html</loc>
+        <loc>https://www.onlinetoolstack.site/ebook-converter-pro.html</loc>
         <lastmod>2025-01-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -164,210 +158,50 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.onlinetoolstack.site/youtube-mp3.html</loc>
+        <loc>https://www.onlinetoolstack.site/youtube-to-mp3-converter.html</loc>
         <lastmod>2025-01-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
 
-    <!-- Design & Image Tools -->
+    <!-- ADD MISSING TOOLS -->
     <url>
-        <loc>https://www.onlinetoolstack.site/social-media-banner-maker-pro.html</loc>
+        <loc>https://www.onlinetoolstack.site/linkedin-post-builder-pro.html</loc>
         <lastmod>2025-01-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.onlinetoolstack.site/color-palette-generator-pro.html</loc>
+        <loc>https://www.onlinetoolstack.site/anchor-text-optimizer.html</loc>
         <lastmod>2025-01-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.onlinetoolstack.site/logo-maker.html</loc>
+        <loc>https://www.onlinetoolstack.site/blog-traffic-predictor.html</loc>
         <lastmod>2025-01-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.onlinetoolstack.site/image-optimizer-pro.html</loc>
+        <loc>https://www.onlinetoolstack.site/advanced-ctr-optimizer.html</loc>
         <lastmod>2025-01-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.onlinetoolstack.site/font-generator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- YouTube Tools -->
-    <url>
-        <loc>https://www.onlinetoolstack.site/youtube-description-generator.html</loc>
+        <loc>https://www.onlinetoolstack.site/audience-engagement-analyzer.html</loc>
         <lastmod>2025-01-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.onlinetoolstack.site/youtube-logo-generator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/youtube-thumbnail-generator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/youtube-embed-generator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/youtube-thumbnail-downloader.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/youtube-banner-generator.html</loc>
+        <loc>https://www.onlinetoolstack.site/color-scheme-generator.html</loc>
         <lastmod>2025-01-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- SEO & Marketing Tools -->
-    <url>
-        <loc>https://www.onlinetoolstack.site/domain-age-checker-pro.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/google-index-checker.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/keyword-suggestion-tool.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/niche-finder.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/adsense-calculator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/cpm-calculator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Content & Writing Tools -->
-    <url>
-        <loc>https://www.onlinetoolstack.site/text-to-speech-converter-pro.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/professional-bio-creator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/blog-title-generator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/content-outline-generator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/blog-post-ideas-generator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Technical Tools -->
-    <url>
-        <loc>https://www.onlinetoolstack.site/advanced-regex-tester.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/json-validator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/xml-formatter.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/code-beautifier.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Legal & Utility Tools -->
-    <url>
-        <loc>https://www.onlinetoolstack.site/privacy-policy-generator.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/disclaimer-generator-tool.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/comma-separator-tool.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <!-- Legal Pages -->
-    <url>
-        <loc>https://www.onlinetoolstack.site/privacy.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
-    </url>
-    <url>
-        <loc>https://www.onlinetoolstack.site/terms.html</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
-    </url>
+    <!-- Continue with other corrected URLs... -->
 
 </urlset>

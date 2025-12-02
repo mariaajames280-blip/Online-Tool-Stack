@@ -1,81 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Core Pages -->
   <url><loc>https://www.onlinetoolstack.site/</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/about</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/contact</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/all-tools</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/about.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/contact.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/privacy.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/terms.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/blog.html</loc></url>
 
-  <!-- QR & URL Tools -->
-  <url><loc>https://www.onlinetoolstack.site/qr-code-generator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/url-shortener</loc></url>
-
-  <!-- Text & Formatting Tools -->
-  <url><loc>https://www.onlinetoolstack.site/text-case-converter</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/word-counter</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/text-to-speech-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/smart-text-transformer-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/comma-separator-tool</loc></url>
-
-  <!-- Encoding & Security -->
-  <url><loc>https://www.onlinetoolstack.site/base64-encoder-decoder</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/md5-hash-generator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/advanced-regex-tester</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/checkbot-tool</loc></url>
-
-  <!-- AI Tools -->
-  <url><loc>https://www.onlinetoolstack.site/ai-content-generator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/ai-background-remover</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/ai-content-placeholder-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/ai-text-analysis-tool</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/niche-finder</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/blog-traffic-predictor</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/advanced-ctr-optimizer</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/audience-engagement-analyzer</loc></url>
-
-  <!-- Design & Media Tools -->
-  <url><loc>https://www.onlinetoolstack.site/social-media-banner-maker-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/business-card-designer</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/color-palette-generator-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/gradient-generator-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/image-optimizer-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/logo-maker</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/youtube-thumbnail-downloader</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/youtube-banner-generator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/lightshot-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/color-scheme-generator</loc></url>
-
-  <!-- Finance & Business -->
-  <url><loc>https://www.onlinetoolstack.site/expense-tracker-calculator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/currency-converter</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/financial-calculator-suite-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/adsense-calculator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/professional-bio-creator</loc></url>
-
-  <!-- Marketing & SEO -->
-  <url><loc>https://www.onlinetoolstack.site/email-signature-generator</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/email-marketing-toolkit-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/open-graph-meta-tag-previewer-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/readability-score-checker-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/content-analysis-suite</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/domain-age-checker-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/keyword-suggestion-tool</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/google-cache-checker</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/anchor-text-optimizer</loc></url>
-
-  <!-- Document Tools -->
-  <url><loc>https://www.onlinetoolstack.site/cover-letter-generator-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/ebook-converter-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/pdf-merger</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/linkedin-article-converter</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/disclaimer-generator</loc></url>
-
-  <!-- Developer Tools -->
-  <url><loc>https://www.onlinetoolstack.site/date-time-toolkit-pro</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/youtube-embed-generator</loc></url>
-
-  <!-- Social Media Tools -->
-  <url><loc>https://www.onlinetoolstack.site/social-media-analytics-suite</loc></url>
-  <url><loc>https://www.onlinetoolstack.site/linkedin-post-builder-pro</loc></url>
+  <!-- Tools -->
+  <url><loc>https://www.onlinetoolstack.site/adsense_calculator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/advanced-ctr-optimizer-tool.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/advanced-regex-tester.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/ai-background-remover.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/ai-content-generator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/ai-content-placeholder-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/ai-text-analysis-tool.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/anchor-text-optimizer-tool.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/base64-encoder-decoder.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/blog-traffic-predictor-google-analytics.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/business-card-designer.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/checkbot-tool.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/color-palette-generator-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/color-scheme-tool-blue-theme.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/comma-separator-tool.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/content_analysis_suite.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/cover-letter-generator-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/currency-converter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/date-time-toolkit-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/disclaimer-generator-tool.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/domain-age-checker-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/ebook-converter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/email-marketing-toolkit-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/email-signature-generator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/expense-tracker-calculator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/financial-calculator-suite-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/google-cache-checker.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/gradient-generator-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/image-compression-guide.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/image-optimizer-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/keyword-suggestion-tool.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/lightshot-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/linkedin-article-converter-tool.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/linkedin-post-builder-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/logo-maker.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/md5-generator-tool.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/niche-finder.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/open-graph-meta-tag-previewer-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/pdf-merger.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/professional-audience-engagement-analyzer.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/professional-mobile-friendly-checker.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/professional-newsletter-tracker-true.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/professional_bio_creator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/qr-generator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/readability-score-checker-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/shortener-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/smart-text-transformer-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/social-media-banner-maker-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/social_media_analytics_suite.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/text-case-converter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/text-to-speech-converter-pro.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/word-counter.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/youtube-embed-generator.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/youtube-thumbnail-downloader.html</loc></url>
+  <url><loc>https://www.onlinetoolstack.site/youtube_banner_generator.html</loc></url>
 
 </urlset>

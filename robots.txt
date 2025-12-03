@@ -1,7 +1,5 @@
-# robots.txt for Online ToolStack
 User-agent: *
 Allow: /
-Crawl-delay: 1
 
-# Sitemap location
 Sitemap: https://www.onlinetoolstack.site/sitemap.xml
+

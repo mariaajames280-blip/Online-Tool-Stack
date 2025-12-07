@@ -4,8 +4,8 @@
     <!-- 1. Basic Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Online Tool Stack - 40+ Free Online Tools including QR Generator, URL Shortener, AI Tools, PDF Tools, Text Tools. No registration required.">
-    <title>Online Tool Stack - 50+ Free Online Tools for Productivity & Development</title>
+    <meta name="description" content="Online Tool Stack - 50+ Free Online Tools including QR Generator, AI Tools, PDF Merger, Word Counter, URL Shortener. No registration required.">
+    <title>Online Tool Stack - 50+ Free QR, AI, PDF & Text Tools</title>
     
     <!-- 2. Canonical & Robots -->
     <link rel="canonical" href="https://www.onlinetoolstack.site/">
@@ -31,15 +31,15 @@
     
     <!-- 5. Social Media Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Online Tool Stack - 40+ Free Online Tools">
-    <meta property="og:description" content="Your Complete Solution for 40+ Free Online Tools. QR Generator, URL Shortener, Text Tools and more!">
+    <meta property="og:title" content="Online Tool Stack - 50+ Free Online Tools">
+    <meta property="og:description" content="50+ free tools: QR Generator, AI Tools, PDF Merger, Word Counter, URL Shortener. No signup required.">
     <meta property="og:image" content="https://www.onlinetoolstack.site/og-image.jpg">
     <meta property="og:url" content="https://www.onlinetoolstack.site/">
     <meta property="og:site_name" content="Online Tool Stack">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Online Tool Stack - 40+ Free Online Tools">
-    <meta name="twitter:description" content="40+ free online tools for QR generation, URL shortening, text processing, PDF editing & AI content creation">
+    <meta name="twitter:title" content="50+ Free Online Tools - QR, AI, PDF & Text Tools">
+    <meta name="twitter:description" content="Free collection of 50+ online tools for QR codes, AI content, PDF editing, text processing, and SEO. No registration needed.">
     <meta name="twitter:image" content="https://www.onlinetoolstack.site/twitter-image.jpg">
     
     <!-- 6. Schema.org Structured Data -->
@@ -48,7 +48,7 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Online Tool Stack",
-        "description": "Collection of 40+ free online tools for productivity and development including QR generator, URL shortener, AI tools, and PDF tools",
+        "description": "Collection of 50+ free online tools for productivity and development including QR generator, AI tools, PDF tools, and text utilities",
         "url": "https://www.onlinetoolstack.site/",
         "applicationCategory": "UtilityApplication",
         "operatingSystem": "Any",
@@ -86,7 +86,7 @@
             --color-blue: #00d4ff;
             --color-yellow: #ffd700;
             --color-white: #ffffff;
-            --color-gray: #cccccc; /* Improved contrast */
+            --color-gray: #cccccc;
             --transition: all 0.3s ease;
         }
 
@@ -287,11 +287,80 @@
             transform: translateY(-3px);
         }
 
+        /* Search Box */
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto 3rem;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        #toolSearch {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid var(--color-blue);
+            background: var(--bg-card);
+            color: var(--color-white);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        #toolSearch:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+        }
+
+        #toolSearch::placeholder {
+            color: var(--color-gray);
+            opacity: 0.7;
+        }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 2rem auto 3rem;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-btn {
+            padding: 0.6rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid #2a2a2a;
+            color: var(--color-gray);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: var(--color-blue);
+            color: var(--bg-primary);
+            border-color: var(--color-blue);
+            transform: translateY(-2px);
+        }
+
+        .category-btn.new-tools {
+            background: linear-gradient(135deg, var(--color-yellow), #ffaa00);
+            color: var(--bg-primary);
+            border-color: var(--color-yellow);
+        }
+
         /* Tools Section */
         .tools-section {
             max-width: 1200px;
-            margin: 4rem auto;
-            padding: 2rem;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
             position: relative;
             z-index: 2;
         }
@@ -307,16 +376,15 @@
         .section-subtitle {
             text-align: center;
             color: var(--color-gray);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             font-size: 1.1rem;
         }
 
-        /* Fixed Tool Card Alignment */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
             align-items: stretch;
         }
 
@@ -325,7 +393,7 @@
             flex-direction: column;
             height: 100%;
             background: var(--bg-card);
-            padding: 2rem;
+            padding: 1.8rem;
             border-radius: 12px;
             transition: var(--transition);
             border: 1px solid #2a2a2a;
@@ -342,8 +410,36 @@
             box-shadow: 0 8px 30px rgba(0, 212, 255, 0.15);
         }
 
+        .tool-card.new::before {
+            content: 'NEW';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--color-yellow);
+            color: var(--bg-primary);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 3;
+        }
+
+        .tool-card.popular::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--color-blue);
+            color: var(--bg-primary);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 3;
+        }
+
         .tool-icon {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
             filter: drop-shadow(0 2px 5px rgba(0, 212, 255, 0.3));
         }
@@ -351,8 +447,12 @@
         .tool-card h3 {
             color: var(--color-yellow);
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             text-shadow: 0 2px 5px rgba(255, 215, 0, 0.2);
+            min-height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .tool-card p {
@@ -360,6 +460,7 @@
             margin-bottom: 1.5rem;
             line-height: 1.5;
             flex-grow: 1;
+            font-size: 0.95rem;
         }
 
         .btn-tool {
@@ -373,11 +474,22 @@
             transition: var(--transition);
             text-decoration: none;
             display: inline-block;
+            width: fit-content;
+            margin: 0 auto;
         }
 
         .btn-tool:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .no-results {
+            text-align: center;
+            color: var(--color-gray);
+            font-size: 1.2rem;
+            padding: 3rem;
+            grid-column: 1 / -1;
+            display: none;
         }
 
         /* Stats Section */
@@ -456,6 +568,22 @@
             color: var(--color-gray);
         }
 
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            color: var(--color-gray);
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            color: var(--color-blue);
+            transform: translateY(-3px);
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -481,7 +609,9 @@
         .btn:focus,
         .btn-tool:focus,
         .nav-links a:focus,
-        .mobile-menu-btn:focus {
+        .mobile-menu-btn:focus,
+        #toolSearch:focus,
+        .category-btn:focus {
             outline: 2px solid var(--color-yellow);
             outline-offset: 3px;
         }
@@ -549,6 +679,15 @@
                 grid-template-columns: 1fr;
             }
 
+            .category-filter {
+                gap: 0.5rem;
+            }
+
+            .category-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
             /* Reduce snow on mobile for performance */
             .snow {
                 font-size: 0.8em;
@@ -564,14 +703,18 @@
                 font-size: 2rem;
             }
 
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
             /* Further reduce snow on very small screens */
             .snow {
                 font-size: 0.6em;
             }
         }
     </style>
-    
-</head> <!-- CORRECT: Closing head tag after ALL content -->
+</head>
+
 <body itemscope itemtype="https://schema.org/WebPage">
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -602,418 +745,46 @@
             <h1 id="main-heading" itemprop="headline">Welcome to <span>ONLINE TOOL STACK</span></h1>
             <p itemprop="description">Your Complete Solution for 50+ Free Online Tools</p>
             <div class="cta-buttons">
-                <a href="/tools.html" class="btn btn-primary" aria-label="Explore all 40+ tools">Explore Tools</a>
+                <a href="#tools-section" class="btn btn-primary" aria-label="Explore all 50+ tools">Explore Tools</a>
                 <a href="/about.html" class="btn btn-secondary" aria-label="Learn more about Online Tool Stack">Learn More</a>
             </div>
         </section>
 
+        <!-- Search Box -->
+        <div class="search-container">
+            <input type="text" id="toolSearch" placeholder="Search 50+ tools (e.g., 'QR', 'PDF', 'AI', 'Text')..." aria-label="Search tools">
+        </div>
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all">All Tools</button>
+            <button class="category-btn" data-category="popular">Most Popular</button>
+            <button class="category-btn new-tools" data-category="new">New Tools</button>
+            <button class="category-btn" data-category="ai">AI Tools</button>
+            <button class="category-btn" data-category="text">Text Tools</button>
+            <button class="category-btn" data-category="pdf">PDF Tools</button>
+            <button class="category-btn" data-category="design">Design Tools</button>
+            <button class="category-btn" data-category="dev">Developer Tools</button>
+            <button class="category-btn" data-category="social">Social Media</button>
+            <a href="/tools.html" class="btn-tool" style="margin-left: auto;">View All (50+)</a>
+        </div>
+
         <!-- Tools Section -->
-        <section class="tools-section" aria-labelledby="tools-heading">
-            <h2 id="tools-heading" class="section-title">Our Tools</h2>
-            <p class="section-subtitle">Professional tools for all your needs</p>
+        <section class="tools-section" id="tools-section" aria-labelledby="tools-heading">
+            <h2 id="tools-heading" class="section-title">50+ Professional Tools</h2>
+            <p class="section-subtitle">Free, fast, and no registration required</p>
             
-            <div class="tools-grid">
-                <!-- QR Code Generator -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">📱</div>
-                    <h3 itemprop="name">QR Code Generator</h3>
-                    <p itemprop="description">Generate QR codes instantly for URLs, text, and contact information</p>
-                    <a href="/qr-generator.html" class="btn-tool" itemprop="url">Open Tool</a>
+            <div class="tools-grid" id="toolsGrid">
+                <!-- Tools will be loaded here by JavaScript -->
+                <div class="no-results" id="noResults">
+                    No tools found. Try a different search term.
                 </div>
+            </div>
+        </section>
 
-                <!-- URL Shortener -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🔗</div>
-                    <h3 itemprop="name">URL Shortener</h3>
-                    <p itemprop="description">Shorten long URLs easily and create memorable links</p>
-                    <a href="/shortener-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Text Case Converter -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🔤</div>
-                    <h3 itemprop="name">Text Case Converter</h3>
-                    <p itemprop="description">Convert text case formats between uppercase, lowercase, and more</p>
-                    <a href="/text-case-converter.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Base64 Encoder/Decoder -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🔐</div>
-                    <h3 itemprop="name">Base64 Encoder/Decoder</h3>
-                    <p itemprop="description">Encode and decode Base64 strings for data transmission</p>
-                    <a href="/base64-encoder-decoder.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- MD5 Hash Generator -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🔐</div>
-                    <h3 itemprop="name">MD5 Hash Generator</h3>
-                    <p itemprop="description">Generate MD5 hashes for text and file verification</p>
-                    <a href="/md5-generator-tool.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Word Counter -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">📝</div>
-                    <h3 itemprop="name">Word Counter</h3>
-                    <p itemprop="description">Analyze text with detailed word, character, and sentence statistics</p>
-                    <a href="/word-counter.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- AI Content Generator -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🤖</div>
-                    <h3 itemprop="name">AI Content Generator</h3>
-                    <p itemprop="description">Generate high-quality content, articles, and creative text using AI</p>
-                    <a href="/ai-content-generator.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- AI Background Remover -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🖼️</div>
-                    <h3 itemprop="name">AI Background Remover</h3>
-                    <p itemprop="description">Remove image backgrounds instantly with AI-powered precision</p>
-                    <a href="/ai-background-remover.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Expense Tracker & Calculator -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">💰</div>
-                    <h3 itemprop="name">Expense Tracker & Calculator</h3>
-                    <p itemprop="description">Track expenses, manage budgets, and calculate finances with easy-to-use tools</p>
-                    <a href="/expense-tracker-calculator.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Email Signature Generator -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">📧</div>
-                    <h3 itemprop="name">Email Signature Generator</h3>
-                    <p itemprop="description">Create professional email signatures with templates and custom designs</p>
-                    <a href="/email-signature-generator.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Currency Converter -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">💱</div>
-                    <h3 itemprop="name">Currency Converter</h3>
-                    <p itemprop="description">Convert between 150+ currencies with live exchange rates</p>
-                    <a href="/currency-converter.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Social Media Banner Maker Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🖼️</div>
-                    <h3 itemprop="name">Social Media Banner Maker Pro</h3>
-                    <p itemprop="description">Create stunning banners for Facebook, Twitter, YouTube, and all social platforms</p>
-                    <a href="/social-media-banner-maker-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Text to Speech Converter Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🔊</div>
-                    <h3 itemprop="name">Text to Speech Converter Pro</h3>
-                    <p itemprop="description">Convert any text to natural sounding audio with multiple voices and languages</p>
-                    <a href="/text-to-speech-converter-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Cover Letter Generator Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">📄</div>
-                    <h3 itemprop="name">Cover Letter Generator Pro</h3>
-                    <p itemprop="description">Create professional cover letters with customizable templates and AI-powered content suggestions</p>
-                    <a href="/cover-letter-generator-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Domain Age Checker Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🌐</div>
-                    <h3 itemprop="name">Domain Age Checker Pro</h3>
-                    <p itemprop="description">Check domain registration date, expiration, and history for SEO and website analysis</p>
-                    <a href="/domain-age-checker-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- eBook Format Converter -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🔄</div>
-                    <h3 itemprop="name">eBook Converter Pro</h3>
-                    <p itemprop="description">Convert eBooks between EPUB, MOBI, PDF, AZW3, TXT, FB2 and more formats instantly</p>
-                    <a href="/ebook-converter.html" class="btn-tool" itemprop="url">Convert Now</a>
-                </div>
-
-                <!-- PDF Merger -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">📄</div>
-                    <h3 itemprop="name">PDF Merger</h3>
-                    <p itemprop="description">Combine multiple PDF files into one document quickly and easily</p>
-                    <a href="/pdf-merger.html" class="btn-tool" itemprop="url">Merge PDFs</a>
-                </div>
-
-                <!-- Advanced Regex Tester -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🔍</div>
-                    <h3 itemprop="name">Advanced Regex Tester</h3>
-                    <p itemprop="description">Test, debug, and master regular expressions with real-time feedback</p>
-                    <a href="/advanced-regex-tester.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- AI Content Placeholder Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🤖</div>
-                    <h3 itemprop="name">AI Content Placeholder Pro</h3>
-                    <p itemprop="description">Generate realistic placeholder content using AI for your designs and prototypes</p>
-                    <a href="/ai-content-placeholder-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- AI Text Analysis Tool -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">📊</div>
-                    <h3 itemprop="name">AI Text Analysis Tool</h3>
-                    <p itemprop="description">Analyze and extract insights from text using advanced AI algorithms</p>
-                    <a href="/ai-text-analysis-tool.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Business Card Designer -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">💼</div>
-                    <h3 itemprop="name">Business Card Designer</h3>
-                    <p itemprop="description">Create professional business cards with customizable templates and designs</p>
-                    <a href="/business-card-designer.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Color Palette Generator Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🎨</div>
-                    <h3 itemprop="name">Color Palette Generator Pro</h3>
-                    <p itemprop="description">Generate beautiful color schemes and palettes with advanced customization options</p>
-                    <a href="/color-palette-generator-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Content Analysis Suite -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">📈</div>
-                    <h3 itemprop="name">Content Analysis Suite</h3>
-                    <p itemprop="description">Comprehensive content analysis with readability scores, SEO insights, and performance metrics</p>
-                    <a href="/content_analysis_suite.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Date Time Toolkit Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">📅</div>
-                    <h3 itemprop="name">Date Time Toolkit Pro</h3>
-                    <p itemprop="description">Advanced date and time utilities with formatting, conversion, and calculation features</p>
-                    <a href="/date-time-toolkit-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Email Marketing Toolkit Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">📧</div>
-                    <h3 itemprop="name">Email Marketing Toolkit Pro</h3>
-                    <p itemprop="description">Create, analyze, and optimize email campaigns with professional templates and analytics</p>
-                    <a href="/email-marketing-toolkit-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Financial Calculator Suite Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">💰</div>
-                    <h3 itemprop="name">Financial Calculator Suite Pro</h3>
-                    <p itemprop="description">Comprehensive financial calculations including loans, investments, and retirement planning</p>
-                    <a href="/financial-calculator-suite-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Gradient Generator Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🌈</div>
-                    <h3 itemprop="name">Gradient Generator Pro</h3>
-                    <p itemprop="description">Create beautiful CSS gradients with advanced controls and real-time preview</p>
-                    <a href="/gradient-generator-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Image Optimizer Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🖼️</div>
-                    <h3 itemprop="name">Image Optimizer Pro</h3>
-                    <p itemprop="description">Compress and optimize images for web with advanced compression algorithms</p>
-                    <a href="/image-optimizer-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Logo Maker -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">✨</div>
-                    <h3 itemprop="name">Logo Maker</h3>
-                    <p itemprop="description">Design professional logos with customizable templates and design tools</p>
-                    <a href="/logo-maker.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Open Graph Meta Tag Previewer Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🔗</div>
-                    <h3 itemprop="name">Open Graph Meta Tag Previewer Pro</h3>
-                    <p itemprop="description">Preview and optimize Open Graph meta tags for social media sharing</p>
-                    <a href="/open-graph-meta-tag-previewer-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Readability Score Checker Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">📖</div>
-                    <h3 itemprop="name">Readability Score Checker Pro</h3>
-                    <p itemprop="description">Analyze text readability with multiple scoring systems and improvement suggestions</p>
-                    <a href="/readability-score-checker-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Smart Text Transformer Pro -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">🔄</div>
-                    <h3 itemprop="name">Smart Text Transformer Pro</h3>
-                    <p itemprop="description">Transform and manipulate text with advanced formatting, conversion, and processing tools</p>
-                    <a href="/smart-text-transformer-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-
-                <!-- Social Media Analytics Suite -->
-                <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                    <div class="tool-icon" aria-hidden="true">📱</div>
-                    <h3 itemprop="name">Social Media Analytics Suite</h3>
-                    <p itemprop="description">Track and analyze social media performance across multiple platforms with detailed insights</p>
-                    <a href="/social_media_analytics_suite.html" class="btn-tool" itemprop="url">Open Tool</a>
-                </div>
-            
-                   <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                   <div class="tool-icon" aria-hidden="true">🤖</div>
-                   <h3 itemprop="name">Checkbot Tool</h3>
-                   <p itemprop="description">Advanced text analysis and validation tool for comprehensive content checking</p>
-                   <a href="/checkbot-tool.html" class="btn-tool" itemprop="url">Open Tool</a>
-                 </div>
-                   <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                   <div class="tool-icon" aria-hidden="true">📸</div>
-                   <h3 itemprop="name">light shot pro</h3>
-                   <p itemprop="description">Powerful screenshot and editing tool for professionals</p>
-                   <a href="/lightshot-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                   </div>
-                    <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                   <div class="tool-icon" aria-hidden="true">📊</div>
-                   <h3 itemprop="name">Keyword Suggestion Tool</h3>
-                   <p itemprop="description">Discover profitable keywords with volume data and competition analysis for SEO success</p>
-                   <a href="/keyword-suggestion-tool.html" class="btn-tool" itemprop="url">Open Tool</a>
-                   </div>
-                       <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                       <div class="tool-icon" aria-hidden="true">📦</div>
-                       <h3 itemprop="name">Google Cache Checker</h3>
-                       <p itemprop="description">Check if your web pages are cached by Google and view the latest cached version</p>
-                       <a href="/google-cache-checker.html" class="btn-tool" itemprop="url">Open Tool</a>
-                       </div>
-                          <!-- YouTube Embed Generator -->
-                       <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                       <div class="tool-icon" aria-hidden="true">📺</div>
-                       <h3 itemprop="name">YouTube Embed Generator</h3>
-                       <p itemprop="description">Create responsive YouTube embed codes with customizable options for your website</p>
-                       <a href="/youtube-embed-generator.html" class="btn-tool" itemprop="url">Open Tool</a>
-                        </div>
-                            <!-- YouTube Thumbnail Downloader -->
-                        <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                        <div class="tool-icon" aria-hidden="true">🖼️</div>
-                        <h3 itemprop="name">YouTube Thumbnail Downloader</h3>
-                        <p itemprop="description">Download high-quality thumbnails from any YouTube video in multiple resolutions</p>
-                        <a href="/youtube-thumbnail-downloader.html" class="btn-tool" itemprop="url">Open Tool</a>
-                        </div>
-                             <!-- YouTube Banner Generator -->
-                        <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                        <div class="tool-icon" aria-hidden="true">🎨</div>
-                        <h3 itemprop="name">YouTube Banner Generator</h3>
-                        <p itemprop="description">Create professional YouTube channel banners with custom designs and perfect dimensions</p>
-                        <a href="/youtube_banner_generator.html" class="btn-tool" itemprop="url">Open Tool</a>
-                       </div>
-                              <!-- AdSense Calculator -->
-                        <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                       <div class="tool-icon" aria-hidden="true">💰</div>
-                       <h3 itemprop="name">AdSense Calculator</h3>
-                       <p itemprop="description">Calculate potential Google AdSense earnings based on traffic, RPM, and other key metrics</p>
-                       <a href="/adsense_calculator.html" class="btn-tool" itemprop="url">Open Tool</a>
-                       </div>
-                                 <!-- Niche Finder Tool -->
-                         <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                         <div class="tool-icon" aria-hidden="true">🎯</div>
-                         <h3 itemprop="name">Niche Finder</h3>
-                         <p itemprop="description">Discover profitable niches and market opportunities with AI-powered analysis and insights</p>
-                         <a href="/niche-finder.html" class="btn-tool" itemprop="url">Open Tool</a>
-                         </div>
-                                  <!-- Professional Bio Creator -->
-                         <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                         <div class="tool-icon" aria-hidden="true">👔</div>
-                        <h3 itemprop="name">Professional Bio Creator</h3>
-                        <p itemprop="description">Craft compelling professional bios for LinkedIn, websites, and portfolios with AI-powered customization</p>
-                        <a href="/professional_bio_creator.html" class="btn-tool" itemprop="url">Open Tool</a>
-                        </div>
-                                      <!-- Comma Separator Tool -->
-                         <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                         <div class="tool-icon" aria-hidden="true">🔀</div>
-                         <h3 itemprop="name">Comma Separator Tool</h3>
-                         <p itemprop="description">Easily add, remove, or format commas in your text and lists with this simple separator utility</p>
-                         <a href="/comma-separator-tool.html" class="btn-tool" itemprop="url">Open Tool</a>
-                         </div>
-                                        <!-- Disclaimer Generator Tool -->
-                          <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                          <div class="tool-icon" aria-hidden="true">⚠️</div>
-                          <h3 itemprop="name">Disclaimer Generator Tool</h3>
-                          <p itemprop="description">Create professional legal disclaimers for your website, content, or business with customizable templates</p>
-                          <a href="/disclaimer-generator-tool.html" class="btn-tool" itemprop="url">Open Tool</a>
-                          </div>
-                                       <!-- LinkedIn Article Converter -->
-                          <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                          <div class="tool-icon" aria-hidden="true">📝</div>
-                          <h3 itemprop="name">LinkedIn Article Converter</h3>
-                          <p itemprop="description">Transform blog posts into optimized LinkedIn articles with professional formatting and engagement elements</p>
-                          <a href="/linkedin-article-converter-tool.html" class="btn-tool" itemprop="url">Open Tool</a>
-                       </div>
-                                         <!-- Anchor Text Optimizer -->
-                           <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                           <div class="tool-icon" aria-hidden="true">⚓</div>
-                           <h3 itemprop="name">Anchor Text Optimizer</h3>
-                           <p itemprop="description">Analyze and optimize your anchor text strategy for better SEO results and link building</p>
-                           <a href="/anchor-text-optimizer-tool.html" class="btn-tool" itemprop="url">Open Tool</a>
-                          </div>
-                                          <!-- Blog Traffic Predictor -->
-                            <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                            <div class="tool-icon" aria-hidden="true">📈</div>
-                            <h3 itemprop="name">Blog Traffic Predictor</h3>
-                            <p itemprop="description">Forecast your website growth and estimate future traffic with AI-powered predictions</p>
-                            <a href="/blog-traffic-predictor-google-analytics.html" class="btn-tool" itemprop="url">Open Tool</a>
-                           </div>
-                                           <!-- Advanced CTR Optimizer -->
-                            <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                            <div class="tool-icon" aria-hidden="true">🎯</div>
-                            <h3 itemprop="name">Advanced CTR Optimizer</h3>
-                            <p itemprop="description">Boost click-through rates with AI-powered analysis of search intent, competitors, and technical factors</p>
-                            <a href="/advanced-ctr-optimizer-tool.html" class="btn-tool" itemprop="url">Open Tool</a>
-                           </div>
-                                            <!-- Professional Audience Engagement Analyzer -->
-                            <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                            <div class="tool-icon" aria-hidden="true">👥</div>
-                            <h3 itemprop="name">Audience Engagement Analyzer</h3>
-                            <p itemprop="description">Measure and optimize user interaction across website, social media, and content with real API integration</p>
-                            <a href="/professional-audience-engagement-analyzer.html" class="btn-tool" itemprop="url">Open Tool</a>
-                           </div>
-                                             <!-- Color Scheme Generator -->
-                            <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                            <div class="tool-icon" aria-hidden="true">🎨</div>
-                            <h3 itemprop="name">Color Scheme Generator</h3>
-                            <p itemprop="description">Create beautiful, harmonious color palettes with professional color theory and black & blue themes</p>
-                            <a href="/color-scheme-tool-blue-theme.html" class="btn-tool" itemprop="url">Open Tool</a>
-                           </div>
-                            <div class="tool-card" itemscope itemtype="https://schema.org/SoftwareApplication">
-                            <div class="tool-icon" aria-hidden="true">💼</div>
-                            <h3 itemprop="name">LinkedIn Post Builder Pro</h3>
-                            <p itemprop="description">Create professional LinkedIn posts that drive engagement and grow your network</p>
-                            <a href="linkedin-post-builder-pro.html" class="btn-tool" itemprop="url">Open Tool</a>
-                            </div>
-                
-                
-        
-
-                           </section>
-
-                <!-- Stats Section -->
+        <!-- Stats Section -->
         <section class="stats" aria-labelledby="stats-heading">
-            <h2 id="stats-heading" class="section-title">Why Choose Online WebTool?</h2>
+            <h2 id="stats-heading" class="section-title">Why Choose Online Tool Stack?</h2>
             <div class="stats-grid">
                 <div class="stat-item">
                     <h3>50+</h3>
@@ -1035,95 +806,268 @@
         </section>
     </main>
 
-   <!-- Footer -->
-<footer role="contentinfo" itemscope itemtype="https://schema.org/WPFooter">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3 itemprop="name">Online Tool Stack</h3>
-            <p itemprop="description">Your complete collection of free professional online tools for productivity and development.</p>
-        </div>
-        <div class="footer-section">
-            <h3>Quick Links</h3>
-            <a href="/" itemprop="url">Home</a>
-            <a href="/tools.html" itemprop="url">All Tools</a>
-            <a href="/about.html" itemprop="url">About Us</a>
-            <a href="/contact.html" itemprop="url">Contact</a>
-        </div>
-        <div class="footer-section">
-            <h3>Popular Tools</h3>
-            <a href="/qr-generator.html" itemprop="url">QR Code Generator</a>
-            <a href="/shortener-pro.html" itemprop="url">URL Shortener</a>
-            <a href="/text-case-converter.html" itemprop="url">Text Case Converter</a>
-            <a href="/word-counter.html" itemprop="url">Word Counter</a>
-        </div>
-        
-        <div class="footer-section">
-            <h3>Connect With Us</h3>
-            <div class="social-icons">
-                <a href="https://twitter.com/OnlineToolStack" class="social-icon" title="Follow us on Twitter" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                </a>
-                <a href="https://github.com/OnlineToolStack" class="social-icon" title="Star us on GitHub" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/company/onlinetoolstack" class="social-icon" title="Connect on LinkedIn" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                </a>
-                <a href="https://www.facebook.com/OnlineToolStack" class="social-icon" title="Like us on Facebook" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
-                    </svg>
-                </a>
-                <a href="https://www.instagram.com/onlinetoolstack" class="social-icon" title="Follow us on Instagram" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                </a>
+    <!-- Footer -->
+    <footer role="contentinfo" itemscope itemtype="https://schema.org/WPFooter">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 itemprop="name">Online Tool Stack</h3>
+                <p itemprop="description">Your complete collection of free professional online tools for productivity and development.</p>
             </div>
-            <p>Follow for updates & new tools</p>
-        </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="/" itemprop="url">Home</a>
+                <a href="/tools.html" itemprop="url">All Tools</a>
+                <a href="/about.html" itemprop="url">About Us</a>
+                <a href="/contact.html" itemprop="url">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Popular Tools</h3>
+                <a href="/qr-generator.html" itemprop="url">QR Code Generator</a>
+                <a href="/word-counter.html" itemprop="url">Word Counter</a>
+                <a href="/pdf-merger.html" itemprop="url">PDF Merger</a>
+                <a href="/ai-background-remover.html" itemprop="url">AI Background Remover</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="https://twitter.com/OnlineToolStack" class="social-icon" title="Follow us on Twitter" target="_blank" rel="noopener noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/OnlineToolStack" class="social-icon" title="Star us on GitHub" target="_blank" rel="noopener noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p>Follow for updates & new tools</p>
+            </div>
 
-        <div class="footer-section">
-            <h3>Legal</h3>
-            <a href="/privacy.html" itemprop="url">Privacy Policy</a>
-            <a href="/terms.html" itemprop="url">Terms of Service</a>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="/privacy.html" itemprop="url">Privacy Policy</a>
+                <a href="/terms.html" itemprop="url">Terms of Service</a>
+            </div>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2025 Online Tool Stack. All rights reserved. Made with ❤️ for the community.</p>
-    </div>
-</footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Online Tool Stack. All rights reserved. Made with ❤️ for the community.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
     <script>
-        // Create snowflakes with mobile optimization
+        // Tool data - organized by categories
+        const toolsData = [
+            // Most Popular Tools
+            { name: "QR Code Generator", desc: "Generate QR codes instantly for URLs, text, and contact information", icon: "📱", url: "/qr-generator.html", category: ["all", "popular", "design"], tags: ["qr", "code", "generator"], popular: true },
+            { name: "Word Counter", desc: "Analyze text with detailed word, character, and sentence statistics", icon: "📝", url: "/word-counter.html", category: ["all", "popular", "text"], tags: ["word", "counter", "text", "analysis"], popular: true },
+            { name: "PDF Merger", desc: "Combine multiple PDF files into one document quickly and easily", icon: "📄", url: "/pdf-merger.html", category: ["all", "popular", "pdf"], tags: ["pdf", "merge", "combine", "document"], popular: true },
+            { name: "AI Background Remover", desc: "Remove image backgrounds instantly with AI-powered precision", icon: "🖼️", url: "/ai-background-remover.html", category: ["all", "popular", "ai", "design"], tags: ["ai", "background", "remove", "image"], popular: true },
+            { name: "Base64 Encoder/Decoder", desc: "Encode and decode Base64 strings for data transmission", icon: "🔐", url: "/base64-encoder-decoder.html", category: ["all", "popular", "dev"], tags: ["base64", "encode", "decode", "developer"], popular: true },
+            { name: "Business Card Designer", desc: "Create professional business cards with customizable templates", icon: "💼", url: "/business-card-designer.html", category: ["all", "popular", "design"], tags: ["business", "card", "design", "professional"], popular: true },
+
+            // New Tools (recently added)
+            { name: "AI Text Analysis Tool", desc: "Analyze and extract insights from text using advanced AI algorithms", icon: "📊", url: "/ai-text-analysis-tool.html", category: ["all", "new", "ai", "text"], tags: ["ai", "text", "analysis", "insights"], new: true },
+            { name: "LinkedIn Post Builder Pro", desc: "Create professional LinkedIn posts that drive engagement", icon: "💼", url: "/linkedin-post-builder-pro.html", category: ["all", "new", "social"], tags: ["linkedin", "post", "builder", "social"], new: true },
+            { name: "Blog Traffic Predictor", desc: "Forecast website growth and estimate future traffic with AI", icon: "📈", url: "/blog-traffic-predictor-google-analytics.html", category: ["all", "new", "ai"], tags: ["blog", "traffic", "predictor", "ai"], new: true },
+
+            // AI Tools
+            { name: "AI Content Generator", desc: "Generate high-quality content, articles, and creative text using AI", icon: "🤖", url: "/ai-content-generator.html", category: ["all", "ai", "text"], tags: ["ai", "content", "generator", "article"] },
+            { name: "AI Content Placeholder Pro", desc: "Generate realistic placeholder content using AI for designs", icon: "🤖", url: "/ai-content-placeholder-pro.html", category: ["all", "ai", "design"], tags: ["ai", "placeholder", "content", "design"] },
+
+            // Text Tools
+            { name: "Text Case Converter", desc: "Convert text case formats between uppercase, lowercase, and more", icon: "🔤", url: "/text-case-converter.html", category: ["all", "text"], tags: ["text", "case", "converter", "format"] },
+            { name: "Smart Text Transformer Pro", desc: "Transform and manipulate text with advanced formatting tools", icon: "🔄", url: "/smart-text-transformer-pro.html", category: ["all", "text"], tags: ["text", "transform", "format", "manipulate"] },
+            { name: "Readability Score Checker Pro", desc: "Analyze text readability with scoring systems and suggestions", icon: "📖", url: "/readability-score-checker-pro.html", category: ["all", "text"], tags: ["readability", "score", "checker", "text"] },
+            { name: "Comma Separator Tool", desc: "Easily add, remove, or format commas in your text and lists", icon: "🔀", url: "/comma-separator-tool.html", category: ["all", "text"], tags: ["comma", "separator", "text", "format"] },
+
+            // PDF Tools
+            { name: "eBook Converter Pro", desc: "Convert eBooks between EPUB, MOBI, PDF, and more formats instantly", icon: "🔄", url: "/ebook-converter.html", category: ["all", "pdf"], tags: ["ebook", "converter", "pdf", "format"] },
+
+            // Design Tools
+            { name: "Color Palette Generator Pro", desc: "Generate beautiful color schemes and palettes with customization", icon: "🎨", url: "/color-palette-generator-pro.html", category: ["all", "design"], tags: ["color", "palette", "generator", "design"] },
+            { name: "Gradient Generator Pro", desc: "Create beautiful CSS gradients with advanced controls", icon: "🌈", url: "/gradient-generator-pro.html", category: ["all", "design"], tags: ["gradient", "generator", "css", "design"] },
+            { name: "Logo Maker", desc: "Design professional logos with customizable templates and tools", icon: "✨", url: "/logo-maker.html", category: ["all", "design"], tags: ["logo", "maker", "design", "brand"] },
+            { name: "Image Optimizer Pro", desc: "Compress and optimize images for web with advanced algorithms", icon: "🖼️", url: "/image-optimizer-pro.html", category: ["all", "design"], tags: ["image", "optimizer", "compress", "web"] },
+            { name: "Color Scheme Generator", desc: "Create harmonious color palettes with professional color theory", icon: "🎨", url: "/color-scheme-tool-blue-theme.html", category: ["all", "design"], tags: ["color", "scheme", "generator", "design"] },
+
+            // Developer Tools
+            { name: "MD5 Hash Generator", desc: "Generate MD5 hashes for text and file verification", icon: "🔐", url: "/md5-generator-tool.html", category: ["all", "dev"], tags: ["md5", "hash", "generator", "security"] },
+            { name: "Advanced Regex Tester", desc: "Test, debug, and master regular expressions with real-time feedback", icon: "🔍", url: "/advanced-regex-tester.html", category: ["all", "dev"], tags: ["regex", "tester", "developer", "regular"] },
+            { name: "JSON Formatter", desc: "Format and validate JSON data with syntax highlighting", icon: "{}", url: "/json-formatter.html", category: ["all", "dev"], tags: ["json", "formatter", "developer", "validate"] },
+
+            // Social Media Tools
+            { name: "Social Media Banner Maker Pro", desc: "Create stunning banners for all social platforms", icon: "🖼️", url: "/social-media-banner-maker-pro.html", category: ["all", "social", "design"], tags: ["social", "media", "banner", "maker"] },
+            { name: "YouTube Thumbnail Downloader", desc: "Download high-quality thumbnails from YouTube videos", icon: "🖼️", url: "/youtube-thumbnail-downloader.html", category: ["all", "social"], tags: ["youtube", "thumbnail", "downloader", "video"] },
+            { name: "YouTube Embed Generator", desc: "Create responsive YouTube embed codes for your website", icon: "📺", url: "/youtube-embed-generator.html", category: ["all", "social"], tags: ["youtube", "embed", "generator", "video"] },
+            { name: "YouTube Banner Generator", desc: "Create professional YouTube channel banners with custom designs", icon: "🎨", url: "/youtube_banner_generator.html", category: ["all", "social", "design"], tags: ["youtube", "banner", "generator", "channel"] },
+
+            // Other Tools
+            { name: "URL Shortener", desc: "Shorten long URLs easily and create memorable links", icon: "🔗", url: "/shortener-pro.html", category: ["all", "popular"], tags: ["url", "shortener", "link", "short"] },
+            { name: "Expense Tracker & Calculator", desc: "Track expenses and manage budgets with easy-to-use tools", icon: "💰", url: "/expense-tracker-calculator.html", category: ["all"], tags: ["expense", "tracker", "calculator", "finance"] },
+            { name: "Email Signature Generator", desc: "Create professional email signatures with templates", icon: "📧", url: "/email-signature-generator.html", category: ["all", "design"], tags: ["email", "signature", "generator", "professional"] },
+            { name: "Currency Converter", desc: "Convert between 150+ currencies with live exchange rates", icon: "💱", url: "/currency-converter.html", category: ["all"], tags: ["currency", "converter", "exchange", "rate"] },
+            { name: "Text to Speech Converter Pro", desc: "Convert any text to natural sounding audio with multiple voices", icon: "🔊", url: "/text-to-speech-converter-pro.html", category: ["all", "text"], tags: ["text", "speech", "converter", "audio"] },
+            { name: "Cover Letter Generator Pro", desc: "Create professional cover letters with customizable templates", icon: "📄", url: "/cover-letter-generator-pro.html", category: ["all", "text"], tags: ["cover", "letter", "generator", "professional"] },
+            { name: "Domain Age Checker Pro", desc: "Check domain registration date and history for SEO analysis", icon: "🌐", url: "/domain-age-checker-pro.html", category: ["all"], tags: ["domain", "age", "checker", "seo"] },
+            { name: "Content Analysis Suite", desc: "Comprehensive content analysis with readability and SEO insights", icon: "📈", url: "/content_analysis_suite.html", category: ["all", "text"], tags: ["content", "analysis", "seo", "readability"] },
+            { name: "Date Time Toolkit Pro", desc: "Advanced date and time utilities with formatting and conversion", icon: "📅", url: "/date-time-toolkit-pro.html", category: ["all", "dev"], tags: ["date", "time", "toolkit", "utility"] },
+            { name: "Email Marketing Toolkit Pro", desc: "Create, analyze, and optimize email campaigns with templates", icon: "📧", url: "/email-marketing-toolkit-pro.html", category: ["all"], tags: ["email", "marketing", "toolkit", "campaign"] },
+            { name: "Financial Calculator Suite Pro", desc: "Comprehensive financial calculations for loans and investments", icon: "💰", url: "/financial-calculator-suite-pro.html", category: ["all"], tags: ["financial", "calculator", "suite", "finance"] },
+            { name: "Open Graph Meta Tag Previewer Pro", desc: "Preview and optimize Open Graph meta tags for social media", icon: "🔗", url: "/open-graph-meta-tag-previewer-pro.html", category: ["all", "seo"], tags: ["open", "graph", "meta", "tags"] },
+            { name: "Social Media Analytics Suite", desc: "Track and analyze social media performance across platforms", icon: "📱", url: "/social_media_analytics_suite.html", category: ["all", "social"], tags: ["social", "media", "analytics", "suite"] },
+            { name: "Checkbot Tool", desc: "Advanced text analysis and validation for comprehensive checking", icon: "🤖", url: "/checkbot-tool.html", category: ["all", "text"], tags: ["checkbot", "text", "analysis", "validation"] },
+            { name: "Light Shot Pro", desc: "Powerful screenshot and editing tool for professionals", icon: "📸", url: "/lightshot-pro.html", category: ["all", "design"], tags: ["lightshot", "screenshot", "editor", "tool"] },
+            { name: "Keyword Suggestion Tool", desc: "Discover profitable keywords with volume and competition data", icon: "📊", url: "/keyword-suggestion-tool.html", category: ["all", "seo"], tags: ["keyword", "suggestion", "seo", "research"] },
+            { name: "Google Cache Checker", desc: "Check if web pages are cached by Google and view cached version", icon: "📦", url: "/google-cache-checker.html", category: ["all", "seo"], tags: ["google", "cache", "checker", "seo"] },
+            { name: "AdSense Calculator", desc: "Calculate potential Google AdSense earnings based on metrics", icon: "💰", url: "/adsense_calculator.html", category: ["all"], tags: ["adsense", "calculator", "earnings", "revenue"] },
+            { name: "Niche Finder", desc: "Discover profitable niches with AI-powered analysis and insights", icon: "🎯", url: "/niche-finder.html", category: ["all", "ai"], tags: ["niche", "finder", "ai", "analysis"] },
+            { name: "Professional Bio Creator", desc: "Craft compelling professional bios with AI customization", icon: "👔", url: "/professional_bio_creator.html", category: ["all", "ai", "text"], tags: ["professional", "bio", "creator", "ai"] },
+            { name: "Disclaimer Generator Tool", desc: "Create professional legal disclaimers with customizable templates", icon: "⚠️", url: "/disclaimer-generator-tool.html", category: ["all", "text"], tags: ["disclaimer", "generator", "legal", "tool"] },
+            { name: "LinkedIn Article Converter", desc: "Transform blog posts into optimized LinkedIn articles", icon: "📝", url: "/linkedin-article-converter-tool.html", category: ["all", "social", "text"], tags: ["linkedin", "article", "converter", "blog"] },
+            { name: "Anchor Text Optimizer", desc: "Analyze and optimize anchor text strategy for better SEO", icon: "⚓", url: "/anchor-text-optimizer-tool.html", category: ["all", "seo"], tags: ["anchor", "text", "optimizer", "seo"] },
+            { name: "Advanced CTR Optimizer", desc: "Boost click-through rates with AI-powered analysis", icon: "🎯", url: "/advanced-ctr-optimizer-tool.html", category: ["all", "ai", "seo"], tags: ["ctr", "optimizer", "ai", "seo"] },
+            { name: "Audience Engagement Analyzer", desc: "Measure and optimize user interaction across platforms", icon: "👥", url: "/professional-audience-engagement-analyzer.html", category: ["all", "ai"], tags: ["audience", "engagement", "analyzer", "ai"] }
+        ];
+
+        // DOM Elements
+        const toolsGrid = document.getElementById('toolsGrid');
+        const toolSearch = document.getElementById('toolSearch');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const noResults = document.getElementById('noResults');
+        let currentCategory = 'all';
+        let currentSearch = '';
+
+        // Initialize tools
+        function initTools() {
+            renderTools();
+            setupEventListeners();
+            createSnow();
+            setupMobileMenu();
+        }
+
+        // Render tools based on category and search
+        function renderTools() {
+            toolsGrid.innerHTML = '';
+            noResults.style.display = 'none';
+            
+            let filteredTools = toolsData.filter(tool => {
+                // Filter by category
+                const categoryMatch = currentCategory === 'all' || 
+                                    (currentCategory === 'popular' && tool.popular) ||
+                                    (currentCategory === 'new' && tool.new) ||
+                                    tool.category.includes(currentCategory);
+                
+                // Filter by search
+                const searchMatch = !currentSearch || 
+                                  tool.name.toLowerCase().includes(currentSearch) ||
+                                  tool.desc.toLowerCase().includes(currentSearch) ||
+                                  tool.tags.some(tag => tag.includes(currentSearch));
+                
+                return categoryMatch && searchMatch;
+            });
+
+            if (filteredTools.length === 0) {
+                noResults.style.display = 'block';
+                return;
+            }
+
+            // Sort: popular and new first
+            filteredTools.sort((a, b) => {
+                if (a.popular && !b.popular) return -1;
+                if (!a.popular && b.popular) return 1;
+                if (a.new && !b.new) return -1;
+                if (!a.new && b.new) return 1;
+                return 0;
+            });
+
+            // Render tools
+            filteredTools.forEach(tool => {
+                const toolCard = document.createElement('div');
+                toolCard.className = 'tool-card';
+                
+                if (tool.new) toolCard.classList.add('new');
+                if (tool.popular) toolCard.classList.add('popular');
+                
+                toolCard.innerHTML = `
+                    <div class="tool-icon" aria-hidden="true">${tool.icon}</div>
+                    <h3 itemprop="name">${tool.name}</h3>
+                    <p itemprop="description">${tool.desc}</p>
+                    <a href="${tool.url}" class="btn-tool" itemprop="url">Open Tool</a>
+                `;
+                
+                toolsGrid.appendChild(toolCard);
+            });
+
+            // Add animation to new cards
+            setTimeout(() => {
+                document.querySelectorAll('.tool-card').forEach((card, index) => {
+                    card.style.animation = `fadeInUp 0.5s ease ${index * 0.05}s both`;
+                });
+            }, 100);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Category buttons
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentCategory = btn.dataset.category;
+                    renderTools();
+                    
+                    // Smooth scroll to tools
+                    document.getElementById('tools-section').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
+
+            // Search input
+            toolSearch.addEventListener('input', (e) => {
+                currentSearch = e.target.value.toLowerCase().trim();
+                renderTools();
+            });
+
+            // Enter key on search
+            toolSearch.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter' && currentSearch) {
+                    const firstTool = document.querySelector('.tool-card');
+                    if (firstTool) {
+                        firstTool.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            });
+        }
+
+        // Create snow animation
         function createSnow() {
             const snowContainer = document.getElementById('snowContainer');
-            const snowflakes = ['❄', '✦', '❅', '•', '⋅'];
-            const isMobile = window.innerWidth < 768;
-            const numberOfFlakes = isMobile ? 20 : 50; // Reduced on mobile
+            if (!snowContainer || window.innerWidth < 768) return;
+            
+            const snowflakes = ['❄', '✦', '❅'];
+            const numberOfFlakes = 30;
 
             for (let i = 0; i < numberOfFlakes; i++) {
                 const snow = document.createElement('div');
                 snow.className = 'snow';
-                snow.setAttribute('aria-hidden', 'true'); // Hide from screen readers
+                snow.setAttribute('aria-hidden', 'true');
                 snow.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
                 
-                // Random properties
-                const size = Math.random() * 1.5 + 0.5;
+                const size = Math.random() * 1.2 + 0.5;
                 const left = Math.random() * 100;
-                const animationDuration = Math.random() * 10 + 5;
-                const animationDelay = Math.random() * 5;
-                const opacity = Math.random() * 0.7 + 0.3;
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                const opacity = Math.random() * 0.5 + 0.3;
                 
                 snow.style.left = left + 'vw';
                 snow.style.fontSize = size + 'em';
-                snow.style.animationDuration = animationDuration + 's';
-                snow.style.animationDelay = animationDelay + 's';
+                snow.style.animationDuration = duration + 's';
+                snow.style.animationDelay = delay + 's';
                 snow.style.opacity = opacity;
                 snow.style.color = `rgba(0, 212, 255, ${opacity})`;
                 
@@ -1131,82 +1075,75 @@
             }
         }
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
+        // Mobile menu setup
+        function setupMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
 
-        mobileMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-            mobileMenuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active'));
-        });
+            if (!mobileMenuBtn || !navLinks) return;
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav')) {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.textContent = '☰';
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-            }
-        });
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+                mobileMenuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+            });
 
-        // Close mobile menu on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.textContent = '☰';
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                mobileMenuBtn.focus();
-            }
-        });
-
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('nav')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.textContent = '☰';
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
                 }
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.tool-card, .stat-item').forEach(el => {
-            observer.observe(el);
+            // Close on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.textContent = '☰';
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.focus();
+                }
+            });
+        }
+
+        // Performance: Reduce snow on mobile
+        function optimizePerformance() {
+            if (window.innerWidth < 768) {
+                const snowContainer = document.getElementById('snowContainer');
+                if (snowContainer) {
+                    snowContainer.innerHTML = '';
+                }
+            }
+        }
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            initTools();
+            optimizePerformance();
+            
+            // Performance optimization on resize
+            window.addEventListener('resize', optimizePerformance);
+            
+            // Add glowing effect to main title
+            setInterval(() => {
+                const mainTitle = document.querySelector('.hero h1');
+                mainTitle.style.animation = 'glow 2s ease-in-out';
+                setTimeout(() => {
+                    mainTitle.style.animation = '';
+                }, 2000);
+            }, 8000);
         });
 
-        // Initialize snow animation
-        createSnow();
-
-        // Add glowing effect to main title periodically
-        setInterval(() => {
-            const mainTitle = document.querySelector('.hero h1');
-            mainTitle.style.animation = 'glow 2s ease-in-out';
-            setTimeout(() => {
-                mainTitle.style.animation = '';
-            }, 2000);
-        }, 8000);
-
-        // Performance optimization: Reduce snow on resize to mobile
-        window.addEventListener('resize', () => {
-            const snowContainer = document.getElementById('snowContainer');
-            const isMobile = window.innerWidth < 768;
-            const currentFlakes = snowContainer.children.length;
-            const targetFlakes = isMobile ? 20 : 50;
-            
-            if (currentFlakes > targetFlakes) {
-                // Remove excess flakes
-                while (snowContainer.children.length > targetFlakes) {
-                    snowContainer.removeChild(snowContainer.lastChild);
-                }
-            } else if (currentFlakes < targetFlakes) {
-                // Add missing flakes
-                createSnow();
-            }
+        // Handle CTA button scroll
+        document.querySelector('.btn-primary[href="#tools-section"]')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('tools-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
         });
     </script>
 </body>

@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter Guide: Count Words, Characters & Sentences | Free Tool</title>
+    <meta name="description" content="Master word counting with our complete guide. Learn how to count words, characters, sentences, and paragraphs accurately. Free online word counter included.">
+    
+    <!-- Schema Markup for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Count Words Accurately",
+      "description": "Complete guide to counting words, characters, sentences, and paragraphs for any writing project.",
+      "totalTime": "PT3M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Paste Your Text",
+          "text": "Copy and paste your text into the word counter input field.",
+          "image": "https://www.onlinetoolstack.site/images/word-counter-step1.jpg"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "View Real-Time Stats",
+          "text": "See word count, character count, sentence count, and paragraph count update instantly.",
+          "image": "https://www.onlinetoolstack.site/images/word-counter-step2.jpg"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Analyze Your Writing",
+          "text": "Check reading time, keyword density, and other useful metrics for your text.",
+          "image": "https://www.onlinetoolstack.site/images/word-counter-step3.jpg"
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+        /* Black & Blue Theme - Same as QR Code Tutorial */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #f0f0f0;
+            background: #0a0a0a;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(0, 213, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 213, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, rgb(0, 213, 255), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 213, 255, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 25px;
+            color: #b0b0b0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: rgb(0, 213, 255);
+            color: #000000;
+            padding: 14px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 213, 255, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 213, 255, 0.5);
+            background: rgb(0, 230, 255);
+        }
+        
+        .tool-link {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 213, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        section {
+            margin: 60px 0;
+            padding: 30px;
+            background: #111111;
+            border-radius: 15px;
+            border: 1px solid #222222;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            color: rgb(0, 213, 255);
+            border-bottom: 2px solid rgb(0, 213, 255);
+            padding-bottom: 12px;
+            margin-bottom: 30px;
+            font-size: 1.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2:before {
+            content: "▸";
+            color: rgb(0, 213, 255);
+            font-size: 1.5rem;
+        }
+        
+        h3 {
+            color: #ffffff;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 35px 0;
+            padding: 25px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            border-left: 4px solid rgb(0, 213, 255);
+            transition: transform 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateX(5px);
+            border-left-color: rgb(0, 230, 255);
+        }
+        
+        .step-number {
+            background: rgb(0, 213, 255);
+            color: #000000;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-right: 25px;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(0, 213, 255, 0.5);
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .step-content li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #d0d0d0;
+        }
+        
+        .step-content li:before {
+            content: "✓";
+            color: rgb(0, 213, 255);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .use-case {
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .use-case:hover {
+            transform: translateY(-8px);
+            border-color: rgb(0, 213, 255);
+            box-shadow: 0 10px 25px rgba(0, 213, 255, 0.2);
+        }
+        
+        .use-case:hover:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgb(0, 213, 255);
+        }
+        
+        .use-case-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: rgb(0, 213, 255);
+        }
+        
+        .use-case h3 {
+            color: white;
+            margin: 0 0 15px 0;
+        }
+        
+        .use-case p {
+            color: #b0b0b0;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .use-case strong {
+            color: rgb(0, 213, 255);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-box {
+            background: #1a1a1a;
+            border: 1px solid rgba(0, 213, 255, 0.3);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: rgb(0, 213, 255);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: rgb(0, 213, 255);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #d0d0d0;
+            font-size: 1rem;
+        }
+        
+        .faq-item {
+            margin: 20px 0;
+            border: 1px solid #333333;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: #222222;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #2a2a2a;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+            background: #1a1a1a;
+            color: #d0d0d0;
+            border-top: 1px solid #333333;
+        }
+        
+        .tip-box {
+            background: rgba(0, 213, 255, 0.1);
+            border-left: 4px solid rgb(0, 213, 255);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+            color: #d0d0d0;
+        }
+        
+        .tip-box strong {
+            color: rgb(0, 213, 255);
+        }
+        
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+            color: #d0d0d0;
+        }
+        
+        .warning-box strong {
+            color: #ffc107;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            color: #d0d0d0;
+        }
+        
+        li {
+            margin: 10px 0;
+        }
+        
+        a {
+            color: rgb(0, 213, 255);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: rgb(0, 230, 255);
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #333333;
+            color: #888888;
+            font-size: 0.9rem;
+        }
+        
+        /* Table of Contents */
+        #toc {
+            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+            border: 1px solid rgba(0, 213, 255, 0.3);
+        }
+        
+        #toc ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+        }
+        
+        #toc li {
+            background: #1a1a1a;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        #toc li:hover {
+            background: #222222;
+            transform: translateX(5px);
+        }
+        
+        #toc li a {
+            color: #f0f0f0;
+            display: block;
+            text-decoration: none;
+        }
+        
+        #toc li:hover a {
+            color: rgb(0, 213, 255);
+        }
+        
+        /* Code/Formatting */
+        code {
+            background: rgba(0, 213, 255, 0.1);
+            color: rgb(0, 213, 255);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-bottom: 20px;
+                margin-right: 0;
+            }
+            
+            section {
+                padding: 20px;
+            }
+            
+            #toc ul {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Animation for step numbers */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 15px rgba(0, 213, 255, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(0, 213, 255, 0.8); }
+            100% { box-shadow: 0 0 15px rgba(0, 213, 255, 0.5); }
+        }
+        
+        .step-number {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Complete Word Counter Guide</h1>
+        <p class="subtitle">Master accurate word counting for essays, articles, social media, and professional writing. Includes free real-time word counter tool.</p>
+        <a href="https://www.onlinetoolstack.site/word-counter.html" class="cta-button">🚀 Try Free Word Counter Tool</a>
+    </header>
+
+    <div class="tool-link">
+        <p style="color: #d0d0d0; margin-bottom: 15px;"><strong>Quick Access:</strong> Jump straight to our free tool if you're ready to count:</p>
+        <a href="https://www.onlinetoolstack.site/word-counter.html" style="font-size: 1.1rem; font-weight: bold;">https://www.onlinetoolstack.site/word-counter.html</a>
+    </div>
+
+    <!-- Table of Contents -->
+    <section id="toc">
+        <h2>📋 What You'll Learn</h2>
+        <ul>
+            <li><a href="#what-is-word-counter">✅ What is a word counter and why you need it</a></li>
+            <li><a href="#how-to-use">✅ Step-by-step guide to using word counter</a></li>
+            <li><a href="#metrics-explained">✅ Understanding different writing metrics</a></li>
+            <li><a href="#use-cases">✅ 8+ practical use cases</a></li>
+            <li><a href="#writing-tips">✅ Writing optimization tips</a></li>
+            <li><a href="#faq">✅ Answers to common questions</a></li>
+        </ul>
+    </section>
+
+    <!-- What is Word Counter -->
+    <section id="what-is-word-counter">
+        <h2>🤔 What is a Word Counter?</h2>
+        <p style="color: #d0d0d0; margin-bottom: 20px;">A word counter is an essential tool for writers, students, and professionals that analyzes text to provide detailed statistics including word count, character count, sentence count, paragraph count, and reading time.</p>
+        
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-value">250</div>
+                <div class="stat-label">Words (Essay)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">280</div>
+                <div class="stat-label">Characters (Tweet)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">1500</div>
+                <div class="stat-label">Words (Blog Post)</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">5000</div>
+                <div class="stat-label">Words (Article)</div>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <strong>💡 Did You Know?</strong> Most social media platforms have strict character limits: Twitter (280), Instagram captions (2,200), Facebook posts (63,206), LinkedIn articles (3,000+).
+        </div>
+    </section>
+
+    <!-- Step-by-Step Guide -->
+    <section id="how-to-use">
+        <h2>🎯 How to Use Word Counter: Step-by-Step</h2>
+        <p style="color: #d0d0d0; margin-bottom: 30px;">Follow these simple steps using our free word counter tool:</p>
+        
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Paste or Type Your Text</h3>
+                <p style="color: #d0d0d0; margin-bottom: 15px;">Copy your text from any source and paste it into the input field:</p>
+                <ul>
+                    <li>Copy from Word, Google Docs, or any text editor</li>
+                    <li>Type directly in the input box</li>
+                    <li>Upload text files (TXT, DOC, PDF)</li>
+                    <li>No limit on text length</li>
+                </ul>
+                <div class="tip-box">
+                    <strong>Pro Tip:</strong> Use Ctrl+A (Cmd+A on Mac) to select all text, then Ctrl+C to copy and Ctrl+V to paste.
+                </div>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>View Real-Time Statistics</h3>
+                <p style="color: #d0d0d0; margin-bottom: 15px;">Watch as your text is analyzed instantly:</p>
+                <ul>
+                    <li><strong>Word Count:</strong> Total number of words</li>
+                    <li><strong>Character Count:</strong> With and without spaces</li>
+                    <li><strong>Sentence Count:</strong> Complete sentences detected</li>
+                    <li><strong>Paragraph Count:</strong> Text paragraphs</li>
+                    <li><strong>Reading Time:</strong> Estimated time to read</li>
+                </ul>
+                <p style="color: #d0d0d0; margin-top: 15px;">All stats update in real-time as you type or edit.</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Analyze and Optimize</h3>
+                <p style="color: #d0d0d0; margin-bottom: 15px;">Use the insights to improve your writing:</p>
+                <ul>
+                    <li>Check if you meet word limits for assignments</li>
+                    <li>Optimize for SEO by hitting target word counts</li>
+                    <li>Improve readability by adjusting sentence length</li>
+                    <li>Track writing progress and productivity</li>
+                </ul>
+                <div class="warning-box">
+                    <strong>Important:</strong> Different platforms count words differently. Our tool follows standard English word counting rules.
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 50px 0;">
+            <a href="https://www.onlinetoolstack.site/word-counter.html" class="cta-button">✨ Count Your Words Now</a>
+        </div>
+    </section>
+
+    <!-- Metrics Explained -->
+    <section id="metrics-explained">
+        <h2>📊 Understanding Writing Metrics</h2>
+        
+        <h3>Key Metrics Our Tool Calculates:</h3>
+        <ul style="color: #d0d0d0;">
+            <li><strong>Word Count:</strong> Total words (separated by spaces)</li>
+            <li><strong>Character Count:</strong> Total characters including spaces</li>
+            <li><strong>Character Count (no spaces):</strong> Letters and numbers only</li>
+            <li><strong>Sentence Count:</strong> Sentences ending with . ! or ?</li>
+            <li><strong>Paragraph Count:</strong> Text blocks separated by line breaks</li>
+            <li><strong>Reading Time:</strong> Based on average reading speed (200-250 wpm)</li>
+        </ul>
+        
+        <h3>Common Word Count Standards:</h3>
+        <div class="use-case-grid">
+            <div class="use-case">
+                <div class="use-case-icon">📚</div>
+                <h3>Academic Writing</h3>
+                <p>Essays: 250-1000 words<br>Research papers: 3000-5000 words<br>Theses: 10,000-20,000+ words</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">🌐</div>
+                <h3>Web Content</h3>
+                <p>Blog posts: 1500-2500 words<br>SEO articles: 2000-3000 words<br>Product descriptions: 150-300 words</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">📱</div>
+                <h3>Social Media</h3>
+                <p>Tweets: 280 characters<br>Instagram captions: 138-150 characters optimal<br>Facebook posts: 40-80 characters optimal</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section id="use-cases">
+        <h2>🚀 8+ Practical Word Counter Use Cases</h2>
+        <p style="color: #d0d0d0; margin-bottom: 30px;">Here are real-world applications for word counting:</p>
+        
+        <div class="use-case-grid">
+            <div class="use-case">
+                <div class="use-case-icon">🎓</div>
+                <h3>Students & Academics</h3>
+                <p>Ensure essays, papers, and theses meet strict word count requirements from professors and publishers.</p>
+                <p><strong>Benefit:</strong> Avoid penalties for under/over word limits</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">✍️</div>
+                <h3>Content Writers</h3>
+                <p>Optimize blog posts, articles, and web content for SEO and reader engagement with ideal word counts.</p>
+                <p><strong>Benefit:</strong> Higher search rankings and reader retention</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">📢</div>
+                <h3>Social Media Managers</h3>
+                <p>Craft perfect posts that fit platform limits while maximizing impact and engagement.</p>
+                <p><strong>Benefit:</strong> Optimal post length for each platform</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">📄</div>
+                <h3>Professional Writers</h3>
+                <p>Track progress on novels, screenplays, reports, and other long-form writing projects.</p>
+                <p><strong>Benefit:</strong> Set and achieve writing goals</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">🔍</div>
+                <h3>SEO Specialists</h3>
+                <p>Analyze competitor content length and optimize for search engine ranking factors.</p>
+                <p><strong>Benefit:</strong> Data-driven content optimization</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">💼</div>
+                <h3>Business Professionals</h3>
+                <p>Create concise emails, reports, proposals, and business documents that respect readers' time.</p>
+                <p><strong>Benefit:</strong> More effective communication</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Writing Tips -->
+    <section id="writing-tips">
+        <h2>🏆 Writing Optimization Tips</h2>
+        
+        <h3>Ideal Content Length Guidelines:</h3>
+        <ul style="color: #d0d0d0;">
+            <li><strong>Blog Posts:</strong> 1,500-2,500 words for optimal SEO</li>
+            <li><strong>Product Descriptions:</strong> 150-300 words for conversion</li>
+            <li><strong>Email Subject Lines:</strong> 28-39 characters for highest open rates</li>
+            <li><strong>Meta Descriptions:</strong> 120-160 characters for search results</li>
+            <li><strong>Academic Abstracts:</strong> 150-250 words standard</li>
+        </ul>
+        
+        <h3>Readability Improvement:</h3>
+        <ul style="color: #d0d0d0;">
+            <li>Keep sentences under 20 words for better comprehension</li>
+            <li>Aim for paragraphs of 3-4 sentences each</li>
+            <li>Use active voice (70%+ of sentences)</li>
+            <li>Vary sentence length for natural flow</li>
+            <li>Use transition words to connect ideas</li>
+        </ul>
+        
+        <h3>Common Writing Mistakes to Avoid:</h3>
+        <ul style="color: #d0d0d0;">
+            <li>❌ Sentences that are too long and complex</li>
+            <li>❌ Paragraphs that are too dense (wall of text)</li>
+            <li>❌ Overusing jargon and complex vocabulary</li>
+            <li>❌ Inconsistent word counts across similar content</li>
+            <li>❌ Ignoring platform-specific character limits</li>
+        </ul>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <h2>❓ Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                How accurate is your word counter?
+                <span style="color: rgb(0, 213, 255); font-size: 1.2rem;">+</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong style="color: rgb(0, 213, 255);">100% Accurate!</strong> Our word counter follows standard English word counting rules. It matches the accuracy of Microsoft Word, Google Docs, and professional publishing tools.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Do you save or store the text I paste?
+                <span style="color: rgb(0, 213, 255); font-size: 1.2rem;">+</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong style="color: rgb(0, 213, 255);">No, never!</strong> Your text is processed entirely in your browser. We don't save, store, or transmit your text to any servers. This ensures complete privacy for sensitive documents.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                What's the difference between characters with and without spaces?
+                <span style="color: rgb(0, 213, 255); font-size: 1.2rem;">+</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong style="color: rgb(0, 213, 255);">Characters with spaces</strong> includes every character in your text, including spaces, punctuation, and line breaks. <strong style="color: rgb(0, 213, 255);">Characters without spaces</strong> counts only letters, numbers, and punctuation. Different platforms use different counting methods.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Can I count words in different languages?
+                <span style="color: rgb(0, 213, 255); font-size: 1.2rem;">+</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong style="color: rgb(0, 213, 255);">Yes!</strong> Our word counter works with any language that uses spaces between words. It accurately counts words in English, Spanish, French, German, and most European and Asian languages.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Is there a limit to how much text I can analyze?
+                <span style="color: rgb(0, 213, 255); font-size: 1.2rem;">+</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong style="color: rgb(0, 213, 255);">No limits!</strong> You can paste entire books, long documents, or massive articles. Our tool handles any amount of text instantly without performance issues.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%); color: white; border-radius: 15px; border: 1px solid rgba(0, 213, 255, 0.3);">
+        <h2 style="color: white; border-bottom: none;">Ready to Perfect Your Writing?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; color: #d0d0d0;">
+            Join thousands of writers, students, and professionals who trust our word counter for accurate text analysis.
+        </p>
+        <a href="https://www.onlinetoolstack.site/word-counter.html" class="cta-button">🚀 Analyze Your Text Now</a>
+        <p style="margin-top: 25px; color: #888888;">No registration required • Real-time analysis • 100% private</p>
+    </section>
+
+    <footer>
+        <p>© 2025 <a href="https://www.onlinetoolstack.site/">OnlineToolStack.com</a> | Free Online Tools</p>
+        <p style="margin-top: 10px;">Also check out: 
+            <a href="https://www.onlinetoolstack.site/qr-generator.html">QR Code Generator</a> • 
+            <a href="https://www.onlinetoolstack.site/pdf-merger.html">PDF Merger</a> • 
+            <a href="https://www.onlinetoolstack.site/background-remover.html">Background Remover</a> • 
+            <a href="https://www.onlinetoolstack.site/base64-encoder.html">Base64 Encoder</a>
+        </p>
+    </footer>
+
+    <script>
+        // FAQ toggle functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('span');
+            
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                toggle.textContent = '+';
+            } else {
+                answer.style.display = 'block';
+                toggle.textContent = '−';
+            }
+        }
+        
+        // Make FAQ answers visible on load for SEO
+        document.addEventListener('DOMContentLoaded', function() {
+            // For SEO, we want FAQ content visible to search engines
+            // But we'll hide it initially for users
+            const faqAnswers = document.querySelectorAll('.faq-answer');
+            faqAnswers.forEach(answer => {
+                // Set to display: none for users, but content is still in HTML for SEO
+                answer.style.display = 'none';
+            });
+            
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add subtle animation to CTA buttons
+            const ctaButtons = document.querySelectorAll('.cta-button');
+            ctaButtons.forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                    btn.style.transform = 'translateY(-3px)';
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Animate stat boxes
+            const statBoxes = document.querySelectorAll('.stat-box');
+            statBoxes.forEach((box, index) => {
+                setTimeout(() => {
+                    box.style.opacity = '1';
+                    box.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

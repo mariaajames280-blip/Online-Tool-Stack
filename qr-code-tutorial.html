@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Complete QR Code Guide: Create, Customize & Use | Free Tool</title>
+    <meta name="description" content="Master QR codes with our complete guide. Learn how to create, customize, and use QR codes for business, marketing, and personal use. Free QR code generator included.">
+    
+    <!-- Schema Markup for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Create and Use QR Codes",
+      "description": "Complete step-by-step guide to creating, customizing, and using QR codes effectively.",
+      "totalTime": "PT5M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Choose QR Code Type",
+          "text": "Select what type of content your QR code will contain: URL, text, contact information, WiFi, or email.",
+          "image": "https://yoursite.com/images/qr-step1.jpg"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Enter Your Content",
+          "text": "Paste your URL, type your text, or fill in contact details in the input field.",
+          "image": "https://yoursite.com/images/qr-step2.jpg"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Customize Design",
+          "text": "Optionally change colors, add a logo, or adjust the size to match your branding.",
+          "image": "https://yoursite.com/images/qr-step3.jpg"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Generate and Download",
+          "text": "Click 'Generate QR Code' and download as PNG for digital use or SVG for printing.",
+          "image": "https://yoursite.com/images/qr-step4.jpg"
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+        /* Black & Blue Theme */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #f0f0f0;
+            background: #0a0a0a;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(0, 213, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 213, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, rgb(0, 213, 255), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 213, 255, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 25px;
+            color: #b0b0b0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: rgb(0, 213, 255);
+            color: #000000;
+            padding: 14px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 213, 255, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 213, 255, 0.5);
+            background: rgb(0, 230, 255);
+        }
+        
+        .tool-link {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 213, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        section {
+            margin: 60px 0;
+            padding: 30px;
+            background: #111111;
+            border-radius: 15px;
+            border: 1px solid #222222;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            color: rgb(0, 213, 255);
+            border-bottom: 2px solid rgb(0, 213, 255);
+            padding-bottom: 12px;
+            margin-bottom: 30px;
+            font-size: 1.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2:before {
+            content: "▸";
+            color: rgb(0, 213, 255);
+            font-size: 1.5rem;
+        }
+        
+        h3 {
+            color: #ffffff;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 35px 0;
+            padding: 25px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            border-left: 4px solid rgb(0, 213, 255);
+            transition: transform 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateX(5px);
+            border-left-color: rgb(0, 230, 255);
+        }
+        
+        .step-number {
+            background: rgb(0, 213, 255);
+            color: #000000;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-right: 25px;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(0, 213, 255, 0.5);
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .step-content li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #d0d0d0;
+        }
+        
+        .step-content li:before {
+            content: "✓";
+            color: rgb(0, 213, 255);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .use-case {
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .use-case:hover {
+            transform: translateY(-8px);
+            border-color: rgb(0, 213, 255);
+            box-shadow: 0 10px 25px rgba(0, 213, 255, 0.2);
+        }
+        
+        .use-case:hover:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgb(0, 213, 255);
+        }
+        
+        .use-case-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: rgb(0, 213, 255);
+        }
+        
+        .use-case h3 {
+            color: white;
+            margin: 0 0 15px 0;
+        }
+        
+        .use-case p {
+            color: #b0b0b0;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .use-case strong {
+            color: rgb(0, 213, 255);
+        }
+        
+        .faq-item {
+            margin: 20px 0;
+            border: 1px solid #333333;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: #222222;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #2a2a2a;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+            background: #1a1a1a;
+            color: #d0d0d0;
+            border-top: 1px solid #333333;
+        }
+        
+        .tip-box {
+            background: rgba(0, 213, 255, 0.1);
+            border-left: 4px solid rgb(0, 213, 255);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+            color: #d0d0d0;
+        }
+        
+        .tip-box strong {
+            color: rgb(0, 213, 255);
+        }
+        
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+            color: #d0d0d0;
+        }
+        
+        .warning-box strong {
+            color: #ffc107;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            color: #d0d0d0;
+        }
+        
+        li {
+            margin: 10px 0;
+        }
+        
+        a {
+            color: rgb(0, 213, 255);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: rgb(0, 230, 255);
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #333333;
+            color: #888888;
+            font-size: 0.9rem;
+        }
+        
+        /* Table of Contents */
+        #toc {
+            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+            border: 1px solid rgba(0, 213, 255, 0.3);
+        }
+        
+        #toc ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+        }
+        
+        #toc li {
+            background: #1a1a1a;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        #toc li:hover {
+            background: #222222;
+            transform: translateX(5px);
+        }
+        
+        #toc li a {
+            color: #f0f0f0;
+            display: block;
+            text-decoration: none;
+        }
+        
+        #toc li:hover a {
+            color: rgb(0, 213, 255);
+        }
+        
+        /* Code/Formatting */
+        code {
+            background: rgba(0, 213, 255, 0.1);
+            color: rgb(0, 213, 255);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-bottom: 20px;
+                margin-right: 0;
+            }
+            
+            section {
+                padding: 20px;
+            }
+            
+            #toc ul {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animation for step numbers */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 15px rgba(0, 213, 255, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(0, 213, 255, 0.8); }
+            100% { box-shadow: 0 0 15px rgba(0, 213, 255, 0.5); }
+        }
+        
+        .step-number {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Complete QR Code Guide</h1>
+        <p class="subtitle">Learn how to create, customize, and use QR codes effectively for business, marketing, and personal projects. Includes free tool.</p>
+        <a href="/qr-code-generator" class="cta-button">🚀 Try Free QR Code Generator</a>
+    </header>
+
+    <div class="tool-link">
+        <p style="color: #d0d0d0; margin-bottom: 15px;"><strong>Quick Access:</strong> Jump straight to our free tool if you're ready to create:</p>
+        <a href="/qr-code-generator" style="font-size: 1.1rem; font-weight: bold;">/qr-code-generator</a>
+    </div>
+
+    <!-- Table of Contents -->
+    <section id="toc">
+        <h2>📋 What You'll Learn</h2>
+        <ul>
+            <li><a href="#what-is-qr">✅ What are QR codes and how they work</a></li>
+            <li><a href="#how-to-create">✅ Step-by-step creation guide</a></li>
+            <li><a href="#use-cases">✅ 10+ practical use cases</a></li>
+            <li><a href="#best-practices">✅ Design and optimization tips</a></li>
+            <li><a href="#faq">✅ Answers to common questions</a></li>
+        </ul>
+    </section>
+
+    <!-- What are QR Codes -->
+    <section id="what-is-qr">
+        <h2>🤔 What Are QR Codes?</h2>
+        <p style="color: #d0d0d0; margin-bottom: 20px;">QR (Quick Response) codes are two-dimensional barcodes that can store various types of information and be scanned by smartphone cameras. Unlike traditional barcodes, QR codes can hold much more data and are readable from any direction.</p>
+        
+        <div class="tip-box">
+            <strong>💡 Did You Know?</strong> QR codes were invented in 1994 by a Japanese company for tracking automotive parts. Today, they're used worldwide for everything from marketing to payments.
+        </div>
+    </section>
+
+    <!-- Step-by-Step Guide -->
+    <section id="how-to-create">
+        <h2>🎯 How to Create QR Codes: Step-by-Step</h2>
+        <p style="color: #d0d0d0; margin-bottom: 30px;">Follow these simple steps using our free QR code generator:</p>
+        
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Choose Your QR Code Type</h3>
+                <p style="color: #d0d0d0; margin-bottom: 15px;">Select what content your QR code will contain:</p>
+                <ul>
+                    <li><strong>URL:</strong> Link to website, landing page, or social media</li>
+                    <li><strong>Text:</strong> Plain text messages, instructions, or quotes</li>
+                    <li><strong>Contact (vCard):</strong> Name, phone, email, address</li>
+                    <li><strong>WiFi:</strong> Network name and password</li>
+                    <li><strong>Email:</strong> Pre-filled email with subject and body</li>
+                    <li><strong>SMS:</strong> Pre-filled text message with number</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Enter Your Content</h3>
+                <p style="color: #d0d0d0; margin-bottom: 15px;">Type or paste your information into the input field:</p>
+                <ul>
+                    <li>For URLs: Use complete address (<code>https://example.com</code>)</li>
+                    <li>For text: Enter up to 300 characters</li>
+                    <li>For contacts: Fill in the contact form fields</li>
+                </ul>
+                <div class="tip-box">
+                    <strong>Pro Tip:</strong> Use URL shorteners like bit.ly for cleaner QR codes and tracking capabilities.
+                </div>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Customize Design (Optional)</h3>
+                <p style="color: #d0d0d0; margin-bottom: 15px;">Make your QR code match your brand or style:</p>
+                <ul>
+                    <li><strong>Colors:</strong> Change foreground and background colors</li>
+                    <li><strong>Logo:</strong> Add your company logo in the center</li>
+                    <li><strong>Shape:</strong> Adjust dot shapes (dots, rounded, square)</li>
+                    <li><strong>Frame:</strong> Add text frame or image around QR</li>
+                </ul>
+                <div class="warning-box">
+                    <strong>Important:</strong> Maintain high contrast between foreground and background colors for reliable scanning.
+                </div>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Generate and Download</h3>
+                <p style="color: #d0d0d0; margin-bottom: 15px;">Click "Generate QR Code" and choose your download format:</p>
+                <ul>
+                    <li><strong>PNG:</strong> Best for digital use (websites, social media, emails)</li>
+                    <li><strong>SVG:</strong> Vector format for printing (business cards, banners, packaging)</li>
+                    <li><strong>EPS:</strong> Professional printing and graphic design</li>
+                </ul>
+                <p style="color: #d0d0d0;">All formats are high-resolution and print-ready.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 50px 0;">
+            <a href="/qr-code-generator" class="cta-button">✨ Create Your QR Code Now</a>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section id="use-cases">
+        <h2>🚀 10+ Practical QR Code Use Cases</h2>
+        <p style="color: #d0d0d0; margin-bottom: 30px;">Here are real-world applications for QR codes:</p>
+        
+        <div class="use-case-grid">
+            <div class="use-case">
+                <div class="use-case-icon">📱</div>
+                <h3>Business Cards</h3>
+                <p>Add a QR code that saves your contact directly to smartphones. No more manual entry!</p>
+                <p><strong>Benefit:</strong> 90% faster contact saving</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">🍽️</div>
+                <h3>Restaurant Menus</h3>
+                <p>COVID-safe digital menus. Update easily without reprinting.</p>
+                <p><strong>Benefit:</strong> Zero printing costs for updates</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">📦</div>
+                <h3>Product Packaging</h3>
+                <p>Link to tutorials, reviews, manuals, or loyalty programs.</p>
+                <p><strong>Benefit:</strong> Enhanced customer experience</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">📶</div>
+                <h3>WiFi Sharing</h3>
+                <p>Generate WiFi QR codes for guests. One scan = automatic connection.</p>
+                <p><strong>Benefit:</strong> No more "What's the WiFi password?"</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">🎪</div>
+                <h3>Event Marketing</h3>
+                <p>Link to tickets, schedules, speaker bios, or feedback forms.</p>
+                <p><strong>Benefit:</strong> Higher engagement and data collection</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-icon">🏥</div>
+                <h3>Healthcare</h3>
+                <p>Patient records, medication info, appointment scheduling.</p>
+                <p><strong>Benefit:</strong> Improved accuracy and efficiency</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section id="best-practices">
+        <h2>🏆 Best Practices & Pro Tips</h2>
+        
+        <h3>Design Guidelines</h3>
+        <ul style="color: #d0d0d0;">
+            <li><strong>Test Before Printing:</strong> Always scan with multiple phone cameras</li>
+            <li><strong>Size Matters:</strong> Minimum 2×2 cm for print, larger for distance scanning</li>
+            <li><strong>High Contrast:</strong> Dark QR on light background works best</li>
+            <li><strong>Quiet Zone:</strong> Leave blank space around QR code (minimum 4 modules)</li>
+        </ul>
+        
+        <h3>Optimization Tips</h3>
+        <ul style="color: #d0d0d0;">
+            <li>Use URL shorteners for cleaner codes and tracking</li>
+            <li>Add a call-to-action near the QR code ("Scan to visit")</li>
+            <li>Place at eye level (120-150cm from ground)</li>
+            <li>Ensure good lighting for scanning</li>
+        </ul>
+        
+        <h3>Common Mistakes to Avoid</h3>
+        <ul style="color: #d0d0d0;">
+            <li>❌ Placing QR codes on curved surfaces</li>
+            <li>❌ Using reflective materials</li>
+            <li>❌ Making QR codes too small</li>
+            <li>❌ Linking to non-mobile-friendly websites</li>
+            <li>❌ Not testing on different devices</li>
+        </ul>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <h2>❓ Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Are QR codes from your tool free forever?
+                <span style="color: rgb(0, 213, 255); font-size: 1.2rem;">+</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong style="color: rgb(0, 213, 255);">Yes!</strong> All QR codes generated with our tool are 100% free with no expiration. No watermarks, no subscriptions, no hidden fees.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Can I edit a QR code after creating it?
+                <span style="color: rgb(0, 213, 255); font-size: 1.2rem;">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Static QR codes (like the ones our tool creates) cannot be edited after generation. However, you can generate a new one in seconds with updated content. For editable QR codes, you would need a dynamic QR code service (usually paid).</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                What's the difference between static and dynamic QR codes?
+                <span style="color: rgb(0, 213, 255); font-size: 1.2rem;">+</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong style="color: rgb(0, 213, 255);">Static QR Codes:</strong> Content is fixed, cannot be changed after creation. Best for permanent links or information.</p>
+                <p><strong style="color: rgb(0, 213, 255);">Dynamic QR Codes:</strong> Content can be updated without changing the QR code image. Usually requires a paid service. Best for marketing campaigns where links might change.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Do QR codes have scanning limits?
+                <span style="color: rgb(0, 213, 255); font-size: 1.2rem;">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>No, there are no scanning limits. A QR code can be scanned unlimited times. The only limitation is the durability of the material it's printed on!</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Can QR codes contain viruses or malware?
+                <span style="color: rgb(0, 213, 255); font-size: 1.2rem;">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>QR codes themselves are just images and cannot contain viruses. However, they can link to malicious websites. Always check the URL preview on your phone before visiting. Our tool shows exactly what your QR code contains before you generate it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%); color: white; border-radius: 15px; border: 1px solid rgba(0, 213, 255, 0.3);">
+        <h2 style="color: white; border-bottom: none;">Ready to Create Your QR Codes?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; color: #d0d0d0;">
+            Join thousands of users who trust our free QR code generator for their business and personal projects.
+        </p>
+        <a href="/qr-code-generator" class="cta-button">🚀 Generate Free QR Codes Now</a>
+        <p style="margin-top: 25px; color: #888888;">No registration required • Unlimited codes • High quality</p>
+    </section>
+
+    <footer>
+        <p>© 2023 YourSite.com | Free Online Tools</p>
+        <p style="margin-top: 10px;">Also check out: <a href="/word-counter">Word Counter</a> • <a href="/pdf-merger">PDF Merger</a> • <a href="/background-remover">Background Remover</a> • <a href="/base64-encoder">Base64 Encoder</a></p>
+    </footer>
+
+    <script>
+        // FAQ toggle functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('span');
+            
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                toggle.textContent = '+';
+            } else {
+                answer.style.display = 'block';
+                toggle.textContent = '−';
+            }
+        }
+        
+        // Make FAQ answers visible on load for SEO
+        document.addEventListener('DOMContentLoaded', function() {
+            // For SEO, we want FAQ content visible to search engines
+            // But we'll hide it initially for users
+            const faqAnswers = document.querySelectorAll('.faq-answer');
+            faqAnswers.forEach(answer => {
+                // Set to display: none for users, but content is still in HTML for SEO
+                answer.style.display = 'none';
+            });
+            
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add subtle animation to CTA buttons
+            const ctaButtons = document.querySelectorAll('.cta-button');
+            ctaButtons.forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                    btn.style.transform = 'translateY(-3px)';
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

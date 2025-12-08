@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Watermark Tool | OnlineWebTool</title>
+<meta name="description" content="Add text or image watermarks to your PDF files instantly with our free online PDF Watermark Tool. Black & Blue theme with full preview, selective page watermarking, and QA report download.">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #000;
+        color: rgb(0,213,255);
+    }
+    h1 {
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: rgb(0,213,255);
+    }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: #111;
+        padding: 20px;
+        border-radius: 8px;
+        border: 2px solid rgb(0,213,255);
+    }
+    input, button, select, textarea {
+        font-size: 1em;
+        padding: 8px;
+        margin: 8px 0;
+        border-radius: 5px;
+        border: 1px solid rgb(0,213,255);
+        background: #000;
+        color: rgb(0,213,255);
+    }
+    button {
+        cursor: pointer;
+        background: rgb(0,213,255);
+        color: #000;
+        font-weight: bold;
+        border: none;
+    }
+    button:hover {
+        background: #00b3e6;
+    }
+    .drop-zone {
+        border: 2px dashed rgb(0,213,255);
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
+    .pdf-preview {
+        border: 1px solid rgb(0,213,255);
+        margin-top: 20px;
+        padding: 10px;
+        max-height: 400px;
+        overflow-y: auto;
+        background: #111;
+    }
+    .pdf-page {
+        border: 1px solid rgb(0,213,255);
+        margin-bottom: 10px;
+        position: relative;
+        display: inline-block;
+    }
+    canvas {
+        display: block;
+    }
+    .qa-report {
+        margin-top: 20px;
+        background: #111;
+        border: 2px solid rgb(0,213,255);
+        padding: 10px;
+        border-radius: 5px;
+        white-space: pre-wrap;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>PDF Watermark Tool</h1>
+    
+    <div class="drop-zone" id="drop-zone">
+        Drag & Drop PDF files here or click to upload
+    </div>
+    <input type="file" id="pdf-files" accept=".pdf" multiple style="display:none;">
+
+    <label for="watermark-text">Watermark Text:</label><br>
+    <input type="text" id="watermark-text" placeholder="Enter watermark text"><br>
+
+    <label for="start-page">Start Page:</label>
+    <input type="number" id="start-page" min="1" value="1">
+    <label for="end-page">End Page:</label>
+    <input type="number" id="end-page" min="1" value="1"><br>
+
+    <button id="apply-watermark">Apply Watermark</button>
+
+    <div class="pdf-preview" id="pdf-preview">
+        <!-- PDF pages preview will appear here -->
+    </div>
+
+    <button id="download-qa">Download QA Report</button>
+    <div class="qa-report" id="qa-report">QA Report will appear here after watermarking.</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.113/pdf.min.js"></script>
+<script>
+const dropZone = document.getElementById('drop-zone');
+const pdfFilesInput = document.getElementById('pdf-files');
+const pdfPreview = document.getElementById('pdf-preview');
+const applyBtn = document.getElementById('apply-watermark');
+const qaReportDiv = document.getElementById('qa-report');
+let uploadedFiles = [];
+
+dropZone.addEventListener('click', () => pdfFilesInput.click());
+pdfFilesInput.addEventListener('change', handleFiles);
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = '#00b3e6'; });
+dropZone.addEventListener('dragleave', e => { e.preventDefault(); dropZone.style.borderColor = 'rgb(0,213,255)'; });
+dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.style.borderColor = 'rgb(0,213,255)'; handleDroppedFiles(e.dataTransfer.files); });
+
+function handleFiles(e) { handleDroppedFiles(e.target.files); }
+
+function handleDroppedFiles(files) {
+    uploadedFiles = Array.from(files);
+    renderPreview();
+}
+
+async function renderPreview() {
+    pdfPreview.innerHTML = '';
+    for(const file of uploadedFiles){
+        const arrayBuffer = await file.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+        for(let i=1;i<=pdf.numPages;i++){
+            const page = await pdf.getPage(i);
+            const viewport = page.getViewport({scale:0.5});
+            const canvas = document.createElement('canvas');
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            const ctx = canvas.getContext('2d');
+            await page.render({canvasContext: ctx, viewport}).promise;
+            const wrapper = document.createElement('div');
+            wrapper.className = 'pdf-page';
+            wrapper.appendChild(canvas);
+            wrapper.innerHTML += `<p style="color: rgb(0,213,255); text-align:center;">${file.name} - Page ${i}</p>`;
+            pdfPreview.appendChild(wrapper);
+        }
+    }
+}
+
+applyBtn.addEventListener('click', async () => {
+    const text = document.getElementById('watermark-text').value;
+    const start = parseInt(document.getElementById('start-page').value) - 1;
+    let report = [];
+    for(const file of uploadedFiles){
+        const arrayBuffer = await file.arrayBuffer();
+        const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+        const pages = pdfDoc.getPages();
+        const end = Math.min(pages.length, parseInt(document.getElementById('end-page').value));
+        for(let i=start;i<end;i++){
+            const page = pages[i];
+            page.drawText(text, {
+                x: 50,
+                y: 50,
+                size: 30,
+                color: PDFLib.rgb(0, 213/255, 1),
+                rotate: PDFLib.degrees(-45),
+                opacity: 0.3
+            });
+        }
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], {type: 'application/pdf'});
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'watermarked-' + file.name;
+        link.click();
+        report.push({file: file.name, pagesWatermarked: end-start, timestamp: new Date().toISOString()});
+    }
+    qaReportDiv.textContent = JSON.stringify(report, null, 2);
+});
+
+document.getElementById('download-qa').addEventListener('click', () => {
+    const blob = new Blob([qaReportDiv.textContent], {type: 'application/json'});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'qa-report.json';
+    link.click();
+});
+</script>
+</body>
+</html>

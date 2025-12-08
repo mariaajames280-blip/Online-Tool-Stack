@@ -3,417 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nitro PDF PRO - Advanced PDF Editor</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Nitro PDF Pro - Edit, Convert & Sign PDFs | Online Tool Stack</title>
+    <meta name="description" content="Edit, create, convert, and sign PDF documents with this powerful Acrobat alternative. Free online PDF tool.">
+    <link rel="stylesheet" href="nitro-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo">
+    <div class="nitro-tool-container">
+        <header class="tool-header">
+            <div class="tool-icon-large">
                 <i class="fas fa-file-pdf"></i>
-                <h1>Nitro PDF PRO</h1>
             </div>
-            <div class="header-actions">
-                <button class="btn-icon" id="themeToggle" title="Toggle Theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="btn-icon" title="Settings">
-                    <i class="fas fa-cog"></i>
-                </button>
-            </div>
+            <h1>Nitro PDF Pro</h1>
+            <p>Edit, create, convert, and sign PDF documents with this powerful Acrobat alternative. 100% free, no registration required.</p>
         </header>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Sidebar -->
-            <aside class="sidebar">
-                <div class="sidebar-section">
-                    <h3>Tools</h3>
-                    <button class="sidebar-btn active" data-tool="upload">
-                        <i class="fas fa-upload"></i> Upload PDF
-                    </button>
-                    <button class="sidebar-btn" data-tool="merge">
-                        <i class="fas fa-object-group"></i> Merge PDFs
-                    </button>
-                    <button class="sidebar-btn" data-tool="split">
-                        <i class="fas fa-cut"></i> Split PDF
-                    </button>
-                    <button class="sidebar-btn" data-tool="compress">
-                        <i class="fas fa-compress"></i> Compress
-                    </button>
-                    <button class="sidebar-btn" data-tool="convert">
-                        <i class="fas fa-exchange-alt"></i> Convert
-                    </button>
-                    <button class="sidebar-btn" data-tool="rotate">
-                        <i class="fas fa-redo"></i> Rotate Pages
-                    </button>
-                    <button class="sidebar-btn" data-tool="watermark">
-                        <i class="fas fa-stamp"></i> Watermark
-                    </button>
-                    <button class="sidebar-btn" data-tool="sign">
-                        <i class="fas fa-signature"></i> Sign PDF
-                    </button>
-                    <button class="sidebar-btn" data-tool="protect">
-                        <i class="fas fa-lock"></i> Protect PDF
-                    </button>
-                    <button class="sidebar-btn" data-tool="extract">
-                        <i class="fas fa-file-export"></i> Extract Pages
-                    </button>
+        <div class="tool-card-wrapper">
+            <h2 class="tool-title">Powerful PDF Features</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-edit"></i>
+                    <h3>Edit PDFs</h3>
+                    <p>Edit text, images, and pages in any PDF document</p>
                 </div>
-            </aside>
+                
+                <div class="feature-card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Convert Files</h3>
+                    <p>Convert PDF to Word, Excel, PowerPoint & more</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-signature"></i>
+                    <h3>e-Signatures</h3>
+                    <p>Add digital signatures to PDF documents</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>Secure PDFs</h3>
+                    <p>Password protect and encrypt your documents</p>
+                </div>
+            </div>
 
-            <!-- Workspace -->
-            <main class="workspace">
-                <!-- Upload Tool -->
-                <div class="tool-panel active" id="upload-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-upload"></i> Upload PDF</h2>
-                        <p>Select or drag and drop your PDF file to get started</p>
-                    </div>
-                    <div class="upload-zone" id="uploadZone">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <h3>Drag & Drop PDF Here</h3>
-                        <p>or</p>
-                        <button class="btn-primary" id="selectFileBtn">
-                            <i class="fas fa-folder-open"></i> Select File
-                        </button>
-                        <input type="file" id="fileInput" accept=".pdf" multiple hidden>
-                        <p class="upload-info">Supported format: PDF (Max 100MB per file)</p>
-                    </div>
-                    <div class="file-list" id="fileList"></div>
-                </div>
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Upload Your PDF</h3>
+                <p>Drag & drop your PDF file here or click to browse</p>
+                <p class="upload-info">Supports PDF files up to 100MB</p>
+                <input type="file" id="pdfUpload" accept=".pdf" hidden>
+                <button class="btn btn-primary" onclick="document.getElementById('pdfUpload').click()">
+                    <i class="fas fa-upload"></i> Choose PDF File
+                </button>
+            </div>
 
-                <!-- Merge Tool -->
-                <div class="tool-panel" id="merge-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-object-group"></i> Merge PDFs</h2>
-                        <p>Combine multiple PDF files into one document</p>
-                    </div>
-                    <div class="merge-container">
-                        <div class="upload-zone-small" id="mergeUploadZone">
-                            <i class="fas fa-plus-circle"></i>
-                            <p>Add PDF files to merge</p>
-                            <input type="file" id="mergeFileInput" accept=".pdf" multiple hidden>
-                        </div>
-                        <div class="merge-list" id="mergeList"></div>
-                        <div class="action-buttons" id="mergeActions" style="display: none;">
-                            <button class="btn-primary" id="mergeBtn">
-                                <i class="fas fa-object-group"></i> Merge Files
-                            </button>
-                        </div>
-                    </div>
+            <div class="features-list">
+                <h3>All Features Included:</h3>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Merge multiple PDFs into one document</span>
                 </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Split PDFs into individual pages</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Compress PDFs to reduce file size</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Rotate, reorder, or delete pages</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Add watermarks and annotations</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Extract text and images from PDFs</span>
+                </div>
+            </div>
 
-                <!-- Split Tool -->
-                <div class="tool-panel" id="split-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-cut"></i> Split PDF</h2>
-                        <p>Extract pages or split PDF into multiple files</p>
-                    </div>
-                    <div class="split-container">
-                        <div class="split-options">
-                            <label>
-                                <input type="radio" name="splitMode" value="range" checked> Split by page range
-                            </label>
-                            <label>
-                                <input type="radio" name="splitMode" value="interval"> Split every N pages
-                            </label>
-                            <label>
-                                <input type="radio" name="splitMode" value="individual"> Extract to individual pages
-                            </label>
-                        </div>
-                        <div class="split-input">
-                            <input type="text" id="splitRange" placeholder="e.g., 1-5, 10, 15-20">
-                            <button class="btn-primary" id="splitBtn">
-                                <i class="fas fa-cut"></i> Split PDF
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Compress Tool -->
-                <div class="tool-panel" id="compress-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-compress"></i> Compress PDF</h2>
-                        <p>Reduce PDF file size while maintaining quality</p>
-                    </div>
-                    <div class="compress-container">
-                        <div class="compression-options">
-                            <h3>Compression Level</h3>
-                            <label class="radio-card">
-                                <input type="radio" name="compression" value="low" checked>
-                                <div class="card-content">
-                                    <strong>Low Compression</strong>
-                                    <span>Best quality, larger file</span>
-                                </div>
-                            </label>
-                            <label class="radio-card">
-                                <input type="radio" name="compression" value="medium">
-                                <div class="card-content">
-                                    <strong>Medium Compression</strong>
-                                    <span>Balanced quality and size</span>
-                                </div>
-                            </label>
-                            <label class="radio-card">
-                                <input type="radio" name="compression" value="high">
-                                <div class="card-content">
-                                    <strong>High Compression</strong>
-                                    <span>Smaller file, reduced quality</span>
-                                </div>
-                            </label>
-                        </div>
-                        <button class="btn-primary" id="compressBtn">
-                            <i class="fas fa-compress"></i> Compress PDF
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Convert Tool -->
-                <div class="tool-panel" id="convert-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-exchange-alt"></i> Convert PDF</h2>
-                        <p>Convert PDF to other formats or vice versa</p>
-                    </div>
-                    <div class="convert-container">
-                        <div class="convert-options">
-                            <h3>Convert To:</h3>
-                            <select id="convertFormat" class="select-box">
-                                <option value="word">Microsoft Word (.docx)</option>
-                                <option value="excel">Microsoft Excel (.xlsx)</option>
-                                <option value="powerpoint">PowerPoint (.pptx)</option>
-                                <option value="image">Images (JPG/PNG)</option>
-                                <option value="html">HTML</option>
-                                <option value="text">Plain Text (.txt)</option>
-                            </select>
-                        </div>
-                        <button class="btn-primary" id="convertBtn">
-                            <i class="fas fa-exchange-alt"></i> Convert PDF
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Rotate Tool -->
-                <div class="tool-panel" id="rotate-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-redo"></i> Rotate Pages</h2>
-                        <p>Rotate PDF pages clockwise or counterclockwise</p>
-                    </div>
-                    <div class="rotate-container">
-                        <div class="rotate-preview" id="rotatePreview">
-                            <div class="preview-page">
-                                <i class="fas fa-file-pdf"></i>
-                                <p>Page Preview</p>
-                            </div>
-                        </div>
-                        <div class="rotate-controls">
-                            <button class="btn-icon-large" id="rotateLeftBtn">
-                                <i class="fas fa-undo"></i>
-                                <span>Rotate Left</span>
-                            </button>
-                            <button class="btn-icon-large" id="rotateRightBtn">
-                                <i class="fas fa-redo"></i>
-                                <span>Rotate Right</span>
-                            </button>
-                            <button class="btn-icon-large" id="rotate180Btn">
-                                <i class="fas fa-sync"></i>
-                                <span>180°</span>
-                            </button>
-                        </div>
-                        <div class="page-selector">
-                            <label>Apply to pages:</label>
-                            <input type="text" id="rotatePages" placeholder="All pages or e.g., 1,3,5-10">
-                        </div>
-                        <button class="btn-primary" id="applyRotateBtn">
-                            <i class="fas fa-check"></i> Apply Rotation
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Watermark Tool -->
-                <div class="tool-panel" id="watermark-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-stamp"></i> Add Watermark</h2>
-                        <p>Add text or image watermark to your PDF</p>
-                    </div>
-                    <div class="watermark-container">
-                        <div class="watermark-type">
-                            <button class="btn-toggle active" data-type="text">Text Watermark</button>
-                            <button class="btn-toggle" data-type="image">Image Watermark</button>
-                        </div>
-                        <div class="watermark-settings" id="textWatermark">
-                            <input type="text" id="watermarkText" placeholder="Enter watermark text" class="input-field">
-                            <div class="settings-row">
-                                <label>Font Size: <span id="fontSizeValue">36</span>px</label>
-                                <input type="range" id="fontSize" min="12" max="72" value="36">
-                            </div>
-                            <div class="settings-row">
-                                <label>Opacity: <span id="opacityValue">50</span>%</label>
-                                <input type="range" id="opacity" min="0" max="100" value="50">
-                            </div>
-                            <div class="settings-row">
-                                <label>Rotation: <span id="rotationValue">45</span>°</label>
-                                <input type="range" id="rotation" min="0" max="360" value="45">
-                            </div>
-                            <div class="settings-row">
-                                <label>Color:</label>
-                                <input type="color" id="watermarkColor" value="#00d5ff">
-                            </div>
-                        </div>
-                        <div class="watermark-settings" id="imageWatermark" style="display: none;">
-                            <button class="btn-secondary" id="selectImageBtn">
-                                <i class="fas fa-image"></i> Select Image
-                            </button>
-                            <input type="file" id="watermarkImageInput" accept="image/*" hidden>
-                        </div>
-                        <button class="btn-primary" id="addWatermarkBtn">
-                            <i class="fas fa-stamp"></i> Add Watermark
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Sign Tool -->
-                <div class="tool-panel" id="sign-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-signature"></i> Sign PDF</h2>
-                        <p>Add your signature to the PDF document</p>
-                    </div>
-                    <div class="sign-container">
-                        <div class="signature-tabs">
-                            <button class="tab-btn active" data-tab="draw">Draw</button>
-                            <button class="tab-btn" data-tab="type">Type</button>
-                            <button class="tab-btn" data-tab="upload">Upload</button>
-                        </div>
-                        <div class="signature-content">
-                            <div class="signature-panel active" id="drawSignature">
-                                <canvas id="signatureCanvas" width="500" height="200"></canvas>
-                                <div class="canvas-controls">
-                                    <button class="btn-secondary" id="clearCanvas">
-                                        <i class="fas fa-eraser"></i> Clear
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="signature-panel" id="typeSignature">
-                                <input type="text" id="signatureText" placeholder="Type your signature" class="signature-input">
-                                <select id="signatureFont" class="select-box">
-                                    <option value="'Brush Script MT', cursive">Brush Script</option>
-                                    <option value="'Lucida Handwriting', cursive">Lucida Handwriting</option>
-                                    <option value="'Courier New', monospace">Courier</option>
-                                </select>
-                            </div>
-                            <div class="signature-panel" id="uploadSignature">
-                                <button class="btn-secondary" id="uploadSignatureBtn">
-                                    <i class="fas fa-upload"></i> Upload Signature Image
-                                </button>
-                                <input type="file" id="signatureFileInput" accept="image/*" hidden>
-                            </div>
-                        </div>
-                        <button class="btn-primary" id="addSignatureBtn">
-                            <i class="fas fa-check"></i> Add Signature
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Protect Tool -->
-                <div class="tool-panel" id="protect-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-lock"></i> Protect PDF</h2>
-                        <p>Add password protection and set permissions</p>
-                    </div>
-                    <div class="protect-container">
-                        <div class="password-section">
-                            <h3>Password Protection</h3>
-                            <div class="input-group">
-                                <label>Open Password:</label>
-                                <input type="password" id="openPassword" placeholder="Required to open PDF" class="input-field">
-                            </div>
-                            <div class="input-group">
-                                <label>Permissions Password:</label>
-                                <input type="password" id="permissionsPassword" placeholder="Required to change permissions" class="input-field">
-                            </div>
-                        </div>
-                        <div class="permissions-section">
-                            <h3>Permissions</h3>
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="allowPrinting" checked>
-                                Allow Printing
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="allowCopying" checked>
-                                Allow Copying Content
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="allowModifying">
-                                Allow Modifying Document
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="allowAnnotations">
-                                Allow Annotations
-                            </label>
-                        </div>
-                        <button class="btn-primary" id="protectBtn">
-                            <i class="fas fa-lock"></i> Protect PDF
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Extract Tool -->
-                <div class="tool-panel" id="extract-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-file-export"></i> Extract Pages</h2>
-                        <p>Extract specific pages from your PDF</p>
-                    </div>
-                    <div class="extract-container">
-                        <div class="extract-input">
-                            <label>Pages to extract (e.g., 1,3,5-10):</label>
-                            <input type="text" id="extractPages" placeholder="Enter page numbers" class="input-field">
-                        </div>
-                        <div class="extract-options">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="extractSeparate">
-                                Extract as separate files
-                            </label>
-                        </div>
-                        <button class="btn-primary" id="extractBtn">
-                            <i class="fas fa-file-export"></i> Extract Pages
-                        </button>
-                    </div>
-                </div>
-            </main>
-
-            <!-- Preview Panel -->
-            <aside class="preview-panel" id="previewPanel">
-                <div class="preview-header">
-                    <h3>Preview</h3>
-                    <button class="btn-icon" id="closePreview">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="preview-content" id="previewContent">
-                    <div class="preview-placeholder">
-                        <i class="fas fa-eye-slash"></i>
-                        <p>No preview available</p>
-                    </div>
-                </div>
-                <div class="preview-actions">
-                    <button class="btn-secondary" id="downloadBtn" disabled>
-                        <i class="fas fa-download"></i> Download
-                    </button>
-                </div>
-            </aside>
+            <div class="action-buttons">
+                <a href="/" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Tools
+                </a>
+                <button class="btn btn-primary" id="startTool">
+                    <i class="fas fa-play"></i> Start Using Tool
+                </button>
+            </div>
         </div>
 
-        <!-- Toast Notifications -->
-        <div class="toast-container" id="toastContainer"></div>
-
-        <!-- Loading Overlay -->
-        <div class="loading-overlay" id="loadingOverlay">
-            <div class="spinner"></div>
-            <p>Processing...</p>
-        </div>
+        <footer class="tool-footer">
+            <p>© 2025 Online Tool Stack - Nitro PDF Pro Tool</p>
+            <p>All processing happens in your browser. Your files are never uploaded to our servers.</p>
+            <p><a href="/">← Back to Online Tool Stack</a></p>
+        </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Simple upload handling
+        document.getElementById('pdfUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file && file.type === 'application/pdf') {
+                const uploadArea = document.getElementById('uploadArea');
+                uploadArea.innerHTML = `
+                    <i class="fas fa-file-pdf" style="color: #ffd700"></i>
+                    <h3>${file.name}</h3>
+                    <p>${(file.size / 1024 / 1024).toFixed(2)} MB • Ready to Process</p>
+                    <div class="action-buttons" style="margin-top: 1rem">
+                        <button class="btn btn-primary" onclick="processPDF()">
+                            <i class="fas fa-cogs"></i> Process PDF
+                        </button>
+                        <button class="btn btn-secondary" onclick="location.reload()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                `;
+            } else {
+                alert('Please select a valid PDF file.');
+            }
+        });
+
+        // Drag and drop
+        const uploadArea = document.getElementById('uploadArea');
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, () => {
+                uploadArea.classList.add('dragover');
+            });
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, () => {
+                uploadArea.classList.remove('dragover');
+            });
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            const file = e.dataTransfer.files[0];
+            if (file && file.type === 'application/pdf') {
+                document.getElementById('pdfUpload').files = e.dataTransfer.files;
+                document.getElementById('pdfUpload').dispatchEvent(new Event('change'));
+            }
+        });
+
+        function processPDF() {
+            alert('PDF processing would start here. This is a demonstration tool.\n\nIn a real implementation, this would use PDF.js or similar library to process the PDF in the browser.');
+        }
+
+        document.getElementById('startTool').addEventListener('click', () => {
+            document.getElementById('uploadArea').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>

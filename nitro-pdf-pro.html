@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nitro PDF Pro – All‑in‑One PDF Tool</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #000;
+        color: #00d5ff;
+        margin: 0;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #00d5ff;
+        margin-bottom: 30px;
+    }
+    .tool-container {
+        background: #0d0d0d;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #00d5ff;
+        max-width: 900px;
+        margin: auto;
+    }
+    .section {
+        margin-bottom: 25px;
+        padding: 15px;
+        border: 1px solid #00d5ff;
+        border-radius: 8px;
+        background: #0a0a0a;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="file"] {
+        background: #000;
+        border: 1px solid #00d5ff;
+        padding: 10px;
+        border-radius: 5px;
+        width: 100%;
+        color: #00d5ff;
+    }
+    button {
+        background: #00d5ff;
+        color: #000;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    button:hover {
+        opacity: 0.8;
+    }
+    textarea {
+        width: 100%;
+        height: 180px;
+        background: #000;
+        border: 1px solid #00d5ff;
+        color: #00d5ff;
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+<h1>⚡ Nitro PDF Pro – All‑in‑One PDF Tool</h1>
+<div class="tool-container">
+
+    <!-- Extract Text -->
+    <div class="section">
+        <h2>📄 Extract Text from PDF</h2>
+        <input type="file" id="extractPdf" accept="application/pdf">
+        <button onclick="extractText()">Extract Text</button>
+        <textarea id="outputText" placeholder="Extracted text will appear here..."></textarea>
+    </div>
+
+    <!-- Compress PDF -->
+    <div class="section">
+        <h2>🗜 Compress PDF</h2>
+        <input type="file" id="compressPdf" accept="application/pdf">
+        <button onclick="compressPdfFile()">Compress PDF</button>
+        <p id="compressStatus"></p>
+    </div>
+
+    <!-- Split PDF -->
+    <div class="section">
+        <h2>✂️ Split PDF into Pages</h2>
+        <input type="file" id="splitPdf" accept="application/pdf">
+        <button onclick="splitPDF()">Split PDF</button>
+        <p id="splitStatus"></p>
+    </div>
+
+    <!-- Merge PDFs -->
+    <div class="section">
+        <h2>➕ Merge Multiple PDFs</h2>
+        <input type="file" id="mergePdf" accept="application/pdf" multiple>
+        <button onclick="mergePDFs()">Merge PDFs</button>
+        <p id="mergeStatus"></p>
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script>
+// ---------- Extract Text ----------
+async function extractText() {
+    const file = document.getElementById("extractPdf").files[0];
+    if (!file) return alert("Please upload a PDF file");
+
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+    let extracted = "";
+
+    for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const text = await page.getTextContent();
+        extracted += text.items.map(item => item.str).join(" ") + "\n\n";
+    }
+
+    document.getElementById("outputText").value = extracted;
+}
+
+// ---------- Compress PDF ----------
+async function compressPdfFile() {
+    const file = document.getElementById("compressPdf").files[0];
+    if (!file) return alert("Upload a PDF first");
+
+    const arrayBuffer = await file.arrayBuffer();
+    const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+
+    const compressed = await pdfDoc.save({ useObjectStreams: true });
+
+    downloadFile(compressed, "compressed.pdf");
+    document.getElementById("compressStatus").innerText = "PDF Compressed Successfully!";
+}
+
+// ---------- Split PDF ----------
+async function splitPDF() {
+    const file = document.getElementById("splitPdf").files[0];
+    if (!file) return alert("Upload a PDF to split");
+
+    const arrayBuffer = await file.arrayBuffer();
+    const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+
+    for (let i = 0; i < pdfDoc.getPageCount(); i++) {
+        const newPdf = await PDFLib.PDFDocument.create();
+        const [page] = await newPdf.copyPages(pdfDoc, [i]);
+        newPdf.addPage(page);
+        const bytes = await newPdf.save();
+        downloadFile(bytes, `page_${i + 1}.pdf`);
+    }
+
+    document.getElementById("splitStatus").innerText = "PDF Split Successfully";
+}
+
+// ---------- Merge PDFs ----------
+async function mergePDFs() {
+    const files = document.getElementById("mergePdf").files;
+    if (files.length < 2) return alert("Select at least 2 PDFs to merge");
+
+    const mergedPdf = await PDFLib.PDFDocument.create();
+
+    for (let f of files) {
+        const bytes = await f.arrayBuffer();
+        const pdf = await PDFLib.PDFDocument.load(bytes);
+        const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+        pages.forEach(p => mergedPdf.addPage(p));
+    }
+
+    const finalPdf = await mergedPdf.save();
+    downloadFile(finalPdf, "merged.pdf");
+    document.getElementById("mergeStatus").innerText = "PDFs Merged Successfully";
+}
+
+// ---------- Download Helper ----------
+function downloadFile(bytes, filename) {
+    const blob = new Blob([bytes], { type: "application/pdf" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+}
+</script>
+</body>
+</html>

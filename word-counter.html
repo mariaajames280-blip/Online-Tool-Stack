@@ -171,6 +171,227 @@
         .download-btn:hover {
             background: rgba(0, 213, 255, 0.1);
         }
+         /* ============================================ */
+        /* QUICK GUIDE SECTION - ADDED HERE */
+        /* ============================================ */
+        .quick-guide {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border: 1px solid rgba(0, 213, 255, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 213, 255, 0.1);
+        }
+        
+        .guide-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 213, 255, 0.2);
+        }
+        
+        .guide-icon {
+            background: rgb(0, 213, 255);
+            color: black;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-right: 15px;
+            box-shadow: 0 0 15px rgba(0, 213, 255, 0.5);
+        }
+        
+        .guide-title {
+            color: rgb(0, 213, 255);
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        
+        .guide-subtitle {
+            color: #b0b0b0;
+            margin: 5px 0 0 0;
+            font-size: 0.95rem;
+        }
+        
+        .guide-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .guide-step {
+            background: rgba(0, 213, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid rgb(0, 213, 255);
+            transition: transform 0.3s;
+        }
+        
+        .guide-step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .step-circle {
+            background: rgb(0, 213, 255);
+            color: black;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .step-title {
+            color: white;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .step-description {
+            color: #d0d0d0;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        
+        .guide-benefits {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 213, 255, 0.2);
+        }
+        
+        .benefits-title {
+            color: rgb(0, 213, 255);
+            margin: 0 0 15px 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .benefit-check {
+            color: rgb(0, 213, 255);
+            font-size: 1.2rem;
+        }
+        
+        .benefit-text {
+            color: #d0d0d0;
+            font-size: 0.95rem;
+        }
+        
+        .guide-uses {
+            background: rgba(0, 213, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .uses-title {
+            color: rgb(0, 213, 255);
+            margin: 0 0 15px 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .uses-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .use-tag {
+            background: rgba(0, 213, 255, 0.1);
+            color: rgb(0, 213, 255);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 213, 255, 0.3);
+        }
+        
+        .tutorial-cta {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(0, 213, 255, 0.1) 0%, rgba(26, 26, 46, 0.3) 100%);
+            border-radius: 10px;
+            border: 2px dashed rgba(0, 213, 255, 0.4);
+        }
+        
+        .tutorial-title {
+            color: rgb(0, 213, 255);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .tutorial-description {
+            color: #d0d0d0;
+            margin: 0 0 20px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .tutorial-button {
+            display: inline-block;
+            background: rgb(0, 213, 255);
+            color: black;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 213, 255, 0.3);
+            cursor: pointer;
+        }
+        
+        .tutorial-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 213, 255, 0.5);
+        }
+        
+        .tutorial-note {
+            color: #888888;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        /* ============================================ */
+        /* END OF QUICK GUIDE SECTION */
+        /* ============================================ */
         
         .info-card {
             background: #111;

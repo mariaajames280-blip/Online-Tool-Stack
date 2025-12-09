@@ -499,19 +499,19 @@
             display: block;
         }
 
-        /* How to Guide Section - FIXED VERSION */
-        .how-to-guide-blue {
-            background: #0a0a0a;
-            color: #ffffff;
+        /* TUTORIAL GUIDE SECTION - COMPLETELY SEPARATE STYLES */
+        .tutorial-guide-section {
+            background: #000000 !important;
+            color: #ffffff !important;
             border-radius: 16px;
             padding: 30px;
             margin: 25px 0;
-            border: 1px solid rgba(0, 213, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 213, 255, 0.1);
+            border: 1px solid rgb(0, 213, 255);
+            box-shadow: 0 8px 32px rgba(0, 213, 255, 0.2);
         }
 
-        .how-to-guide-blue h2 {
-            color: rgb(0, 213, 255);
+        .tutorial-guide-section h2 {
+            color: rgb(0, 213, 255) !important;
             font-size: 1.8rem;
             margin: 0 0 8px 0;
             display: flex;
@@ -519,47 +519,43 @@
             gap: 12px;
         }
 
-        .guide-icon {
-            font-size: 1.5rem;
-        }
-
-        .guide-subtitle {
-            color: #a0a0a0;
+        .tutorial-guide-section .guide-subtitle {
+            color: #aaaaaa !important;
             font-size: 1rem;
             margin-bottom: 30px;
         }
 
-        .steps-container-blue {
+        .tutorial-steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-bottom: 30px;
         }
 
-        .step-blue {
-            background: #111111;
-            border: 1px solid rgba(0, 213, 255, 0.15);
+        .tutorial-step {
+            background: #111111 !important;
+            border: 1px solid rgb(0, 213, 255);
             border-radius: 12px;
             padding: 25px;
             transition: all 0.3s ease;
         }
 
-        .step-blue:hover {
-            border-color: rgba(0, 213, 255, 0.4);
+        .tutorial-step:hover {
+            border-color: rgb(0, 230, 255);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 213, 255, 0.15);
+            box-shadow: 0 6px 20px rgba(0, 213, 255, 0.3);
         }
 
-        .step-header {
+        .step-header-guide {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 15px;
         }
 
-        .step-number-blue {
+        .step-number-guide {
             background: rgb(0, 213, 255);
-            color: #000000;
+            color: #000000 !important;
             width: 36px;
             height: 36px;
             border-radius: 50%;
@@ -571,67 +567,67 @@
             flex-shrink: 0;
         }
 
-        .step-blue h3 {
-            color: rgb(0, 213, 255);
+        .tutorial-step h3 {
+            color: rgb(0, 213, 255) !important;
             font-size: 1.2rem;
             margin: 0;
         }
 
-        .step-blue p {
-            color: #ffffff;
+        .tutorial-step p {
+            color: #ffffff !important;
             line-height: 1.6;
             margin-bottom: 15px;
         }
 
-        .requirements {
+        .guide-requirements {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
             margin-top: 10px;
         }
 
-        .req-item {
+        .guide-req-item {
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #ffffff;
+            color: #ffffff !important;
             font-size: 0.9rem;
         }
 
-        .req-icon {
-            color: rgb(0, 213, 255);
+        .guide-req-icon {
+            color: rgb(0, 213, 255) !important;
             font-size: 1rem;
         }
 
-        .ai-features {
+        .guide-ai-features {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
             margin-top: 10px;
         }
 
-        .ai-tag {
+        .guide-ai-tag {
             background: rgba(0, 213, 255, 0.1);
-            color: rgb(0, 213, 255);
+            color: rgb(0, 213, 255) !important;
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 0.85rem;
             border: 1px solid rgba(0, 213, 255, 0.3);
         }
 
-        .features-list {
+        .guide-features-list {
             margin-top: 15px;
         }
 
-        .feature {
+        .guide-feature-item {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 10px;
-            color: #ffffff;
+            color: #ffffff !important;
         }
 
-        .feature-dot {
+        .guide-feature-dot {
             width: 8px;
             height: 8px;
             background: rgb(0, 213, 255);
@@ -640,16 +636,16 @@
         }
 
         /* Requirements Box */
-        .requirements-box {
+        .guide-requirements-box {
             background: rgba(0, 213, 255, 0.05);
-            border: 1px solid rgba(0, 213, 255, 0.2);
+            border: 1px solid rgb(0, 213, 255);
             border-radius: 12px;
             padding: 25px;
             margin-top: 25px;
         }
 
-        .requirements-box h4 {
-            color: rgb(0, 213, 255);
+        .guide-requirements-box h4 {
+            color: rgb(0, 213, 255) !important;
             font-size: 1.2rem;
             margin-bottom: 20px;
             display: flex;
@@ -657,13 +653,13 @@
             gap: 10px;
         }
 
-        .req-grid {
+        .guide-req-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
 
-        .req-card {
+        .guide-req-card {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -673,23 +669,23 @@
             transition: all 0.3s ease;
         }
 
-        .req-card:hover {
+        .guide-req-card:hover {
             background: rgba(0, 213, 255, 0.1);
         }
 
-        .req-icon-box {
+        .guide-req-icon-box {
             font-size: 1.5rem;
-            color: rgb(0, 213, 255);
+            color: rgb(0, 213, 255) !important;
         }
 
-        .req-card strong {
-            color: #ffffff;
+        .guide-req-card strong {
+            color: #ffffff !important;
             display: block;
             margin-bottom: 4px;
         }
 
-        .req-card p {
-            color: #a0a0a0;
+        .guide-req-card p {
+            color: #aaaaaa !important;
             font-size: 0.9rem;
             margin: 0;
         }
@@ -701,10 +697,10 @@
             padding: 20px;
         }
 
-        .tutorial-link {
+        .tutorial-link-button {
             display: inline-block;
             background: rgb(0, 213, 255);
-            color: #000000;
+            color: #000000 !important;
             padding: 12px 25px;
             border-radius: 6px;
             text-decoration: none;
@@ -715,7 +711,7 @@
             cursor: pointer;
         }
 
-        .tutorial-link:hover {
+        .tutorial-link-button:hover {
             background: rgb(0, 230, 255);
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 213, 255, 0.4);
@@ -723,39 +719,39 @@
 
         /* Responsive Design for Guide */
         @media (max-width: 768px) {
-            .how-to-guide-blue {
+            .tutorial-guide-section {
                 padding: 20px;
             }
             
-            .steps-container-blue {
+            .tutorial-steps {
                 grid-template-columns: 1fr;
             }
             
-            .req-grid {
+            .guide-req-grid {
                 grid-template-columns: 1fr;
             }
             
-            .step-header {
+            .step-header-guide {
                 flex-direction: column;
                 text-align: center;
                 gap: 10px;
             }
             
-            .step-number-blue {
+            .step-number-guide {
                 margin: 0 auto;
             }
         }
 
         @media (max-width: 480px) {
-            .how-to-guide-blue {
+            .tutorial-guide-section {
                 padding: 15px;
             }
             
-            .how-to-guide-blue h2 {
+            .tutorial-guide-section h2 {
                 font-size: 1.5rem;
             }
             
-            .requirements, .ai-features {
+            .guide-requirements, .guide-ai-features {
                 justify-content: center;
             }
         }
@@ -840,91 +836,91 @@
                 <div class="status-message" id="statusMessage"></div>
             </div>
             
-            <!-- How to Use Section - Fixed Black & Blue Theme -->
-            <div class="how-to-guide-blue">
+            <!-- How to Use Section - COMPLETELY SEPARATE CLASS NAMES -->
+            <div class="tutorial-guide-section">
                 <h2><span class="guide-icon">🚀</span> How to Use This Tool</h2>
                 <p class="guide-subtitle">Remove backgrounds in 3 simple steps</p>
                 
-                <div class="steps-container-blue">
-                    <div class="step-blue">
-                        <div class="step-header">
-                            <span class="step-number-blue">1</span>
+                <div class="tutorial-steps">
+                    <div class="tutorial-step">
+                        <div class="step-header-guide">
+                            <span class="step-number-guide">1</span>
                             <h3>Upload Image</h3>
                         </div>
                         <p>Drag & drop or click to upload your photo</p>
-                        <div class="requirements">
-                            <div class="req-item">
-                                <span class="req-icon">📁</span>
+                        <div class="guide-requirements">
+                            <div class="guide-req-item">
+                                <span class="guide-req-icon">📁</span>
                                 <span>JPG, PNG, WebP</span>
                             </div>
-                            <div class="req-item">
-                                <span class="req-icon">⚖️</span>
+                            <div class="guide-req-item">
+                                <span class="guide-req-icon">⚖️</span>
                                 <span>Max 10MB</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="step-blue">
-                        <div class="step-header">
-                            <span class="step-number-blue">2</span>
+                    <div class="tutorial-step">
+                        <div class="step-header-guide">
+                            <span class="step-number-guide">2</span>
                             <h3>AI Processing</h3>
                         </div>
                         <p>Background removed automatically in 2-5 seconds</p>
-                        <div class="ai-features">
-                            <span class="ai-tag">No manual selection</span>
-                            <span class="ai-tag">Instant results</span>
+                        <div class="guide-ai-features">
+                            <span class="guide-ai-tag">No manual selection</span>
+                            <span class="guide-ai-tag">Instant results</span>
                         </div>
                     </div>
                     
-                    <div class="step-blue">
-                        <div class="step-header">
-                            <span class="step-number-blue">3</span>
+                    <div class="tutorial-step">
+                        <div class="step-header-guide">
+                            <span class="step-number-guide">3</span>
                             <h3>Download & Edit</h3>
                         </div>
                         <p>Get your transparent PNG or customize further</p>
-                        <div class="features-list">
-                            <div class="feature">
-                                <div class="feature-dot"></div>
+                        <div class="guide-features-list">
+                            <div class="guide-feature-item">
+                                <div class="guide-feature-dot"></div>
                                 <span>Change background color</span>
                             </div>
-                            <div class="feature">
-                                <div class="feature-dot"></div>
+                            <div class="guide-feature-item">
+                                <div class="guide-feature-dot"></div>
                                 <span>Add custom backdrop</span>
                             </div>
-                            <div class="feature">
-                                <div class="feature-dot"></div>
+                            <div class="guide-feature-item">
+                                <div class="guide-feature-dot"></div>
                                 <span>Refine edges</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="requirements-box">
+                <div class="guide-requirements-box">
                     <h4>📋 Tool Requirements:</h4>
-                    <div class="req-grid">
-                        <div class="req-card">
-                            <div class="req-icon-box">🖼️</div>
+                    <div class="guide-req-grid">
+                        <div class="guide-req-card">
+                            <div class="guide-req-icon-box">🖼️</div>
                             <div>
                                 <strong>Supported Formats</strong>
                                 <p>JPG, PNG, WebP, GIF</p>
                             </div>
                         </div>
-                        <div class="req-card">
-                            <div class="req-icon-box">📏</div>
+                        <div class="guide-req-card">
+                            <div class="guide-req-icon-box">📏</div>
                             <div>
                                 <strong>File Size</strong>
                                 <p>Maximum 10MB per image</p>
                             </div>
                         </div>
-                        <div class="req-card">
-                            <div class="req-icon-box">🌐</div>
+                        <div class="guide-req-card">
+                            <div class="guide-req-icon-box">🌐</div>
                             <div>
                                 <strong>Internet</strong>
                                 <p>Stable connection required</p>
                             </div>
                         </div>
-                        <div class="req-card">
-                            <div class="req-icon-box">📱</div>
+                        <div class="guide-req-card">
+                            <div class="guide-req-icon-box">📱</div>
                             <div>
                                 <strong>Device</strong>
                                 <p>Works on all devices</p>
@@ -936,7 +932,7 @@
 
             <!-- Tutorial Link -->
             <div class="tutorial-link-container">
-                <a href="ai-background-remover-tutorial.html" class="tutorial-link">
+                <a href="ai-background-remover-tutorial.html" class="tutorial-link-button">
                     📖 View Complete Tutorial Guide
                 </a>
             </div>

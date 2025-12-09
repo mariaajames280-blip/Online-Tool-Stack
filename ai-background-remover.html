@@ -14,7 +14,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
-            color: #e0e0e0;
+            color: #ffffff;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
@@ -184,7 +184,7 @@
 
         .upload-text {
             font-size: 20px;
-            color: #e0e0e0;
+            color: #ffffff;
             margin-bottom: 10px;
         }
 
@@ -432,7 +432,7 @@
         }
 
         .feature-desc {
-            color: #b0b0b0;
+            color: #ffffff;
             font-size: 14px;
             line-height: 1.6;
         }
@@ -497,6 +497,267 @@
             border: 2px solid rgba(255, 100, 100, 0.3);
             color: #ff6464;
             display: block;
+        }
+
+        /* How to Guide Section - FIXED VERSION */
+        .how-to-guide-blue {
+            background: #0a0a0a;
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 25px 0;
+            border: 1px solid rgba(0, 213, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 213, 255, 0.1);
+        }
+
+        .how-to-guide-blue h2 {
+            color: rgb(0, 213, 255);
+            font-size: 1.8rem;
+            margin: 0 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .guide-icon {
+            font-size: 1.5rem;
+        }
+
+        .guide-subtitle {
+            color: #a0a0a0;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .steps-container-blue {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .step-blue {
+            background: #111111;
+            border: 1px solid rgba(0, 213, 255, 0.15);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .step-blue:hover {
+            border-color: rgba(0, 213, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 213, 255, 0.15);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .step-number-blue {
+            background: rgb(0, 213, 255);
+            color: #000000;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .step-blue h3 {
+            color: rgb(0, 213, 255);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .step-blue p {
+            color: #ffffff;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .requirements {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .req-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        .req-icon {
+            color: rgb(0, 213, 255);
+            font-size: 1rem;
+        }
+
+        .ai-features {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .ai-tag {
+            background: rgba(0, 213, 255, 0.1);
+            color: rgb(0, 213, 255);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 213, 255, 0.3);
+        }
+
+        .features-list {
+            margin-top: 15px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .feature-dot {
+            width: 8px;
+            height: 8px;
+            background: rgb(0, 213, 255);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Requirements Box */
+        .requirements-box {
+            background: rgba(0, 213, 255, 0.05);
+            border: 1px solid rgba(0, 213, 255, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .requirements-box h4 {
+            color: rgb(0, 213, 255);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .req-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .req-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .req-card:hover {
+            background: rgba(0, 213, 255, 0.1);
+        }
+
+        .req-icon-box {
+            font-size: 1.5rem;
+            color: rgb(0, 213, 255);
+        }
+
+        .req-card strong {
+            color: #ffffff;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .req-card p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Tutorial Link Button */
+        .tutorial-link-container {
+            text-align: center;
+            margin-top: 25px;
+            padding: 20px;
+        }
+
+        .tutorial-link {
+            display: inline-block;
+            background: rgb(0, 213, 255);
+            color: #000000;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tutorial-link:hover {
+            background: rgb(0, 230, 255);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 213, 255, 0.4);
+        }
+
+        /* Responsive Design for Guide */
+        @media (max-width: 768px) {
+            .how-to-guide-blue {
+                padding: 20px;
+            }
+            
+            .steps-container-blue {
+                grid-template-columns: 1fr;
+            }
+            
+            .req-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .step-number-blue {
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .how-to-guide-blue {
+                padding: 15px;
+            }
+            
+            .how-to-guide-blue h2 {
+                font-size: 1.5rem;
+            }
+            
+            .requirements, .ai-features {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -579,7 +840,7 @@
                 <div class="status-message" id="statusMessage"></div>
             </div>
             
-            <!-- How to Use Section - Black & Blue Theme -->
+            <!-- How to Use Section - Fixed Black & Blue Theme -->
             <div class="how-to-guide-blue">
                 <h2><span class="guide-icon">🚀</span> How to Use This Tool</h2>
                 <p class="guide-subtitle">Remove backgrounds in 3 simple steps</p>
@@ -674,243 +935,11 @@
             </div>
 
             <!-- Tutorial Link -->
-            <div style="text-align: center; margin-top: 25px; padding: 20px;">
-                <a href="ai-background-remover-tutorial.html" 
-                   style="color: white; background: rgb(0, 213, 255); padding: 12px 25px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+            <div class="tutorial-link-container">
+                <a href="ai-background-remover-tutorial.html" class="tutorial-link">
                     📖 View Complete Tutorial Guide
                 </a>
             </div>
-
-            <style>
-            /* Black & Blue Theme with RGB(0, 213, 255) */
-            .how-to-guide-blue {
-                background: #0a0a0a;
-                color: #ffffff;
-                border-radius: 16px;
-                padding: 30px;
-                margin: 25px 0;
-                border: 1px solid rgba(0, 213, 255, 0.2);
-                box-shadow: 0 8px 32px rgba(0, 213, 255, 0.1);
-            }
-
-            .how-to-guide-blue h2 {
-                color: rgb(0, 213, 255);
-                font-size: 1.8rem;
-                margin: 0 0 8px 0;
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            }
-
-            .guide-subtitle {
-                color: #a0a0a0;
-                font-size: 1rem;
-                margin-bottom: 30px;
-            }
-
-            .steps-container-blue {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 25px;
-                margin-bottom: 30px;
-            }
-
-            .step-blue {
-                background: #111111;
-                border: 1px solid rgba(0, 213, 255, 0.15);
-                border-radius: 12px;
-                padding: 25px;
-                transition: all 0.3s ease;
-            }
-
-            .step-blue:hover {
-                border-color: rgba(0, 213, 255, 0.4);
-                transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba(0, 213, 255, 0.15);
-            }
-
-            .step-header {
-                display: flex;
-                align-items: center;
-                gap: 15px;
-                margin-bottom: 15px;
-            }
-
-            .step-number-blue {
-                background: rgb(0, 213, 255);
-                color: #000000;
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: bold;
-                font-size: 1.2rem;
-                flex-shrink: 0;
-            }
-
-            .step-blue h3 {
-                color: rgb(0, 213, 255);
-                font-size: 1.2rem;
-                margin: 0;
-            }
-
-            .step-blue p {
-                color: #cccccc;
-                line-height: 1.6;
-                margin-bottom: 15px;
-            }
-
-            .requirements {
-                display: flex;
-                gap: 15px;
-                flex-wrap: wrap;
-                margin-top: 10px;
-            }
-
-            .req-item {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                color: #a0a0a0;
-                font-size: 0.9rem;
-            }
-
-            .req-icon {
-                color: rgb(0, 213, 255);
-            }
-
-            .ai-features {
-                display: flex;
-                gap: 10px;
-                flex-wrap: wrap;
-                margin-top: 10px;
-            }
-
-            .ai-tag {
-                background: rgba(0, 213, 255, 0.1);
-                color: rgb(0, 213, 255);
-                padding: 6px 12px;
-                border-radius: 20px;
-                font-size: 0.85rem;
-                border: 1px solid rgba(0, 213, 255, 0.3);
-            }
-
-            .features-list {
-                margin-top: 15px;
-            }
-
-            .feature {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                margin-bottom: 10px;
-                color: #cccccc;
-            }
-
-            .feature-dot {
-                width: 8px;
-                height: 8px;
-                background: rgb(0, 213, 255);
-                border-radius: 50%;
-                flex-shrink: 0;
-            }
-
-            /* Requirements Box */
-            .requirements-box {
-                background: rgba(0, 213, 255, 0.05);
-                border: 1px solid rgba(0, 213, 255, 0.2);
-                border-radius: 12px;
-                padding: 25px;
-                margin-top: 25px;
-            }
-
-            .requirements-box h4 {
-                color: rgb(0, 213, 255);
-                font-size: 1.2rem;
-                margin-bottom: 20px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .req-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 20px;
-            }
-
-            .req-card {
-                display: flex;
-                align-items: center;
-                gap: 15px;
-                padding: 15px;
-                background: rgba(255, 255, 255, 0.03);
-                border-radius: 10px;
-                transition: all 0.3s ease;
-            }
-
-            .req-card:hover {
-                background: rgba(0, 213, 255, 0.1);
-            }
-
-            .req-icon-box {
-                font-size: 1.5rem;
-                color: rgb(0, 213, 255);
-            }
-
-            .req-card strong {
-                color: #ffffff;
-                display: block;
-                margin-bottom: 4px;
-            }
-
-            .req-card p {
-                color: #a0a0a0;
-                font-size: 0.9rem;
-                margin: 0;
-            }
-
-            /* Responsive Design */
-            @media (max-width: 768px) {
-                .how-to-guide-blue {
-                    padding: 20px;
-                }
-                
-                .steps-container-blue {
-                    grid-template-columns: 1fr;
-                }
-                
-                .req-grid {
-                    grid-template-columns: 1fr;
-                }
-                
-                .step-header {
-                    flex-direction: column;
-                    text-align: center;
-                    gap: 10px;
-                }
-                
-                .step-number-blue {
-                    margin: 0 auto;
-                }
-            }
-
-            @media (max-width: 480px) {
-                .how-to-guide-blue {
-                    padding: 15px;
-                }
-                
-                .how-to-guide-blue h2 {
-                    font-size: 1.5rem;
-                }
-                
-                .requirements, .ai-features {
-                    justify-content: center;
-                }
-            }
-            </style>
 
             <!-- Features Section -->
             <div class="features-section">

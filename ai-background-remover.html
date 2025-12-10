@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Background Remover - Online Tool Stack</title>
+    <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@2.2.10/dist/index.umd.js"></script>
     <style>
         * {
             margin: 0;
@@ -958,15 +959,13 @@
             uploadArea.classList.remove('dragover');
         });
 
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                handleFile(files[0]);
-            }
-        });
+        uploadArea.addEventListener('click', (e) => {
+    // Prevent the event from triggering on the button inside the area
+    if (e.target.classList.contains('browse-button')) {
+        return; // Let the button's own 'onclick' handle it
+    }
+    document.getElementById('fileInput').click();
+});
 
         uploadArea.addEventListener('click', () => {
             document.getElementById('fileInput').click();

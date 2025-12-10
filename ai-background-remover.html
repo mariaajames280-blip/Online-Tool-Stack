@@ -779,330 +779,314 @@
             <div class="processing-subtext">AI is working its magic ✨</div>
         </div>
     </div>
+  <script>
+    // State management
+    let originalImageData = null;
+    let processedImageData = null;
+    let currentFileName = '';
 
-    <script>
-        // State management
-        let originalImageData = null;
-        let processedImageData = null;
-        let currentFileName = '';
+    // DOM Elements
+    const fileInput = document.getElementById('fileInput');
+    const uploadArea = document.getElementById('uploadArea');
+    const uploadSection = document.getElementById('uploadSection');
+    const previewSection = document.getElementById('previewSection');
+    const originalImage = document.getElementById('originalImage');
+    const processedImage = document.getElementById('processedImage');
+    const removeBtn = document.getElementById('removeBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const processingOverlay = document.getElementById('processingOverlay');
+    const statusMessage = document.getElementById('statusMessage');
 
-        // DOM Elements
-        const fileInput = document.getElementById('fileInput');
-        const uploadArea = document.getElementById('uploadArea');
-        const uploadSection = document.getElementById('uploadSection');
-        const previewSection = document.getElementById('previewSection');
-        const originalImage = document.getElementById('originalImage');
-        const processedImage = document.getElementById('processedImage');
-        const removeBtn = document.getElementById('removeBtn');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const processingOverlay = document.getElementById('processingOverlay');
-        const statusMessage = document.getElementById('statusMessage');
+    // Initialize event listeners
+    function init() {
+        fileInput.addEventListener('change', handleFileSelect);
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('dragleave', handleDragLeave);
+        uploadArea.addEventListener('drop', handleDrop);
+        
+        uploadArea.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('browse-button')) {
+                fileInput.click();
+            }
+        });
+    }
 
-        // Initialize event listeners
-        function init() {
-            fileInput.addEventListener('change', handleFileSelect);
-            uploadArea.addEventListener('dragover', handleDragOver);
-            uploadArea.addEventListener('dragleave', handleDragLeave);
-            uploadArea.addEventListener('drop', handleDrop);
+    function handleFileSelect(e) {
+        const file = e.target.files[0];
+        if (file) {
+            processFile(file);
+        }
+    }
+
+    function handleDragOver(e) {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+    }
+
+    function handleDragLeave(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+    }
+
+    function handleDrop(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            processFile(files[0]);
+        }
+    }
+
+    function processFile(file) {
+        if (!file.type.startsWith('image/')) {
+            showStatus('Please upload a valid image file (JPG, PNG, WebP)', 'error');
+            return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            showStatus('File size must be less than 10MB', 'error');
+            return;
+        }
+
+        currentFileName = file.name.replace(/\.[^/.]+$/, '');
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            originalImageData = e.target.result;
+            displayOriginalImage(originalImageData);
+            showPreviewSection();
+            showStatus('Image uploaded successfully! Click "Remove Background" to start.', 'success');
+        };
+        
+        reader.onerror = () => {
+            showStatus('Error reading file. Please try again.', 'error');
+        };
+        
+        reader.readAsDataURL(file);
+    }
+
+    function displayOriginalImage(imageData) {
+        originalImage.src = imageData;
+        originalImage.style.display = 'block';
+    }
+
+    function showPreviewSection() {
+        uploadSection.style.display = 'none';
+        previewSection.classList.add('active');
+        removeBtn.disabled = false;
+        downloadBtn.style.display = 'none';
+        
+        // Reset processed image
+        processedImage.src = '';
+        processedImage.style.display = 'none';
+    }
+
+    // FIXED: Main background removal function
+    async function removeBackground() {
+        if (!originalImageData) {
+            showStatus('Please upload an image first', 'error');
+            return;
+        }
+
+        processingOverlay.classList.add('active');
+        removeBtn.disabled = true;
+        
+        try {
+            const img = new Image();
             
-            uploadArea.addEventListener('click', (e) => {
-                if (!e.target.classList.contains('browse-button')) {
-                    fileInput.click();
-                }
-            });
-        }
-
-        function handleFileSelect(e) {
-            const file = e.target.files[0];
-            if (file) {
-                processFile(file);
-            }
-        }
-
-        function handleDragOver(e) {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        }
-
-        function handleDragLeave(e) {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-        }
-
-        function handleDrop(e) {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                processFile(files[0]);
-            }
-        }
-
-        function processFile(file) {
-            if (!file.type.startsWith('image/')) {
-                showStatus('Please upload a valid image file (JPG, PNG, WebP)', 'error');
-                return;
-            }
-
-            if (file.size > 10 * 1024 * 1024) {
-                showStatus('File size must be less than 10MB', 'error');
-                return;
-            }
-
-            currentFileName = file.name.replace(/\.[^/.]+$/, '');
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                originalImageData = e.target.result;
-                displayOriginalImage(originalImageData);
-                showPreviewSection();
-                showStatus('Image uploaded successfully! Click "Remove Background" to start.', 'success');
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Use original image dimensions
+                canvas.width = img.naturalWidth || img.width;
+                canvas.height = img.naturalHeight || img.height;
+                
+                // Draw original image
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                
+                // Get image data for processing
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+                
+                // FIXED: Use a simpler, more reliable algorithm
+                simpleBackgroundRemoval(data, canvas.width, canvas.height);
+                
+                // Put processed data back to canvas
+                ctx.putImageData(imageData, 0, 0);
+                
+                // FIXED: Generate the PNG data URL correctly
+                processedImageData = canvas.toDataURL('image/png');
+                
+                // FIXED: Display the processed image immediately
+                displayProcessedImage(processedImageData);
+                
+                // Hide overlay and enable download after a short delay
+                setTimeout(() => {
+                    processingOverlay.classList.remove('active');
+                    downloadBtn.style.display = 'flex';
+                    removeBtn.disabled = false;
+                    showStatus('Background removed successfully! ✨', 'success');
+                }, 1000);
             };
             
-            reader.onerror = () => {
-                showStatus('Error reading file. Please try again.', 'error');
-            };
-            
-            reader.readAsDataURL(file);
-        }
-
-        function displayOriginalImage(imageData) {
-            originalImage.src = imageData;
-            originalImage.style.display = 'block';
-        }
-
-        function showPreviewSection() {
-            uploadSection.style.display = 'none';
-            previewSection.classList.add('active');
-            removeBtn.disabled = false;
-            downloadBtn.style.display = 'none';
-            
-            processedImage.src = '';
-            processedImage.style.display = 'none';
-        }
-
-        async function removeBackground() {
-            if (!originalImageData) {
-                showStatus('Please upload an image first', 'error');
-                return;
-            }
-
-            processingOverlay.classList.add('active');
-            removeBtn.disabled = true;
-            
-            try {
-                const img = new Image();
-                
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-                    
-                    canvas.width = img.naturalWidth || img.width;
-                    canvas.height = img.naturalHeight || img.height;
-                    
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    
-                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                    const data = imageData.data;
-                    
-                    // Enhanced background removal algorithm
-                    removeBackgroundAlgorithm(data, canvas.width, canvas.height);
-                    
-                    ctx.putImageData(imageData, 0, 0);
-                    
-                    processedImageData = canvas.toDataURL('image/png', 1.0);
-                    
-                    displayProcessedImage(processedImageData);
-                    
-                    setTimeout(() => {
-                        processingOverlay.classList.remove('active');
-                        downloadBtn.style.display = 'flex';
-                        removeBtn.disabled = false;
-                        showStatus('Background removed successfully! ✨', 'success');
-                    }, 1500);
-                };
-                
-                img.onerror = () => {
-                    throw new Error('Failed to load image');
-                };
-                
-                img.src = originalImageData;
-                
-            } catch (error) {
-                console.error('Background removal error:', error);
+            img.onerror = () => {
                 processingOverlay.classList.remove('active');
                 removeBtn.disabled = false;
-                showStatus('Failed to remove background. Please try another image.', 'error');
-            }
-        }
-
-        function removeBackgroundAlgorithm(data, width, height) {
-            // Get the dominant background color from edges
-            const bgColor = getBackgroundColor(data, width, height);
-            
-            // Calculate adaptive threshold
-            const threshold = 45; // Base threshold
-            
-            // First pass: Mark transparent pixels
-            for (let i = 0; i < data.length; i += 4) {
-                const r = data[i];
-                const g = data[i + 1];
-                const b = data[i + 2];
-                
-                // Calculate color distance using Euclidean distance
-                const distance = Math.sqrt(
-                    Math.pow(r - bgColor.r, 2) +
-                    Math.pow(g - bgColor.g, 2) +
-                    Math.pow(b - bgColor.b, 2)
-                );
-                
-                if (distance < threshold) {
-                    // Make background transparent
-                    data[i + 3] = 0;
-                } else if (distance < threshold * 2) {
-                    // Semi-transparent for smooth edges
-                    const alpha = Math.round(((distance - threshold) / threshold) * 255);
-                    data[i + 3] = Math.min(255, alpha);
-                }
-            }
-            
-            // Second pass: Edge refinement
-            refineEdges(data, width, height, threshold);
-        }
-
-        function getBackgroundColor(data, width, height) {
-            const samples = [];
-            const sampleSize = 5;
-            
-            // Sample corners and edges
-            const positions = [
-                // Corners
-                {x: 0, y: 0},
-                {x: width - 1, y: 0},
-                {x: 0, y: height - 1},
-                {x: width - 1, y: height - 1},
-                // Edge midpoints
-                {x: Math.floor(width / 2), y: 0},
-                {x: Math.floor(width / 2), y: height - 1},
-                {x: 0, y: Math.floor(height / 2)},
-                {x: width - 1, y: Math.floor(height / 2)}
-            ];
-            
-            for (const pos of positions) {
-                for (let dy = 0; dy < sampleSize; dy++) {
-                    for (let dx = 0; dx < sampleSize; dx++) {
-                        const x = Math.min(width - 1, pos.x + dx);
-                        const y = Math.min(height - 1, pos.y + dy);
-                        const idx = (y * width + x) * 4;
-                        
-                        samples.push({
-                            r: data[idx],
-                            g: data[idx + 1],
-                            b: data[idx + 2]
-                        });
-                    }
-                }
-            }
-            
-            // Calculate median color
-            const avgR = samples.reduce((sum, s) => sum + s.r, 0) / samples.length;
-            const avgG = samples.reduce((sum, s) => sum + s.g, 0) / samples.length;
-            const avgB = samples.reduce((sum, s) => sum + s.b, 0) / samples.length;
-            
-            return {
-                r: Math.round(avgR),
-                g: Math.round(avgG),
-                b: Math.round(avgB)
+                showStatus('Error loading image. Please try again.', 'error');
             };
-        }
-
-        function refineEdges(data, width, height, threshold) {
-            const tempData = new Uint8ClampedArray(data);
             
-            for (let y = 1; y < height - 1; y++) {
-                for (let x = 1; x < width - 1; x++) {
-                    const idx = (y * width + x) * 4;
-                    const alpha = tempData[idx + 3];
-                    
-                    // Only process semi-transparent or fully transparent pixels
-                    if (alpha < 255) {
-                        let opaqueNeighbors = 0;
-                        let neighborAlphaSum = 0;
-                        
-                        // Check 8 neighbors
-                        for (let dy = -1; dy <= 1; dy++) {
-                            for (let dx = -1; dx <= 1; dx++) {
-                                if (dx === 0 && dy === 0) continue;
-                                
-                                const nIdx = ((y + dy) * width + (x + dx)) * 4;
-                                const nAlpha = tempData[nIdx + 3];
-                                
-                                if (nAlpha > 200) {
-                                    opaqueNeighbors++;
-                                }
-                                neighborAlphaSum += nAlpha;
-                            }
-                        }
-                        
-                        // If pixel has opaque neighbors, adjust alpha for smooth transition
-                        if (opaqueNeighbors > 0 && alpha < 200) {
-                            const avgNeighborAlpha = neighborAlphaSum / 8;
-                            data[idx + 3] = Math.round((alpha + avgNeighborAlpha) / 2);
-                        }
-                    }
-                }
-            }
-        }
-
-        function displayProcessedImage(imageData) {
-            processedImage.src = imageData;
-            processedImage.style.display = 'block';
-        }
-
-        function downloadImage() {
-            if (!processedImageData) {
-                showStatus('No processed image available', 'error');
-                return;
-            }
-
-            const link = document.createElement('a');
-            link.download = `${currentFileName}_background_removed.png`;
-            link.href = processedImageData;
-            link.click();
-
-            showStatus('Image downloaded successfully! 💾', 'success');
-        }
-
-        function resetTool() {
-            uploadSection.style.display = 'block';
-            previewSection.classList.remove('active');
-            fileInput.value = '';
-            statusMessage.style.display = 'none';
+            img.src = originalImageData;
             
-            originalImageData = null;
-            processedImageData = null;
-            currentFileName = '';
+        } catch (error) {
+            console.error('Background removal error:', error);
+            processingOverlay.classList.remove('active');
             removeBtn.disabled = false;
-            downloadBtn.style.display = 'none';
-            
-            originalImage.src = '';
-            processedImage.src = '';
+            showStatus('Failed to remove background. Please try another image.', 'error');
         }
+    }
 
-        function showStatus(message, type) {
-            statusMessage.textContent = message;
-            statusMessage.className = `status-message ${type}`;
-            statusMessage.style.display = 'block';
+    // FIXED: Simplified and more reliable background removal
+    function simpleBackgroundRemoval(data, width, height) {
+        // Sample background color from edges
+        const bgColor = getEdgeColor(data, width, height);
+        
+        // Set a threshold (adjust this value for better results)
+        const threshold = 50; // Lower = more aggressive removal
+        
+        // Process all pixels
+        for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
             
-            if (type === 'success') {
-                setTimeout(() => {
-                    statusMessage.style.display = 'none';
-                }, 5000);
+            // Calculate color difference from background
+            const diff = Math.sqrt(
+                Math.pow(r - bgColor.r, 2) +
+                Math.pow(g - bgColor.g, 2) +
+                Math.pow(b - bgColor.b, 2)
+            );
+            
+            // Make pixel transparent if it's similar to background
+            if (diff < threshold) {
+                data[i + 3] = 0; // Set alpha to 0 (transparent)
             }
+            // Optional: Create smooth edges for better quality
+            else if (diff < threshold * 2) {
+                const alpha = Math.round((diff - threshold) / threshold * 255);
+                data[i + 3] = Math.min(255, Math.max(0, alpha));
+            }
+            // Otherwise keep pixel as is (fully opaque)
+        }
+    }
+
+    // FIXED: Get background color from image edges
+    function getEdgeColor(data, width, height) {
+        let r = 0, g = 0, b = 0;
+        let count = 0;
+        
+        // Sample top and bottom edges
+        for (let x = 0; x < width; x += 10) {
+            // Top edge
+            let idx = (x) * 4;
+            r += data[idx];
+            g += data[idx + 1];
+            b += data[idx + 2];
+            count++;
+            
+            // Bottom edge
+            idx = ((height - 1) * width + x) * 4;
+            r += data[idx];
+            g += data[idx + 1];
+            b += data[idx + 2];
+            count++;
+        }
+        
+        // Sample left and right edges
+        for (let y = 0; y < height; y += 10) {
+            // Left edge
+            let idx = (y * width) * 4;
+            r += data[idx];
+            g += data[idx + 1];
+            b += data[idx + 2];
+            count++;
+            
+            // Right edge
+            idx = (y * width + (width - 1)) * 4;
+            r += data[idx];
+            g += data[idx + 1];
+            b += data[idx + 2];
+            count++;
+        }
+        
+        // Return average color
+        return {
+            r: Math.round(r / count),
+            g: Math.round(g / count),
+            b: Math.round(b / count)
+        };
+    }
+
+    // FIXED: Display function with error handling
+    function displayProcessedImage(imageData) {
+        if (!imageData || imageData === 'data:,') {
+            console.error('No image data to display');
+            showStatus('Failed to process image. Please try another.', 'error');
+            return;
+        }
+        
+        processedImage.src = imageData;
+        processedImage.style.display = 'block';
+        console.log('Processed image displayed successfully');
+    }
+
+    function downloadImage() {
+        if (!processedImageData) {
+            showStatus('No processed image available', 'error');
+            return;
         }
 
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
+        const link = document.createElement('a');
+        link.download = `${currentFileName}_no_bg.png`;
+        link.href = processedImageData;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        showStatus('Image downloaded successfully! 💾', 'success');
+    }
+
+    function resetTool() {
+        uploadSection.style.display = 'block';
+        previewSection.classList.remove('active');
+        fileInput.value = '';
+        statusMessage.style.display = 'none';
+        
+        originalImageData = null;
+        processedImageData = null;
+        currentFileName = '';
+        removeBtn.disabled = false;
+        downloadBtn.style.display = 'none';
+        
+        originalImage.src = '';
+        processedImage.src = '';
+    }
+
+    function showStatus(message, type) {
+        statusMessage.textContent = message;
+        statusMessage.className = `status-message ${type}`;
+        statusMessage.style.display = 'block';
+        
+        if (type === 'success') {
+            setTimeout(() => {
+                statusMessage.style.display = 'none';
+            }, 5000);
+        }
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', init);
+</script>
 </body>
 </html>

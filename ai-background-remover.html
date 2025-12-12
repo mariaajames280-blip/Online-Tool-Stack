@@ -7,39 +7,79 @@
     <style>
         /* [Keep all your beautiful CSS styles from your previous code here] */
         /* Just add this new block for the API key section */
-        .api-key-section {
-            background: rgba(0, 0, 0, 0.7);
+                .api-key-section {
+            background: rgba(0, 0, 0, 0.6);
             border: 2px solid rgb(0, 213, 255);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 213, 255, 0.2);
+            backdrop-filter: blur(10px);
             text-align: center;
+        }
+        .api-key-section h2 {
+            color: rgb(0, 213, 255);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 213, 255, 0.5);
+        }
+        .api-key-section .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
         }
         .api-key-box {
             margin: 20px auto;
-            max-width: 600px;
+            max-width: 700px;
         }
         .api-key-input {
             width: 100%;
-            padding: 15px;
+            padding: 18px 20px;
             background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgb(0, 213, 255);
-            border-radius: 8px;
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 12px;
             color: white;
-            font-size: 16px;
+            font-size: 17px;
             font-family: monospace;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        .api-key-input:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 213, 255, 0.6);
         }
         .api-key-input::placeholder {
             color: #888;
         }
         .key-step {
-            background: rgba(0, 213, 255, 0.1);
+            background: rgba(0, 213, 255, 0.08);
             border-left: 4px solid rgb(0, 213, 255);
-            padding: 15px;
-            margin: 15px 0;
+            padding: 25px;
+            margin: 25px 0;
             text-align: left;
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 12px 12px 0;
+            transition: all 0.3s;
+        }
+        .key-step:hover {
+            background: rgba(0, 213, 255, 0.12);
+            transform: translateX(5px);
+        }
+        .key-step h3 {
+            color: rgb(0, 213, 255);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .key-step p {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .key-step small {
+            color: #a0a0a0;
         }
     </style>
 </head>

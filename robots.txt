@@ -5,24 +5,4 @@ Disallow: /private/
 Disallow: /temp/
 Disallow: /backup/
 
-
-
 Sitemap: https://www.onlinetoolstack.site/sitemap.xml
-
-# Block AI scrapers
-User-agent: ChatGPT-User
-Disallow: /
-User-agent: GPTBot
-Disallow: /
-User-agent: Claude-Web
-Disallow: /
-
-# Allow Google bots
-User-agent: Googlebot
-Allow: /
-User-agent: Googlebot-Image
-Allow: /
-User-agent: Mediapartners-Google
-Allow: /
-User-agent: AdsBot-Google
-Allow: /

@@ -5,7 +5,7 @@ Disallow: /private/
 Disallow: /temp/
 Disallow: /backup/
 
-Crawl-delay: 1
+
 
 Sitemap: https://www.onlinetoolstack.site/sitemap.xml
 
